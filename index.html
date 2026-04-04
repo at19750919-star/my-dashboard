@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurora Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   CSS VARIABLES & RESET
+   ═══════════════════════════════════════════ */
+:root {
+  --bg-deep: #060a14;
+  --bg-base: #0a0e1a;
+  --bg-surface: rgba(255,255,255,0.04);
+  --bg-surface-hover: rgba(255,255,255,0.08);
+  --bg-card: rgba(255,255,255,0.06);
+  --bg-card-hover: rgba(255,255,255,0.10);
+  --border: rgba(255,255,255,0.08);
+  --border-active: rgba(0,212,170,0.4);
+  --text-primary: #e8eaf6;
+  --text-secondary: rgba(232,234,246,0.6);
+  --text-muted: rgba(232,234,246,0.35);
+  --accent: #00d4aa;
+  --accent-glow: rgba(0,212,170,0.3);
+  --accent2: #ff6b9d;
+  --accent2-glow: rgba(255,107,157,0.3);
+  --accent3: #7c5cfc;
+  --accent3-glow: rgba(124,92,252,0.3);
+  --accent4: #fbbf24;
+  --danger: #ff4757;
+  --success: #2ed573;
+  --glass-blur: 20px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 40px rgba(0,212,170,0.1);
+  --sidebar-w: 72px;
+  --sidebar-w-expanded: 240px;
+  --header-h: 0px;
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans TC', 'Outfit', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="light"] {
+  --bg-deep: #f0f2f8;
+  --bg-base: #f5f7fc;
+  --bg-surface: rgba(0,0,0,0.03);
+  --bg-surface-hover: rgba(0,0,0,0.06);
+  --bg-card: rgba(255,255,255,0.7);
+  --bg-card-hover: rgba(255,255,255,0.85);
+  --border: rgba(0,0,0,0.08);
+  --border-active: rgba(0,170,136,0.4);
+  --text-primary: #1a1e2e;
+  --text-secondary: rgba(26,30,46,0.6);
+  --text-muted: rgba(26,30,46,0.35);
+  --accent: #00a888;
+  --accent-glow: rgba(0,168,136,0.2);
+  --accent2: #e8527a;
+  --accent2-glow: rgba(232,82,122,0.2);
+  --accent3: #6a4ce0;
+  --accent3-glow: rgba(106,76,224,0.2);
+  --shadow: 0 8px 32px rgba(0,0,0,0.1);
+  --shadow-glow: 0 0 40px rgba(0,168,136,0.08);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 15px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+/* ═══════════════════════════════════════════
+   AURORA BACKGROUND
+   ═══════════════════════════════════════════ */
+#aurora-bg {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+  pointer-events: none;
+}
+.aurora-layer {
+  position: absolute; border-radius: 50%;
+  filter: blur(120px); opacity: 0.35;
+  animation: aurora-drift 20s ease-in-out infinite alternate;
+}
+[data-theme="light"] .aurora-layer { opacity: 0.15; }
+.aurora-layer:nth-child(1) {
+  width: 60vw; height: 60vh; top: -20%; left: -10%;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  animation-duration: 25s;
+}
+.aurora-layer:nth-child(2) {
+  width: 50vw; height: 50vh; top: 30%; right: -15%;
+  background: radial-gradient(circle, var(--accent3) 0%, transparent 70%);
+  animation-duration: 30s; animation-delay: -5s;
+}
+.aurora-layer:nth-child(3) {
+  width: 40vw; height: 40vh; bottom: -10%; left: 20%;
+  background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+  animation-duration: 22s; animation-delay: -10s;
+}
+.aurora-layer:nth-child(4) {
+  width: 30vw; height: 35vh; top: 10%; left: 50%;
+  background: radial-gradient(circle, #00b4d8 0%, transparent 70%);
+  animation-duration: 28s; animation-delay: -7s;
+}
+
+@keyframes aurora-drift {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33%  { transform: translate(5vw, -3vh) scale(1.1) rotate(5deg); }
+  66%  { transform: translate(-3vw, 5vh) scale(0.95) rotate(-3deg); }
+  100% { transform: translate(4vw, 2vh) scale(1.05) rotate(4deg); }
+}
+
+/* star particles */
+.stars {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+#app { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: rgba(10,14,26,0.8);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  z-index: 100;
+  transition: width var(--transition);
+  overflow: hidden;
+}
+[data-theme="light"] .sidebar { background: rgba(245,247,252,0.85); }
+.sidebar:hover { width: var(--sidebar-w-expanded); }
+.sidebar:hover .nav-label { opacity: 1; transform: translateX(0); }
+.sidebar:hover .sidebar-logo span { opacity: 1; }
+
+.sidebar-logo {
+  padding: 20px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border);
+  min-height: 68px;
+}
+.sidebar-logo .logo-icon {
+  width: 40px; height: 40px; min-width: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+.sidebar-logo span {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.15rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  white-space: nowrap; opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.nav-list { list-style: none; flex: 1; padding: 12px 0; overflow-y: auto; }
+.nav-item {
+  position: relative;
+  margin: 2px 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+.nav-item a {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px;
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 0.93rem; font-weight: 500;
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.nav-item:hover { background: var(--bg-surface-hover); }
+.nav-item:hover a { color: var(--text-primary); }
+.nav-item.active {
+  background: linear-gradient(135deg, rgba(0,212,170,0.12), rgba(124,92,252,0.08));
+}
+.nav-item.active::before {
+  content: '';
+  position: absolute; left: 0; top: 25%; bottom: 25%;
+  width: 3px; border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, var(--accent), var(--accent3));
+}
+.nav-item.active a { color: var(--accent); }
+.nav-icon { font-size: 1.2rem; min-width: 24px; text-align: center; }
+.nav-label {
+  white-space: nowrap;
+  opacity: 0; transform: translateX(-8px);
+  transition: all var(--transition);
+}
+
+.sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid var(--border);
+}
+.theme-toggle {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px; cursor: pointer;
+  border: none; background: none;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.93rem; font-weight: 500;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  transition: all var(--transition);
+}
+.theme-toggle:hover { background: var(--bg-surface-hover); color: var(--text-primary); }
+
+/* MAIN */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  padding: 24px 32px;
+  transition: margin-left var(--transition);
+  max-width: 100%;
+}
+
+/* ═══════════════════════════════════════════
+   GLASS CARD
+   ═══════════════════════════════════════════ */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.glass-card:hover {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow), var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 1.1rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.card-title .title-icon {
+  width: 32px; height: 32px;
+  border-radius: var(--radius-xs);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════════
+   PAGE SECTIONS
+   ═══════════════════════════════════════════ */
+.page { display: none; animation: page-in 0.5s ease; }
+.page.active { display: block; }
+
+@keyframes page-in {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   DASHBOARD PAGE
+   ═══════════════════════════════════════════ */
+.dashboard-hero {
+  text-align: center;
+  padding: 48px 0 32px;
+}
+.hero-greeting {
+  font-family: var(--font-display);
+  font-weight: 300; font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.hero-clock {
+  font-family: var(--font-mono);
+  font-weight: 700; font-size: 5rem;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent));
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+.hero-date {
+  font-family: var(--font-display);
+  font-weight: 400; font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+/* Search bar */
+.search-container {
+  max-width: 600px; margin: 28px auto 40px;
+  position: relative;
+}
+.search-bar {
+  width: 100%;
+  padding: 16px 20px 16px 52px;
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: all var(--transition);
+}
+.search-bar::placeholder { color: var(--text-muted); }
+.search-bar:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow);
+}
+.search-icon {
+  position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+  color: var(--text-muted); font-size: 1.1rem;
+  pointer-events: none;
+}
+
+/* Dashboard grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Weather widget */
+.weather-widget {
+  display: flex; align-items: center; gap: 16px;
+  position: relative; z-index: 1;
+}
+.weather-icon { font-size: 3rem; line-height: 1; }
+.weather-info { flex: 1; }
+.weather-temp {
+  font-family: var(--font-mono);
+  font-size: 2rem; font-weight: 700;
+}
+.weather-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem; margin-top: 2px;
+}
+.weather-meta {
+  display: flex; gap: 16px; margin-top: 8px;
+  color: var(--text-muted); font-size: 0.8rem;
+}
+
+/* Quick links */
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  position: relative; z-index: 1;
+}
+.quick-link {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 16px 8px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none; color: var(--text-primary);
+}
+.quick-link:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-active);
+  transform: translateY(-3px);
+}
+.quick-link img {
+  width: 28px; height: 28px; border-radius: 6px;
+}
+.quick-link .link-name {
+  font-size: 0.8rem; text-align: center;
+  color: var(--text-secondary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 100%;
+}
+.add-link-btn {
+  border: 2px dashed var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.add-link-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Recent items */
+.recent-list { position: relative; z-index: 1; }
+.recent-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-xs);
+  transition: background var(--transition);
+  cursor: pointer;
+}
+.recent-item:hover { background: var(--bg-surface-hover); }
+.recent-dot {
+  width: 8px; height: 8px; border-radius: 50%; min-width: 8px;
+}
+.recent-dot.note { background: var(--accent); }
+.recent-dot.image { background: var(--accent2); }
+.recent-dot.todo { background: var(--accent3); }
+.recent-text {
+  flex: 1; font-size: 0.9rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.recent-time { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+.empty-state {
+  text-align: center; padding: 32px 16px;
+  color: var(--text-muted); font-size: 0.9rem;
+}
+
+/* Daily goal widget */
+.goal-progress-ring { position: relative; z-index: 1; }
+.goal-bar {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.goal-bar-track {
+  flex: 1; height: 8px;
+  background: var(--bg-surface);
+  border-radius: 4px; overflow: hidden;
+}
+.goal-bar-fill {
+  height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.goal-count {
+  font-family: var(--font-mono);
+  font-size: 0.85rem; color: var(--text-secondary);
+  min-width: 50px; text-align: right;
+}
+
+/* ═══════════════════════════════════════════
+   NOTES PAGE
+   ═══════════════════════════════════════════ */
+.notes-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  min-height: calc(100vh - 80px);
+}
+.notes-sidebar-panel .glass-card { height: 100%; display: flex; flex-direction: column; }
+.notes-search {
+  width: 100%; padding: 10px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem; outline: none;
+  transition: border-color var(--transition);
+  margin-bottom: 12px;
+}
+.notes-search:focus { border-color: var(--accent); }
+
+.notes-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 16px; position: relative; z-index: 1;
+}
+.tag-pill {
+  padding: 4px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.75rem; color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.tag-pill:hover, .tag-pill.active {
+  background: var(--accent);
+  color: var(--bg-deep);
+  border-color: var(--accent);
+}
+
+.notes-list {
+  flex: 1; overflow-y: auto;
+  position: relative; z-index: 1;
+}
+.note-item {
+  padding: 12px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  margin-bottom: 4px;
+  transition: all var(--transition);
+}
+.note-item:hover { background: var(--bg-surface-hover); }
+.note-item.active {
+  background: var(--bg-surface-hover);
+  border-left-color: var(--accent);
+}
+.note-item-title {
+  font-weight: 600; font-size: 0.95rem;
+  margin-bottom: 4px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.note-item-preview {
+  font-size: 0.8rem; color: var(--text-muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.note-item-date {
+  font-size: 0.7rem; color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
+
+.note-editor-panel .glass-card {
+  height: 100%; display: flex; flex-direction: column;
+}
+.note-title-input {
+  width: 100%; padding: 8px 0;
+  background: none; border: none;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  outline: none;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.note-tags-input {
+  width: 100%; padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem; outline: none;
+  margin-bottom: 12px;
+}
+.note-editor-tabs {
+  display: flex; gap: 4px; margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+.editor-tab {
+  padding: 6px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  cursor: pointer; font-size: 0.85rem;
+  transition: all var(--transition);
+}
+.editor-tab.active, .editor-tab:hover {
+  background: var(--accent);
+  color: var(--bg-deep);
+  border-color: var(--accent);
+}
+.note-textarea {
+  flex: 1; width: 100%;
+  padding: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  resize: none; outline: none;
+  line-height: 1.7;
+  transition: border-color var(--transition);
+}
+.note-textarea:focus { border-color: var(--accent); }
+.note-preview {
+  flex: 1; padding: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow-y: auto;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+.note-preview h1 { font-size: 1.8rem; margin: 16px 0 8px; font-family: var(--font-display); }
+.note-preview h2 { font-size: 1.4rem; margin: 14px 0 6px; font-family: var(--font-display); }
+.note-preview h3 { font-size: 1.15rem; margin: 12px 0 4px; font-family: var(--font-display); }
+.note-preview code {
+  background: var(--bg-surface-hover);
+  padding: 2px 6px; border-radius: 4px;
+  font-family: var(--font-mono); font-size: 0.85em;
+}
+.note-preview pre {
+  background: var(--bg-surface-hover);
+  padding: 16px; border-radius: var(--radius-xs);
+  overflow-x: auto; margin: 12px 0;
+}
+.note-preview pre code { background: none; padding: 0; }
+.note-preview ul, .note-preview ol { padding-left: 24px; margin: 8px 0; }
+.note-preview blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px; margin: 12px 0;
+  color: var(--text-secondary);
+}
+.note-preview a { color: var(--accent); }
+.note-preview strong { color: var(--accent); }
+
+/* ═══════════════════════════════════════════
+   IMAGES PAGE
+   ═══════════════════════════════════════════ */
+.images-toolbar {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 48px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-bottom: 20px;
+  position: relative;
+}
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color: var(--accent);
+  background: rgba(0,212,170,0.05);
+}
+.upload-zone-icon { font-size: 3rem; margin-bottom: 12px; }
+.upload-zone-text { color: var(--text-secondary); font-size: 0.95rem; }
+.upload-zone-hint { color: var(--text-muted); font-size: 0.8rem; margin-top: 8px; }
+.upload-zone input { display: none; }
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.image-card {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.image-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+.image-card img {
+  width: 100%; height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.image-card-info {
+  padding: 10px 12px;
+}
+.image-card-name {
+  font-size: 0.8rem; font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.image-card-date {
+  font-size: 0.7rem; color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+.image-card-actions {
+  position: absolute; top: 8px; right: 8px;
+  display: flex; gap: 4px;
+  opacity: 0; transition: opacity var(--transition);
+}
+.image-card:hover .image-card-actions { opacity: 1; }
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.9);
+  display: none; align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 90vw; max-height: 90vh;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
+.lightbox-close {
+  position: absolute; top: 20px; right: 24px;
+  background: none; border: none; color: white;
+  font-size: 2rem; cursor: pointer;
+  opacity: 0.7; transition: opacity var(--transition);
+}
+.lightbox-close:hover { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   LINKS PAGE
+   ═══════════════════════════════════════════ */
+.links-categories {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 20px;
+}
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.link-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.link-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+.link-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+.link-card img { width: 32px; height: 32px; border-radius: 8px; }
+.link-card-info { flex: 1; min-width: 0; }
+.link-card-title { font-weight: 600; font-size: 0.95rem; }
+.link-card-url {
+  font-size: 0.75rem; color: var(--text-muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.link-card-actions {
+  display: flex; gap: 4px;
+  opacity: 0; transition: opacity var(--transition);
+}
+.link-card:hover .link-card-actions { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   TODOS PAGE
+   ═══════════════════════════════════════════ */
+.todo-input-group {
+  display: flex; gap: 8px; margin-bottom: 20px;
+}
+.todo-input {
+  flex: 1; padding: 12px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem; outline: none;
+  transition: border-color var(--transition);
+}
+.todo-input:focus { border-color: var(--accent); }
+
+.todo-list { position: relative; z-index: 1; }
+.todo-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: all var(--transition);
+  cursor: grab;
+}
+.todo-item:hover { border-color: var(--border-active); }
+.todo-item.dragging { opacity: 0.5; }
+.todo-item.done { opacity: 0.5; }
+.todo-item.done .todo-text { text-decoration: line-through; }
+
+.todo-checkbox {
+  width: 22px; height: 22px; min-width: 22px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+  background: transparent;
+  color: transparent;
+  font-size: 0.8rem;
+}
+.todo-checkbox:hover { border-color: var(--accent); }
+.todo-checkbox.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-deep);
+}
+
+.todo-text { flex: 1; font-size: 0.95rem; }
+.todo-priority {
+  width: 10px; height: 10px; border-radius: 50%;
+  min-width: 10px;
+}
+.priority-high { background: var(--danger); box-shadow: 0 0 8px rgba(255,71,87,0.4); }
+.priority-medium { background: var(--accent4); }
+.priority-low { background: var(--accent); }
+
+.todo-filters {
+  display: flex; gap: 8px; margin-bottom: 16px;
+}
+
+/* ═══════════════════════════════════════════
+   GOALS PAGE
+   ═══════════════════════════════════════════ */
+.goals-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.goals-date-nav {
+  display: flex; align-items: center; gap: 12px;
+}
+.goals-date {
+  font-family: var(--font-mono);
+  font-size: 1.1rem; font-weight: 600;
+}
+.goal-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: all var(--transition);
+}
+.goal-item.completed { opacity: 0.6; }
+.goal-item.completed .goal-text { text-decoration: line-through; }
+.goal-text { flex: 1; font-size: 0.95rem; }
+.goals-summary {
+  margin-top: 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(124,92,252,0.08));
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.goals-streak {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════ */
+.btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem; font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn:hover { background: var(--bg-surface-hover); border-color: var(--border-active); }
+.btn-accent {
+  background: var(--accent);
+  color: var(--bg-deep);
+  border-color: var(--accent);
+}
+.btn-accent:hover {
+  background: #00e6b8;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+.btn-danger { border-color: var(--danger); color: var(--danger); }
+.btn-danger:hover { background: var(--danger); color: white; }
+.btn-sm { padding: 5px 10px; font-size: 0.8rem; }
+.btn-icon {
+  width: 32px; height: 32px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-icon:hover { background: var(--bg-surface-hover); color: var(--text-primary); }
+
+/* ═══════════════════════════════════════════
+   MODAL
+   ═══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  animation: fade-in 0.2s ease;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  min-width: 400px; max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: modal-in 0.3s var(--transition);
+}
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes modal-in { from { opacity: 0; transform: scale(0.95) translateY(10px); } }
+.modal h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem; margin-bottom: 20px;
+}
+.modal label {
+  display: block; margin-bottom: 6px;
+  font-size: 0.85rem; color: var(--text-secondary);
+}
+.modal input, .modal select {
+  width: 100%; padding: 10px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem; outline: none;
+  margin-bottom: 16px;
+  transition: border-color var(--transition);
+}
+.modal input:focus, .modal select:focus { border-color: var(--accent); }
+.modal-actions {
+  display: flex; justify-content: flex-end; gap: 8px;
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   AI NEWS PAGE
+   ═══════════════════════════════════════════ */
+.ainews-container { display: flex; flex-direction: column; gap: 16px; }
+.ainews-quick-nav {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.ainews-quick-nav .news-chip {
+  padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;
+  border: 1px solid var(--border); background: var(--bg-surface);
+  color: var(--text-secondary); cursor: pointer;
+  transition: all var(--transition);
+}
+.ainews-quick-nav .news-chip:hover,
+.ainews-quick-nav .news-chip.active {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+.ainews-frame-wrap {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  min-height: 70vh; position: relative;
+}
+.ainews-placeholder {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 60vh; color: var(--text-muted);
+  text-align: center; padding: 40px;
+}
+.ainews-frame {
+  width: 100%; height: 80vh; border: none; border-radius: var(--radius);
+  background: #0f0f1a;
+}
+.news-date-picker {
+  padding: 6px 12px; border-radius: var(--radius-xs);
+  border: 1px solid var(--border); background: var(--bg-surface);
+  color: var(--text-primary); font-family: var(--font-body);
+  font-size: 0.9rem; outline: none;
+}
+.news-date-picker:focus { border-color: var(--accent); }
+.news-status {
+  font-size: 0.85rem; color: var(--text-secondary);
+}
+.btn-sm { padding: 6px 14px; font-size: 0.85rem; }
+.ainews-embed {
+  width: 100%; min-height: 70vh; border: none;
+  border-radius: var(--radius); overflow: auto;
+}
+.ainews-embed iframe.ainews-srcdoc {
+  width: 100%; height: 80vh; border: none;
+  border-radius: var(--radius);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .notes-layout { grid-template-columns: 1fr; }
+  .hero-clock { font-size: 3.5rem; }
+  .main-content { padding: 16px; }
+}
+@media (max-width: 600px) {
+  .sidebar { width: 0; border: none; }
+  .sidebar.mobile-open { width: var(--sidebar-w-expanded); }
+  .main-content { margin-left: 0; }
+  .mobile-menu-btn { display: flex !important; }
+  .hero-clock { font-size: 2.8rem; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .modal { min-width: 0; }
+}
+.mobile-menu-btn {
+  display: none;
+  position: fixed; top: 16px; left: 16px; z-index: 150;
+}
+
+/* page header */
+.page-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 700;
+  display: flex; align-items: center; gap: 12px;
+}
+
+/* Staggered entrance animations */
+.stagger-in > * {
+  opacity: 0;
+  animation: stagger-fade 0.5s ease forwards;
+}
+.stagger-in > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-in > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-in > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-in > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-in > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-in > *:nth-child(6) { animation-delay: 0.3s; }
+@keyframes stagger-fade {
+  to { opacity: 1; }
+}
+
+/* Accent color bar for cards */
+.accent-bar-green .card-title .title-icon { background: linear-gradient(135deg, rgba(0,212,170,0.2), rgba(0,212,170,0.05)); color: var(--accent); }
+.accent-bar-pink .card-title .title-icon { background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(255,107,157,0.05)); color: var(--accent2); }
+.accent-bar-purple .card-title .title-icon { background: linear-gradient(135deg, rgba(124,92,252,0.2), rgba(124,92,252,0.05)); color: var(--accent3); }
+.accent-bar-yellow .card-title .title-icon { background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.05)); color: var(--accent4); }
+
+/* select styling */
+select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px !important; }
+</style>
+</head>
+<body>
+
+<!-- Aurora Background -->
+<div id="aurora-bg">
+  <div class="aurora-layer"></div>
+  <div class="aurora-layer"></div>
+  <div class="aurora-layer"></div>
+  <div class="aurora-layer"></div>
+</div>
+<canvas class="stars" id="starsCanvas"></canvas>
+
+<!-- App -->
+<div id="app">
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">A</div>
+      <span>Aurora</span>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item active" data-page="dashboard">
+        <a><span class="nav-icon">&#9678;</span><span class="nav-label">首頁</span></a>
+      </li>
+      <li class="nav-item">
+        <a href="news/ai-news.html"><span class="nav-icon">&#129302;</span><span class="nav-label">AI 新聞</span></a>
+      </li>
+      <li class="nav-item" data-page="notes">
+        <a><span class="nav-icon">&#9997;</span><span class="nav-label">筆記</span></a>
+      </li>
+      <li class="nav-item" data-page="images">
+        <a><span class="nav-icon">&#9634;</span><span class="nav-label">圖片庫</span></a>
+      </li>
+      <li class="nav-item" data-page="links">
+        <a><span class="nav-icon">&#8599;</span><span class="nav-label">常用連結</span></a>
+      </li>
+      <li class="nav-item" data-page="todos">
+        <a><span class="nav-icon">&#9745;</span><span class="nav-label">待辦事項</span></a>
+      </li>
+      <li class="nav-item" data-page="goals">
+        <a><span class="nav-icon">&#9733;</span><span class="nav-label">每日目標</span></a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="themeToggle">
+        <span class="nav-icon" id="themeIcon">&#9790;</span>
+        <span class="nav-label">切換主題</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu button -->
+  <button class="btn-icon mobile-menu-btn" id="mobileMenuBtn">&#9776;</button>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <section class="page active" id="page-dashboard">
+      <div class="dashboard-hero">
+        <div class="hero-greeting" id="greeting"></div>
+        <div class="hero-clock" id="clock"></div>
+        <div class="hero-date" id="dateDisplay"></div>
+      </div>
+
+      <div class="search-container">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" class="search-bar" id="searchBar" placeholder="搜尋 Google..." autocomplete="off">
+      </div>
+
+      <div class="dash-grid stagger-in">
+        <!-- Weather -->
+        <div class="glass-card accent-bar-green">
+          <div class="card-header">
+            <div class="card-title"><div class="title-icon">&#9729;</div>天氣</div>
+          </div>
+          <div class="weather-widget" id="weatherWidget">
+            <div class="empty-state" id="weatherLoading">定位中...</div>
+          </div>
+        </div>
+
+        <!-- Quick Links Widget -->
+        <div class="glass-card accent-bar-purple">
+          <div class="card-header">
+            <div class="card-title"><div class="title-icon">&#8599;</div>快速連結</div>
+          </div>
+          <div class="quick-links-grid" id="dashQuickLinks"></div>
+        </div>
+
+        <!-- Recent Items -->
+        <div class="glass-card accent-bar-pink">
+          <div class="card-header">
+            <div class="card-title"><div class="title-icon">&#9203;</div>最近項目</div>
+          </div>
+          <div class="recent-list" id="recentList"></div>
+        </div>
+
+        <!-- Today's Goals -->
+        <div class="glass-card accent-bar-yellow">
+          <div class="card-header">
+            <div class="card-title"><div class="title-icon">&#9733;</div>今日目標</div>
+          </div>
+          <div class="goal-progress-ring">
+            <div class="goal-bar">
+              <div class="goal-bar-track"><div class="goal-bar-fill" id="dashGoalFill" style="width:0%"></div></div>
+              <div class="goal-count" id="dashGoalCount">0/0</div>
+            </div>
+            <div id="dashGoalList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ NOTES ═══ -->
+    <section class="page" id="page-notes">
+      <div class="page-header">
+        <div class="page-title">&#9997; 筆記</div>
+        <button class="btn btn-accent" id="newNoteBtn">+ 新增筆記</button>
+      </div>
+      <div class="notes-layout">
+        <div class="notes-sidebar-panel">
+          <div class="glass-card">
+            <input type="text" class="notes-search" id="notesSearch" placeholder="搜尋筆記...">
+            <div class="notes-tags" id="notesTags"></div>
+            <div class="notes-list" id="notesList"></div>
+          </div>
+        </div>
+        <div class="note-editor-panel">
+          <div class="glass-card">
+            <div id="noteEditorContent">
+              <input type="text" class="note-title-input" id="noteTitleInput" placeholder="筆記標題...">
+              <input type="text" class="note-tags-input" id="noteTagsInput" placeholder="標籤（用逗號分隔）">
+              <div class="note-editor-tabs">
+                <div class="editor-tab active" data-tab="edit">編輯</div>
+                <div class="editor-tab" data-tab="preview">預覽</div>
+              </div>
+              <textarea class="note-textarea" id="noteTextarea" placeholder="開始寫筆記... 支援 Markdown 語法"></textarea>
+              <div class="note-preview" id="notePreview" style="display:none"></div>
+              <div style="display:flex;justify-content:space-between;margin-top:12px">
+                <button class="btn btn-danger btn-sm" id="deleteNoteBtn">刪除</button>
+                <button class="btn btn-accent btn-sm" id="saveNoteBtn">儲存</button>
+              </div>
+            </div>
+            <div class="empty-state" id="noteEmptyState">選擇或新增一篇筆記</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ IMAGES ═══ -->
+    <section class="page" id="page-images">
+      <div class="page-header">
+        <div class="page-title">&#9634; 圖片庫</div>
+      </div>
+      <div class="images-toolbar">
+        <input type="text" class="notes-search" id="imagesSearch" placeholder="搜尋圖片..." style="flex:1">
+        <div class="notes-tags" id="imagesTags" style="margin:0"></div>
+      </div>
+      <div class="upload-zone" id="uploadZone">
+        <div class="upload-zone-icon">&#128228;</div>
+        <div class="upload-zone-text">拖曳圖片到此處，或點擊上傳</div>
+        <div class="upload-zone-hint">也可以直接在頁面上貼上螢幕截圖 (Ctrl+V)</div>
+        <input type="file" id="fileInput" accept="image/*" multiple>
+      </div>
+      <div class="images-grid" id="imagesGrid"></div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close">&times;</button>
+      <img id="lightboxImg">
+    </div>
+
+    <!-- ═══ LINKS ═══ -->
+    <section class="page" id="page-links">
+      <div class="page-header">
+        <div class="page-title">&#8599; 常用連結</div>
+        <button class="btn btn-accent" id="addLinkBtn">+ 新增連結</button>
+      </div>
+      <div class="links-categories" id="linksCategories"></div>
+      <div class="links-grid" id="linksGrid"></div>
+    </section>
+
+    <!-- ═══ TODOS ═══ -->
+    <section class="page" id="page-todos">
+      <div class="page-header">
+        <div class="page-title">&#9745; 待辦事項</div>
+      </div>
+      <div class="glass-card">
+        <div class="todo-input-group">
+          <input type="text" class="todo-input" id="todoInput" placeholder="新增待辦事項...">
+          <select id="todoPriority" style="width:auto;margin:0;padding:8px 32px 8px 12px">
+            <option value="low">低</option>
+            <option value="medium" selected>中</option>
+            <option value="high">高</option>
+          </select>
+          <button class="btn btn-accent" id="addTodoBtn">新增</button>
+        </div>
+        <div class="todo-filters">
+          <button class="tag-pill active" data-filter="all">全部</button>
+          <button class="tag-pill" data-filter="active">進行中</button>
+          <button class="tag-pill" data-filter="done">已完成</button>
+        </div>
+        <div class="todo-list" id="todoList"></div>
+      </div>
+    </section>
+
+    <!-- ═══ GOALS ═══ -->
+    <!-- ═══ AI News Page ═══ -->
+    <section class="page" id="page-ainews">
+      <div class="page-header">
+        <div class="page-title">&#129302; AI 每日新聞</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <input type="date" id="newsDatePicker" class="news-date-picker">
+          <button class="btn btn-accent btn-sm" id="newsLoadBtn">載入報告</button>
+          <span class="news-status" id="newsStatus"></span>
+        </div>
+      </div>
+      <div class="ainews-container">
+        <div class="ainews-quick-nav" id="ainewsQuickNav">
+          <!-- Auto-populated with available report dates -->
+        </div>
+        <div class="ainews-frame-wrap" id="ainewsFrameWrap">
+          <div class="ainews-placeholder" id="ainewsPlaceholder">
+            <div style="font-size:3em;margin-bottom:16px;">&#129302;</div>
+            <div style="font-size:1.2em;font-weight:600;margin-bottom:8px;">AI 每日新聞報告</div>
+            <div style="color:var(--text-secondary);margin-bottom:20px;">選擇日期或點擊下方按鈕載入今日報告</div>
+            <button class="btn btn-accent" id="newsLoadTodayBtn">載入今日報告</button>
+            <div style="margin-top:16px;font-size:0.8em;color:var(--text-muted);">提示：如果本地開啟無法載入，請用 Live Server 或部署到 GitHub Pages</div>
+          </div>
+          <div id="ainewsEmbed" class="ainews-embed" style="display:none;"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-goals">
+      <div class="page-header">
+        <div class="page-title">&#9733; 每日目標</div>
+      </div>
+      <div class="glass-card">
+        <div class="goals-header">
+          <div class="goals-date-nav">
+            <button class="btn-icon" id="goalPrevDay">&#9664;</button>
+            <div class="goals-date" id="goalsDate"></div>
+            <button class="btn-icon" id="goalNextDay">&#9654;</button>
+          </div>
+          <button class="btn btn-accent" id="addGoalBtn">+ 新增目標</button>
+        </div>
+        <div class="goal-bar" style="margin-bottom:20px">
+          <div class="goal-bar-track"><div class="goal-bar-fill" id="goalBarFill" style="width:0%"></div></div>
+          <div class="goal-count" id="goalBarCount">0/0</div>
+        </div>
+        <div id="goalsList"></div>
+        <div class="goals-summary" style="margin-top:24px">
+          <div class="goals-streak" id="goalsStreak">&#128293; 連續完成：0 天</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="linkModal">
+  <div class="modal">
+    <h3 id="linkModalTitle">新增連結</h3>
+    <label>名稱</label>
+    <input type="text" id="linkNameInput" placeholder="例：GitHub">
+    <label>網址</label>
+    <input type="url" id="linkUrlInput" placeholder="https://...">
+    <label>分類</label>
+    <input type="text" id="linkCatInput" placeholder="例：開發工具">
+    <div class="modal-actions">
+      <button class="btn" id="linkModalCancel">取消</button>
+      <button class="btn btn-accent" id="linkModalSave">儲存</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="imageTagModal">
+  <div class="modal">
+    <h3>編輯圖片標籤</h3>
+    <label>名稱</label>
+    <input type="text" id="imageNameInput" placeholder="圖片名稱">
+    <label>標籤（用逗號分隔）</label>
+    <input type="text" id="imageTagInput" placeholder="截圖, 參考, 設計">
+    <div class="modal-actions">
+      <button class="btn" id="imageTagCancel">取消</button>
+      <button class="btn btn-accent" id="imageTagSave">儲存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   AURORA DASHBOARD — JavaScript
+   ═══════════════════════════════════════════ */
+
+// ─── Stars Canvas ───
+(function initStars() {
+  const canvas = document.getElementById('starsCanvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      a: Math.random(),
+      da: (Math.random() - 0.5) * 0.01,
+    }));
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const isDark = document.documentElement.dataset.theme !== 'light';
+    stars.forEach(s => {
+      s.a += s.da;
+      if (s.a > 1 || s.a < 0.1) s.da *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = isDark
+        ? `rgba(255,255,255,${s.a * 0.6})`
+        : `rgba(0,0,0,${s.a * 0.08})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ─── Utilities ───
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const LS = {
+  get(k, d = null) { try { const v = localStorage.getItem('aurora_' + k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { localStorage.setItem('aurora_' + k, JSON.stringify(v)); }
+};
+
+function formatDate(d) {
+  const dt = new Date(d);
+  return dt.toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' });
+}
+function formatTime(d) {
+  return new Date(d).toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' });
+}
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+// ─── IndexedDB for Images ───
+const ImageDB = {
+  db: null,
+  async init() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open('AuroraImages', 1);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('images')) {
+          db.createObjectStore('images', { keyPath: 'id' });
+        }
+      };
+      req.onsuccess = e => { this.db = e.target.result; resolve(); };
+      req.onerror = e => reject(e);
+    });
+  },
+  async save(img) {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('images', 'readwrite');
+      tx.objectStore('images').put(img);
+      tx.oncomplete = () => resolve();
+      tx.onerror = e => reject(e);
+    });
+  },
+  async getAll() {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('images', 'readonly');
+      const req = tx.objectStore('images').getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = e => reject(e);
+    });
+  },
+  async delete(id) {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction('images', 'readwrite');
+      tx.objectStore('images').delete(id);
+      tx.oncomplete = () => resolve();
+      tx.onerror = e => reject(e);
+    });
+  }
+};
+
+// ─── Theme ───
+function initTheme() {
+  const saved = LS.get('theme', 'dark');
+  document.documentElement.dataset.theme = saved;
+  updateThemeIcon();
+}
+function toggleTheme() {
+  const current = document.documentElement.dataset.theme;
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  LS.set('theme', next);
+  updateThemeIcon();
+}
+function updateThemeIcon() {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  $('#themeIcon').innerHTML = isDark ? '&#9790;' : '&#9788;';
+}
+$('#themeToggle').addEventListener('click', toggleTheme);
+
+// ─── Navigation ───
+function navigateTo(page) {
+  $$('.page').forEach(p => p.classList.remove('active'));
+  $$('.nav-item').forEach(n => n.classList.remove('active'));
+  const el = $(`#page-${page}`);
+  if (el) el.classList.add('active');
+  const nav = $(`.nav-item[data-page="${page}"]`);
+  if (nav) nav.classList.add('active');
+  LS.set('currentPage', page);
+  // refresh page data
+  if (page === 'dashboard') refreshDashboard();
+  if (page === 'notes') renderNotesList();
+  if (page === 'images') renderImages();
+  if (page === 'links') renderLinks();
+  if (page === 'todos') renderTodos();
+  if (page === 'goals') renderGoals();
+  if (page === 'ainews') renderAINews();
+}
+$$('.nav-item').forEach(item => {
+  item.addEventListener('click', () => navigateTo(item.dataset.page));
+});
+$('#mobileMenuBtn').addEventListener('click', () => {
+  $('#sidebar').classList.toggle('mobile-open');
+});
+
+// ─── Clock ───
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  $('#clock').textContent = `${h}:${m}:${s}`;
+
+  const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+  $('#dateDisplay').textContent = `${now.getFullYear()} 年 ${now.getMonth()+1} 月 ${now.getDate()} 日　星期${weekdays[now.getDay()]}`;
+
+  const hour = now.getHours();
+  let greet = '晚安';
+  if (hour < 6) greet = '夜深了';
+  else if (hour < 12) greet = '早安';
+  else if (hour < 18) greet = '午安';
+  $('#greeting').textContent = greet;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ─── Google Search ───
+$('#searchBar').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.value.trim()) {
+    window.open('https://www.google.com/search?q=' + encodeURIComponent(e.target.value.trim()), '_blank');
+    e.target.value = '';
+  }
+});
+
+// ─── Weather ───
+async function loadWeather() {
+  const el = $('#weatherWidget');
+  try {
+    const lat = 25.03, lon = 121.57; // 台北
+    const resp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`);
+    const data = await resp.json();
+    const c = data.current;
+    const wmoIcons = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌧',55:'🌧',61:'🌧',63:'🌧️',65:'🌧️',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
+    const wmoDesc = {0:'晴天',1:'大致晴朗',2:'多雲',3:'陰天',45:'霧',48:'霧淞',51:'毛毛雨',53:'中雨',55:'大雨',61:'小雨',63:'中雨',65:'大雨',71:'小雪',73:'中雪',75:'大雪',80:'陣雨',81:'陣雨',82:'暴雨',95:'雷暴',96:'雷暴+冰雹',99:'雷暴+冰雹'};
+    el.innerHTML = `
+      <div class="weather-icon">${wmoIcons[c.weather_code] || '🌡'}</div>
+      <div class="weather-info">
+        <div class="weather-temp">${Math.round(c.temperature_2m)}°C</div>
+        <div class="weather-desc">${wmoDesc[c.weather_code] || '未知'}</div>
+        <div class="weather-meta">
+          <span>💧 ${c.relative_humidity_2m}%</span>
+          <span>💨 ${c.wind_speed_10m} km/h</span>
+        </div>
+      </div>`;
+  } catch {
+    el.innerHTML = '<div class="empty-state">無法取得天氣資訊</div>';
+  }
+}
+
+// ═══════════════════════════════════════════
+// NOTES MODULE
+// ═══════════════════════════════════════════
+let notes = LS.get('notes', []);
+let activeNoteId = null;
+let noteFilterTag = null;
+
+function saveNotes() { LS.set('notes', notes); }
+
+function renderNotesList() {
+  const search = $('#notesSearch').value.toLowerCase();
+  let filtered = notes.filter(n => {
+    if (search && !n.title.toLowerCase().includes(search) && !n.content.toLowerCase().includes(search)) return false;
+    if (noteFilterTag && !(n.tags || []).includes(noteFilterTag)) return false;
+    return true;
+  });
+  filtered.sort((a, b) => b.updatedAt - a.updatedAt);
+
+  // render tags
+  const allTags = [...new Set(notes.flatMap(n => n.tags || []))];
+  $('#notesTags').innerHTML = allTags.map(t =>
+    `<span class="tag-pill ${noteFilterTag === t ? 'active' : ''}" data-tag="${t}">${t}</span>`
+  ).join('');
+  $$('#notesTags .tag-pill').forEach(el => {
+    el.addEventListener('click', () => {
+      noteFilterTag = noteFilterTag === el.dataset.tag ? null : el.dataset.tag;
+      renderNotesList();
+    });
+  });
+
+  $('#notesList').innerHTML = filtered.length ? filtered.map(n => `
+    <div class="note-item ${n.id === activeNoteId ? 'active' : ''}" data-id="${n.id}">
+      <div class="note-item-title">${escHtml(n.title || '無標題')}</div>
+      <div class="note-item-preview">${escHtml((n.content || '').slice(0, 60))}</div>
+      <div class="note-item-date">${formatDate(n.updatedAt)}</div>
+    </div>
+  `).join('') : '<div class="empty-state">沒有筆記</div>';
+
+  $$('.note-item').forEach(el => {
+    el.addEventListener('click', () => openNote(el.dataset.id));
+  });
+  updateNoteEditor();
+}
+
+function openNote(id) {
+  activeNoteId = id;
+  const note = notes.find(n => n.id === id);
+  if (!note) return;
+  $('#noteTitleInput').value = note.title || '';
+  $('#noteTagsInput').value = (note.tags || []).join(', ');
+  $('#noteTextarea').value = note.content || '';
+  updateNoteEditor();
+  renderNotesList();
+  // switch to edit tab
+  $$('.editor-tab').forEach(t => t.classList.remove('active'));
+  $('.editor-tab[data-tab="edit"]').classList.add('active');
+  $('#noteTextarea').style.display = '';
+  $('#notePreview').style.display = 'none';
+}
+
+function updateNoteEditor() {
+  const has = activeNoteId !== null;
+  $('#noteEditorContent').style.display = has ? '' : 'none';
+  $('#noteEmptyState').style.display = has ? 'none' : '';
+}
+
+$('#newNoteBtn').addEventListener('click', () => {
+  const note = {
+    id: genId(),
+    title: '',
+    content: '',
+    tags: [],
+    createdAt: Date.now(),
+    updatedAt: Date.now()
+  };
+  notes.push(note);
+  saveNotes();
+  openNote(note.id);
+  $('#noteTitleInput').focus();
+  addRecent('note', note.id, '新筆記');
+});
+
+$('#saveNoteBtn').addEventListener('click', () => {
+  if (!activeNoteId) return;
+  const note = notes.find(n => n.id === activeNoteId);
+  if (!note) return;
+  note.title = $('#noteTitleInput').value.trim();
+  note.content = $('#noteTextarea').value;
+  note.tags = $('#noteTagsInput').value.split(',').map(t => t.trim()).filter(Boolean);
+  note.updatedAt = Date.now();
+  saveNotes();
+  renderNotesList();
+  addRecent('note', note.id, note.title || '無標題');
+});
+
+$('#deleteNoteBtn').addEventListener('click', () => {
+  if (!activeNoteId) return;
+  if (!confirm('確定要刪除這篇筆記？')) return;
+  notes = notes.filter(n => n.id !== activeNoteId);
+  activeNoteId = null;
+  saveNotes();
+  renderNotesList();
+});
+
+$('#notesSearch').addEventListener('input', renderNotesList);
+
+// Markdown tabs
+$$('.editor-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    $$('.editor-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    if (tab.dataset.tab === 'edit') {
+      $('#noteTextarea').style.display = '';
+      $('#notePreview').style.display = 'none';
+    } else {
+      $('#noteTextarea').style.display = 'none';
+      $('#notePreview').style.display = '';
+      $('#notePreview').innerHTML = renderMarkdown($('#noteTextarea').value);
+    }
+  });
+});
+
+// Simple Markdown renderer
+function renderMarkdown(md) {
+  if (!md) return '<div class="empty-state">尚無內容</div>';
+  let html = escHtml(md);
+  // code blocks
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+  // inline code
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+  // headers
+  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  // bold & italic
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  // blockquote
+  html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+  // unordered list
+  html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+  // links
+  html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank">$1</a>');
+  // line breaks
+  html = html.replace(/\n/g, '<br>');
+  return html;
+}
+
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ═══════════════════════════════════════════
+// IMAGES MODULE
+// ═══════════════════════════════════════════
+let imagesMeta = LS.get('imagesMeta', []);
+let imageFilterTag = null;
+let editingImageId = null;
+
+function saveImagesMeta() { LS.set('imagesMeta', imagesMeta); }
+
+async function renderImages() {
+  const search = $('#imagesSearch').value.toLowerCase();
+  const allImgs = await ImageDB.getAll();
+  let filtered = allImgs.filter(img => {
+    const meta = imagesMeta.find(m => m.id === img.id) || {};
+    if (search && !(meta.name || '').toLowerCase().includes(search)) return false;
+    if (imageFilterTag && !(meta.tags || []).includes(imageFilterTag)) return false;
+    return true;
+  });
+  filtered.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+  // tags
+  const allTags = [...new Set(imagesMeta.flatMap(m => m.tags || []))];
+  $('#imagesTags').innerHTML = allTags.map(t =>
+    `<span class="tag-pill ${imageFilterTag === t ? 'active' : ''}" data-tag="${t}">${t}</span>`
+  ).join('');
+  $$('#imagesTags .tag-pill').forEach(el => {
+    el.addEventListener('click', () => {
+      imageFilterTag = imageFilterTag === el.dataset.tag ? null : el.dataset.tag;
+      renderImages();
+    });
+  });
+
+  $('#imagesGrid').innerHTML = filtered.length ? filtered.map(img => {
+    const meta = imagesMeta.find(m => m.id === img.id) || {};
+    return `
+    <div class="image-card" data-id="${img.id}">
+      <img src="${img.data}" alt="${escHtml(meta.name || '')}" loading="lazy">
+      <div class="image-card-info">
+        <div class="image-card-name">${escHtml(meta.name || '未命名')}</div>
+        <div class="image-card-date">${formatDate(img.createdAt)}</div>
+      </div>
+      <div class="image-card-actions">
+        <button class="btn-icon btn-sm img-edit-btn" data-id="${img.id}" title="編輯">&#9998;</button>
+        <button class="btn-icon btn-sm img-delete-btn" data-id="${img.id}" title="刪除">&times;</button>
+      </div>
+    </div>`;
+  }).join('') : '<div class="empty-state" style="grid-column:1/-1">沒有圖片</div>';
+
+  // events
+  $$('.image-card img').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      $('#lightboxImg').src = el.src;
+      $('#lightbox').classList.add('active');
+    });
+  });
+  $$('.img-delete-btn').forEach(el => {
+    el.addEventListener('click', async e => {
+      e.stopPropagation();
+      if (!confirm('確定要刪除這張圖片？')) return;
+      await ImageDB.delete(el.dataset.id);
+      imagesMeta = imagesMeta.filter(m => m.id !== el.dataset.id);
+      saveImagesMeta();
+      renderImages();
+    });
+  });
+  $$('.img-edit-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      editingImageId = el.dataset.id;
+      const meta = imagesMeta.find(m => m.id === el.dataset.id) || {};
+      $('#imageNameInput').value = meta.name || '';
+      $('#imageTagInput').value = (meta.tags || []).join(', ');
+      $('#imageTagModal').classList.add('active');
+    });
+  });
+}
+
+// Upload
+async function handleFiles(files) {
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) continue;
+    const data = await new Promise(res => {
+      const r = new FileReader();
+      r.onload = () => res(r.result);
+      r.readAsDataURL(file);
+    });
+    const id = genId();
+    await ImageDB.save({ id, data, createdAt: Date.now() });
+    imagesMeta.push({ id, name: file.name, tags: [], createdAt: Date.now() });
+    saveImagesMeta();
+    addRecent('image', id, file.name);
+  }
+  renderImages();
+}
+
+const uploadZone = $('#uploadZone');
+uploadZone.addEventListener('click', () => $('#fileInput').click());
+$('#fileInput').addEventListener('change', e => handleFiles(e.target.files));
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadZone.classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+});
+
+// Paste screenshots
+document.addEventListener('paste', async e => {
+  const items = e.clipboardData?.items;
+  if (!items) return;
+  const files = [];
+  for (const item of items) {
+    if (item.type.startsWith('image/')) {
+      files.push(item.getAsFile());
+    }
+  }
+  if (files.length) {
+    // auto navigate to images page
+    navigateTo('images');
+    await handleFiles(files);
+  }
+});
+
+// Lightbox
+$('#lightbox').addEventListener('click', () => $('#lightbox').classList.remove('active'));
+$('.lightbox-close').addEventListener('click', () => $('#lightbox').classList.remove('active'));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') $('#lightbox').classList.remove('active');
+});
+
+// Image tag modal
+$('#imageTagCancel').addEventListener('click', () => $('#imageTagModal').classList.remove('active'));
+$('#imageTagSave').addEventListener('click', () => {
+  if (!editingImageId) return;
+  let meta = imagesMeta.find(m => m.id === editingImageId);
+  if (!meta) {
+    meta = { id: editingImageId, name: '', tags: [] };
+    imagesMeta.push(meta);
+  }
+  meta.name = $('#imageNameInput').value.trim();
+  meta.tags = $('#imageTagInput').value.split(',').map(t => t.trim()).filter(Boolean);
+  saveImagesMeta();
+  $('#imageTagModal').classList.remove('active');
+  renderImages();
+});
+
+$('#imagesSearch').addEventListener('input', renderImages);
+
+// ═══════════════════════════════════════════
+// LINKS MODULE
+// ═══════════════════════════════════════════
+let links = LS.get('links', []);
+let linkFilterCat = null;
+let editingLinkId = null;
+
+function saveLinks() { LS.set('links', links); }
+
+function renderLinks() {
+  const cats = [...new Set(links.map(l => l.category || '未分類'))];
+  $('#linksCategories').innerHTML =
+    `<span class="tag-pill ${!linkFilterCat ? 'active' : ''}" data-cat="">全部</span>` +
+    cats.map(c => `<span class="tag-pill ${linkFilterCat === c ? 'active' : ''}" data-cat="${c}">${c}</span>`).join('');
+
+  $$('#linksCategories .tag-pill').forEach(el => {
+    el.addEventListener('click', () => {
+      linkFilterCat = el.dataset.cat || null;
+      renderLinks();
+    });
+  });
+
+  const filtered = linkFilterCat ? links.filter(l => (l.category || '未分類') === linkFilterCat) : links;
+
+  $('#linksGrid').innerHTML = filtered.length ? filtered.map(l => `
+    <div class="link-card" data-id="${l.id}">
+      <img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(l.url)}&sz=64" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%237c5cfc%22/><text x=%2216%22 y=%2222%22 font-size=%2218%22 fill=%22white%22 text-anchor=%22middle%22>${escHtml(l.name?.[0] || '?')}</text></svg>'">
+      <div class="link-card-info">
+        <div class="link-card-title">${escHtml(l.name)}</div>
+        <div class="link-card-url">${escHtml(l.url)}</div>
+      </div>
+      <div class="link-card-actions">
+        <button class="btn-icon btn-sm link-edit" data-id="${l.id}">&#9998;</button>
+        <button class="btn-icon btn-sm link-delete" data-id="${l.id}">&times;</button>
+      </div>
+    </div>
+  `).join('') : '<div class="empty-state" style="grid-column:1/-1">沒有連結，點右上角新增</div>';
+
+  // click to open
+  $$('.link-card').forEach(el => {
+    el.addEventListener('click', e => {
+      if (e.target.closest('.link-card-actions')) return;
+      const link = links.find(l => l.id === el.dataset.id);
+      if (link) window.open(link.url, '_blank');
+    });
+  });
+  $$('.link-edit').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      editingLinkId = el.dataset.id;
+      const link = links.find(l => l.id === el.dataset.id);
+      if (!link) return;
+      $('#linkModalTitle').textContent = '編輯連結';
+      $('#linkNameInput').value = link.name;
+      $('#linkUrlInput').value = link.url;
+      $('#linkCatInput').value = link.category || '';
+      $('#linkModal').classList.add('active');
+    });
+  });
+  $$('.link-delete').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      if (!confirm('確定要刪除這個連結？')) return;
+      links = links.filter(l => l.id !== el.dataset.id);
+      saveLinks();
+      renderLinks();
+    });
+  });
+
+  // Dashboard quick links
+  renderDashQuickLinks();
+}
+
+function renderDashQuickLinks() {
+  const top = links.slice(0, 7);
+  $('#dashQuickLinks').innerHTML = top.map(l => `
+    <a class="quick-link" href="${escHtml(l.url)}" target="_blank" title="${escHtml(l.name)}">
+      <img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(l.url)}&sz=64" alt="" onerror="this.style.display='none'">
+      <span class="link-name">${escHtml(l.name)}</span>
+    </a>
+  `).join('') +
+  `<div class="quick-link add-link-btn" id="dashAddLink">+</div>`;
+  $('#dashAddLink')?.addEventListener('click', () => navigateTo('links'));
+}
+
+$('#addLinkBtn').addEventListener('click', () => {
+  editingLinkId = null;
+  $('#linkModalTitle').textContent = '新增連結';
+  $('#linkNameInput').value = '';
+  $('#linkUrlInput').value = '';
+  $('#linkCatInput').value = '';
+  $('#linkModal').classList.add('active');
+  $('#linkNameInput').focus();
+});
+$('#linkModalCancel').addEventListener('click', () => $('#linkModal').classList.remove('active'));
+$('#linkModalSave').addEventListener('click', () => {
+  const name = $('#linkNameInput').value.trim();
+  let url = $('#linkUrlInput').value.trim();
+  if (!name || !url) return;
+  if (!url.startsWith('http')) url = 'https://' + url;
+  const cat = $('#linkCatInput').value.trim();
+  if (editingLinkId) {
+    const link = links.find(l => l.id === editingLinkId);
+    if (link) { link.name = name; link.url = url; link.category = cat; }
+  } else {
+    links.push({ id: genId(), name, url, category: cat });
+  }
+  saveLinks();
+  $('#linkModal').classList.remove('active');
+  renderLinks();
+});
+
+// ═══════════════════════════════════════════
+// TODOS MODULE
+// ═══════════════════════════════════════════
+let todos = LS.get('todos', []);
+let todoFilter = 'all';
+let dragTodoId = null;
+
+function saveTodos() { LS.set('todos', todos); }
+
+function renderTodos() {
+  let filtered = todos;
+  if (todoFilter === 'active') filtered = todos.filter(t => !t.done);
+  if (todoFilter === 'done') filtered = todos.filter(t => t.done);
+
+  // update filter pills
+  $$('.todo-filters .tag-pill').forEach(el => {
+    el.classList.toggle('active', el.dataset.filter === todoFilter);
+  });
+
+  $('#todoList').innerHTML = filtered.length ? filtered.map(t => `
+    <div class="todo-item ${t.done ? 'done' : ''}" data-id="${t.id}" draggable="true">
+      <div class="todo-checkbox ${t.done ? 'checked' : ''}" data-id="${t.id}">${t.done ? '✓' : ''}</div>
+      <span class="todo-text">${escHtml(t.text)}</span>
+      <div class="todo-priority priority-${t.priority}" title="${t.priority}"></div>
+      <button class="btn-icon btn-sm todo-delete" data-id="${t.id}">&times;</button>
+    </div>
+  `).join('') : '<div class="empty-state">沒有待辦事項</div>';
+
+  // events
+  $$('.todo-checkbox').forEach(el => {
+    el.addEventListener('click', () => {
+      const todo = todos.find(t => t.id === el.dataset.id);
+      if (todo) { todo.done = !todo.done; saveTodos(); renderTodos(); }
+    });
+  });
+  $$('.todo-delete').forEach(el => {
+    el.addEventListener('click', () => {
+      todos = todos.filter(t => t.id !== el.dataset.id);
+      saveTodos();
+      renderTodos();
+    });
+  });
+
+  // drag reorder
+  $$('.todo-item').forEach(el => {
+    el.addEventListener('dragstart', () => { dragTodoId = el.dataset.id; el.classList.add('dragging'); });
+    el.addEventListener('dragend', () => { dragTodoId = null; el.classList.remove('dragging'); });
+    el.addEventListener('dragover', e => { e.preventDefault(); });
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      if (!dragTodoId || dragTodoId === el.dataset.id) return;
+      const fromIdx = todos.findIndex(t => t.id === dragTodoId);
+      const toIdx = todos.findIndex(t => t.id === el.dataset.id);
+      const [item] = todos.splice(fromIdx, 1);
+      todos.splice(toIdx, 0, item);
+      saveTodos();
+      renderTodos();
+    });
+  });
+}
+
+function addTodo() {
+  const text = $('#todoInput').value.trim();
+  if (!text) return;
+  const priority = $('#todoPriority').value;
+  todos.unshift({ id: genId(), text, priority, done: false, createdAt: Date.now() });
+  saveTodos();
+  $('#todoInput').value = '';
+  renderTodos();
+  addRecent('todo', null, text);
+}
+
+$('#addTodoBtn').addEventListener('click', addTodo);
+$('#todoInput').addEventListener('keydown', e => { if (e.key === 'Enter') addTodo(); });
+$$('.todo-filters .tag-pill').forEach(el => {
+  el.addEventListener('click', () => {
+    todoFilter = el.dataset.filter;
+    renderTodos();
+  });
+});
+
+// ═══════════════════════════════════════════
+// GOALS MODULE
+// ═══════════════════════════════════════════
+let goalsData = LS.get('goals', {});
+let goalsViewDate = todayKey();
+
+function saveGoals() { LS.set('goals', goalsData); }
+
+function renderGoals() {
+  $('#goalsDate').textContent = goalsViewDate;
+  const dayGoals = goalsData[goalsViewDate] || [];
+  const completed = dayGoals.filter(g => g.done).length;
+  const total = dayGoals.length;
+  const pct = total ? Math.round(completed / total * 100) : 0;
+  $('#goalBarFill').style.width = pct + '%';
+  $('#goalBarCount').textContent = `${completed}/${total}`;
+
+  // dash widget
+  const todayGoals = goalsData[todayKey()] || [];
+  const todayDone = todayGoals.filter(g => g.done).length;
+  const todayTotal = todayGoals.length;
+  const todayPct = todayTotal ? Math.round(todayDone / todayTotal * 100) : 0;
+  $('#dashGoalFill').style.width = todayPct + '%';
+  $('#dashGoalCount').textContent = `${todayDone}/${todayTotal}`;
+
+  $('#goalsList').innerHTML = dayGoals.length ? dayGoals.map(g => `
+    <div class="goal-item ${g.done ? 'completed' : ''}" data-id="${g.id}">
+      <div class="todo-checkbox ${g.done ? 'checked' : ''}" data-id="${g.id}">${g.done ? '✓' : ''}</div>
+      <span class="goal-text">${escHtml(g.text)}</span>
+      <button class="btn-icon btn-sm goal-delete" data-id="${g.id}">&times;</button>
+    </div>
+  `).join('') : '<div class="empty-state">今天還沒有設定目標</div>';
+
+  // dash goal list (today only, top 3)
+  const topGoals = todayGoals.slice(0, 3);
+  $('#dashGoalList').innerHTML = topGoals.map(g => `
+    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.85rem">
+      <span style="color:${g.done ? 'var(--accent)' : 'var(--text-muted)'}">${g.done ? '✓' : '○'}</span>
+      <span style="${g.done ? 'text-decoration:line-through;opacity:0.5' : ''}">${escHtml(g.text)}</span>
+    </div>
+  `).join('');
+
+  // streak
+  let streak = 0;
+  const d = new Date();
+  for (let i = 0; i < 365; i++) {
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const dg = goalsData[key];
+    if (dg && dg.length > 0 && dg.every(g => g.done)) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    } else if (i === 0) {
+      // today might not be complete yet, skip
+      d.setDate(d.getDate() - 1);
+      continue;
+    } else {
+      break;
+    }
+  }
+  $('#goalsStreak').innerHTML = `&#128293; 連續完成：${streak} 天`;
+
+  // events
+  $$('#goalsList .todo-checkbox').forEach(el => {
+    el.addEventListener('click', () => {
+      const g = (goalsData[goalsViewDate] || []).find(g => g.id === el.dataset.id);
+      if (g) { g.done = !g.done; saveGoals(); renderGoals(); }
+    });
+  });
+  $$('.goal-delete').forEach(el => {
+    el.addEventListener('click', () => {
+      if (!goalsData[goalsViewDate]) return;
+      goalsData[goalsViewDate] = goalsData[goalsViewDate].filter(g => g.id !== el.dataset.id);
+      saveGoals();
+      renderGoals();
+    });
+  });
+}
+
+$('#addGoalBtn').addEventListener('click', () => {
+  const text = prompt('輸入今日目標：');
+  if (!text?.trim()) return;
+  if (!goalsData[goalsViewDate]) goalsData[goalsViewDate] = [];
+  goalsData[goalsViewDate].push({ id: genId(), text: text.trim(), done: false });
+  saveGoals();
+  renderGoals();
+});
+
+$('#goalPrevDay').addEventListener('click', () => {
+  const d = new Date(goalsViewDate);
+  d.setDate(d.getDate() - 1);
+  goalsViewDate = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  renderGoals();
+});
+$('#goalNextDay').addEventListener('click', () => {
+  const d = new Date(goalsViewDate);
+  d.setDate(d.getDate() + 1);
+  goalsViewDate = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  renderGoals();
+});
+
+// ═══════════════════════════════════════════
+// RECENT ITEMS
+// ═══════════════════════════════════════════
+let recentItems = LS.get('recent', []);
+function saveRecent() { LS.set('recent', recentItems); }
+
+function addRecent(type, id, title) {
+  recentItems = recentItems.filter(r => !(r.type === type && r.id === id));
+  recentItems.unshift({ type, id, title, time: Date.now() });
+  if (recentItems.length > 20) recentItems = recentItems.slice(0, 20);
+  saveRecent();
+}
+
+function renderRecent() {
+  const items = recentItems.slice(0, 8);
+  $('#recentList').innerHTML = items.length ? items.map(r => `
+    <div class="recent-item" data-type="${r.type}" data-id="${r.id || ''}">
+      <div class="recent-dot ${r.type}"></div>
+      <span class="recent-text">${escHtml(r.title)}</span>
+      <span class="recent-time">${formatTime(r.time)}</span>
+    </div>
+  `).join('') : '<div class="empty-state">尚無最近活動</div>';
+
+  $$('.recent-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const type = el.dataset.type;
+      if (type === 'note') { navigateTo('notes'); if (el.dataset.id) openNote(el.dataset.id); }
+      if (type === 'image') navigateTo('images');
+      if (type === 'todo') navigateTo('todos');
+    });
+  });
+}
+
+// ─── Dashboard refresh ───
+function refreshDashboard() {
+  renderRecent();
+  renderDashQuickLinks();
+  renderGoals();
+}
+
+// ─── AI News ───
+const NEWS_DIR = 'news/';
+let newsAvailableDates = [];
+
+function getToday() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function displayReport(dateStr) {
+  const embed = $('#ainewsEmbed');
+  const placeholder = $('#ainewsPlaceholder');
+  const status = $('#newsStatus');
+  const html = window._newsReports && window._newsReports[dateStr];
+  if (!html) { showNewsNotFound(dateStr); return; }
+
+  placeholder.style.display = 'none';
+  embed.style.display = 'block';
+  embed.innerHTML = '<iframe class="ainews-srcdoc" sandbox="allow-scripts"></iframe>';
+  const iframe = embed.querySelector('iframe');
+  iframe.srcdoc = html;
+
+  status.textContent = '✓ ' + dateStr;
+  $$('.news-chip').forEach(c => c.classList.toggle('active', c.dataset.date === dateStr));
+  $('#newsDatePicker').value = dateStr;
+  LS.set('ainews_lastDate', dateStr);
+}
+
+function loadNewsReport(dateStr) {
+  const status = $('#newsStatus');
+  const placeholder = $('#ainewsPlaceholder');
+  const embed = $('#ainewsEmbed');
+
+  // If already loaded in memory, display immediately
+  if (window._newsReports && window._newsReports[dateStr]) {
+    displayReport(dateStr);
+    return;
+  }
+
+  status.textContent = '載入中...';
+  placeholder.style.display = 'none';
+  embed.style.display = 'none';
+
+  // Load via <script> tag (works with file:// and http://)
+  const script = document.createElement('script');
+  script.src = NEWS_DIR + 'ai-news-' + dateStr + '.js';
+
+  const onLoaded = (e) => {
+    if (e.detail === dateStr) {
+      document.removeEventListener('news-loaded', onLoaded);
+      displayReport(dateStr);
+    }
+  };
+  document.addEventListener('news-loaded', onLoaded);
+
+  script.onerror = () => {
+    document.removeEventListener('news-loaded', onLoaded);
+    // Fallback: try fetch for .html (works on servers/GitHub Pages)
+    fetch(NEWS_DIR + 'ai-news-' + dateStr + '.html')
+      .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+      .then(html => {
+        window._newsReports = window._newsReports || {};
+        window._newsReports[dateStr] = html;
+        displayReport(dateStr);
+      })
+      .catch(() => showNewsNotFound(dateStr));
+  };
+
+  document.head.appendChild(script);
+}
+
+function showNewsNotFound(dateStr) {
+  const embed = $('#ainewsEmbed');
+  const placeholder = $('#ainewsPlaceholder');
+  const status = $('#newsStatus');
+  embed.style.display = 'none';
+  placeholder.style.display = 'flex';
+  status.textContent = '✗ 未找到 ' + dateStr;
+}
+
+function scanAvailableReports() {
+  // Since this is a static site, we maintain a list of known report dates
+  // This list is auto-updated when reports are added
+  const knownDates = LS.get('ainews_dates', []);
+  const today = getToday();
+  if (!knownDates.includes(today)) knownDates.unshift(today);
+
+  // Keep last 30 days
+  const last30 = [];
+  for (let i = 0; i < 30; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    last30.push(d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'));
+  }
+  newsAvailableDates = last30;
+  return last30;
+}
+
+function renderAINews() {
+  const nav = $('#ainewsQuickNav');
+  const dates = scanAvailableReports();
+  // Show last 7 days as quick-nav chips
+  nav.innerHTML = '<span style="color:var(--text-muted);font-size:0.85rem;margin-right:4px;">快速選擇：</span>' +
+    dates.slice(0, 7).map(d => {
+      const label = d === getToday() ? '今日' : d.slice(5); // Show MM-DD or "今日"
+      return `<span class="news-chip" data-date="${d}" onclick="loadNewsReport('${d}')">${label}</span>`;
+    }).join('');
+
+  // Set date picker to today
+  const picker = $('#newsDatePicker');
+  picker.value = getToday();
+
+  // Auto-load last viewed or today
+  const lastDate = LS.get('ainews_lastDate', getToday());
+  loadNewsReport(lastDate);
+}
+
+$('#newsLoadBtn').addEventListener('click', () => {
+  const dateStr = $('#newsDatePicker').value;
+  if (dateStr) loadNewsReport(dateStr);
+});
+
+$('#newsLoadTodayBtn').addEventListener('click', () => {
+  loadNewsReport(getToday());
+});
+
+// ─── Init ───
+async function init() {
+  initTheme();
+  await ImageDB.init();
+  const savedPage = LS.get('currentPage', 'dashboard');
+  navigateTo(savedPage);
+  loadWeather();
+}
+init();
+</script>
+</body>
+</html>
