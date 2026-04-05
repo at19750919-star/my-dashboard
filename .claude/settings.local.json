@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node convert.js)"
+      "Bash(node convert.js)",
+      "Bash(gh repo:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh secret:*)",
+      "Bash(npx -y http-server -p 8765 --cors -c-1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8766/)",
+      "Bash(zip -r __TRACKED_VAR__/Desktop/ui-ux-pro-max-full.zip . -x '.git/*' '.github/*' 'screenshots/*' 'preview/*')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8767/)"
     ]
   }
 }

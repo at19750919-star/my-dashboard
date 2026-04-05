@@ -1,72 +1,75 @@
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="dark">
+<html lang="zh-TW" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aurora Dashboard</title>
+<title>My Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════════
    CSS VARIABLES & RESET
    ═══════════════════════════════════════════ */
 :root {
-  --bg-deep: #060a14;
-  --bg-base: #0a0e1a;
-  --bg-surface: rgba(255,255,255,0.04);
-  --bg-surface-hover: rgba(255,255,255,0.08);
-  --bg-card: rgba(255,255,255,0.06);
-  --bg-card-hover: rgba(255,255,255,0.10);
-  --border: rgba(255,255,255,0.08);
-  --border-active: rgba(0,212,170,0.4);
-  --text-primary: #e8eaf6;
-  --text-secondary: rgba(232,234,246,0.6);
-  --text-muted: rgba(232,234,246,0.35);
-  --accent: #00d4aa;
-  --accent-glow: rgba(0,212,170,0.3);
-  --accent2: #ff6b9d;
-  --accent2-glow: rgba(255,107,157,0.3);
-  --accent3: #7c5cfc;
-  --accent3-glow: rgba(124,92,252,0.3);
-  --accent4: #fbbf24;
-  --danger: #ff4757;
-  --success: #2ed573;
-  --glass-blur: 20px;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.4);
-  --shadow-glow: 0 0 40px rgba(0,212,170,0.1);
+  /* ── Neubrutalism Design System ── */
+  --bg-deep: #FFFDF7;
+  --bg-base: #FFFDF7;
+  --bg-surface: #F5F0E8;
+  --bg-surface-hover: #EDE7DA;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFFFFF;
+  --border: #222222;
+  --border-active: #222222;
+  --text-primary: #222222;
+  --text-secondary: #555555;
+  --text-muted: #999999;
+  --accent: #4361EE;
+  --accent-glow: none;
+  --accent2: #FF6B6B;
+  --accent2-glow: none;
+  --accent3: #FFDB58;
+  --accent3-glow: none;
+  --accent4: #4ECDC4;
+  --danger: #FF3B30;
+  --success: #34C759;
+  --glass-blur: 0px;
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-xs: 4px;
+  --border-w: 2.5px;
+  --shadow-brutal: 4px 4px 0px #222222;
+  --shadow: 4px 4px 0px #222222;
+  --shadow-glow: none;
   --sidebar-w: 72px;
   --sidebar-w-expanded: 240px;
   --header-h: 0px;
-  --font-display: 'Outfit', sans-serif;
-  --font-body: 'Noto Sans TC', 'Outfit', sans-serif;
-  --font-mono: 'Space Mono', monospace;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --font-display: 'DM Sans', 'Noto Sans TC', sans-serif;
+  --font-body: 'DM Sans', 'Noto Sans TC', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --transition: 0.12s ease;
+  --transition-spring: 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-[data-theme="light"] {
-  --bg-deep: #f0f2f8;
-  --bg-base: #f5f7fc;
-  --bg-surface: rgba(0,0,0,0.03);
-  --bg-surface-hover: rgba(0,0,0,0.06);
-  --bg-card: rgba(255,255,255,0.7);
-  --bg-card-hover: rgba(255,255,255,0.85);
-  --border: rgba(0,0,0,0.08);
-  --border-active: rgba(0,170,136,0.4);
-  --text-primary: #1a1e2e;
-  --text-secondary: rgba(26,30,46,0.6);
-  --text-muted: rgba(26,30,46,0.35);
-  --accent: #00a888;
-  --accent-glow: rgba(0,168,136,0.2);
-  --accent2: #e8527a;
-  --accent2-glow: rgba(232,82,122,0.2);
-  --accent3: #6a4ce0;
-  --accent3-glow: rgba(106,76,224,0.2);
-  --shadow: 0 8px 32px rgba(0,0,0,0.1);
-  --shadow-glow: 0 0 40px rgba(0,168,136,0.08);
+[data-theme="dark"] {
+  --bg-deep: #1A1A2E;
+  --bg-base: #1A1A2E;
+  --bg-surface: #25254B;
+  --bg-surface-hover: #2E2E5A;
+  --bg-card: #222244;
+  --bg-card-hover: #2A2A50;
+  --border: #EEEEEE;
+  --border-active: #EEEEEE;
+  --text-primary: #F0F0F0;
+  --text-secondary: #BBBBBB;
+  --text-muted: #777777;
+  --accent: #6C85F7;
+  --accent2: #FF8A8A;
+  --accent3: #FFE872;
+  --accent4: #6EDDD4;
+  --danger: #FF6B6B;
+  --success: #5CE08A;
+  --shadow: 4px 4px 0px #EEEEEE;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -85,55 +88,15 @@ body {
 /* scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
-[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-primary); }
 
 /* ═══════════════════════════════════════════
-   AURORA BACKGROUND
+   BACKGROUND — Neubrutalism: none
    ═══════════════════════════════════════════ */
-#aurora-bg {
-  position: fixed; inset: 0; z-index: 0; overflow: hidden;
-  pointer-events: none;
-}
-.aurora-layer {
-  position: absolute; border-radius: 50%;
-  filter: blur(120px); opacity: 0.35;
-  animation: aurora-drift 20s ease-in-out infinite alternate;
-}
-[data-theme="light"] .aurora-layer { opacity: 0.15; }
-.aurora-layer:nth-child(1) {
-  width: 60vw; height: 60vh; top: -20%; left: -10%;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-  animation-duration: 25s;
-}
-.aurora-layer:nth-child(2) {
-  width: 50vw; height: 50vh; top: 30%; right: -15%;
-  background: radial-gradient(circle, var(--accent3) 0%, transparent 70%);
-  animation-duration: 30s; animation-delay: -5s;
-}
-.aurora-layer:nth-child(3) {
-  width: 40vw; height: 40vh; bottom: -10%; left: 20%;
-  background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
-  animation-duration: 22s; animation-delay: -10s;
-}
-.aurora-layer:nth-child(4) {
-  width: 30vw; height: 35vh; top: 10%; left: 50%;
-  background: radial-gradient(circle, #00b4d8 0%, transparent 70%);
-  animation-duration: 28s; animation-delay: -7s;
-}
-
-@keyframes aurora-drift {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  33%  { transform: translate(5vw, -3vh) scale(1.1) rotate(5deg); }
-  66%  { transform: translate(-3vw, 5vh) scale(0.95) rotate(-3deg); }
-  100% { transform: translate(4vw, 2vh) scale(1.05) rotate(4deg); }
-}
-
-/* star particles */
-.stars {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-}
+#aurora-bg { display: none; }
+.aurora-layer { display: none; }
+.stars { display: none; }
 
 /* ═══════════════════════════════════════════
    LAYOUT
@@ -144,16 +107,14 @@ body {
 .sidebar {
   position: fixed; left: 0; top: 0; bottom: 0;
   width: var(--sidebar-w);
-  background: rgba(10,14,26,0.8);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-right: 1px solid var(--border);
+  background: var(--accent3);
+  border-right: var(--border-w) solid var(--border);
   display: flex; flex-direction: column;
   z-index: 100;
   transition: width var(--transition);
   overflow: hidden;
 }
-[data-theme="light"] .sidebar { background: rgba(245,247,252,0.85); }
+[data-theme="dark"] .sidebar { background: #2A2A50; }
 .sidebar:hover { width: var(--sidebar-w-expanded); }
 .sidebar:hover .nav-label { opacity: 1; transform: translateX(0); }
 .sidebar:hover .sidebar-logo span { opacity: 1; }
@@ -166,17 +127,18 @@ body {
 }
 .sidebar-logo .logo-icon {
   width: 40px; height: 40px; min-width: 40px;
-  background: linear-gradient(135deg, var(--accent), var(--accent3));
-  border-radius: 12px;
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-xs);
+  box-shadow: 2px 2px 0px var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  box-shadow: 0 4px 15px var(--accent-glow);
+  font-size: 18px; font-weight: 800;
+  color: var(--text-primary);
 }
 .sidebar-logo span {
   font-family: var(--font-display);
-  font-weight: 700; font-size: 1.15rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent3));
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-weight: 800; font-size: 1.15rem;
+  color: var(--text-primary);
   white-space: nowrap; opacity: 0;
   transition: opacity var(--transition);
 }
@@ -199,15 +161,12 @@ body {
 .nav-item:hover { background: var(--bg-surface-hover); }
 .nav-item:hover a { color: var(--text-primary); }
 .nav-item.active {
-  background: linear-gradient(135deg, rgba(0,212,170,0.12), rgba(124,92,252,0.08));
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  box-shadow: 2px 2px 0px var(--border);
 }
-.nav-item.active::before {
-  content: '';
-  position: absolute; left: 0; top: 25%; bottom: 25%;
-  width: 3px; border-radius: 0 3px 3px 0;
-  background: linear-gradient(180deg, var(--accent), var(--accent3));
-}
-.nav-item.active a { color: var(--accent); }
+.nav-item.active::before { display: none; }
+.nav-item.active a { color: var(--text-primary); font-weight: 700; }
 .nav-icon { font-size: 1.2rem; min-width: 24px; text-align: center; }
 .nav-label {
   white-space: nowrap;
@@ -246,26 +205,18 @@ body {
    ═══════════════════════════════════════════ */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--border);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
-  box-shadow: var(--shadow);
-  transition: all var(--transition);
+  box-shadow: var(--shadow-brutal);
+  transition: transform var(--transition), box-shadow var(--transition);
   position: relative;
   overflow: hidden;
 }
-.glass-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
-  pointer-events: none;
-}
+.glass-card::before { display: none; }
 .glass-card:hover {
-  border-color: var(--border-active);
-  box-shadow: var(--shadow), var(--shadow-glow);
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border);
 }
 
 .card-header {
@@ -281,6 +232,7 @@ body {
 .card-title .title-icon {
   width: 32px; height: 32px;
   border-radius: var(--radius-xs);
+  border: var(--border-w) solid var(--border);
   display: flex; align-items: center; justify-content: center;
   font-size: 1rem;
 }
@@ -310,11 +262,10 @@ body {
   margin-bottom: 8px;
 }
 .hero-clock {
-  font-family: var(--font-mono);
-  font-weight: 700; font-size: 5rem;
-  letter-spacing: -2px;
-  background: linear-gradient(135deg, var(--text-primary), var(--accent));
-  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 5rem;
+  letter-spacing: -3px;
+  color: var(--text-primary);
   line-height: 1.1;
 }
 .hero-date {
@@ -333,14 +284,19 @@ body {
   width: 100%;
   padding: 16px 20px 16px 52px;
   background: var(--bg-card);
-  backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 1rem;
+  font-weight: 500;
   outline: none;
-  transition: all var(--transition);
+  box-shadow: var(--shadow-brutal);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.search-bar:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--border);
 }
 .search-bar::placeholder { color: var(--text-muted); }
 .search-bar:focus {
@@ -390,17 +346,17 @@ body {
 .quick-link {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   padding: 16px 8px;
-  background: var(--bg-surface);
+  background: var(--bg-card);
   border-radius: var(--radius-sm);
-  border: 1px solid transparent;
+  border: var(--border-w) solid var(--border);
+  box-shadow: 2px 2px 0px var(--border);
   cursor: pointer;
-  transition: all var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
   text-decoration: none; color: var(--text-primary);
 }
 .quick-link:hover {
-  background: var(--bg-surface-hover);
-  border-color: var(--border-active);
-  transform: translateY(-3px);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--border);
 }
 .quick-link img {
   width: 28px; height: 28px; border-radius: 6px;
@@ -460,9 +416,12 @@ body {
   background: var(--bg-surface);
   border-radius: 4px; overflow: hidden;
 }
+.goal-bar-track {
+  border: var(--border-w) solid var(--border);
+}
 .goal-bar-fill {
-  height: 100%; border-radius: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  height: 100%; border-radius: 2px;
+  background: var(--accent);
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .goal-count {
@@ -500,17 +459,19 @@ body {
 }
 .tag-pill {
   padding: 4px 12px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.75rem; color: var(--text-secondary);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem; font-weight: 700; color: var(--text-primary);
   cursor: pointer;
-  transition: all var(--transition);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 .tag-pill:hover, .tag-pill.active {
   background: var(--accent);
-  color: var(--bg-deep);
-  border-color: var(--accent);
+  color: #FFFFFF;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--border);
 }
 
 .notes-list {
@@ -574,17 +535,19 @@ body {
 }
 .editor-tab {
   padding: 6px 16px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius-xs);
-  color: var(--text-secondary);
-  cursor: pointer; font-size: 0.85rem;
-  transition: all var(--transition);
+  color: var(--text-primary);
+  cursor: pointer; font-size: 0.85rem; font-weight: 700;
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 .editor-tab.active, .editor-tab:hover {
   background: var(--accent);
-  color: var(--bg-deep);
-  border-color: var(--accent);
+  color: #FFFFFF;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--border);
 }
 .note-textarea {
   flex: 1; width: 100%;
@@ -640,18 +603,19 @@ body {
   margin-bottom: 20px; flex-wrap: wrap;
 }
 .upload-zone {
-  border: 2px dashed var(--border);
+  border: var(--border-w) dashed var(--border);
   border-radius: var(--radius);
   padding: 48px;
   text-align: center;
   cursor: pointer;
-  transition: all var(--transition);
+  transition: background var(--transition);
   margin-bottom: 20px;
   position: relative;
+  background: var(--bg-surface);
 }
 .upload-zone:hover, .upload-zone.drag-over {
-  border-color: var(--accent);
-  background: rgba(0,212,170,0.05);
+  border-style: solid;
+  background: var(--accent3);
 }
 .upload-zone-icon { font-size: 3rem; margin-bottom: 12px; }
 .upload-zone-text { color: var(--text-secondary); font-size: 0.95rem; }
@@ -667,15 +631,15 @@ body {
   position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  box-shadow: 3px 3px 0px var(--border);
   cursor: pointer;
-  transition: all var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 .image-card:hover {
-  border-color: var(--border-active);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--border);
 }
 .image-card img {
   width: 100%; height: 180px;
@@ -738,25 +702,19 @@ body {
   display: flex; align-items: center; gap: 14px;
   padding: 16px 20px;
   background: var(--bg-card);
-  backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--border);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius-sm);
   text-decoration: none;
   color: var(--text-primary);
-  transition: all var(--transition);
+  box-shadow: 3px 3px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
   position: relative;
   overflow: hidden;
 }
-.link-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%);
-  pointer-events: none;
-}
+.link-card::before { display: none; }
 .link-card:hover {
-  border-color: var(--border-active);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--border);
 }
 .link-card img { width: 32px; height: 32px; border-radius: 8px; }
 .link-card-info { flex: 1; min-width: 0; }
@@ -793,34 +751,35 @@ body {
 .todo-item {
   display: flex; align-items: center; gap: 12px;
   padding: 14px 16px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius-sm);
   margin-bottom: 8px;
-  transition: all var(--transition);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
   cursor: grab;
 }
-.todo-item:hover { border-color: var(--border-active); }
+.todo-item:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border); }
 .todo-item.dragging { opacity: 0.5; }
 .todo-item.done { opacity: 0.5; }
 .todo-item.done .todo-text { text-decoration: line-through; }
 
 .todo-checkbox {
   width: 22px; height: 22px; min-width: 22px;
-  border: 2px solid var(--border);
-  border-radius: 6px;
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-xs);
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: all var(--transition);
-  background: transparent;
+  background: var(--bg-card);
   color: transparent;
   font-size: 0.8rem;
 }
-.todo-checkbox:hover { border-color: var(--accent); }
+.todo-checkbox:hover { background: var(--bg-surface); }
 .todo-checkbox.checked {
   background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg-deep);
+  border-color: var(--border);
+  color: #FFFFFF;
 }
 
 .todo-text { flex: 1; font-size: 0.95rem; }
@@ -865,9 +824,10 @@ body {
 .goals-summary {
   margin-top: 24px;
   padding: 20px;
-  background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(124,92,252,0.08));
+  background: var(--accent3);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border: var(--border-w) solid var(--border);
+  box-shadow: 3px 3px 0px var(--border);
 }
 .goals-streak {
   font-family: var(--font-display);
@@ -880,40 +840,42 @@ body {
    ═══════════════════════════════════════════ */
 .btn {
   padding: 8px 18px;
-  border: 1px solid var(--border);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius-xs);
-  background: var(--bg-surface);
+  background: var(--bg-card);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 0.85rem; font-weight: 500;
+  font-size: 0.85rem; font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
   display: inline-flex; align-items: center; gap: 6px;
 }
-.btn:hover { background: var(--bg-surface-hover); border-color: var(--border-active); }
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border); }
+.btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px var(--border); }
 .btn-accent {
   background: var(--accent);
-  color: var(--bg-deep);
-  border-color: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--border);
 }
 .btn-accent:hover {
-  background: #00e6b8;
-  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border);
 }
-.btn-danger { border-color: var(--danger); color: var(--danger); }
-.btn-danger:hover { background: var(--danger); color: white; }
+.btn-danger { background: var(--danger); color: #FFFFFF; border-color: var(--border); }
+.btn-danger:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border); }
 .btn-sm { padding: 5px 10px; font-size: 0.8rem; }
 .btn-icon {
   width: 32px; height: 32px; padding: 0;
   display: flex; align-items: center; justify-content: center;
   border-radius: var(--radius-xs);
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: all var(--transition);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-.btn-icon:hover { background: var(--bg-surface-hover); color: var(--text-primary); }
+.btn-icon:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border); }
 
 /* ═══════════════════════════════════════════
    MODAL
@@ -927,13 +889,13 @@ body {
 }
 .modal-overlay.active { display: flex; }
 .modal {
-  background: var(--bg-base);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius);
   padding: 28px;
   min-width: 400px; max-width: 500px;
   width: 90%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 8px 8px 0px var(--border);
   animation: modal-in 0.3s var(--transition);
 }
 @keyframes fade-in { from { opacity: 0; } }
@@ -948,16 +910,17 @@ body {
 }
 .modal input, .modal select {
   width: 100%; padding: 10px 14px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
   border-radius: var(--radius-xs);
   color: var(--text-primary);
   font-family: var(--font-body);
-  font-size: 0.9rem; outline: none;
+  font-size: 0.9rem; font-weight: 500; outline: none;
   margin-bottom: 16px;
-  transition: border-color var(--transition);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-.modal input:focus, .modal select:focus { border-color: var(--accent); }
+.modal input:focus, .modal select:focus { transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border); }
 .modal-actions {
   display: flex; justify-content: flex-end; gap: 8px;
   margin-top: 8px;
@@ -971,14 +934,16 @@ body {
   display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
 }
 .ainews-quick-nav .news-chip {
-  padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;
-  border: 1px solid var(--border); background: var(--bg-surface);
-  color: var(--text-secondary); cursor: pointer;
-  transition: all var(--transition);
+  padding: 6px 14px; border-radius: var(--radius-xs); font-size: 0.85rem; font-weight: 700;
+  border: var(--border-w) solid var(--border); background: var(--bg-card);
+  color: var(--text-primary); cursor: pointer;
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 .ainews-quick-nav .news-chip:hover,
 .ainews-quick-nav .news-chip.active {
-  background: var(--accent); color: #fff; border-color: var(--accent);
+  background: var(--accent); color: #FFFFFF;
+  transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border);
 }
 .ainews-frame-wrap {
   background: var(--bg-card); border: 1px solid var(--border);
@@ -992,7 +957,7 @@ body {
 }
 .ainews-frame {
   width: 100%; height: 80vh; border: none; border-radius: var(--radius);
-  background: #0f0f1a;
+  background: var(--bg-base);
 }
 .news-date-picker {
   padding: 6px 12px; border-radius: var(--radius-xs);
@@ -1063,10 +1028,50 @@ body {
 }
 
 /* Accent color bar for cards */
-.accent-bar-green .card-title .title-icon { background: linear-gradient(135deg, rgba(0,212,170,0.2), rgba(0,212,170,0.05)); color: var(--accent); }
-.accent-bar-pink .card-title .title-icon { background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(255,107,157,0.05)); color: var(--accent2); }
-.accent-bar-purple .card-title .title-icon { background: linear-gradient(135deg, rgba(124,92,252,0.2), rgba(124,92,252,0.05)); color: var(--accent3); }
-.accent-bar-yellow .card-title .title-icon { background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(251,191,36,0.05)); color: var(--accent4); }
+.accent-bar-green .card-title .title-icon { background: #4ECDC4; color: var(--text-primary); }
+.accent-bar-pink .card-title .title-icon { background: #FF6B6B; color: var(--text-primary); }
+.accent-bar-purple .card-title .title-icon { background: #C3A6FF; color: var(--text-primary); }
+.accent-bar-yellow .card-title .title-icon { background: #FFDB58; color: var(--text-primary); }
+.accent-bar-blue .card-title .title-icon { background: #7EB6FF; color: var(--text-primary); }
+
+/* ── Toolkit page ── */
+.toolkit-list { display: flex; flex-direction: column; gap: 6px; }
+.toolkit-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.toolkit-item:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border); }
+.toolkit-status { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.toolkit-status.connected { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); }
+.toolkit-status.warning { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
+.toolkit-status.error { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+.toolkit-info { flex: 1; min-width: 0; }
+.toolkit-name { font-weight: 600; font-size: 0.95rem; }
+.toolkit-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 2px; }
+.toolkit-tag {
+  flex-shrink: 0; padding: 3px 10px; border-radius: 6px;
+  font-size: 0.75rem; font-weight: 600;
+  background: rgba(34,197,94,0.12); color: #22c55e;
+}
+.toolkit-tag.tag-warn { background: rgba(245,158,11,0.12); color: #f59e0b; }
+.toolkit-tag.tag-err { background: rgba(239,68,68,0.12); color: #ef4444; }
+.toolkit-tag.tag-skill { background: rgba(124,92,252,0.12); color: #7c5cfc; }
+.toolkit-item.expandable { cursor: pointer; }
+.toolkit-item.expandable .toolkit-name::after { content: ' ▸'; font-size: 0.75rem; color: var(--text-dim); }
+.toolkit-item.expandable.open .toolkit-name::after { content: ' ▾'; }
+.toolkit-detail {
+  display: none; margin-top: 8px; padding: 12px 14px;
+  background: var(--glass-bg, rgba(255,255,255,0.02)); border: 1px solid var(--border);
+  border-radius: 8px; font-size: 0.82rem; line-height: 1.8; color: var(--text-dim);
+  white-space: pre-wrap; word-break: break-word;
+}
+.toolkit-detail.open { display: block; }
+.toolkit-detail strong { color: var(--text); }
+.toolkit-detail .detail-label { font-weight: 600; color: var(--text); display: inline-block; min-width: 70px; }
 
 /* select styling */
 select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px !important; }
@@ -1089,35 +1094,41 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
   <!-- Sidebar -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <div class="logo-icon">A</div>
-      <span>Aurora</span>
+      <div class="logo-icon">D</div>
+      <span>Dashboard</span>
     </div>
     <ul class="nav-list">
       <li class="nav-item active" data-page="dashboard">
-        <a><span class="nav-icon">&#9678;</span><span class="nav-label">首頁</span></a>
+        <a><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:20px;height:20px"></i></span><span class="nav-label">首頁</span></a>
       </li>
       <li class="nav-item">
-        <a href="news/ai-news.html"><span class="nav-icon">&#129302;</span><span class="nav-label">AI 新聞</span></a>
+        <a href="news/ai-news.html" target="_blank"><span class="nav-icon"><i data-lucide="newspaper" style="width:20px;height:20px"></i></span><span class="nav-label">AI 新聞</span></a>
       </li>
       <li class="nav-item" data-page="notes">
-        <a><span class="nav-icon">&#9997;</span><span class="nav-label">筆記</span></a>
+        <a><span class="nav-icon"><i data-lucide="file-text" style="width:20px;height:20px"></i></span><span class="nav-label">筆記</span></a>
       </li>
       <li class="nav-item" data-page="images">
-        <a><span class="nav-icon">&#9634;</span><span class="nav-label">圖片庫</span></a>
+        <a><span class="nav-icon"><i data-lucide="image" style="width:20px;height:20px"></i></span><span class="nav-label">圖片庫</span></a>
       </li>
       <li class="nav-item" data-page="links">
-        <a><span class="nav-icon">&#8599;</span><span class="nav-label">常用連結</span></a>
+        <a><span class="nav-icon"><i data-lucide="link" style="width:20px;height:20px"></i></span><span class="nav-label">常用連結</span></a>
       </li>
       <li class="nav-item" data-page="todos">
-        <a><span class="nav-icon">&#9745;</span><span class="nav-label">待辦事項</span></a>
+        <a><span class="nav-icon"><i data-lucide="check-square" style="width:20px;height:20px"></i></span><span class="nav-label">待辦事項</span></a>
       </li>
       <li class="nav-item" data-page="goals">
-        <a><span class="nav-icon">&#9733;</span><span class="nav-label">每日目標</span></a>
+        <a><span class="nav-icon"><i data-lucide="target" style="width:20px;height:20px"></i></span><span class="nav-label">每日目標</span></a>
+      </li>
+      <li class="nav-item" data-page="toolkit">
+        <a><span class="nav-icon"><i data-lucide="wrench" style="width:20px;height:20px"></i></span><span class="nav-label">工具總覽</span></a>
+      </li>
+      <li class="nav-item">
+        <a href="layout-playground.html" target="_blank"><span class="nav-icon"><i data-lucide="layout" style="width:20px;height:20px"></i></span><span class="nav-label">截圖排版</span></a>
       </li>
     </ul>
     <div class="sidebar-footer">
       <button class="theme-toggle" id="themeToggle">
-        <span class="nav-icon" id="themeIcon">&#9790;</span>
+        <span class="nav-icon" id="themeIcon"><i data-lucide="sun" style="width:20px;height:20px"></i></span>
         <span class="nav-label">切換主題</span>
       </button>
     </div>
@@ -1138,7 +1149,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
       </div>
 
       <div class="search-container">
-        <span class="search-icon">&#128269;</span>
+        <span class="search-icon"><i data-lucide="search" style="width:18px;height:18px"></i></span>
         <input type="text" class="search-bar" id="searchBar" placeholder="搜尋 Google..." autocomplete="off">
       </div>
 
@@ -1146,7 +1157,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
         <!-- Weather -->
         <div class="glass-card accent-bar-green">
           <div class="card-header">
-            <div class="card-title"><div class="title-icon">&#9729;</div>天氣</div>
+            <div class="card-title"><div class="title-icon"><i data-lucide="cloud-sun" style="width:18px;height:18px"></i></div>天氣</div>
           </div>
           <div class="weather-widget" id="weatherWidget">
             <div class="empty-state" id="weatherLoading">定位中...</div>
@@ -1156,7 +1167,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
         <!-- Quick Links Widget -->
         <div class="glass-card accent-bar-purple">
           <div class="card-header">
-            <div class="card-title"><div class="title-icon">&#8599;</div>快速連結</div>
+            <div class="card-title"><div class="title-icon"><i data-lucide="external-link" style="width:18px;height:18px"></i></div>快速連結</div>
           </div>
           <div class="quick-links-grid" id="dashQuickLinks"></div>
         </div>
@@ -1164,7 +1175,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
         <!-- Recent Items -->
         <div class="glass-card accent-bar-pink">
           <div class="card-header">
-            <div class="card-title"><div class="title-icon">&#9203;</div>最近項目</div>
+            <div class="card-title"><div class="title-icon"><i data-lucide="clock" style="width:18px;height:18px"></i></div>最近項目</div>
           </div>
           <div class="recent-list" id="recentList"></div>
         </div>
@@ -1172,7 +1183,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
         <!-- Today's Goals -->
         <div class="glass-card accent-bar-yellow">
           <div class="card-header">
-            <div class="card-title"><div class="title-icon">&#9733;</div>今日目標</div>
+            <div class="card-title"><div class="title-icon"><i data-lucide="star" style="width:18px;height:18px"></i></div>今日目標</div>
           </div>
           <div class="goal-progress-ring">
             <div class="goal-bar">
@@ -1188,7 +1199,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     <!-- ═══ NOTES ═══ -->
     <section class="page" id="page-notes">
       <div class="page-header">
-        <div class="page-title">&#9997; 筆記</div>
+        <div class="page-title"><i data-lucide="file-text" style="width:24px;height:24px"></i> 筆記</div>
         <button class="btn btn-accent" id="newNoteBtn">+ 新增筆記</button>
       </div>
       <div class="notes-layout">
@@ -1224,7 +1235,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     <!-- ═══ IMAGES ═══ -->
     <section class="page" id="page-images">
       <div class="page-header">
-        <div class="page-title">&#9634; 圖片庫</div>
+        <div class="page-title"><i data-lucide="image" style="width:24px;height:24px"></i> 圖片庫</div>
       </div>
       <div class="images-toolbar">
         <input type="text" class="notes-search" id="imagesSearch" placeholder="搜尋圖片..." style="flex:1">
@@ -1248,7 +1259,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     <!-- ═══ LINKS ═══ -->
     <section class="page" id="page-links">
       <div class="page-header">
-        <div class="page-title">&#8599; 常用連結</div>
+        <div class="page-title"><i data-lucide="link" style="width:24px;height:24px"></i> 常用連結</div>
         <button class="btn btn-accent" id="addLinkBtn">+ 新增連結</button>
       </div>
       <div class="links-categories" id="linksCategories"></div>
@@ -1258,7 +1269,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     <!-- ═══ TODOS ═══ -->
     <section class="page" id="page-todos">
       <div class="page-header">
-        <div class="page-title">&#9745; 待辦事項</div>
+        <div class="page-title"><i data-lucide="check-square" style="width:24px;height:24px"></i> 待辦事項</div>
       </div>
       <div class="glass-card">
         <div class="todo-input-group">
@@ -1309,7 +1320,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 
     <section class="page" id="page-goals">
       <div class="page-header">
-        <div class="page-title">&#9733; 每日目標</div>
+        <div class="page-title"><i data-lucide="target" style="width:24px;height:24px"></i> 每日目標</div>
       </div>
       <div class="glass-card">
         <div class="goals-header">
@@ -1329,6 +1340,390 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
           <div class="goals-streak" id="goalsStreak">&#128293; 連續完成：0 天</div>
         </div>
       </div>
+    </section>
+
+    <!-- ═══ TOOLKIT ═══ -->
+    <section class="page" id="page-toolkit">
+      <div class="page-header">
+        <div class="page-title"><i data-lucide="wrench" style="width:24px;height:24px"></i> 工具總覽</div>
+      </div>
+
+      <!-- MCP Servers - Claude Code -->
+      <div class="glass-card accent-bar-blue" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128268;</div>MCP Servers（Claude Code）</div></div>
+        <div class="toolkit-list">
+          <div class="toolkit-item">
+            <div class="toolkit-status connected"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Playwright</div>
+              <div class="toolkit-desc">瀏覽器自動化，支援網頁操作、截圖、表單填寫等</div>
+            </div>
+            <span class="toolkit-tag">已連線</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status connected"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Gmail</div>
+              <div class="toolkit-desc">Gmail 郵件搜尋、閱讀、建立草稿</div>
+            </div>
+            <span class="toolkit-tag">已連線</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status warning"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Google Calendar</div>
+              <div class="toolkit-desc">Google 日曆事件管理</div>
+            </div>
+            <span class="toolkit-tag tag-warn">需驗證</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status connected"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Chrome DevTools</div>
+              <div class="toolkit-desc">Chrome 瀏覽器開發者工具控制（截圖、效能分析、DOM 操作）</div>
+            </div>
+            <span class="toolkit-tag">已連線</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status error"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Fakechat</div>
+              <div class="toolkit-desc">模擬聊天 UI 介面</div>
+            </div>
+            <span class="toolkit-tag tag-err">未連線</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status error"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Telegram</div>
+              <div class="toolkit-desc">Telegram 訊息收發</div>
+            </div>
+            <span class="toolkit-tag tag-err">未連線</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCP Servers - Cowork (Claude Desktop) -->
+      <div class="glass-card accent-bar-green" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128268;</div>MCP Servers（Cowork / Claude Desktop）</div></div>
+        <div class="toolkit-list">
+          <div class="toolkit-item">
+            <div class="toolkit-status connected"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">Google Sheets</div>
+              <div class="toolkit-desc">Google 試算表讀寫、格式設定、Drive 圖片管理</div>
+            </div>
+            <span class="toolkit-tag">已設定</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status connected"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">AI Collector</div>
+              <div class="toolkit-desc">AI 新聞收集（TechCrunch、MIT Review 等）、HuggingFace 模型、GitHub Repo 抓取</div>
+            </div>
+            <span class="toolkit-tag">已設定</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills - Claude Code -->
+      <div class="glass-card accent-bar-purple" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#9889;</div>Skills（Claude Code）</div></div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">AI 新聞</div>
+                <div class="toolkit-desc">搜尋台灣繁體中文 AI 科技新聞</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>觸發詞：</strong>「AI新聞」「台灣AI」「今天AI有什麼新聞」「科技新聞」
+<strong>功能：</strong>用 WebSearch 搜尋 bnext、technews、cool3c、ithome 等台灣科技媒體，收集 8-12 則 AI 工具/應用新聞，整理後寫入 Google Sheets（每日一個分頁）。
+<strong>偏好：</strong>AI 工具更新 > 應用技巧 > 新產品 > 生活影響 > 開發者工具
+<strong>排除：</strong>股票投資、半導體分析、財報、政策法規</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">前端設計</div>
+                <div class="toolkit-desc">打造獨特、可上線的前端介面，具備高水準設計品質</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>建立獨特、可上線的前端介面，避免通用的「AI 罐頭美學」。
+<strong>適用：</strong>網站、著陸頁、儀表板、React 元件、HTML/CSS 版面、海報、視覺作品。
+<strong>特色：</strong>對美學細節和創意選擇有極高要求，產出真正可運行的程式碼。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">UI/UX Pro Max Full</div>
+                <div class="toolkit-desc">完整 UI/UX 設計套件，含 7 子技能</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>子技能（7 個）：</strong>
+  &#8226; <strong>ui-ux-pro-max</strong> — 核心 UI/UX 設計引擎（658 行）
+  &#8226; <strong>ui-styling</strong> — 樣式與視覺調校（324 行）
+  &#8226; <strong>design</strong> — 設計規範與指引（302 行）
+  &#8226; <strong>design-system</strong> — 設計系統建構（244 行）
+  &#8226; <strong>banner-design</strong> — 橫幅/廣告設計（192 行）
+  &#8226; <strong>brand</strong> — 品牌識別管理（97 行）
+  &#8226; <strong>slides</strong> — 簡報設計（42 行）
+<strong>附帶：</strong>CLI 工具、色彩提取腳本、品牌指南模板等</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">尋找技能</div>
+                <div class="toolkit-desc">探索並安裝新的 agent 技能</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>觸發詞：</strong>「有沒有技能可以...」「幫我找技能」「安裝技能」「find a skill」
+<strong>功能：</strong>從開放的 agent 技能生態系中探索、搜尋並安裝技能，擴充 Claude 的能力。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">技能創建</div>
+                <div class="toolkit-desc">建立新的自定義技能</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>引導建立或更新自定義技能，擴充 Claude 的專業知識、工作流程或工具整合能力。
+<strong>產出：</strong>SKILL.md 檔案，包含技能名稱、描述、觸發詞、工作流程等。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">程式碼解釋</div>
+                <div class="toolkit-desc">逐函式解釋程式碼並產生繁體中文註解</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>觸發詞：</strong>「解釋程式碼」「說明這個檔案」「加中文註解」「explain code」
+<strong>功能：</strong>指定檔案後逐函式產生中文說明，標註參數、回傳值、副作用，幫助理解陌生程式碼的邏輯與資料流。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plugins - Claude Code -->
+      <div class="glass-card accent-bar-pink" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128296;</div>Plugins（Claude Code）</div></div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-status connected"></div>
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings</div>
+                <div class="toolkit-desc">進階設定、多種子技能</div>
+              </div>
+              <span class="toolkit-tag">啟用中</span>
+            </div>
+            <div class="toolkit-detail"><strong>內建子技能：</strong>
+  &#8226; <strong>think-harder</strong> — 強化分析思考
+  &#8226; <strong>think-ultra</strong> — 超深度分析（最複雜問題）
+  &#8226; <strong>eureka</strong> — 技術突破紀錄與文件化
+  &#8226; <strong>reflection / reflection-harder</strong> — 對話反思與學習擷取
+  &#8226; <strong>translate</strong> — 翻譯為中文
+  &#8226; <strong>gh:fix-issue</strong> — 修復 GitHub issue
+  &#8226; <strong>gh:review-pr</strong> — GitHub PR 程式碼審查
+  &#8226; <strong>deep-research</strong> — 多 Agent 並行深度調研
+  &#8226; <strong>autonomous-skill</strong> — 長時間自主執行任務
+  &#8226; <strong>kiro-skill</strong> — 互動式需求→設計→實作工作流
+  &#8226; <strong>codex-skill</strong> — 用 OpenAI Codex/GPT 實作程式碼
+  &#8226; <strong>nanobanana-skill</strong> — 用 Gemini API 生成/編輯圖片
+  &#8226; <strong>spec-kit-skill</strong> — 規格驅動開發
+  &#8226; <strong>youtube-transcribe-skill</strong> — YouTube 字幕提取
+  &#8226; <strong>chrome</strong> — Chrome DevTools MCP 控制</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-status connected"></div>
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-reflect</div>
+                <div class="toolkit-desc">對話反思與學習，自動更新 CLAUDE.md</div>
+              </div>
+              <span class="toolkit-tag">啟用中</span>
+            </div>
+            <div class="toolkit-detail"><strong>子技能：</strong>
+  &#8226; <strong>reflect</strong> — 分析對話中的修正，更新 CLAUDE.md（需人工審核）
+  &#8226; <strong>reflect-skills</strong> — 從重複模式中發現可建立的新技能
+  &#8226; <strong>skip-reflect</strong> — 丟棄排隊中的學習紀錄
+  &#8226; <strong>view-queue</strong> — 查看排隊中的學習紀錄</div>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status connected"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">fakechat</div>
+              <div class="toolkit-desc">模擬聊天 UI</div>
+            </div>
+            <span class="toolkit-tag">啟用中</span>
+          </div>
+          <div class="toolkit-item">
+            <div class="toolkit-status error"></div>
+            <div class="toolkit-info">
+              <div class="toolkit-name">telegram</div>
+              <div class="toolkit-desc">Telegram 訊息收發</div>
+            </div>
+            <span class="toolkit-tag tag-err">已停用</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills - Cowork -->
+      <div class="glass-card accent-bar-yellow" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#9889;</div>Skills（Cowork / Claude Desktop）</div></div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">UI/UX Pro Max Full</div>
+                <div class="toolkit-desc">完整 UI/UX 設計套件（7 子技能）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>子技能（7 個）：</strong>
+  &#8226; <strong>ui-ux-pro-max</strong> — 核心 UI/UX 設計引擎
+  &#8226; <strong>ui-styling</strong> — 樣式與視覺調校
+  &#8226; <strong>design</strong> — 設計規範與指引
+  &#8226; <strong>design-system</strong> — 設計系統建構
+  &#8226; <strong>banner-design</strong> — 橫幅/廣告設計
+  &#8226; <strong>brand</strong> — 品牌識別管理
+  &#8226; <strong>slides</strong> — 簡報設計
+<strong>附帶：</strong>CLI 工具、色彩提取腳本、品牌指南模板等</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">algorithmic-art</div>
+                <div class="toolkit-desc">演算法藝術生成</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>用 p5.js 建立生成式演算法藝術，含種子隨機性與互動參數控制。
+<strong>流程：</strong>
+  1. 建立「演算法哲學」— 命名美學運動、撰寫宣言
+  2. 用 p5.js 程式碼表達哲學 — 產出 .html + .js 互動作品
+<strong>技法：</strong>粒子系統、流場、噪音場、碎形、湧現行為、參數化變異
+<strong>產出：</strong>.md（哲學宣言）+ .html（互動檢視器）+ .js（生成演算法）
+<strong>觸發詞：</strong>generative art、algorithmic art、flow fields、particle systems</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">doc-coauthoring</div>
+                <div class="toolkit-desc">文件協作編輯</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>多人文件協作編輯，支援即時同步與版本管理。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">docx</div>
+                <div class="toolkit-desc">Word 文件處理</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>建立、讀取、編輯 .docx Word 文件，支援格式設定與內容操作。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">find-skills</div>
+                <div class="toolkit-desc">探索與安裝技能</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>從 agent 技能生態系中搜尋、瀏覽並安裝新技能。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">mcp-builder</div>
+                <div class="toolkit-desc">MCP Server 建構工具</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>引導建立自定義 MCP Server，讓 Claude 能連接外部服務與 API。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">pdf</div>
+                <div class="toolkit-desc">PDF 文件處理</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>讀取、建立、編輯 PDF 文件。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">pptx</div>
+                <div class="toolkit-desc">PowerPoint 簡報處理</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>建立、讀取、編輯 .pptx 簡報文件。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">schedule</div>
+                <div class="toolkit-desc">排程任務管理</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>建立、查看、管理 Cowork 的排程任務（cron job），讓 Claude 定時自動執行工作。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">sheet-compare</div>
+                <div class="toolkit-desc">試算表比對</div>
+            </div>
+            <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>比對兩份試算表的差異，標示新增、刪除、修改的內容。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">skill-creator</div>
+                <div class="toolkit-desc">技能建構工具</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>引導建立新的自定義技能，產出 SKILL.md 檔案。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">web-artifacts-builder</div>
+                <div class="toolkit-desc">網頁元件產生器</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>快速生成獨立的網頁元件（HTML/CSS/JS），可直接預覽與部署。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">xlsx</div>
+                <div class="toolkit-desc">Excel 試算表處理</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>建立、讀取、編輯 .xlsx Excel 檔案，支援格式設定與公式。</div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
   </main>
@@ -1473,7 +1868,7 @@ const ImageDB = {
 
 // ─── Theme ───
 function initTheme() {
-  const saved = LS.get('theme', 'dark');
+  const saved = LS.get('theme', 'light');
   document.documentElement.dataset.theme = saved;
   updateThemeIcon();
 }
@@ -1486,7 +1881,10 @@ function toggleTheme() {
 }
 function updateThemeIcon() {
   const isDark = document.documentElement.dataset.theme === 'dark';
-  $('#themeIcon').innerHTML = isDark ? '&#9790;' : '&#9788;';
+  $('#themeIcon').innerHTML = isDark
+    ? '<i data-lucide="moon" style="width:20px;height:20px"></i>'
+    : '<i data-lucide="sun" style="width:20px;height:20px"></i>';
+  if (window.lucide) lucide.createIcons();
 }
 $('#themeToggle').addEventListener('click', toggleTheme);
 
@@ -1514,6 +1912,15 @@ $$('.nav-item').forEach(item => {
 $('#mobileMenuBtn').addEventListener('click', () => {
   $('#sidebar').classList.toggle('mobile-open');
 });
+
+// ─── Toolkit toggle ───
+function toggleDetail(el) {
+  el.classList.toggle('open');
+  const detail = el.nextElementSibling;
+  if (detail && detail.classList.contains('toolkit-detail')) {
+    detail.classList.toggle('open');
+  }
+}
 
 // ─── Clock ───
 function updateClock() {
@@ -2339,6 +2746,8 @@ async function init() {
   const savedPage = LS.get('currentPage', 'dashboard');
   navigateTo(savedPage);
   loadWeather();
+  // Initialize Lucide SVG icons
+  if (window.lucide) lucide.createIcons();
 }
 init();
 </script>
