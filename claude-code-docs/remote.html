@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>遠端控制・頻道・代理 — Claude Code 指南</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="menu-toggle" id="menu-toggle">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="page-header">
+      <div class="page-number">CHAPTER 03</div>
+      <h1>遠端控制・頻道・代理</h1>
+      <p class="page-desc">Remote Control 遠端操作、Channels 事件推播、子代理、Agent Teams 團隊協作</p>
+    </header>
+
+    <div class="content-body">
+
+<h2>使用 Remote Control 從任何裝置繼續本地工作階段</h2>
+
+<p>使用 Remote Control 從手機、平板電腦或任何瀏覽器繼續本地 Claude Code 工作階段。適用於 claude.ai/code 和 Claude 行動應用程式。</p>
+
+<div class="note">
+  <p><strong>Remote Control 在所有方案中都可用。</strong>在 Team 和 Enterprise 上，管理員必須先在 Claude Code 管理員設定中啟用 Remote Control 開關，否則預設為關閉。</p>
+</div>
+
+<p>Remote Control 將 claude.ai/code 或 Claude 應用程式（iOS 和 Android）連接到在你的機器上執行的 Claude Code 工作階段。在辦公桌上啟動一個任務，然後從沙發上的手機或另一台電腦上的瀏覽器繼續。</p>
+
+<p>當你在機器上啟動 Remote Control 工作階段時，Claude 始終在本地執行，因此沒有任何內容移動到雲端。使用 Remote Control，你可以：</p>
+
+<ul>
+  <li><strong>遠端使用完整的本地環境</strong>：檔案系統、MCP 伺服器、工具和專案設定都保持可用</li>
+  <li><strong>同時從兩個介面工作</strong>：對話在所有連線裝置上保持同步，因此你可以從終端、瀏覽器和手機交替傳送訊息</li>
+  <li><strong>在中斷後恢復</strong>：如果筆電進入睡眠或網路斷線，當機器重新上線時，工作階段會自動重新連線</li>
+</ul>
+
+<p>與網頁版 Claude Code（在雲端基礎設施上執行）不同，Remote Control 工作階段直接在你的機器上執行並與本地檔案系統互動。網頁和行動介面只是該本地工作階段的一個視窗。</p>
+
+<div class="note">
+  <p><strong>Remote Control 需要 Claude Code v2.1.51 或更高版本。</strong>使用 <code>claude --version</code> 檢查版本。</p>
+</div>
+
+<p>本頁涵蓋設定、如何啟動和連接工作階段，以及 Remote Control 與網頁版 Claude Code 的比較。</p>
+
+<h3>需求</h3>
+
+<p>在使用 Remote Control 之前，請確認環境滿足以下條件：</p>
+
+<ul>
+  <li><strong>訂閱</strong>：在 Pro、Max、Team 和 Enterprise 方案中可用。不支援 API 金鑰。在 Team 和 Enterprise 上，管理員必須先在 Claude Code 管理員設定中啟用 Remote Control 開關。</li>
+  <li><strong>驗證</strong>：執行 <code>claude</code> 並使用 <code>/login</code> 透過 claude.ai 登入（如果尚未登入）。</li>
+  <li><strong>工作區信任</strong>：在專案目錄中至少執行一次 <code>claude</code> 以接受工作區信任對話框。</li>
+</ul>
+
+<h3>啟動 Remote Control 工作階段</h3>
+
+<p>你可以啟動專用的 Remote Control 伺服器、啟動啟用了 Remote Control 的互動式工作階段，或連接已在執行的工作階段。</p>
+
+<h4>伺服器模式</h4>
+
+<p>導覽到專案目錄並執行：</p>
+
+<pre data-lang="bash"><code>claude remote-control
+</code></pre>
+
+<p>該程序在終端中以伺服器模式持續執行，等待遠端連線。它會顯示一個工作階段 URL，你可以使用該 URL 從另一個裝置連接，也可以按空白鍵顯示 QR 碼以從手機快速存取。當遠端工作階段啟用時，終端會顯示連線狀態和工具活動。</p>
+
+<p>可用旗標：</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>旗標</th>
+        <th>說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--name "My Project"</code></td>
+        <td>設定自訂工作階段標題，在 claude.ai/code 的工作階段列表中可見。</td>
+      </tr>
+      <tr>
+        <td><code>--spawn &lt;mode&gt;</code></td>
+        <td>如何建立並行工作階段。執行時按 <code>w</code> 切換。<br />
+        • <code>same-dir</code>（預設）：所有工作階段共享目前工作目錄，如果編輯相同檔案可能會衝突。<br />
+        • <code>worktree</code>：每個按需工作階段都取得自己的 git worktree。需要 git 儲存庫。</td>
+      </tr>
+      <tr>
+        <td><code>--capacity &lt;N&gt;</code></td>
+        <td>最大並行工作階段數。預設為 32。</td>
+      </tr>
+      <tr>
+        <td><code>--verbose</code></td>
+        <td>顯示詳細的連線和工作階段日誌。</td>
+      </tr>
+      <tr>
+        <td><code>--sandbox</code> / <code>--no-sandbox</code></td>
+        <td>啟用或停用沙箱以進行檔案系統和網路隔離。預設關閉。</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>互動式工作階段</h4>
+
+<p>要啟動啟用了 Remote Control 的普通互動式 Claude Code 工作階段，使用 <code>--remote-control</code> 旗標（或 <code>--rc</code>）：</p>
+
+<pre data-lang="bash"><code>claude --remote-control
+</code></pre>
+
+<p>可選地為工作階段傳遞一個名稱：</p>
+
+<pre data-lang="bash"><code>claude --remote-control "My Project"
+</code></pre>
+
+<p>這讓你在終端中擁有完整的互動式工作階段，同時也可以從 claude.ai 或 Claude 應用程式控制。與 <code>claude remote-control</code>（伺服器模式）不同，你可以在工作階段也可遠端使用時在本地輸入訊息。</p>
+
+<h4>從現有工作階段</h4>
+
+<p>如果你已在 Claude Code 工作階段中並想遠端繼續它，使用 <code>/remote-control</code>（或 <code>/rc</code>）命令：</p>
+
+<pre data-lang="text"><code>/remote-control
+</code></pre>
+
+<p>傳遞名稱作為參數以設定自訂工作階段標題：</p>
+
+<pre data-lang="text"><code>/remote-control My Project
+</code></pre>
+
+<p>這會啟動一個 Remote Control 工作階段，繼承目前的對話歷史記錄，並顯示一個工作階段 URL 和 QR 碼，你可以使用它從另一個裝置連接。<code>--verbose</code>、<code>--sandbox</code> 和 <code>--no-sandbox</code> 旗標不適用於此命令。</p>
+
+<h4>從另一個裝置連接</h4>
+
+<p>一旦 Remote Control 工作階段啟用，你有幾種方式從另一個裝置連接：</p>
+
+<ul>
+  <li><strong>開啟工作階段 URL</strong>：在任何瀏覽器中直接前往 claude.ai/code 上的工作階段。<code>claude remote-control</code> 和 <code>/remote-control</code> 都在終端中顯示此 URL。</li>
+  <li><strong>掃描 QR 碼</strong>：顯示在工作階段 URL 旁邊，直接在 Claude 應用程式中開啟。使用 <code>claude remote-control</code> 時，按空白鍵切換 QR 碼顯示。</li>
+  <li><strong>開啟 claude.ai/code 或 Claude 應用程式</strong>：在工作階段列表中按名稱尋找工作階段。Remote Control 工作階段在線上時顯示帶有綠色狀態點的電腦圖示。</li>
+</ul>
+
+<p>遠端工作階段標題按以下順序選擇：</p>
+
+<ol>
+  <li>你傳遞給 <code>--name</code>、<code>--remote-control</code> 或 <code>/remote-control</code> 的名稱</li>
+  <li>你使用 <code>/rename</code> 設定的標題</li>
+  <li>現有對話歷史記錄中的最後一條有意義的訊息</li>
+  <li>你傳送的第一條提示</li>
+</ol>
+
+<p>如果環境已有啟用的工作階段，你會被詢問是否繼續它或啟動新工作階段。</p>
+
+<p>如果你還沒有 Claude 應用程式，在 Claude Code 中使用 <code>/mobile</code> 命令顯示 iOS 或 Android 的下載 QR 碼。</p>
+
+<h4>為所有工作階段啟用 Remote Control</h4>
+
+<p>預設情況下，Remote Control 僅在你顯式執行 <code>claude remote-control</code>、<code>claude --remote-control</code> 或 <code>/remote-control</code> 時啟用。要為每個互動式工作階段自動啟用它，在 Claude Code 中執行 <code>/config</code> 並將**為所有工作階段啟用 Remote Control** 設定為 <code>true</code>。設回 <code>false</code> 以停用。</p>
+
+<p>啟用此設定後，每個互動式 Claude Code 程序註冊一個遠端工作階段。如果你執行多個實例，每個實例都取得自己的環境和工作階段。要從單個程序執行多個並行工作階段，請改用帶有 <code>--spawn</code> 的伺服器模式。</p>
+
+<h3>連線和安全</h3>
+
+<p>你的本地 Claude Code 工作階段僅發出出站 HTTPS 請求，從不在機器上開啟入站埠。當你啟動 Remote Control 時，它向 Anthropic API 註冊並輪詢工作。當你從另一個裝置連接時，伺服器透過串流連線在網頁或行動用戶端和本地工作階段之間路由訊息。</p>
+
+<p>所有流量都透過 Anthropic API 以 TLS 傳輸，與任何 Claude Code 工作階段的傳輸安全相同。連線使用多個短期憑證，每個憑證的範圍限定為單一用途並獨立過期。</p>
+
+<h3>Remote Control 與網頁版 Claude Code 的比較</h3>
+
+<p>Remote Control 和網頁版 Claude Code 都使用 claude.ai/code 介面。關鍵區別在於工作階段執行的位置：Remote Control 在你的機器上執行，因此本地 MCP 伺服器、工具和專案設定保持可用。網頁版 Claude Code 在 Anthropic 管理的雲端基礎設施中執行。</p>
+
+<p>當你正在進行本地工作並想從另一個裝置繼續時，使用 Remote Control。當你想在沒有任何本地設定的情況下啟動任務、處理你沒有 clone 的儲存庫或並行執行多個任務時，使用網頁版 Claude Code。</p>
+
+<h3>限制</h3>
+
+<ul>
+  <li><strong>每個互動式程序一個遠端工作階段</strong>：在伺服器模式之外，每個 Claude Code 實例一次支援一個遠端工作階段。使用帶有 <code>--spawn</code> 的伺服器模式從單個程序執行多個並行工作階段。</li>
+  <li><strong>終端必須保持開啟</strong>：Remote Control 作為本地程序執行。如果你關閉終端或停止 <code>claude</code> 程序，工作階段結束。再次執行 <code>claude remote-control</code> 以啟動新工作階段。</li>
+  <li><strong>延長的網路中斷</strong>：如果機器處於喚醒狀態但無法在約 10 分鐘以上到達網路，工作階段逾時並且程序退出。再次執行 <code>claude remote-control</code> 以啟動新工作階段。</li>
+</ul>
+
+<h3>疑難排解</h3>
+
+<h4>"Remote Control 尚未為你的帳號啟用"</h4>
+
+<p>在存在某些環境變數的情況下，資格檢查可能會失敗：</p>
+
+<ul>
+  <li><code>CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</code> 或 <code>DISABLE_TELEMETRY</code>：取消設定它們並重試。</li>
+  <li><code>CLAUDE_CODE_USE_BEDROCK</code>、<code>CLAUDE_CODE_USE_VERTEX</code> 或 <code>CLAUDE_CODE_USE_FOUNDRY</code>：Remote Control 需要 claude.ai 驗證，不適用於第三方供應商。</li>
+</ul>
+
+<p>如果這些都沒有設定，執行 <code>/logout</code> 然後 <code>/login</code> 以重新整理。</p>
+
+<h4>"Remote Control 被你的組織的政策停用"</h4>
+
+<p>此錯誤有三個不同的原因。先執行 <code>/status</code> 以查看你使用的登入方法和訂閱。</p>
+
+<ul>
+  <li><strong>你使用 API 金鑰或 Console 帳號進行驗證</strong>：Remote Control 需要 claude.ai OAuth。執行 <code>/login</code> 並選擇 claude.ai 選項。如果環境中設定了 <code>ANTHROPIC_API_KEY</code>，請取消設定它。</li>
+  <li><strong>你的 Team 或 Enterprise 管理員尚未啟用它</strong>：Remote Control 在這些方案上預設為關閉。管理員可以在 claude.ai/admin-settings/claude-code 開啟 **Remote Control** 開關來啟用它。這是伺服器端組織設定，不是僅管理設定金鑰。</li>
+  <li><strong>管理員開關呈灰色</strong>：你的組織有資料保留或合規設定與 Remote Control 不相容。這無法從管理面板更改。請聯絡 Anthropic 支援以討論選項。</li>
+</ul>
+
+<h4>"Remote credentials fetch failed"</h4>
+
+<p>Claude Code 無法從 Anthropic API 取得短期憑證以建立連線。使用 <code>--verbose</code> 重新執行以查看完整錯誤：</p>
+
+<pre data-lang="bash"><code>claude remote-control --verbose
+</code></pre>
+
+<p>常見原因：</p>
+
+<ul>
+  <li>未登入：執行 <code>claude</code> 並使用 <code>/login</code> 以你的 claude.ai 帳號進行驗證。Remote Control 不支援 API 金鑰驗證。</li>
+  <li>網路或代理問題：防火牆或代理可能阻止出站 HTTPS 請求。Remote Control 需要存取埠 443 上的 Anthropic API。</li>
+  <li>工作階段建立失敗：如果你還看到 <code>Session creation failed — see debug log</code>，失敗發生在設定的早期。檢查你的訂閱是否處於啟用狀態。</li>
+</ul>
+
+<h3>選擇正確的方法</h3>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">方法</th>
+        <th style="text-align: left">觸發方式</th>
+        <th style="text-align: left">Claude 執行位置</th>
+        <th style="text-align: left">設定</th>
+        <th style="text-align: left">最適合</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left">Dispatch</td>
+        <td style="text-align: left">從 Claude 行動應用程式傳送任務訊息</td>
+        <td style="text-align: left">你的機器（Desktop）</td>
+        <td style="text-align: left">將行動應用程式與 Desktop 配對</td>
+        <td style="text-align: left">委派工作，最少設定</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Remote Control</td>
+        <td style="text-align: left">從 claude.ai/code 或 Claude 行動應用程式驅動執行中的工作階段</td>
+        <td style="text-align: left">你的機器（CLI 或 VS Code）</td>
+        <td style="text-align: left">執行 <code>claude remote-control</code></td>
+        <td style="text-align: left">從其他裝置引導進行中的工作</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Channels</td>
+        <td style="text-align: left">來自聊天應用程式（如 Telegram 或 Discord）或你自己的伺服器的推播事件</td>
+        <td style="text-align: left">你的機器（CLI）</td>
+        <td style="text-align: left">安裝 channel 外掛或建立自己的</td>
+        <td style="text-align: left">回應外部事件如 CI 失敗或聊天訊息</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Slack</td>
+        <td style="text-align: left">在團隊頻道中提及 <code>@Claude</code></td>
+        <td style="text-align: left">Anthropic 雲端</td>
+        <td style="text-align: left">安裝 Slack 應用程式並啟用網頁版 Claude Code</td>
+        <td style="text-align: left">從團隊聊天發起 PR 和審查</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Scheduled tasks（排程任務）</td>
+        <td style="text-align: left">設定排程</td>
+        <td style="text-align: left">CLI、Desktop 或雲端</td>
+        <td style="text-align: left">選擇頻率</td>
+        <td style="text-align: left">定期自動化如每日審查</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>相關資源</h3>
+
+<ul>
+  <li>網頁版 Claude Code：在 Anthropic 管理的雲端環境中執行工作階段，而不是在你的機器上</li>
+  <li>Channels：將 Telegram 或 Discord 轉發到工作階段中，以便 Claude 在你離開時對訊息做出反應</li>
+  <li>Dispatch：從手機傳送任務訊息，它可以產生 Desktop 工作階段來處理它</li>
+  <li>驗證：設定 <code>/login</code> 並管理 claude.ai 的憑證</li>
+  <li>CLI 參考：包括 <code>claude remote-control</code> 的旗標和命令的完整列表</li>
+  <li>安全：Remote Control 工作階段如何適應 Claude Code 安全模型</li>
+  <li>資料使用：在本地和遠端工作階段期間透過 Anthropic API 流動的資料</li>
+</ul>
+
+<hr />
+
+<h2>使用 Channels 將事件推播到執行中的工作階段</h2>
+
+<p>使用 channels 從 MCP 伺服器將訊息、警報和 webhooks 推播到 Claude Code 工作階段中。轉發 CI 結果、聊天訊息和監控事件，以便 Claude 在你離開時做出反應。</p>
+
+<div class="note">
+  <p><strong>Channels 處於研究預覽階段，</strong>需要 Claude Code v2.1.80 或更高版本。需要 claude.ai 登入。不支援主控台和 API 金鑰驗證。Team 和 Enterprise 組織必須明確啟用它們。</p>
+</div>
+
+<p>Channel 是一個 MCP 伺服器，它將事件推播到你執行中的 Claude Code 工作階段中，以便 Claude 可以對你不在終端時發生的事情做出反應。Channels 可以是雙向的：Claude 讀取事件並透過同一 channel 回覆，就像聊天橋接一樣。事件僅在工作階段開啟時到達，因此對於始終在線的設定，你可以在背景程序或持久終端中執行 Claude。</p>
+
+<p>與產生新的雲端工作階段或等待被輪詢的整合不同，事件到達你已經開啟的工作階段中。</p>
+
+<p>你將 channel 作為外掛安裝並使用自己的憑證設定它。Telegram、Discord 和 iMessage 包含在研究預覽中。</p>
+
+<p>當 Claude 透過 channel 回覆時，你會在終端中看到入站訊息，但看不到回覆文字。終端顯示工具呼叫和確認（如「已傳送」），實際回覆出現在其他平台上。</p>
+
+<p>本頁涵蓋：</p>
+
+<ul>
+  <li>支援的 channels：Telegram、Discord 和 iMessage 設定</li>
+  <li>安裝並執行 channel，使用 fakechat（localhost 示範）</li>
+  <li>誰可以推播訊息：傳送者允許清單以及如何配對</li>
+  <li>為你的組織啟用 channels（Team 和 Enterprise）</li>
+  <li>channels 如何比較 與網頁工作階段、Slack、MCP 和遠端控制</li>
+</ul>
+
+<p>要建立自己的 channel，參見 Channels 參考。</p>
+
+<h3>支援的 Channels</h3>
+
+<p>每個支援的 channel 都是一個需要 Bun 的外掛。在連接真實平台之前，要取得外掛流程的實際示範，嘗試 fakechat 快速入門。</p>
+
+<h4>Telegram</h4>
+
+<p>查看完整的 Telegram 外掛原始碼。</p>
+
+<p><strong>步驟 1：建立 Telegram 機器人</strong></p>
+
+<p>在 Telegram 中開啟 BotFather 並傳送 <code>/newbot</code>。給它一個顯示名稱和一個以 <code>bot</code> 結尾的唯一使用者名稱。複製 BotFather 回傳的權杖（token）。</p>
+
+<p><strong>步驟 2：安裝外掛</strong></p>
+
+<p>在 Claude Code 中，執行：</p>
+
+<pre data-lang="text"><code>/plugin install telegram@claude-plugins-official
+</code></pre>
+
+<p>如果 Claude Code 回報在任何市集中都找不到該外掛，你的市集可能遺失或已過期。執行 <code>/plugin marketplace update claude-plugins-official</code> 來重新整理它，或者如果你之前沒有加過，執行 <code>/plugin marketplace add anthropics/claude-plugins-official</code>。然後重試安裝。</p>
+
+<p>安裝後，執行 <code>/reload-plugins</code> 來啟用外掛的設定命令。</p>
+
+<p><strong>步驟 3：設定權杖</strong></p>
+
+<p>使用來自 BotFather 的權杖執行設定命令：</p>
+
+<pre data-lang="text"><code>/telegram:configure &lt;token&gt;
+</code></pre>
+
+<p>這會將其儲存到 <code>~/.claude/channels/telegram/.env</code>。你也可以在啟動 Claude Code 之前在 shell 環境中設定 <code>TELEGRAM_BOT_TOKEN</code>。</p>
+
+<p><strong>步驟 4：重啟並啟用 channels</strong></p>
+
+<p>退出 Claude Code 並使用 channel 旗標重啟。這會啟動 Telegram 外掛，它開始輪詢來自機器人的訊息：</p>
+
+<pre data-lang="bash"><code>claude --channels plugin:telegram@claude-plugins-official
+</code></pre>
+
+<p><strong>步驟 5：配對帳號</strong></p>
+
+<p>開啟 Telegram 並向機器人傳送任何訊息。機器人會回覆一個配對碼。</p>
+
+<div class="note">
+  <p>如果機器人沒有回應，請確保 Claude Code 正在使用上一步中的 <code>--channels</code> 執行。機器人只能在 channel 啟用時回覆。</p>
+</div>
+
+<p>回到 Claude Code，執行：</p>
+
+<pre data-lang="text"><code>/telegram:access pair &lt;code&gt;
+</code></pre>
+
+<p>然後鎖定存取權限，以便只有你的帳號可以傳送訊息：</p>
+
+<pre data-lang="text"><code>/telegram:access policy allowlist
+</code></pre>
+
+<h4>Discord</h4>
+
+<p>查看完整的 Discord 外掛原始碼。</p>
+
+<p><strong>步驟 1：建立 Discord 機器人</strong></p>
+
+<p>前往 Discord 開發者入口，點選 **New Application**（新應用程式），並為其命名。在 **Bot**（機器人）部分中，建立使用者名稱，然後點選 **Reset Token**（重設權杖）並複製權杖。</p>
+
+<p><strong>步驟 2：啟用消息內容意圖</strong></p>
+
+<p>在機器人設定中，捲動到 **Privileged Gateway Intents**（特權閘道意圖）並啟用 **Message Content Intent**（消息內容意圖）。</p>
+
+<p><strong>步驟 3：邀請機器人加入伺服器</strong></p>
+
+<p>前往 **OAuth2 > URL Generator**。選擇 <code>bot</code> 範圍並啟用這些權限：</p>
+
+<ul>
+  <li>View Channels（檢視頻道）</li>
+  <li>Send Messages（傳送訊息）</li>
+  <li>Send Messages in Threads（在討論串中傳送訊息）</li>
+  <li>Read Message History（讀取訊息歷史）</li>
+  <li>Attach Files（附加檔案）</li>
+  <li>Add Reactions（新增反應）</li>
+</ul>
+
+<p>開啟產生的 URL 以將機器人加入你的伺服器。</p>
+
+<p><strong>步驟 4：安裝外掛</strong></p>
+
+<p>在 Claude Code 中，執行：</p>
+
+<pre data-lang="text"><code>/plugin install discord@claude-plugins-official
+</code></pre>
+
+<p>安裝後，執行 <code>/reload-plugins</code> 來啟用外掛的設定命令。</p>
+
+<p><strong>步驟 5：設定權杖</strong></p>
+
+<p>使用複製的機器人權杖執行設定命令：</p>
+
+<pre data-lang="text"><code>/discord:configure &lt;token&gt;
+</code></pre>
+
+<p>這會將其儲存到 <code>~/.claude/channels/discord/.env</code>。你也可以在啟動 Claude Code 之前在 shell 環境中設定 <code>DISCORD_BOT_TOKEN</code>。</p>
+
+<p><strong>步驟 6：重啟並啟用 channels</strong></p>
+
+<p>退出 Claude Code 並使用 channel 旗標重啟：</p>
+
+<pre data-lang="bash"><code>claude --channels plugin:discord@claude-plugins-official
+</code></pre>
+
+<p><strong>步驟 7：配對帳號</strong></p>
+
+<p>在 Discord 上向機器人傳送私訊。機器人會回覆一個配對碼。</p>
+
+<p>回到 Claude Code，執行：</p>
+
+<pre data-lang="text"><code>/discord:access pair &lt;code&gt;
+</code></pre>
+
+<p>然後鎖定存取權限：</p>
+
+<pre data-lang="text"><code>/discord:access policy allowlist
+</code></pre>
+
+<h4>iMessage</h4>
+
+<p>查看完整的 iMessage 外掛原始碼。</p>
+
+<p>iMessage channel 直接讀取你的訊息資料庫，並透過 AppleScript 傳送回覆。它需要 macOS，不需要機器人權杖或外部服務。</p>
+
+<p><strong>步驟 1：授予完整磁碟存取權限</strong></p>
+
+<p>位於 <code>~/Library/Messages/chat.db</code> 的訊息資料庫受 macOS 保護。伺服器第一次讀取它時，macOS 會提示存取權限。</p>
+
+<p><strong>步驟 2：安裝外掛</strong></p>
+
+<pre data-lang="text"><code>/plugin install imessage@claude-plugins-official
+</code></pre>
+
+<p><strong>步驟 3：重啟並啟用 channels</strong></p>
+
+<pre data-lang="bash"><code>claude --channels plugin:imessage@claude-plugins-official
+</code></pre>
+
+<p><strong>步驟 4：給自己傳簡訊</strong></p>
+
+<p>在任何登入到你的 Apple ID 的裝置上開啟訊息，並向自己傳送訊息。它立即到達 Claude：自我聊天繞過存取控制，無需設定。</p>
+
+<div class="note">
+  <p>Claude 傳送的第一條回覆會觸發 macOS 自動化提示，詢問你的終端是否可以控制訊息。點選 **OK**（確定）。</p>
+</div>
+
+<p><strong>步驟 5：允許其他傳送者</strong></p>
+
+<p>預設情況下，只有你自己的訊息通過。要讓另一個聯絡人到達 Claude，加入他們的控制代碼（handle）：</p>
+
+<pre data-lang="text"><code>/imessage:access allow +15551234567
+</code></pre>
+
+<p>控制代碼是 <code>+country</code> 格式的電話號碼或 Apple ID 電子郵件，如 <code>user@example.com</code>。</p>
+
+<p>你也可以建立自己的 channel，用於尚未有外掛的系統。</p>
+
+<h3>快速入門</h3>
+
+<p>Fakechat 是一個官方支援的示範 channel，在 localhost 上執行聊天 UI，無需驗證，也無需設定外部服務。</p>
+
+<p>安裝並啟用 fakechat 後，你可以在瀏覽器中輸入，訊息會到達 Claude Code 工作階段。Claude 回覆，回覆會顯示在瀏覽器中。</p>
+
+<p>要嘗試 fakechat 示範，你需要：</p>
+
+<ul>
+  <li>Claude Code 已安裝並使用 claude.ai 帳號進行驗證</li>
+  <li>Bun 已安裝。預建的 channel 外掛是 Bun 指令碼。使用 <code>bun --version</code> 檢查；如果失敗，安裝 Bun。</li>
+  <li><strong>Team/Enterprise 使用者</strong>：你的組織管理員必須在託管設定中啟用 channels</li>
+</ul>
+
+<p><strong>步驟 1：安裝 fakechat channel 外掛</strong></p>
+
+<p>啟動 Claude Code 工作階段並執行安裝命令：</p>
+
+<pre data-lang="text"><code>/plugin install fakechat@claude-plugins-official
+</code></pre>
+
+<p><strong>步驟 2：重啟並啟用 channel</strong></p>
+
+<p>退出 Claude Code，然後使用 <code>--channels</code> 重啟並傳遞你安裝的 fakechat 外掛：</p>
+
+<pre data-lang="bash"><code>claude --channels plugin:fakechat@claude-plugins-official
+</code></pre>
+
+<p>fakechat 伺服器會自動啟動。</p>
+
+<div class="note">
+  <p>提示：你可以將多個外掛傳遞給 <code>--channels</code>，用空格分隔。</p>
+</div>
+
+<p><strong>步驟 3：推播訊息進來</strong></p>
+
+<p>在 http://localhost:8787 開啟 fakechat UI 並輸入訊息：</p>
+
+<pre data-lang="text"><code>hey, what's in my working directory?
+</code></pre>
+
+<p>訊息作為 <code>&lt;channel source="fakechat"&gt;</code> 事件到達 Claude Code 工作階段。Claude 讀取它，完成工作，並呼叫 fakechat 的 <code>reply</code> 工具。答案顯示在聊天 UI 中。</p>
+
+<p>如果 Claude 在你離開終端時遇到權限提示，工作階段會暫停直到你回應。宣告權限中繼功能的 Channel 伺服器可以將這些提示轉發給你，以便你可以遠端批准或拒絕。對於無人值守使用，<code>--dangerously-skip-permissions</code> 完全繞過提示，但僅在你信任的環境中使用。</p>
+
+<h3>安全性</h3>
+
+<p>每個已批准的 channel 外掛都維護一個傳送者允許清單：只有你加入的 ID 可以推播訊息，其他所有人都會被靜默丟棄。</p>
+
+<p>Telegram 和 Discord 透過配對來引導清單：</p>
+
+<ol>
+  <li>在 Telegram 或 Discord 中找到機器人並向其傳送任何訊息</li>
+  <li>機器人回覆一個配對碼</li>
+  <li>在 Claude Code 工作階段中，在提示時批准代碼</li>
+  <li>你的傳送者 ID 被加入到允許清單</li>
+</ol>
+
+<p>iMessage 的工作方式不同：給自己傳簡訊會自動繞過門禁，你可以使用 <code>/imessage:access allow</code> 透過控制代碼加入其他聯絡人。</p>
+
+<p>除此之外，你可以使用 <code>--channels</code> 控制每個工作階段啟用哪些伺服器，在 Team 和 Enterprise 方案上，你的組織可以使用 <code>channelsEnabled</code> 控制可用性。</p>
+
+<p>僅在 <code>.mcp.json</code> 中還不足以推播訊息：伺服器還必須在 <code>--channels</code> 中指名。</p>
+
+<p>允許清單也會限制權限中繼（如果 channel 宣告了它）。任何可以透過 channel 回覆的人都可以批准或拒絕你工作階段中的工具使用，因此只將你信任具有該權限的傳送者加入允許清單。</p>
+
+<h3>Enterprise 控制</h3>
+
+<p>在 Team 和 Enterprise 方案上，channels 預設關閉。管理員透過兩個託管設定控制可用性，使用者無法覆蓋：</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">設定</th>
+        <th style="text-align: left">用途</th>
+        <th style="text-align: left">未設定時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>channelsEnabled</code></td>
+        <td style="text-align: left">主開關。必須為 <code>true</code> 才能讓任何 channel 傳遞訊息。透過 claude.ai 管理員主控台切換或直接在託管設定中設定。關閉時阻止所有 channels，包括開發旗標。</td>
+        <td style="text-align: left">Channels 被阻止</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>allowedChannelPlugins</code></td>
+        <td style="text-align: left">啟用 channels 後哪些外掛可以註冊。設定時取代 Anthropic 維護的清單。僅在 <code>channelsEnabled</code> 為 <code>true</code> 時適用。</td>
+        <td style="text-align: left">套用 Anthropic 預設清單</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>沒有組織的 Pro 和 Max 使用者完全跳過這些檢查：channels 可用，使用者使用 <code>--channels</code> 按工作階段選擇加入。</p>
+
+<h4>為你的組織啟用 channels</h4>
+
+<p>管理員可以從 <strong>claude.ai > Admin Settings > Claude Code > Channels</strong> 啟用 channels，或透過在託管設定中將 <code>channelsEnabled</code> 設定為 <code>true</code>。</p>
+
+<p>啟用後，組織中的使用者可以使用 <code>--channels</code> 將 channel 伺服器選擇加入到各個工作階段中。如果設定被停用或未設定，MCP 伺服器仍會連線，其工具可以工作，但 channel 訊息不會到達。啟動警告會告訴使用者讓管理員啟用該設定。</p>
+
+<h4>限制哪些 channel 外掛可以執行</h4>
+
+<p>預設情況下，Anthropic 維護的允許清單上的任何外掛都可以註冊為 channel。Team 和 Enterprise 方案上的管理員可以透過在託管設定中設定 <code>allowedChannelPlugins</code> 來取代該允許清單：</p>
+
+<pre data-lang="json"><code>{
+  "channelsEnabled": true,
+  "allowedChannelPlugins": [
+    { "marketplace": "claude-plugins-official", "plugin": "telegram" },
+    { "marketplace": "claude-plugins-official", "plugin": "discord" },
+    { "marketplace": "acme-corp-plugins", "plugin": "internal-alerts" }
+  ]
+}
+</code></pre>
+
+<p>設定 <code>allowedChannelPlugins</code> 時，它完全取代 Anthropic 允許清單：只有列出的外掛可以註冊。保持未設定以回退到預設 Anthropic 允許清單。空陣列阻止所有 channel 外掛從允許清單中，但 <code>--dangerously-load-development-channels</code> 仍可以為本地測試繞過它。要完全阻止 channels（包括開發旗標），請保持 <code>channelsEnabled</code> 未設定。</p>
+
+<h3>研究預覽</h3>
+
+<p>Channels 是一個研究預覽功能。可用性正在逐步推出，<code>--channels</code> 旗標語法和協定合約可能會根據回饋而改變。</p>
+
+<p>在預覽期間，<code>--channels</code> 僅接受來自 Anthropic 維護的允許清單的外掛，或來自你組織的允許清單（如果管理員已設定 <code>allowedChannelPlugins</code>）。claude-plugins-official 中的 channel 外掛是預設批准的集合。</p>
+
+<p>要測試你正在建立的 channel，使用 <code>--dangerously-load-development-channels</code>。</p>
+
+<p>在 Claude Code GitHub 儲存庫上回報問題或回饋。</p>
+
+<h3>Channels 如何比較</h3>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>功能</th>
+        <th>它做什麼</th>
+        <th>適合</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>網頁版 Claude Code</td>
+        <td>在新的雲端沙箱中執行任務，從 GitHub clone</td>
+        <td>委派你稍後檢查的自包含非同步工作</td>
+      </tr>
+      <tr>
+        <td>Slack 中的 Claude</td>
+        <td>從頻道或討論串中的 <code>@Claude</code> 提及產生網頁工作階段</td>
+        <td>直接從團隊對話上下文啟動任務</td>
+      </tr>
+      <tr>
+        <td>標準 MCP 伺服器</td>
+        <td>Claude 在任務期間查詢它；沒有任何內容被推播到工作階段</td>
+        <td>給 Claude 按需存取以讀取或查詢系統</td>
+      </tr>
+      <tr>
+        <td>遠端控制</td>
+        <td>你從 claude.ai 或 Claude 行動應用程式驅動本地工作階段</td>
+        <td>在離開辦公桌時引導進行中的工作階段</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>Channels 透過將來自非 Claude 來源的事件推播到你已經執行的本地工作階段中，填補了該列表中的空白。</p>
+
+<ul>
+  <li><strong>聊天橋接</strong>：透過 Telegram、Discord 或 iMessage 從手機向 Claude 詢問某事，答案會在同一聊天中回傳，而工作在你的機器上針對你的真實檔案執行。</li>
+  <li><strong>Webhook 接收器</strong>：來自 CI、錯誤追蹤器、部署管線或其他外部服務的 webhook 到達 Claude 已經開啟你的檔案並記得你正在除錯的內容的地方。</li>
+</ul>
+
+<h3>後續步驟</h3>
+
+<p>一旦你有一個 channel 執行中，探索這些相關功能：</p>
+
+<ul>
+  <li>建立自己的 channel，用於尚未有外掛的系統</li>
+  <li>遠端控制，從手機驅動本地工作階段，而不是將事件轉發到其中</li>
+  <li>排程任務，按計時器輪詢而不是對推播事件做出反應</li>
+</ul>
+
+<hr />
+
+<h2>Channels 參考</h2>
+
+<p>建立一個 MCP 伺服器，將 webhooks、警報和聊天訊息推播到 Claude Code 工作階段中。頻道合約的參考：能力宣告、通知事件、回覆工具、傳送者閘門控制和權限中繼。</p>
+
+<div class="note">
+  <p><strong>Channels 處於研究預覽階段，</strong>需要 Claude Code v2.1.80 或更高版本。需要 claude.ai 登入。不支援主控台和 API 金鑰驗證。Team 和 Enterprise 組織必須明確啟用它們。</p>
+</div>
+
+<p>Channel 是一個 MCP 伺服器，它將事件推播到 Claude Code 工作階段中，以便 Claude 可以對終端外發生的事情做出反應。</p>
+
+<p>你可以建立單向或雙向頻道。單向頻道轉發警報、webhooks 或監控事件供 Claude 處理。雙向頻道（如聊天橋接）也公開回覆工具，以便 Claude 可以傳送訊息回覆。具有受信任傳送者路徑的頻道也可以選擇加入中繼權限提示，以便你可以遠端批准或拒絕工具使用。</p>
+
+<p>本頁涵蓋：</p>
+
+<ul>
+  <li>概述：頻道如何工作</li>
+  <li>你需要什麼：需求和一般步驟</li>
+  <li>範例：建立 webhook 接收器：最小單向演練</li>
+  <li>伺服器選項：建構函式欄位</li>
+  <li>通知格式：事件負載</li>
+  <li>公開回覆工具：讓 Claude 傳送訊息回覆</li>
+  <li>閘門控制入站訊息：傳送者檢查以防止提示注入</li>
+  <li>中繼權限提示：將工具批准提示轉發到遠端頻道</li>
+</ul>
+
+<p>要使用現有頻道而不是建立一個，參見 Channels。Telegram、Discord、iMessage 和 fakechat 包含在研究預覽中。</p>
+
+<h3>概述</h3>
+
+<p>Channel 是一個在與 Claude Code 相同的機器上執行的 MCP 伺服器。Claude Code 將其作為子程序產生並透過 stdio 進行通訊。你的頻道伺服器是外部系統和 Claude Code 工作階段之間的橋樑：</p>
+
+<ul>
+  <li><strong>聊天平台</strong>（Telegram、Discord）：你的外掛在本地執行並輪詢平台的 API 以取得新訊息。當有人向機器人傳送 DM 時，外掛接收訊息並將其轉發給 Claude。無需公開 URL。</li>
+  <li><strong>Webhooks</strong>（CI、監控）：你的伺服器在本地 HTTP 埠上監聽。外部系統 POST 到該埠，你的伺服器將負載推播到 Claude。</li>
+</ul>
+
+<h3>你需要什麼</h3>
+
+<p>唯一的硬性需求是 <code>@modelcontextprotocol/sdk</code> 套件和 Node.js 相容的執行環境。Bun、Node 和 Deno 都可以。</p>
+
+<p>你的伺服器需要：</p>
+
+<ol>
+  <li>宣告 <code>claude/channel</code> 能力，以便 Claude Code 註冊通知監聽器</li>
+  <li>當發生某事時發出 <code>notifications/claude/channel</code> 事件</li>
+  <li>透過 stdio transport 連接（Claude Code 將你的伺服器作為子程序產生）</li>
+</ol>
+
+<h3>範例：建立 Webhook 接收器</h3>
+
+<p>本演練建立一個單檔伺服器，該伺服器監聽 HTTP 請求並將其轉發到 Claude Code 工作階段中。最後，任何可以傳送 HTTP POST 的東西（如 CI 管線、監控警報或 <code>curl</code> 命令）都可以將事件推播到 Claude。</p>
+
+<p><strong>步驟 1：建立專案</strong></p>
+
+<pre data-lang="bash"><code>mkdir webhook-channel && cd webhook-channel
+bun add @modelcontextprotocol/sdk
+</code></pre>
+
+<p><strong>步驟 2：撰寫頻道伺服器</strong></p>
+
+<p>建立一個名為 <code>webhook.ts</code> 的檔案：</p>
+
+<pre data-lang="ts"><code>#!/usr/bin/env bun
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
+
+// 建立 MCP 伺服器並將其宣告為頻道
+const mcp = new Server(
+  { name: 'webhook', version: '0.0.1' },
+  {
+    // 這個鍵使其成為頻道 — Claude Code 為其註冊監聽器
+    capabilities: { experimental: { 'claude/channel': {} } },
+    // 加入到 Claude 的系統提示，以便它知道如何處理這些事件
+    instructions: 'Events from the webhook channel arrive as &lt;channel source="webhook" ...&gt;. They are one-way: read them and act, no reply expected.',
+  },
+)
+
+// 透過 stdio 連接到 Claude Code（Claude Code 產生此程序）
+await mcp.connect(new StdioServerTransport())
+
+// 啟動一個 HTTP 伺服器，將每個 POST 轉發給 Claude
+Bun.serve({
+  port: 8788,
+  hostname: '127.0.0.1',
+  async fetch(req) {
+    const body = await req.text()
+    await mcp.notification({
+      method: 'notifications/claude/channel',
+      params: {
+        content: body,
+        meta: { path: new URL(req.url).pathname, method: req.method },
+      },
+    })
+    return new Response('ok')
+  },
+})
+</code></pre>
+
+<p><strong>步驟 3：向 Claude Code 註冊你的伺服器</strong></p>
+
+<pre data-lang="json"><code>{
+  "mcpServers": {
+    "webhook": { "command": "bun", "args": ["./webhook.ts"] }
+  }
+}
+</code></pre>
+
+<p><strong>步驟 4：測試它</strong></p>
+
+<pre data-lang="bash"><code>claude --dangerously-load-development-channels server:webhook
+</code></pre>
+
+<p>在另一個終端中：</p>
+
+<pre data-lang="bash"><code>curl -X POST localhost:8788 -d "build failed on main: https://ci.example.com/run/1234"
+</code></pre>
+
+<p>負載作為 <code>&lt;channel&gt;</code> 標籤到達 Claude Code 工作階段中：</p>
+
+<pre data-lang="text"><code>&lt;channel source="webhook" path="/" method="POST"&gt;build failed on main: https://ci.example.com/run/1234&lt;/channel&gt;
+</code></pre>
+
+<h3>在研究預覽期間測試</h3>
+
+<p>在研究預覽期間，自訂頻道不在批准的允許清單上。開發旗標在確認提示後繞過特定條目的允許清單：</p>
+
+<pre data-lang="bash"><code># 測試你正在開發的外掛
+claude --dangerously-load-development-channels plugin:yourplugin@yourmarketplace
+
+# 測試裸 .mcp.json 伺服器（尚無外掛包裝器）
+claude --dangerously-load-development-channels server:webhook
+</code></pre>
+
+<div class="note">
+  <p>此旗標僅跳過允許清單。<code>channelsEnabled</code> 組織政策仍然適用。不要使用它來執行來自不受信任來源的頻道。</p>
+</div>
+
+<h3>伺服器選項</h3>
+
+<p>頻道在 <code>Server</code> 建構函式中設定這些選項：</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">欄位</th>
+        <th style="text-align: left">型別</th>
+        <th style="text-align: left">說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>capabilities.experimental['claude/channel']</code></td>
+        <td style="text-align: left"><code>object</code></td>
+        <td style="text-align: left">必要。始終為 <code>{}</code>。存在即註冊通知監聽器。</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>capabilities.experimental['claude/channel/permission']</code></td>
+        <td style="text-align: left"><code>object</code></td>
+        <td style="text-align: left">選用。始終為 <code>{}</code>。宣告此頻道可以接收權限中繼請求。參見中繼權限提示。</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>capabilities.tools</code></td>
+        <td style="text-align: left"><code>object</code></td>
+        <td style="text-align: left">僅雙向。始終為 <code>{}</code>。標準 MCP 工具能力。參見公開回覆工具。</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>instructions</code></td>
+        <td style="text-align: left"><code>string</code></td>
+        <td style="text-align: left">建議。加入到 Claude 的系統提示。告訴 Claude 期望什麼事件、<code>&lt;channel&gt;</code> 標籤屬性的含義、是否回覆，如果是，使用哪個工具以及傳回哪個屬性（如 <code>chat_id</code>）。</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>通知格式</h3>
+
+<p>你的伺服器使用兩個參數發出 <code>notifications/claude/channel</code>：</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">欄位</th>
+        <th style="text-align: left">型別</th>
+        <th style="text-align: left">說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>content</code></td>
+        <td style="text-align: left"><code>string</code></td>
+        <td style="text-align: left">事件主體。作為 <code>&lt;channel&gt;</code> 標籤的主體傳遞。</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>meta</code></td>
+        <td style="text-align: left"><code>Record&lt;string, string&gt;</code></td>
+        <td style="text-align: left">選用。每個條目成為 <code>&lt;channel&gt;</code> 標籤上的屬性，用於路由上下文，如聊天 ID、傳送者名稱或警報嚴重性。鍵必須是識別碼：僅字母、數字和底線。</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>範例：</p>
+
+<pre data-lang="ts"><code>await mcp.notification({
+  method: 'notifications/claude/channel',
+  params: {
+    content: 'build failed on main: https://ci.example.com/run/1234',
+    meta: { severity: 'high', run_id: '1234' },
+  },
+})
+</code></pre>
+
+<p>事件在 Claude 的上下文中到達：</p>
+
+<pre data-lang="text"><code>&lt;channel source="your-channel" severity="high" run_id="1234"&gt;
+build failed on main: https://ci.example.com/run/1234
+&lt;/channel&gt;
+</code></pre>
+
+<h3>公開回覆工具</h3>
+
+<p>如果頻道是雙向的（如聊天橋接），公開一個標準 MCP 工具，Claude 可以呼叫它來傳送訊息回覆。回覆工具有三個元件：</p>
+
+<ol>
+  <li><code>Server</code> 建構函式能力中的 <code>tools: {}</code> 條目</li>
+  <li>定義工具架構並實作傳送邏輯的工具處理常式</li>
+  <li><code>Server</code> 建構函式中的 <code>instructions</code> 字串，告訴 Claude 何時以及如何呼叫工具</li>
+</ol>
+
+<h3>閘門控制入站訊息</h3>
+
+<p>未閘門控制的頻道是提示注入向量。任何可以到達你的端點的人都可以在 Claude 前面放置文字。在呼叫 <code>mcp.notification()</code> 之前，根據允許清單檢查傳送者：</p>
+
+<pre data-lang="ts"><code>const allowed = new Set(loadAllowlist())
+
+if (!allowed.has(message.from.id)) {  // 依傳送者，不是房間
+  return  // 靜默丟棄
+}
+await mcp.notification({ ... })
+</code></pre>
+
+<p>根據傳送者的身分（<code>message.from.id</code>）而不是聊天或房間 ID（<code>message.chat.id</code>）進行閘門控制。在群組聊天中，這些不同，根據房間進行閘門控制會讓任何人向工作階段注入訊息。</p>
+
+<h3>中繼權限提示</h3>
+
+<div class="note">
+  <p>權限中繼需要 Claude Code v2.1.81 或更高版本。</p>
+</div>
+
+<p>當 Claude 呼叫需要批准的工具時，本地終端對話開啟，工作階段等待。雙向頻道可以選擇加入以在平行接收相同的提示，並將其中繼到你的另一台裝置。兩者都保持啟用：你可以在終端或手機上回答，Claude Code 套用先到達的任何答案並關閉另一個。</p>
+
+<h4>中繼如何工作</h4>
+
+<p>當權限提示開啟時，中繼循環有四個步驟：</p>
+
+<ol>
+  <li>Claude Code 產生一個短請求 ID 並通知你的伺服器</li>
+  <li>你的伺服器將提示和 ID 轉發到聊天應用程式</li>
+  <li>遠端使用者使用該 ID 回覆是或否</li>
+  <li>你的入站處理常式將回覆解析為判決，Claude Code 僅在 ID 匹配開放請求時套用它</li>
+</ol>
+
+<h4>權限請求欄位</h4>
+
+<p>來自 Claude Code 的出站通知是 <code>notifications/claude/channel/permission_request</code>：</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>欄位</th>
+        <th>說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>request_id</code></td>
+        <td>從 <code>a</code>-<code>z</code> 中抽取的五個小寫字母，不包括 <code>l</code>。將其包含在出站提示中以便在回覆中回傳。</td>
+      </tr>
+      <tr>
+        <td><code>tool_name</code></td>
+        <td>Claude 想要使用的工具名稱，例如 <code>Bash</code> 或 <code>Write</code>。</td>
+      </tr>
+      <tr>
+        <td><code>description</code></td>
+        <td>此特定工具呼叫的人類可讀摘要。</td>
+      </tr>
+      <tr>
+        <td><code>input_preview</code></td>
+        <td>工具的參數作為 JSON 字串，截斷為 200 個字元。</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>你的伺服器傳送回的判決是 <code>notifications/claude/channel/permission</code>，有兩個欄位：<code>request_id</code> 回傳上面的 ID，<code>behavior</code> 設定為 <code>'allow'</code> 或 <code>'deny'</code>。</p>
+
+<h4>向聊天橋接加入中繼</h4>
+
+<p>需要三個元件：</p>
+
+<ol>
+  <li><code>Server</code> 建構函式中 <code>experimental</code> 能力下的 <code>claude/channel/permission: {}</code> 條目</li>
+  <li><code>notifications/claude/channel/permission_request</code> 的通知處理常式</li>
+  <li>入站訊息處理常式中識別 <code>yes &lt;id&gt;</code> 或 <code>no &lt;id&gt;</code> 的檢查</li>
+</ol>
+
+<h3>打包為外掛</h3>
+
+<p>要使頻道可安裝和可分享，將其包裝在外掛中並將其發佈到市集。使用者使用 <code>/plugin install</code> 安裝它，然後使用 <code>--channels plugin:&lt;name&gt;@&lt;marketplace&gt;</code> 按工作階段啟用它。</p>
+
+<h3>另見</h3>
+
+<ul>
+  <li>Channels 安裝和使用 Telegram、Discord、iMessage 或 fakechat 示範</li>
+  <li>工作頻道實作 完整伺服器程式碼</li>
+  <li>MCP 頻道伺服器實作的基礎協定</li>
+  <li>Plugins 打包你的頻道以便使用者安裝</li>
+</ul>
+
+<hr />
+
+<h2>建立自訂子代理</h2>
+
+<p>在 Claude Code 中建立和使用專門的 AI 子代理，用於特定任務的工作流程和改進的上下文管理。</p>
+
+<p>Subagents（子代理）是處理特定類型任務的專門 AI 助手。每個 subagent 在自己的 context window（上下文視窗）中執行，具有自訂系統提示、特定的工具存取權限和獨立的權限。當 Claude 遇到與 subagent 描述相匹配的任務時，它會委託給該 subagent，該 subagent 獨立工作並回傳結果。</p>
+
+<div class="note">
+  <p>如果你需要多個代理並行工作並相互通訊，參見 agent teams。Subagents 在單個工作階段中工作；agent teams 跨多個工作階段進行協調。</p>
+</div>
+
+<p>Subagents 幫助你：</p>
+
+<ul>
+  <li><strong>保留上下文</strong>，通過將探索和實作保持在主對話之外</li>
+  <li><strong>強制執行約束</strong>，通過限制 subagent 可以使用的工具</li>
+  <li><strong>跨專案重用設定</strong>，使用使用者級 subagents</li>
+  <li><strong>專門化行為</strong>，為特定領域使用專注的系統提示</li>
+  <li><strong>控制成本</strong>，通過將任務路由到更快、更便宜的模型（如 Haiku）</li>
+</ul>
+
+<p>Claude 使用每個 subagent 的描述來決定何時委託任務。建立 subagent 時，請撰寫清晰的描述，以便 Claude 知道何時使用它。</p>
+
+<h3>內建子代理</h3>
+
+<p>Claude Code 包括幾個內建 subagents，Claude 在適當時自動使用：</p>
+
+<h4>Explore</h4>
+
+<p>一個快速的、唯讀的代理，針對搜尋和分析程式碼庫進行了最佳化。</p>
+
+<ul>
+  <li><strong>Model（模型）</strong>: Haiku（快速、低延遲）</li>
+  <li><strong>Tools（工具）</strong>: 唯讀工具（拒絕存取 Write 和 Edit 工具）</li>
+  <li><strong>Purpose（用途）</strong>: 檔案發現、程式碼搜尋、程式碼庫探索</li>
+</ul>
+
+<p>當 Claude 需要搜尋或理解程式碼庫而不進行更改時，它會委託給 Explore。呼叫時，Claude 指定彻底程度級別：**quick** 用於有針對性的查找，**medium** 用於平衡的探索，或 **very thorough** 用於全面分析。</p>
+
+<h4>Plan</h4>
+
+<p>一個研究代理，在 plan mode 期間使用，在呈現計畫之前收集上下文。</p>
+
+<ul>
+  <li><strong>Model</strong>: 從主對話繼承</li>
+  <li><strong>Tools</strong>: 唯讀工具</li>
+  <li><strong>Purpose</strong>: 用於規劃的程式碼庫研究</li>
+</ul>
+
+<h4>General-purpose（通用）</h4>
+
+<p>一個能夠處理複雜、多步驟任務的代理。</p>
+
+<ul>
+  <li><strong>Model</strong>: 從主對話繼承</li>
+  <li><strong>Tools</strong>: 所有工具</li>
+  <li><strong>Purpose</strong>: 複雜研究、多步驟操作、程式碼修改</li>
+</ul>
+
+<h4>其他</h4>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">Agent（代理）</th>
+        <th style="text-align: left">Model</th>
+        <th style="text-align: left">Claude 何時使用它</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left">Bash</td>
+        <td style="text-align: left">繼承</td>
+        <td style="text-align: left">在單獨的上下文中執行終端命令</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">statusline-setup</td>
+        <td style="text-align: left">Sonnet</td>
+        <td style="text-align: left">當你執行 <code>/statusline</code> 來設定狀態列時</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Claude Code Guide</td>
+        <td style="text-align: left">Haiku</td>
+        <td style="text-align: left">當你提出關於 Claude Code 功能的問題時</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>快速入門：建立你的第一個 Subagent</h3>
+
+<p>Subagents 在帶有 YAML frontmatter 的 Markdown 檔案中定義。你可以手動建立它們或使用 <code>/agents</code> 命令。</p>
+
+<p><strong>步驟 1：開啟 subagents 介面</strong></p>
+
+<pre data-lang="text"><code>/agents
+</code></pre>
+
+<p><strong>步驟 2：選擇位置</strong></p>
+
+<p>選擇 **Create new agent**（建立新代理），然後選擇 **Personal**（個人）。這會將 subagent 儲存到 <code>~/.claude/agents/</code>，以便在所有專案中可用。</p>
+
+<p><strong>步驟 3：使用 Claude 產生</strong></p>
+
+<p>選擇 **Generate with Claude**（使用 Claude 產生）。描述 subagent，Claude 為你產生識別碼、描述和系統提示。</p>
+
+<p><strong>步驟 4：選擇工具</strong></p>
+
+<p>對於唯讀審查者，取消選取除 **Read-only tools**（唯讀工具）之外的所有內容。</p>
+
+<p><strong>步驟 5：選擇模型</strong></p>
+
+<p>選擇 subagent 使用的模型。</p>
+
+<p><strong>步驟 6：選擇顏色</strong></p>
+
+<p>為 subagent 選擇背景顏色。</p>
+
+<p><strong>步驟 7：設定記憶</strong></p>
+
+<p>選擇 **User scope**（使用者範圍）為 subagent 提供一個持久記憶目錄。</p>
+
+<p><strong>步驟 8：儲存並嘗試</strong></p>
+
+<p>查看設定摘要。按 <code>s</code> 或 <code>Enter</code> 儲存。Subagent 立即可用。</p>
+
+<h3>設定 Subagents</h3>
+
+<h4>使用 /agents 命令</h4>
+
+<p><code>/agents</code> 命令提供互動式介面來管理 subagents。要從命令列列出所有已設定的 subagents，執行 <code>claude agents</code>。</p>
+
+<h4>選擇 Subagent 範圍</h4>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">位置</th>
+        <th style="text-align: left">範圍</th>
+        <th style="text-align: left">優先順序</th>
+        <th style="text-align: left">如何建立</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>--agents</code> CLI 旗標</td>
+        <td style="text-align: left">目前工作階段</td>
+        <td style="text-align: left">1（最高）</td>
+        <td style="text-align: left">啟動 Claude Code 時傳遞 JSON</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>.claude/agents/</code></td>
+        <td style="text-align: left">目前專案</td>
+        <td style="text-align: left">2</td>
+        <td style="text-align: left">互動式或手動</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>~/.claude/agents/</code></td>
+        <td style="text-align: left">所有你的專案</td>
+        <td style="text-align: left">3</td>
+        <td style="text-align: left">互動式或手動</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Plugin 的 <code>agents/</code> 目錄</td>
+        <td style="text-align: left">啟用 plugin 的位置</td>
+        <td style="text-align: left">4（最低）</td>
+        <td style="text-align: left">與 plugins 一起安裝</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>CLI 定義的 subagents 範例：</p>
+
+<pre data-lang="bash"><code>claude --agents '{
+  "code-reviewer": {
+    "description": "Expert code reviewer. Use proactively after code changes.",
+    "prompt": "You are a senior code reviewer. Focus on code quality, security, and best practices.",
+    "tools": ["Read", "Grep", "Glob", "Bash"],
+    "model": "sonnet"
+  },
+  "debugger": {
+    "description": "Debugging specialist for errors and test failures.",
+    "prompt": "You are an expert debugger. Analyze errors, identify root causes, and provide fixes."
+  }
+}'
+</code></pre>
+
+<h4>撰寫 Subagent 檔案</h4>
+
+<p>Subagent 檔案使用 YAML frontmatter 進行設定，然後是 Markdown 中的系統提示：</p>
+
+<pre data-lang="markdown"><code>---
+name: code-reviewer
+description: Reviews code for quality and best practices
+tools: Read, Glob, Grep
+model: sonnet
+---
+
+You are a code reviewer. When invoked, analyze the code and provide
+specific, actionable feedback on quality, security, and best practices.
+</code></pre>
+
+<h4>支援的 frontmatter 欄位</h4>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">欄位</th>
+        <th style="text-align: left">必要</th>
+        <th style="text-align: left">說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>name</code></td>
+        <td style="text-align: left">是</td>
+        <td style="text-align: left">使用小寫字母和連字號的唯一識別碼</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>description</code></td>
+        <td style="text-align: left">是</td>
+        <td style="text-align: left">Claude 何時應該委託給此 subagent</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>tools</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">subagent 可以使用的工具。省略則繼承所有工具</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>disallowedTools</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">要拒絕的工具，從繼承或指定的清單中移除</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>model</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">使用的模型：<code>sonnet</code>、<code>opus</code>、<code>haiku</code>、完整模型 ID 或 <code>inherit</code>。預設為 <code>inherit</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>permissionMode</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">權限模式：<code>default</code>、<code>acceptEdits</code>、<code>dontAsk</code>、<code>bypassPermissions</code> 或 <code>plan</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>maxTurns</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">subagent 停止前的最大代理輪數</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>skills</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">在啟動時載入到 subagent 上下文中的技能</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>mcpServers</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">對此 subagent 可用的 MCP 伺服器</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>hooks</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">限定於此 subagent 的生命週期鉤子</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>memory</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">持久記憶範圍：<code>user</code>、<code>project</code> 或 <code>local</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>background</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">設為 <code>true</code> 以始終在背景執行此 subagent</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>effort</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">此 subagent 啟用時的努力級別。選項：<code>low</code>、<code>medium</code>、<code>high</code>、<code>max</code>（僅 Opus 4.6）</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>isolation</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">設為 <code>worktree</code> 以在臨時 git worktree 中執行 subagent</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>initialPrompt</code></td>
+        <td style="text-align: left">否</td>
+        <td style="text-align: left">當此代理作為主工作階段代理執行時，自動提交為第一個使用者輪次</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>選擇模型</h4>
+
+<p><code>model</code> 欄位控制 subagent 使用的 AI 模型：</p>
+
+<ul>
+  <li><strong>Model alias（模型別名）</strong>: <code>sonnet</code>、<code>opus</code> 或 <code>haiku</code></li>
+  <li><strong>Full model ID（完整模型 ID）</strong>: 如 <code>claude-opus-4-6</code> 或 <code>claude-sonnet-4-6</code></li>
+  <li><strong>inherit（繼承）</strong>: 使用與主對話相同的模型</li>
+  <li><strong>省略</strong>: 預設為 <code>inherit</code></li>
+</ul>
+
+<p>解析優先順序：</p>
+
+<ol>
+  <li><code>CLAUDE_CODE_SUBAGENT_MODEL</code> 環境變數</li>
+  <li>每次呼叫的 <code>model</code> 參數</li>
+  <li>Subagent 定義的 <code>model</code> frontmatter</li>
+  <li>主對話的模型</li>
+</ol>
+
+<h4>控制 Subagent 能力</h4>
+
+<h5>可用工具</h5>
+
+<p>使用 <code>tools</code> 欄位（允許清單）或 <code>disallowedTools</code> 欄位（拒絕清單）來限制工具。如果兩者都設定，<code>disallowedTools</code> 先套用。</p>
+
+<h5>限制可以產生哪些 Subagents</h5>
+
+<p>在 <code>tools</code> 欄位中使用 <code>Agent(agent_type)</code> 語法：</p>
+
+<pre data-lang="yaml"><code>---
+name: coordinator
+description: Coordinates work across specialized agents
+tools: Agent(worker, researcher), Read, Bash
+---
+</code></pre>
+
+<h5>將 MCP 伺服器限定於 Subagent</h5>
+
+<pre data-lang="yaml"><code>---
+name: browser-tester
+description: Tests features in a real browser using Playwright
+mcpServers:
+  - playwright:
+      type: stdio
+      command: npx
+      args: ["-y", "@playwright/mcp@latest"]
+  - github
+---
+</code></pre>
+
+<h5>權限模式</h5>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">模式</th>
+        <th style="text-align: left">行為</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>default</code></td>
+        <td style="text-align: left">標準權限檢查，帶有提示</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>acceptEdits</code></td>
+        <td style="text-align: left">自動接受檔案編輯</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>dontAsk</code></td>
+        <td style="text-align: left">自動拒絕權限提示（明確允許的工具仍然工作）</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>bypassPermissions</code></td>
+        <td style="text-align: left">跳過權限提示</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>plan</code></td>
+        <td style="text-align: left">Plan mode（唯讀探索）</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h5>將技能預載入 Subagents</h5>
+
+<pre data-lang="yaml"><code>---
+name: api-developer
+description: Implement API endpoints following team conventions
+skills:
+  - api-conventions
+  - error-handling-patterns
+---
+</code></pre>
+
+<h5>啟用持久記憶</h5>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">範圍</th>
+        <th style="text-align: left">位置</th>
+        <th style="text-align: left">使用時機</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>user</code></td>
+        <td style="text-align: left"><code>~/.claude/agent-memory/&lt;name&gt;/</code></td>
+        <td style="text-align: left">subagent 應該在所有專案中記住學習</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>project</code></td>
+        <td style="text-align: left"><code>.claude/agent-memory/&lt;name&gt;/</code></td>
+        <td style="text-align: left">知識特定於專案並可透過版本控制分享</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>local</code></td>
+        <td style="text-align: left"><code>.claude/agent-memory-local/&lt;name&gt;/</code></td>
+        <td style="text-align: left">知識特定於專案但不應簽入版本控制</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>為 Subagents 定義 Hooks</h4>
+
+<h5>Subagent frontmatter 中的 Hooks</h5>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">事件</th>
+        <th style="text-align: left">Matcher 輸入</th>
+        <th style="text-align: left">何時觸發</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>PreToolUse</code></td>
+        <td style="text-align: left">工具名稱</td>
+        <td style="text-align: left">在 subagent 使用工具之前</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>PostToolUse</code></td>
+        <td style="text-align: left">工具名稱</td>
+        <td style="text-align: left">在 subagent 使用工具之後</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>Stop</code></td>
+        <td style="text-align: left">（無）</td>
+        <td style="text-align: left">當 subagent 完成時</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h5>用於 Subagent 事件的專案級 Hooks</h5>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">事件</th>
+        <th style="text-align: left">Matcher 輸入</th>
+        <th style="text-align: left">何時觸發</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><code>SubagentStart</code></td>
+        <td style="text-align: left">Agent 類型名稱</td>
+        <td style="text-align: left">當 subagent 開始執行時</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><code>SubagentStop</code></td>
+        <td style="text-align: left">Agent 類型名稱</td>
+        <td style="text-align: left">當 subagent 完成時</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>使用 Subagents</h3>
+
+<h4>理解自動委託</h4>
+
+<p>Claude 根據任務描述、subagent 設定中的 <code>description</code> 欄位和目前上下文自動委託任務。</p>
+
+<h4>顯式呼叫 Subagents</h4>
+
+<p>三種模式：</p>
+
+<ul>
+  <li><strong>自然語言</strong>：在提示中命名 subagent；Claude 決定是否委託</li>
+  <li><strong>@-mention</strong>：保證 subagent 為一個任務執行</li>
+  <li><strong>工作階段範圍</strong>：整個工作階段使用該 subagent 的系統提示、工具限制和模型</li>
+</ul>
+
+<pre data-lang="bash"><code>claude --agent code-reviewer
+</code></pre>
+
+<p>要使其成為專案中每個工作階段的預設值：</p>
+
+<pre data-lang="json"><code>{
+  "agent": "code-reviewer"
+}
+</code></pre>
+
+<h4>在前台或背景執行 Subagents</h4>
+
+<ul>
+  <li><strong>前台 subagents</strong> 阻塞主對話直到完成</li>
+  <li><strong>背景 subagents</strong> 在你繼續工作時並行執行</li>
+</ul>
+
+<p>按 **Ctrl+B** 將執行中的任務放在背景。</p>
+
+<h4>常見模式</h4>
+
+<ul>
+  <li><strong>隔離高容量操作</strong>：委託產生大量輸出的操作（如測試執行）給 subagent</li>
+  <li><strong>執行並行研究</strong>：產生多個 subagents 同時工作</li>
+  <li><strong>鏈接 subagents</strong>：按順序使用 subagents</li>
+</ul>
+
+<h4>在 Subagents 和主對話之間選擇</h4>
+
+<p>使用**主對話**的情況：任務需要頻繁來回、多階段共享上下文、快速有針對性的更改、延遲很重要。</p>
+
+<p>使用**subagents**的情況：任務產生大量詳細輸出、想強制執行特定的工具限制或權限、工作是自包含的。</p>
+
+<h4>管理 Subagent 上下文</h4>
+
+<h5>恢復 Subagents</h5>
+
+<p>要繼續現有 subagent 的工作而不是重新開始，要求 Claude 恢復它。恢復的 subagents 保留完整的對話歷史。</p>
+
+<h5>自動壓縮</h5>
+
+<p>Subagents 支援使用與主對話相同的邏輯進行自動壓縮。預設在約 95% 容量時觸發。</p>
+
+<h3>範例 Subagents</h3>
+
+<h4>程式碼審查者</h4>
+
+<pre data-lang="markdown"><code>---
+name: code-reviewer
+description: Expert code review specialist. Proactively reviews code for quality, security, and maintainability. Use immediately after writing or modifying code.
+tools: Read, Grep, Glob, Bash
+model: inherit
+---
+
+You are a senior code reviewer ensuring high standards of code quality and security.
+...
+</code></pre>
+
+<h4>除錯器</h4>
+
+<pre data-lang="markdown"><code>---
+name: debugger
+description: Debugging specialist for errors, test failures, and unexpected behavior. Use proactively when encountering any issues.
+tools: Read, Edit, Bash, Grep, Glob
+---
+
+You are an expert debugger specializing in root cause analysis.
+...
+</code></pre>
+
+<h4>資料科學家</h4>
+
+<pre data-lang="markdown"><code>---
+name: data-scientist
+description: Data analysis expert for SQL queries, BigQuery operations, and data insights.
+tools: Bash, Read, Write
+model: sonnet
+---
+
+You are a data scientist specializing in SQL and BigQuery analysis.
+...
+</code></pre>
+
+<h4>資料庫查詢驗證器</h4>
+
+<pre data-lang="markdown"><code>---
+name: db-reader
+description: Execute read-only database queries.
+tools: Bash
+hooks:
+  PreToolUse:
+    - matcher: "Bash"
+      hooks:
+        - type: command
+          command: "./scripts/validate-readonly-query.sh"
+---
+
+You are a database analyst with read-only access.
+</code></pre>
+
+<h3>後續步驟</h3>
+
+<ul>
+  <li>使用 plugins 分發 subagents</li>
+  <li>以程式方式執行 Claude Code，使用 Agent SDK 進行 CI/CD 和自動化</li>
+  <li>使用 MCP 伺服器 為 subagents 提供對外部工具和資料的存取</li>
+</ul>
+
+<hr />
+
+<h2>協調 Claude Code 工作階段團隊</h2>
+
+<p>協調多個 Claude Code 實例作為一個團隊一起工作，具有共享任務、代理間訊息傳遞和集中管理。</p>
+
+<div class="note warning">
+  <p><strong>Agent teams 是實驗性功能，</strong>預設停用。通過將 <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> 加入到 settings.json 或環境變數來啟用。Agent teams 在已知限制中存在關於工作階段恢復、任務協調和關閉行為的問題。</p>
+</div>
+
+<p>Agent teams 讓你協調多個 Claude Code 實例一起工作。一個工作階段充當團隊負責人（team lead），協調工作、分配任務和綜合結果。隊友（teammates）獨立工作，每個都在自己的 context window 中，並直接相互通訊。</p>
+
+<p>與 subagents 不同（subagents 在單個工作階段中執行，只能向主代理回報），你也可以直接與個別隊友互動，無需透過負責人。</p>
+
+<div class="note">
+  <p>Agent teams 需要 Claude Code v2.1.32 或更高版本。</p>
+</div>
+
+<h3>何時使用 Agent Teams</h3>
+
+<p>Agent teams 最適合用於並行探索能增加真實價值的任務：</p>
+
+<ul>
+  <li><strong>研究和審查</strong>：多個隊友可以同時調查問題的不同方面</li>
+  <li><strong>新模組或功能</strong>：隊友可以各自擁有一個獨立的部分</li>
+  <li><strong>使用競爭假設進行除錯</strong>：隊友並行測試不同的理論</li>
+  <li><strong>跨層協調</strong>：跨越前端、後端和測試的更改</li>
+</ul>
+
+<p>Agent teams 增加了協調開銷，使用的 token 數量明顯多於單個工作階段。當隊友可以獨立運作時效果最好。</p>
+
+<h4>與 Subagents 比較</h4>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Subagents</th>
+        <th>Agent teams</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Context</strong></td>
+        <td>自己的 context window；結果回傳給呼叫者</td>
+        <td>自己的 context window；完全獨立</td>
+      </tr>
+      <tr>
+        <td><strong>通訊</strong></td>
+        <td>僅向主代理回報結果</td>
+        <td>隊友直接相互傳送訊息</td>
+      </tr>
+      <tr>
+        <td><strong>協調</strong></td>
+        <td>主代理管理所有工作</td>
+        <td>具有自我協調的共享任務清單</td>
+      </tr>
+      <tr>
+        <td><strong>最適合</strong></td>
+        <td>只有結果重要的專注任務</td>
+        <td>需要討論和協作的複雜工作</td>
+      </tr>
+      <tr>
+        <td><strong>Token 成本</strong></td>
+        <td>較低：結果彙總回主 context</td>
+        <td>較高：每個隊友是一個獨立的 Claude 實例</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>當你需要快速、專注的工作者回報結果時，使用 subagents。當隊友需要分享發現、相互質疑和自我協調時，使用 agent teams。</p>
+
+<h3>啟用 Agent Teams</h3>
+
+<pre data-lang="json"><code>{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+</code></pre>
+
+<h3>啟動你的第一個 Agent Team</h3>
+
+<p>啟用 agent teams 後，用自然語言告訴 Claude 建立一個 agent team：</p>
+
+<pre data-lang="text"><code>I'm designing a CLI tool that helps developers track TODO comments across
+their codebase. Create an agent team to explore this from different angles: one
+teammate on UX, one on technical architecture, one playing devil's advocate.
+</code></pre>
+
+<p>負責人的終端列出所有隊友及其正在處理的工作。使用 Shift+Down 循環瀏覽隊友並直接向他們傳送訊息。</p>
+
+<h3>控制你的 Agent Team</h3>
+
+<h4>選擇顯示模式</h4>
+
+<ul>
+  <li><strong>In-process（程序內）</strong>：所有隊友在主終端內執行。使用 Shift+Down 循環瀏覽。</li>
+  <li><strong>Split panes（分割窗格）</strong>：每個隊友取得自己的窗格。需要 tmux 或 iTerm2。</li>
+</ul>
+
+<p>設定中的 <code>teammateMode</code> 選項：<code>"auto"</code>（預設）、<code>"in-process"</code> 或 <code>"tmux"</code>。</p>
+
+<pre data-lang="bash"><code>claude --teammate-mode in-process
+</code></pre>
+
+<h4>指定隊友和模型</h4>
+
+<pre data-lang="text"><code>Create a team with 4 teammates to refactor these modules in parallel.
+Use Sonnet for each teammate.
+</code></pre>
+
+<h4>要求隊友的計畫批准</h4>
+
+<pre data-lang="text"><code>Spawn an architect teammate to refactor the authentication module.
+Require plan approval before they make any changes.
+</code></pre>
+
+<h4>直接與隊友交談</h4>
+
+<ul>
+  <li><strong>In-process 模式</strong>：使用 Shift+Down 循環瀏覽隊友，按 Ctrl+T 切換任務清單</li>
+  <li><strong>Split-pane 模式</strong>：點選隊友的窗格</li>
+</ul>
+
+<h4>分配和認領任務</h4>
+
+<p>共享任務清單協調整個團隊的工作。任務有三種狀態：待處理（pending）、進行中（in-progress）和已完成（completed）。</p>
+
+<h4>關閉隊友</h4>
+
+<pre data-lang="text"><code>Ask the researcher teammate to shut down
+</code></pre>
+
+<h4>清理團隊</h4>
+
+<pre data-lang="text"><code>Clean up the team
+</code></pre>
+
+<div class="note warning">
+  <p>始終使用負責人進行清理。隊友不應該執行清理。</p>
+</div>
+
+<h4>使用 Hooks 強制品質門</h4>
+
+<ul>
+  <li><code>TeammateIdle</code>：當隊友即將閒置時執行。以代碼 2 退出以傳送回饋並保持隊友工作。</li>
+  <li><code>TaskCompleted</code>：當任務被標記為完成時執行。以代碼 2 退出以防止完成並傳送回饋。</li>
+</ul>
+
+<h3>Agent Teams 如何工作</h3>
+
+<h4>架構</h4>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">元件</th>
+        <th style="text-align: left">角色</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><strong>Team lead（團隊負責人）</strong></td>
+        <td style="text-align: left">建立團隊、產生隊友並協調工作的主 Claude Code 工作階段</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><strong>Teammates（隊友）</strong></td>
+        <td style="text-align: left">各自處理分配任務的獨立 Claude Code 實例</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><strong>Task list（任務清單）</strong></td>
+        <td style="text-align: left">隊友認領和完成的共享工作項清單</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><strong>Mailbox（信箱）</strong></td>
+        <td style="text-align: left">代理之間通訊的訊息系統</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>團隊和任務儲存在本地：</p>
+
+<ul>
+  <li><strong>Team config</strong>：<code>~/.claude/teams/{team-name}/config.json</code></li>
+  <li><strong>Task list</strong>：<code>~/.claude/tasks/{team-name}/</code></li>
+</ul>
+
+<h4>權限</h4>
+
+<p>隊友從負責人的權限設定開始。如果負責人使用 <code>--dangerously-skip-permissions</code> 執行，所有隊友也會如此。</p>
+
+<h4>Context 和通訊</h4>
+
+<p>每個隊友都有自己的 context window。產生時，隊友載入與常規工作階段相同的專案 context：CLAUDE.md、MCP 伺服器和技能。</p>
+
+<ul>
+  <li><strong>自動訊息傳遞</strong>：當隊友傳送訊息時，它們會自動傳遞給收件人</li>
+  <li><strong>閒置通知</strong>：當隊友完成並停止時，自動通知負責人</li>
+  <li><strong>共享任務清單</strong>：所有代理都可以看到任務狀態</li>
+</ul>
+
+<h4>Token 使用</h4>
+
+<p>Agent teams 使用的 token 數量明顯多於單個工作階段。每個隊友都有自己的 context window。對於研究、審查和新功能工作，額外的 token 通常是值得的。</p>
+
+<h3>用例範例</h3>
+
+<h4>執行並行程式碼審查</h4>
+
+<pre data-lang="text"><code>Create an agent team to review PR #142. Spawn three reviewers:
+- One focused on security implications
+- One checking performance impact
+- One validating test coverage
+Have them each review and report findings.
+</code></pre>
+
+<h4>使用競爭假設進行調查</h4>
+
+<pre data-lang="text"><code>Users report the app exits after one message instead of staying connected.
+Spawn 5 agent teammates to investigate different hypotheses. Have them talk to
+each other to try to disprove each other's theories, like a scientific
+debate. Update the findings doc with whatever consensus emerges.
+</code></pre>
+
+<h3>最佳實踐</h3>
+
+<ul>
+  <li><strong>給隊友足夠的上下文</strong>：在產生提示中包含特定於任務的詳細資訊</li>
+  <li><strong>選擇適當的團隊規模</strong>：對大多數工作流，從 3-5 個隊友開始</li>
+  <li><strong>適當調整任務大小</strong>：自包含的單位，產生清晰的可交付成果</li>
+  <li><strong>等待隊友完成</strong>：告訴負責人在繼續前等待隊友</li>
+  <li><strong>從研究和審查開始</strong>：如果你是 agent teams 的新手</li>
+  <li><strong>避免檔案衝突</strong>：分解工作使每個隊友擁有不同的檔案集</li>
+  <li><strong>監控和引導</strong>：不要讓團隊無人值守執行太長時間</li>
+</ul>
+
+<h3>疑難排解</h3>
+
+<ul>
+  <li><strong>隊友未出現</strong>：在 in-process 模式中按 Shift+Down 循環瀏覽。檢查 tmux 是否已安裝。</li>
+  <li><strong>過多權限提示</strong>：在權限設定中預批准常見操作。</li>
+  <li><strong>隊友在錯誤後停止</strong>：使用 Shift+Down 或點選窗格檢查輸出，然後給予額外指示。</li>
+  <li><strong>負責人在工作完成前關閉</strong>：告訴它繼續或等待隊友完成。</li>
+  <li><strong>孤立的 tmux 工作階段</strong>：<code>tmux ls</code> 列出，<code>tmux kill-session -t &lt;session-name&gt;</code> 清理。</li>
+</ul>
+
+<h3>限制</h3>
+
+<ul>
+  <li><strong>In-process 隊友沒有工作階段恢復</strong>：<code>/resume</code> 和 <code>/rewind</code> 不會恢復 in-process 隊友</li>
+  <li><strong>任務狀態可能滯後</strong>：隊友有時無法將任務標記為已完成</li>
+  <li><strong>關閉可能很慢</strong>：隊友在關閉前完成目前的請求或工具呼叫</li>
+  <li><strong>每個工作階段一個團隊</strong>：負責人一次只能管理一個團隊</li>
+  <li><strong>沒有巢狀團隊</strong>：隊友無法產生自己的團隊</li>
+  <li><strong>負責人是固定的</strong>：無法將隊友提升為負責人或轉移領導權</li>
+  <li><strong>權限在產生時設定</strong>：所有隊友從負責人的權限模式開始</li>
+  <li><strong>分割窗格需要 tmux 或 iTerm2</strong>：VS Code 整合終端、Windows Terminal 或 Ghostty 不支援分割窗格模式</li>
+</ul>
+
+<p>提示：<code>CLAUDE.md</code> 正常工作：隊友從工作目錄讀取 <code>CLAUDE.md</code> 檔案。</p>
+
+<h3>後續步驟</h3>
+
+<ul>
+  <li><strong>輕量級委託</strong>：subagents 在工作階段中產生輔助代理</li>
+  <li><strong>手動並行工作階段</strong>：Git worktrees 讓你自己執行多個 Claude Code 工作階段</li>
+  <li><strong>比較方法</strong>：參見 subagent vs agent team 比較</li>
+</ul>
+
+    </div>
+
+    <nav class="page-nav">
+      <a href="skills.html" class="prev">
+        <span class="pn-label">← 上一頁</span>
+        <span class="pn-title">Skills・MCP・Hooks</span>
+      </a>
+      <a href="memory.html" class="next">
+        <span class="pn-label">下一頁 →</span>
+        <span class="pn-title">記憶・設定・權限</span>
+      </a>
+    </nav>
+
+    <footer class="site-footer">
+      Claude Code 繁體中文指南 — 內容整理自 Anthropic 官方文件
+    </footer>
+  </main>
+
+  <script src="nav.js"></script>
+</body>
+</html>

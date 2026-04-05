@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記憶・設定・權限 — Claude Code 指南</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="menu-toggle" id="menu-toggle">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="page-header">
+      <div class="page-number">CHAPTER 04</div>
+      <h1>記憶・設定・權限</h1>
+      <p class="page-desc">CLAUDE.md 記憶系統、自動記憶、設定檔層級、權限模式、互動模式、CLI 參考</p>
+    </header>
+
+    <div class="content-body">
+
+<h2>Claude 如何記住你的專案</h2>
+
+<p>使用 CLAUDE.md 檔案為 Claude 提供持久指令，並讓 Claude 透過自動記憶（Auto Memory）功能自動累積學習內容。</p>
+
+<p>每個 Claude Code 會話都從一個全新的上下文視窗開始。兩種機制可以跨會話傳遞知識：</p>
+
+<ul>
+  <li><strong>CLAUDE.md 檔案</strong>：你編寫的指令，為 Claude 提供持久上下文</li>
+  <li><strong>自動記憶（Auto Memory）</strong>：Claude 根據你的更正和偏好自己編寫的筆記</li>
+</ul>
+
+<h3>CLAUDE.md 與自動記憶</h3>
+
+<p>Claude Code 有兩個互補的記憶系統。兩者都在每次對話開始時載入。Claude 將它們視為上下文，而不是強制配置。你的指令越具體和簡潔，Claude 遵循它們的一致性就越高。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>項目</th>
+  <th>CLAUDE.md 檔案</th>
+  <th>自動記憶</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>誰編寫</strong></td>
+  <td>你</td>
+  <td>Claude</td>
+</tr>
+<tr>
+  <td><strong>包含內容</strong></td>
+  <td>指令和規則</td>
+  <td>學習和模式</td>
+</tr>
+<tr>
+  <td><strong>範圍</strong></td>
+  <td>專案、使用者或組織</td>
+  <td>每個工作樹（worktree）</td>
+</tr>
+<tr>
+  <td><strong>載入到</strong></td>
+  <td>每個會話</td>
+  <td>每個會話（前 200 行）</td>
+</tr>
+<tr>
+  <td><strong>用於</strong></td>
+  <td>編碼標準、工作流、專案架構</td>
+  <td>構建命令、除錯見解、Claude 發現的偏好</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>當你想指導 Claude 的行為時，使用 CLAUDE.md 檔案。自動記憶讓 Claude 從你的更正中學習，無需手動操作。</p>
+
+<h2>CLAUDE.md 檔案</h2>
+
+<p>CLAUDE.md 檔案是 markdown 檔案，為專案、你的個人工作流或整個組織為 Claude 提供持久指令。你用純文字編寫這些檔案；Claude 在每個會話開始時讀取它們。</p>
+
+<h3>選擇 CLAUDE.md 檔案的位置</h3>
+
+<p>CLAUDE.md 檔案可以位於多個位置，每個位置有不同的範圍。更具體的位置優先於更廣泛的位置。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>範圍</th>
+  <th>位置</th>
+  <th>目的</th>
+  <th>用例示例</th>
+  <th>共享對象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>專案指令</strong></td>
+  <td><code>./CLAUDE.md</code> 或 <code>./.claude/CLAUDE.md</code></td>
+  <td>專案的團隊共享指令</td>
+  <td>專案架構、編碼標準、常見工作流</td>
+  <td>透過原始碼控制的團隊成員</td>
+</tr>
+<tr>
+  <td><strong>使用者指令</strong></td>
+  <td><code>~/.claude/CLAUDE.md</code></td>
+  <td>所有專案的個人偏好</td>
+  <td>程式碼樣式偏好、個人工具快捷方式</td>
+  <td>僅你（所有專案）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>工作目錄上方目錄層次結構中的 CLAUDE.md 檔案在啟動時完整載入。子目錄中的 CLAUDE.md 檔案在 Claude 讀取這些目錄中的檔案時按需載入。</p>
+
+<h3>設定專案 CLAUDE.md</h3>
+
+<p>專案 CLAUDE.md 可以存儲在 <code>./CLAUDE.md</code> 或 <code>./.claude/CLAUDE.md</code> 中。創建此檔案並添加適用於在專案上工作的任何人的指令：構建和測試命令、編碼標準、架構決策、命名約定和常見工作流。這些指令透過版本控制與你的團隊共享。</p>
+
+<div class="note">
+執行 <code>/init</code> 自動生成起始 CLAUDE.md。Claude 分析你的程式碼庫並創建一個包含構建命令、測試指令和它發現的專案約定的檔案。如果 CLAUDE.md 已存在，<code>/init</code> 會建議改進而不是覆蓋它。
+</div>
+
+<h3>編寫有效的指令</h3>
+
+<p>CLAUDE.md 檔案在每個會話開始時載入到上下文視窗中。因為它們是上下文而不是強制配置，你編寫指令的方式會影響 Claude 遵循它們的可靠性。具體、簡潔、結構良好的指令效果最好。</p>
+
+<ul>
+  <li><strong>大小</strong>：每個 CLAUDE.md 檔案目標在 200 行以下。較長的檔案消耗更多上下文並降低遵守度。</li>
+  <li><strong>結構</strong>：使用 markdown 標題和項目符號來分組相關指令。有組織的部分比密集段落更容易遵循。</li>
+  <li><strong>具體性</strong>：編寫具體到足以驗證的指令。例如：「使用 2 空格縮排」而不是「正確格式化程式碼」</li>
+  <li><strong>一致性</strong>：定期審查你的 CLAUDE.md 檔案以刪除過時或衝突的指令。</li>
+</ul>
+
+<h3>匯入其他檔案</h3>
+
+<p>CLAUDE.md 檔案可以使用 <code>@path/to/import</code> 語法匯入其他檔案。匯入的檔案在啟動時展開並載入到上下文中。</p>
+
+<p>允許相對路徑和絕對路徑。相對路徑相對於包含匯入的檔案解析。匯入的檔案可以遞迴匯入其他檔案，最大深度為五跳。</p>
+
+<pre data-lang="text"><code>有關專案概述，請參閱 @README，有關此專案的可用 npm 命令，請參閱 @package.json。
+
+# 其他指令
+- git 工作流 @docs/git-instructions.md
+</code></pre>
+
+<p>對於你不想簽入的個人偏好，從你的主目錄匯入檔案：</p>
+
+<pre data-lang="text"><code># 個人偏好
+- @~/.claude/my-project-instructions.md
+</code></pre>
+
+<div class="note">
+Claude Code 第一次在專案中遇到外部匯入時，它會顯示一個批准對話框。如果你拒絕，匯入保持停用狀態。
+</div>
+
+<h3>AGENTS.md</h3>
+
+<p>Claude Code 讀取 <code>CLAUDE.md</code>，而不是 <code>AGENTS.md</code>。如果你的存儲庫已經為其他編碼代理使用 <code>AGENTS.md</code>，創建一個匯入它的 <code>CLAUDE.md</code>，這樣兩個工具都可以讀取相同的指令：</p>
+
+<pre data-lang="markdown"><code>@AGENTS.md
+
+## Claude Code
+
+對 `src/billing/` 下的更改使用 plan mode。
+</code></pre>
+
+<h3>CLAUDE.md 檔案如何載入</h3>
+
+<p>Claude Code 透過從當前工作目錄向上遍歷目錄樹來讀取 CLAUDE.md 檔案。如果你在 <code>foo/bar/</code> 中執行 Claude Code，它會從 <code>foo/bar/CLAUDE.md</code> 和 <code>foo/CLAUDE.md</code> 載入指令。</p>
+
+<p>Claude 還在當前工作目錄下的子目錄中發現 CLAUDE.md 檔案。它們不是在啟動時載入，而是在 Claude 讀取這些子目錄中的檔案時包含。</p>
+
+<p>區塊級 HTML 註解（<code>&lt;!-- maintainer notes --&gt;</code>）在 CLAUDE.md 檔案中在內容注入到 Claude 的上下文之前被剝離。</p>
+
+<h3>使用 `.claude/rules/` 組織規則</h3>
+
+<p>對於較大的專案，你可以使用 <code>.claude/rules/</code> 目錄將指令組織到多個檔案中。規則也可以範圍限定到特定檔案路徑，因此它們僅在 Claude 處理匹配檔案時載入到上下文中。</p>
+
+<div class="note">
+規則在每個會話或打開匹配檔案時載入到上下文中。對於不需要始終在上下文中的特定任務指令，改用 skills。
+</div>
+
+<h4>設定規則</h4>
+
+<p>在你的專案的 <code>.claude/rules/</code> 目錄中放置 markdown 檔案。每個檔案應涵蓋一個主題，具有描述性檔名，如 <code>testing.md</code> 或 <code>api-design.md</code>。</p>
+
+<pre data-lang="text"><code>your-project/
+├── .claude/
+│   ├── CLAUDE.md           # 主專案指令
+│   └── rules/
+│       ├── code-style.md   # 程式碼樣式指南
+│       ├── testing.md      # 測試約定
+│       └── security.md     # 安全要求
+</code></pre>
+
+<h4>特定路徑的規則</h4>
+
+<p>規則可以使用帶有 <code>paths</code> 欄位的 YAML frontmatter 範圍限定到特定檔案：</p>
+
+<pre data-lang="markdown"><code>---
+paths:
+  - "src/api/**/*.ts"
+---
+
+# API 開發規則
+
+- 所有 API 端點必須包括輸入驗證
+- 使用標準錯誤回應格式
+- 包括 OpenAPI 文件註解
+</code></pre>
+
+<p>在 <code>paths</code> 欄位中使用 glob 模式按副檔名、目錄或任何組合匹配檔案：</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>模式</th>
+  <th>匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>**/*.ts</code></td>
+  <td>任何目錄中的所有 TypeScript 檔案</td>
+</tr>
+<tr>
+  <td><code>src/**/*</code></td>
+  <td><code>src/</code> 目錄下的所有檔案</td>
+</tr>
+<tr>
+  <td><code>*.md</code></td>
+  <td>專案根目錄中的 Markdown 檔案</td>
+</tr>
+<tr>
+  <td><code>src/components/*.tsx</code></td>
+  <td>特定目錄中的 React 元件</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>自動記憶</h2>
+
+<p>自動記憶讓 Claude 跨會話累積知識，無需你編寫任何內容。Claude 在工作時為自己儲存筆記：構建命令、除錯見解、架構筆記、程式碼樣式偏好和工作流習慣。</p>
+
+<div class="note">
+自動記憶需要 Claude Code v2.1.59 或更高版本。使用 <code>claude --version</code> 檢查你的版本。
+</div>
+
+<h3>啟用或停用自動記憶</h3>
+
+<p>自動記憶預設開啟。要切換它，在會話中打開 <code>/memory</code> 並使用自動記憶切換，或在你的專案設定中設定 <code>autoMemoryEnabled</code>：</p>
+
+<pre data-lang="json"><code>{
+  "autoMemoryEnabled": false
+}
+</code></pre>
+
+<p>要透過環境變數停用自動記憶，設定 <code>CLAUDE_CODE_DISABLE_AUTO_MEMORY=1</code>。</p>
+
+<h3>儲存位置</h3>
+
+<p>每個專案在 <code>~/.claude/projects/&lt;project&gt;/memory/</code> 獲得自己的記憶目錄。<code>&lt;project&gt;</code> 路徑來自 git 存儲庫。</p>
+
+<p>要將自動記憶儲存在不同位置，在你的使用者或本地設定中設定 <code>autoMemoryDirectory</code>：</p>
+
+<pre data-lang="json"><code>{
+  "autoMemoryDirectory": "~/my-custom-memory-dir"
+}
+</code></pre>
+
+<p>目錄包含一個 <code>MEMORY.md</code> 入口點和可選的主題檔案。<code>MEMORY.md</code> 的前 200 行在每次對話開始時載入。</p>
+
+<h3>審計和編輯你的記憶</h3>
+
+<p>自動記憶檔案是純 markdown，你可以隨時編輯或刪除。執行 <code>/memory</code> 從會話中瀏覽和打開記憶檔案。</p>
+
+<h3>故障排除記憶問題</h3>
+
+<h4>Claude 不遵循我的 CLAUDE.md</h4>
+
+<p>CLAUDE.md 內容作為使用者訊息傳遞。Claude 讀取它並嘗試遵循它，但沒有嚴格遵守的保證。</p>
+
+<p>要除錯：</p>
+<ul>
+  <li>執行 <code>/memory</code> 驗證你的 CLAUDE.md 檔案被載入</li>
+  <li>檢查相關 CLAUDE.md 是否在為你的會話載入的位置</li>
+  <li>使指令更具體</li>
+  <li>查找跨 CLAUDE.md 檔案的衝突指令</li>
+</ul>
+
+<h4>我的 CLAUDE.md 太大了</h4>
+
+<p>超過 200 行的檔案消耗更多上下文並可能降低遵守度。將詳細內容移到使用 <code>@path</code> 匯入引用的單獨檔案中，或將你的指令分割到 <code>.claude/rules/</code> 檔案中。</p>
+
+<h2>Claude Code 設定</h2>
+
+<p>使用全域和專案級設定以及環境變數配置 Claude Code。你可以在使用互動式 REPL 時執行 <code>/config</code> 命令來配置 Claude Code。</p>
+
+<h3>配置作用域</h3>
+
+<p>Claude Code 使用作用域系統來確定配置應用的位置以及與誰共享。</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>作用域</th>
+  <th>位置</th>
+  <th>影響範圍</th>
+  <th>與團隊共享？</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>User</strong></td>
+  <td><code>~/.claude/</code> 目錄</td>
+  <td>你，跨所有專案</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td><strong>Project</strong></td>
+  <td>存儲庫中的 <code>.claude/</code></td>
+  <td>此存儲庫上的所有協作者</td>
+  <td>是（提交到 git）</td>
+</tr>
+<tr>
+  <td><strong>Local</strong></td>
+  <td><code>.claude/settings.local.json</code></td>
+  <td>你，僅在此存儲庫中</td>
+  <td>否（gitignored）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>設定檔案</h3>
+
+<p><code>settings.json</code> 檔案是透過分層設定配置 Claude Code 的官方機制：</p>
+
+<ul>
+  <li><strong>使用者設定</strong>在 <code>~/.claude/settings.json</code> 中定義，適用於所有專案。</li>
+  <li><strong>專案設定</strong>保存在你的專案目錄中：
+    <ul>
+      <li><code>.claude/settings.json</code> 用於簽入原始碼管理並與團隊共享的設定</li>
+      <li><code>.claude/settings.local.json</code> 用於未簽入的設定，適用於個人偏好和實驗</li>
+    </ul>
+  </li>
+</ul>
+
+<pre data-lang="json"><code>{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test *)",
+      "Read(~/.zshrc)"
+    ],
+    "deny": [
+      "Bash(curl *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)"
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "OTEL_METRICS_EXPORTER": "otlp"
+  }
+}
+</code></pre>
+
+<h3>可用設定</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>鍵</th>
+  <th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>autoMemoryDirectory</code></td>
+  <td>自動記憶儲存的自訂目錄</td>
+</tr>
+<tr>
+  <td><code>env</code></td>
+  <td>將應用於每個會話的環境變數</td>
+</tr>
+<tr>
+  <td><code>permissions</code></td>
+  <td>權限設定（allow / ask / deny）</td>
+</tr>
+<tr>
+  <td><code>hooks</code></td>
+  <td>配置自訂命令以在生命週期事件處執行</td>
+</tr>
+<tr>
+  <td><code>model</code></td>
+  <td>覆蓋用於 Claude Code 的預設模型</td>
+</tr>
+<tr>
+  <td><code>effortLevel</code></td>
+  <td>跨會話持久化努力級別（<code>low</code>/<code>medium</code>/<code>high</code>）</td>
+</tr>
+<tr>
+  <td><code>language</code></td>
+  <td>配置 Claude 的首選回應語言</td>
+</tr>
+<tr>
+  <td><code>attribution</code></td>
+  <td>自訂 git 提交和 PR 的歸屬</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>排除敏感檔案</h3>
+
+<p>要防止 Claude Code 存取包含敏感資訊的檔案，請在 <code>.claude/settings.json</code> 中使用 <code>permissions.deny</code> 設定：</p>
+
+<pre data-lang="json"><code>{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./config/credentials.json)"
+    ]
+  }
+}
+</code></pre>
+
+<h2>配置權限</h2>
+
+<p>透過細粒度權限規則、模式和託管策略來控制 Claude Code 可以存取和執行的操作。</p>
+
+<h3>權限系統</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>工具類型</th>
+  <th>示例</th>
+  <th>需要批准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>唯讀</td>
+  <td>檔案讀取、Grep</td>
+  <td>否</td>
+</tr>
+<tr>
+  <td>Bash 命令</td>
+  <td>Shell 執行</td>
+  <td>是</td>
+</tr>
+<tr>
+  <td>檔案修改</td>
+  <td>Edit/Write 檔案</td>
+  <td>是</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>管理權限</h3>
+
+<p>你可以使用 <code>/permissions</code> 查看和管理 Claude Code 的工具權限。</p>
+
+<ul>
+  <li><strong>Allow</strong> 規則讓 Claude Code 使用指定的工具而無需手動批准</li>
+  <li><strong>Ask</strong> 規則在 Claude Code 嘗試使用指定工具時提示確認</li>
+  <li><strong>Deny</strong> 規則防止 Claude Code 使用指定的工具</li>
+</ul>
+
+<p>規則按順序評估：<strong>deny → ask → allow</strong>。第一個匹配的規則獲勝。</p>
+
+<h3>權限模式</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>模式</th>
+  <th>說明</th>
+  <th>最適合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>default</code></td>
+  <td>標準行為：在首次使用每個工具時提示權限</td>
+  <td>入門、敏感工作</td>
+</tr>
+<tr>
+  <td><code>acceptEdits</code></td>
+  <td>自動接受會話的檔案編輯權限</td>
+  <td>迭代你正在審查的程式碼</td>
+</tr>
+<tr>
+  <td><code>plan</code></td>
+  <td>Plan Mode：Claude 可以分析但不能修改檔案或執行命令</td>
+  <td>探索程式碼庫、規劃重構</td>
+</tr>
+<tr>
+  <td><code>auto</code></td>
+  <td>自動批准工具呼叫，並進行後台安全檢查（研究預覽階段）</td>
+  <td>長時間執行的任務、減少提示疲勞</td>
+</tr>
+<tr>
+  <td><code>dontAsk</code></td>
+  <td>自動拒絕工具，除非透過規則預先批准</td>
+  <td>鎖定環境</td>
+</tr>
+<tr>
+  <td><code>bypassPermissions</code></td>
+  <td>跳過權限提示，除了對受保護目錄的寫入</td>
+  <td>僅隔離容器和 VM</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="note warning">
+<code>bypassPermissions</code> 模式跳過權限提示。僅在隔離環境（如容器或 VM）中使用此模式。
+</div>
+
+<h3>權限規則語法</h3>
+
+<p>權限規則遵循格式 <code>Tool</code> 或 <code>Tool(specifier)</code>。</p>
+
+<p>匹配所有使用：</p>
+<ul>
+  <li><code>Bash</code> — 匹配所有 Bash 命令</li>
+  <li><code>WebFetch</code> — 匹配所有網路擷取請求</li>
+  <li><code>Read</code> — 匹配所有檔案讀取</li>
+</ul>
+
+<p>細粒度控制：</p>
+<ul>
+  <li><code>Bash(npm run build)</code> — 匹配確切的命令</li>
+  <li><code>Read(./.env)</code> — 匹配讀取當前目錄中的 <code>.env</code> 檔案</li>
+  <li><code>WebFetch(domain:example.com)</code> — 匹配對 example.com 的擷取請求</li>
+</ul>
+
+<p>Bash 規則支援帶有 <code>*</code> 的 glob 模式：</p>
+
+<pre data-lang="json"><code>{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git commit *)",
+      "Bash(* --version)"
+    ],
+    "deny": [
+      "Bash(git push *)"
+    ]
+  }
+}
+</code></pre>
+
+<div class="note warning">
+Read 和 Edit deny 規則適用於 Claude 的內建檔案工具，不適用於 Bash 子程序。<code>Read(./.env)</code> deny 規則阻止 Read 工具，但不會阻止 Bash 中的 <code>cat .env</code>。要獲得 OS 級別的強制執行，請啟用沙箱。
+</div>
+
+<h3>切換權限模式</h3>
+
+<p><strong>在會話期間</strong>：按 <code>Shift+Tab</code> 循環切換 <code>default</code> → <code>acceptEdits</code> → <code>plan</code> → <code>auto</code>。當前模式顯示在狀態列中。</p>
+
+<p><strong>啟動時</strong>：</p>
+
+<pre data-lang="bash"><code>claude --permission-mode plan
+</code></pre>
+
+<p><strong>作為預設設定</strong>：</p>
+
+<pre data-lang="json"><code>{
+  "permissions": {
+    "defaultMode": "acceptEdits"
+  }
+}
+</code></pre>
+
+<h3>使用 Plan Mode 在編輯前進行分析</h3>
+
+<p>Plan Mode 告訴 Claude 研究並提議更改而不進行更改。Claude 讀取檔案、執行 shell 命令進行探索、提出澄清問題並編寫計劃檔案，但不編輯你的原始碼。</p>
+
+<p>何時使用 Plan Mode：</p>
+<ul>
+  <li><strong>多步驟實作</strong>：當功能需要跨多個檔案的編輯時</li>
+  <li><strong>程式碼探索</strong>：當你想在更改任何內容前研究程式碼庫時</li>
+  <li><strong>互動式開發</strong>：當你想與 Claude 迭代方向時</li>
+</ul>
+
+<pre data-lang="bash"><code>claude --permission-mode plan
+</code></pre>
+
+<h2>互動模式</h2>
+
+<p>Claude Code 會話中鍵盤快捷鍵、輸入模式和互動功能的完整參考。</p>
+
+<h3>鍵盤快捷鍵</h3>
+
+<div class="note">
+鍵盤快捷鍵可能因平台和終端機而異。按 <code>?</code> 查看你的環境中可用的快捷鍵。
+</div>
+
+<h4>常規控制</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>快捷鍵</th>
+  <th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Ctrl+C</code></td>
+  <td>取消當前輸入或生成</td>
+</tr>
+<tr>
+  <td><code>Ctrl+X Ctrl+K</code></td>
+  <td>終止所有後台代理。在 3 秒內按兩次以確認</td>
+</tr>
+<tr>
+  <td><code>Ctrl+D</code></td>
+  <td>退出 Claude Code 會話</td>
+</tr>
+<tr>
+  <td><code>Ctrl+G</code> 或 <code>Ctrl+X Ctrl+E</code></td>
+  <td>在預設文字編輯器中打開</td>
+</tr>
+<tr>
+  <td><code>Ctrl+L</code></td>
+  <td>清除終端機螢幕</td>
+</tr>
+<tr>
+  <td><code>Ctrl+O</code></td>
+  <td>切換詳細輸出</td>
+</tr>
+<tr>
+  <td><code>Ctrl+R</code></td>
+  <td>反向搜尋命令歷史</td>
+</tr>
+<tr>
+  <td><code>Ctrl+V</code> 或 <code>Alt+V</code></td>
+  <td>從剪貼簿貼上圖像</td>
+</tr>
+<tr>
+  <td><code>Ctrl+B</code></td>
+  <td>後台執行任務</td>
+</tr>
+<tr>
+  <td><code>Ctrl+T</code></td>
+  <td>切換任務列表</td>
+</tr>
+<tr>
+  <td><code>Shift+Tab</code> 或 <code>Alt+M</code></td>
+  <td>循環權限模式</td>
+</tr>
+<tr>
+  <td><code>Option+P</code> / <code>Alt+P</code></td>
+  <td>切換模型</td>
+</tr>
+<tr>
+  <td><code>Option+T</code> / <code>Alt+T</code></td>
+  <td>切換延伸思考（Extended Thinking）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4>文字編輯</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>快捷鍵</th>
+  <th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Ctrl+K</code></td>
+  <td>刪除到行尾</td>
+</tr>
+<tr>
+  <td><code>Ctrl+U</code></td>
+  <td>刪除整行</td>
+</tr>
+<tr>
+  <td><code>Ctrl+Y</code></td>
+  <td>貼上已刪除的文字</td>
+</tr>
+<tr>
+  <td><code>Alt+B</code></td>
+  <td>將游標向後移動一個單詞</td>
+</tr>
+<tr>
+  <td><code>Alt+F</code></td>
+  <td>將游標向前移動一個單詞</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4>多行輸入</h4>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>方法</th>
+  <th>快捷鍵</th>
+  <th>上下文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>快速跳脫</td>
+  <td><code>\</code> + <code>Enter</code></td>
+  <td>在所有終端機中工作</td>
+</tr>
+<tr>
+  <td>macOS 預設</td>
+  <td><code>Option+Enter</code></td>
+  <td>macOS 上的預設設定</td>
+</tr>
+<tr>
+  <td>Shift+Enter</td>
+  <td><code>Shift+Enter</code></td>
+  <td>在 iTerm2、WezTerm、Ghostty、Kitty 中開箱即用</td>
+</tr>
+<tr>
+  <td>控制序列</td>
+  <td><code>Ctrl+J</code></td>
+  <td>多行的換行符</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>後台 bash 命令</h3>
+
+<p>Claude Code 支援在後台執行 bash 命令。要在後台執行命令，你可以：</p>
+
+<ul>
+  <li>提示 Claude Code 在後台執行命令</li>
+  <li>按 <code>Ctrl+B</code> 將常規 Bash 工具呼叫移到後台</li>
+</ul>
+
+<h3>使用 <code>!</code> 前綴的 Bash 模式</h3>
+
+<p>透過在輸入前加上 <code>!</code> 來直接執行 bash 命令，無需透過 Claude：</p>
+
+<pre data-lang="bash"><code>! npm test
+! git status
+! ls -la
+</code></pre>
+
+<h3>提示建議</h3>
+
+<p>當你首次打開會話時，灰顯的示例命令會出現在提示輸入中以幫助你入門。Claude Code 從你的專案的 git 歷史中選擇此命令。</p>
+
+<p>按 <strong>Tab</strong> 接受建議，或按 <strong>Enter</strong> 接受並提交。</p>
+
+<p>要完全停用提示建議：</p>
+
+<pre data-lang="bash"><code>export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
+</code></pre>
+
+<h3>任務列表</h3>
+
+<p>在處理複雜的多步驟工作時，Claude 會建立任務列表來追蹤進度。按 <code>Ctrl+T</code> 切換任務列表檢視。</p>
+
+<h3>Vim 編輯器模式</h3>
+
+<p>使用 <code>/vim</code> 命令啟用 vim 風格編輯，或透過 <code>/config</code> 永久配置。</p>
+
+<h2>CLI 參考</h2>
+
+<p>Claude Code 命令列介面的完整參考，包括命令和旗標。</p>
+
+<h3>CLI 命令</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>命令</th>
+  <th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>claude</code></td>
+  <td>啟動互動式會話</td>
+</tr>
+<tr>
+  <td><code>claude "query"</code></td>
+  <td>使用初始提示啟動互動式會話</td>
+</tr>
+<tr>
+  <td><code>claude -p "query"</code></td>
+  <td>透過 SDK 查詢，然後退出</td>
+</tr>
+<tr>
+  <td><code>cat file | claude -p "query"</code></td>
+  <td>處理管道內容</td>
+</tr>
+<tr>
+  <td><code>claude -c</code></td>
+  <td>在當前目錄中繼續最近的對話</td>
+</tr>
+<tr>
+  <td><code>claude -r "&lt;session&gt;" "query"</code></td>
+  <td>按 ID 或名稱恢復會話</td>
+</tr>
+<tr>
+  <td><code>claude update</code></td>
+  <td>更新到最新版本</td>
+</tr>
+<tr>
+  <td><code>claude auth login</code></td>
+  <td>登入你的 Anthropic 帳戶</td>
+</tr>
+<tr>
+  <td><code>claude auth logout</code></td>
+  <td>從你的 Anthropic 帳戶登出</td>
+</tr>
+<tr>
+  <td><code>claude agents</code></td>
+  <td>列出所有已配置的子代理</td>
+</tr>
+<tr>
+  <td><code>claude auto-mode defaults</code></td>
+  <td>以 JSON 格式列印內建 Auto Mode 分類器規則</td>
+</tr>
+<tr>
+  <td><code>claude mcp</code></td>
+  <td>配置 MCP 伺服器</td>
+</tr>
+<tr>
+  <td><code>claude plugin</code></td>
+  <td>管理 Claude Code 外掛</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>CLI 旗標</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>旗標</th>
+  <th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>--add-dir</code></td>
+  <td>添加額外的工作目錄供 Claude 存取</td>
+</tr>
+<tr>
+  <td><code>--agent</code></td>
+  <td>為當前會話指定代理</td>
+</tr>
+<tr>
+  <td><code>--bare</code></td>
+  <td>最小模式：跳過 hooks、skills、plugins、MCP 等</td>
+</tr>
+<tr>
+  <td><code>--continue</code>, <code>-c</code></td>
+  <td>載入當前目錄中最近的對話</td>
+</tr>
+<tr>
+  <td><code>--effort</code></td>
+  <td>設定工作量級別（<code>low</code>/<code>medium</code>/<code>high</code>/<code>max</code>）</td>
+</tr>
+<tr>
+  <td><code>--model</code></td>
+  <td>設定模型（使用別名 <code>sonnet</code>/<code>opus</code> 或完整名稱）</td>
+</tr>
+<tr>
+  <td><code>--name</code>, <code>-n</code></td>
+  <td>為會話設定顯示名稱</td>
+</tr>
+<tr>
+  <td><code>--permission-mode</code></td>
+  <td>以指定的權限模式開始</td>
+</tr>
+<tr>
+  <td><code>--print</code>, <code>-p</code></td>
+  <td>列印回應而不進入互動模式</td>
+</tr>
+<tr>
+  <td><code>--resume</code>, <code>-r</code></td>
+  <td>按 ID 或名稱恢復特定會話</td>
+</tr>
+<tr>
+  <td><code>--version</code>, <code>-v</code></td>
+  <td>輸出版本號</td>
+</tr>
+<tr>
+  <td><code>--worktree</code>, <code>-w</code></td>
+  <td>在隔離的 git worktree 中啟動 Claude</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>常見工作流</h2>
+
+<p>使用 Claude Code 探索程式碼庫、修復錯誤、重構、測試和其他日常任務的分步指南。</p>
+
+<h3>理解新的程式碼庫</h3>
+
+<p><strong>快速取得程式碼庫概覽：</strong></p>
+
+<ol>
+  <li>導覽到專案根目錄：<code>cd /path/to/project</code></li>
+  <li>啟動 Claude Code：<code>claude</code></li>
+  <li>請求高級概覽：<code>give me an overview of this codebase</code></li>
+  <li>深入了解特定元件：
+    <ul>
+      <li><code>explain the main architecture patterns used here</code></li>
+      <li><code>what are the key data models?</code></li>
+      <li><code>how is authentication handled?</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h3>修復錯誤</h3>
+
+<ol>
+  <li>與 Claude 分享錯誤：<code>I'm seeing an error when I run npm test</code></li>
+  <li>請求修復建議：<code>suggest a few ways to fix the @ts-ignore in user.ts</code></li>
+  <li>應用修復：<code>update user.ts to add the null check you suggested</code></li>
+</ol>
+
+<h3>重構程式碼</h3>
+
+<ol>
+  <li>識別用於重構的遺留程式碼：<code>find deprecated API usage in our codebase</code></li>
+  <li>取得重構建議：<code>suggest how to refactor utils.js to use modern JavaScript features</code></li>
+  <li>安全地應用更改：<code>refactor utils.js to use ES2024 features while maintaining the same behavior</code></li>
+  <li>驗證重構：<code>run tests for the refactored code</code></li>
+</ol>
+
+<h3>使用 Plan Mode 進行安全的程式碼分析</h3>
+
+<p>Plan Mode 指示 Claude 透過使用唯讀操作分析程式碼庫來建立計劃。</p>
+
+<p><strong>在會話期間打開 Plan Mode：</strong>使用 <strong>Shift+Tab</strong> 循環切換權限模式。</p>
+
+<p><strong>在 Plan Mode 中啟動新會話：</strong></p>
+
+<pre data-lang="bash"><code>claude --permission-mode plan
+</code></pre>
+
+<h3>恢復以前的對話</h3>
+
+<ul>
+  <li><code>claude --continue</code> 繼續當前目錄中最近的對話</li>
+  <li><code>claude --resume</code> 打開對話選擇器或按名稱恢復</li>
+</ul>
+
+<p><strong>命名你的會話：</strong></p>
+
+<p>在啟動時使用 <code>-n</code> 命名會話：</p>
+
+<pre data-lang="bash"><code>claude -n auth-refactor
+</code></pre>
+
+<p>或在會話期間使用 <code>/rename</code>：</p>
+
+<pre data-lang="bash"><code>/rename auth-refactor
+</code></pre>
+
+<p>稍後按名稱恢復：</p>
+
+<pre data-lang="bash"><code>claude --resume auth-refactor
+</code></pre>
+
+<h3>使用 Git worktrees 執行並行會話</h3>
+
+<p>當同時處理多個任務時，使用 <code>--worktree</code>（<code>-w</code>）旗標建立隔離的 worktree 並在其中啟動 Claude：</p>
+
+<pre data-lang="bash"><code># 在名為 "feature-auth" 的 worktree 中啟動 Claude
+claude --worktree feature-auth
+
+# 在單獨的 worktree 中啟動另一個會話
+claude --worktree bugfix-123
+
+# 自動生成名稱
+claude --worktree
+</code></pre>
+
+<p>Worktrees 在 <code>&lt;repo&gt;/.claude/worktrees/&lt;name&gt;</code> 建立。當你退出 worktree 會話時，worktree 及其分支會自動刪除（如果無更改）或提示你決定。</p>
+
+<h3>將 Claude 用作 Unix 風格的工具</h3>
+
+<p><strong>管道進入、管道輸出：</strong></p>
+
+<pre data-lang="bash"><code>cat build-error.txt | claude -p 'concisely explain the root cause of this build error' > output.txt
+</code></pre>
+
+<p><strong>控制輸出格式：</strong></p>
+
+<ul>
+  <li>文字格式（預設）：<code>--output-format text</code></li>
+  <li>JSON 格式：<code>--output-format json</code></li>
+  <li>串流 JSON 格式：<code>--output-format stream-json</code></li>
+</ul>
+
+    </div>
+
+    <nav class="page-nav">
+      <a href="remote.html" class="prev">
+        <span class="pn-label">← 上一頁</span>
+        <span class="pn-title">遠端控制・頻道・代理</span>
+      </a>
+      <a href="plugins.html" class="next">
+        <span class="pn-label">下一頁 →</span>
+        <span class="pn-title">Plugins 外掛系統</span>
+      </a>
+    </nav>
+
+    <footer class="site-footer">
+      Claude Code 繁體中文指南 — 內容整理自 Anthropic 官方文件
+    </footer>
+  </main>
+
+  <script src="nav.js"></script>
+</body>
+</html>

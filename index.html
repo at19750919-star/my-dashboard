@@ -252,15 +252,14 @@ body {
    DASHBOARD PAGE
    ═══════════════════════════════════════════ */
 .dashboard-hero {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
   padding: 48px 0 32px;
+  flex-wrap: wrap;
 }
-.hero-greeting {
-  font-family: var(--font-display);
-  font-weight: 300; font-size: 1.3rem;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-}
+.hero-time-block { text-align: left; }
 .hero-clock {
   font-family: var(--font-display);
   font-weight: 800; font-size: 5rem;
@@ -273,6 +272,14 @@ body {
   font-weight: 400; font-size: 1.15rem;
   color: var(--text-secondary);
   margin-top: 8px;
+}
+.hero-weather {
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-brutal);
+  min-width: 220px;
 }
 
 /* Search bar */
@@ -1125,6 +1132,9 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
       <li class="nav-item">
         <a href="layout-playground.html" target="_blank"><span class="nav-icon"><i data-lucide="layout" style="width:20px;height:20px"></i></span><span class="nav-label">截圖排版</span></a>
       </li>
+      <li class="nav-item">
+        <a href="claude-code-docs/index.html" target="_blank"><span class="nav-icon"><i data-lucide="book-open" style="width:20px;height:20px"></i></span><span class="nav-label">Claude Code 文件</span></a>
+      </li>
     </ul>
     <div class="sidebar-footer">
       <button class="theme-toggle" id="themeToggle">
@@ -1143,9 +1153,13 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     <!-- ═══ DASHBOARD ═══ -->
     <section class="page active" id="page-dashboard">
       <div class="dashboard-hero">
-        <div class="hero-greeting" id="greeting"></div>
-        <div class="hero-clock" id="clock"></div>
-        <div class="hero-date" id="dateDisplay"></div>
+        <div class="hero-time-block">
+          <div class="hero-clock" id="clock"></div>
+          <div class="hero-date" id="dateDisplay"></div>
+        </div>
+        <div class="hero-weather weather-widget" id="weatherWidget">
+          <div class="empty-state" id="weatherLoading">定位中...</div>
+        </div>
       </div>
 
       <div class="search-container">
@@ -1154,16 +1168,6 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
       </div>
 
       <div class="dash-grid stagger-in">
-        <!-- Weather -->
-        <div class="glass-card accent-bar-green">
-          <div class="card-header">
-            <div class="card-title"><div class="title-icon"><i data-lucide="cloud-sun" style="width:18px;height:18px"></i></div>天氣</div>
-          </div>
-          <div class="weather-widget" id="weatherWidget">
-            <div class="empty-state" id="weatherLoading">定位中...</div>
-          </div>
-        </div>
-
         <!-- Quick Links Widget -->
         <div class="glass-card accent-bar-purple">
           <div class="card-header">
@@ -1811,6 +1815,47 @@ const LS = {
   set(k, v) { localStorage.setItem('aurora_' + k, JSON.stringify(v)); }
 };
 
+// ─── Google Sheets Backend ───
+const SHEET_API = 'https://script.google.com/macros/s/AKfycbySm5X4weo1SSgZK6tE5y1FnpZ81UE4uuuLTxDI_f-mnrCJPQfnswV-H_hO6tWzC8iy/exec';
+
+const SheetDB = {
+  _queue: {},
+  _timers: {},
+
+  async getAll(sheet) {
+    try {
+      const r = await fetch(`${SHEET_API}?action=getAll&sheet=${sheet}`);
+      const data = await r.json();
+      return data.rows || [];
+    } catch (e) {
+      console.warn(`SheetDB.getAll(${sheet}) failed:`, e);
+      return null;
+    }
+  },
+
+  // Debounced replaceAll — waits 1.5s after last call to batch writes
+  replaceAll(sheet, rows) {
+    this._queue[sheet] = rows;
+    clearTimeout(this._timers[sheet]);
+    this._timers[sheet] = setTimeout(() => this._doReplace(sheet), 1500);
+  },
+
+  async _doReplace(sheet) {
+    const rows = this._queue[sheet];
+    if (!rows) return;
+    delete this._queue[sheet];
+    try {
+      await fetch(`${SHEET_API}?action=replaceAll&sheet=${sheet}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ rows }),
+      });
+    } catch (e) {
+      console.warn(`SheetDB.replaceAll(${sheet}) failed:`, e);
+    }
+  }
+};
+
 function formatDate(d) {
   const dt = new Date(d);
   return dt.toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' });
@@ -1932,13 +1977,6 @@ function updateClock() {
 
   const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
   $('#dateDisplay').textContent = `${now.getFullYear()} 年 ${now.getMonth()+1} 月 ${now.getDate()} 日　星期${weekdays[now.getDay()]}`;
-
-  const hour = now.getHours();
-  let greet = '晚安';
-  if (hour < 6) greet = '夜深了';
-  else if (hour < 12) greet = '早安';
-  else if (hour < 18) greet = '午安';
-  $('#greeting').textContent = greet;
 }
 setInterval(updateClock, 1000);
 updateClock();
@@ -1983,7 +2021,13 @@ let notes = LS.get('notes', []);
 let activeNoteId = null;
 let noteFilterTag = null;
 
-function saveNotes() { LS.set('notes', notes); }
+function saveNotes() {
+  LS.set('notes', notes);
+  SheetDB.replaceAll('notes', notes.map(n => ({
+    id: n.id, title: n.title || '', content: n.content || '',
+    tags: (n.tags || []).join(','), created: n.createdAt || '', updated: n.updatedAt || ''
+  })));
+}
 
 function renderNotesList() {
   const search = $('#notesSearch').value.toLowerCase();
@@ -2287,7 +2331,13 @@ let links = LS.get('links', []);
 let linkFilterCat = null;
 let editingLinkId = null;
 
-function saveLinks() { LS.set('links', links); }
+function saveLinks() {
+  LS.set('links', links);
+  SheetDB.replaceAll('links', links.map(l => ({
+    id: l.id, title: l.name || '', url: l.url || '',
+    icon: '', category: l.category || '', created: ''
+  })));
+}
 
 function renderLinks() {
   const cats = [...new Set(links.map(l => l.category || '未分類'))];
@@ -2399,7 +2449,13 @@ let todos = LS.get('todos', []);
 let todoFilter = 'all';
 let dragTodoId = null;
 
-function saveTodos() { LS.set('todos', todos); }
+function saveTodos() {
+  LS.set('todos', todos);
+  SheetDB.replaceAll('todos', todos.map(t => ({
+    id: t.id, text: t.text || '', done: t.done ? 'TRUE' : 'FALSE',
+    priority: t.priority || 'medium', created: t.createdAt || ''
+  })));
+}
 
 function renderTodos() {
   let filtered = todos;
@@ -2479,7 +2535,13 @@ $$('.todo-filters .tag-pill').forEach(el => {
 let goalsData = LS.get('goals', {});
 let goalsViewDate = todayKey();
 
-function saveGoals() { LS.set('goals', goalsData); }
+function saveGoals() {
+  LS.set('goals', goalsData);
+  const rows = Object.entries(goalsData).map(([date, goals]) => ({
+    date, goals_json: JSON.stringify(goals)
+  }));
+  SheetDB.replaceAll('goals', rows);
+}
 
 function renderGoals() {
   $('#goalsDate').textContent = goalsViewDate;
@@ -2577,7 +2639,12 @@ $('#goalNextDay').addEventListener('click', () => {
 // RECENT ITEMS
 // ═══════════════════════════════════════════
 let recentItems = LS.get('recent', []);
-function saveRecent() { LS.set('recent', recentItems); }
+function saveRecent() {
+  LS.set('recent', recentItems);
+  SheetDB.replaceAll('recent', recentItems.map(r => ({
+    id: r.id || '', type: r.type || '', text: r.title || '', time: r.time || ''
+  })));
+}
 
 function addRecent(type, id, title) {
   recentItems = recentItems.filter(r => !(r.type === type && r.id === id));
@@ -2748,7 +2815,78 @@ async function init() {
   loadWeather();
   // Initialize Lucide SVG icons
   if (window.lucide) lucide.createIcons();
+
+  // Load from Google Sheets (async, non-blocking)
+  loadFromSheets();
 }
+
+async function loadFromSheets() {
+  try {
+    const [sheetNotes, sheetLinks, sheetTodos, sheetGoals, sheetRecent] = await Promise.all([
+      SheetDB.getAll('notes'),
+      SheetDB.getAll('links'),
+      SheetDB.getAll('todos'),
+      SheetDB.getAll('goals'),
+      SheetDB.getAll('recent'),
+    ]);
+
+    if (sheetNotes && sheetNotes.length) {
+      notes = sheetNotes.map(r => ({
+        id: r.id, title: r.title || '', content: r.content || '',
+        tags: r.tags ? String(r.tags).split(',').filter(Boolean) : [],
+        createdAt: Number(r.created) || Date.now(),
+        updatedAt: Number(r.updated) || Date.now()
+      }));
+      LS.set('notes', notes);
+      renderNotesList();
+    }
+
+    if (sheetLinks && sheetLinks.length) {
+      links = sheetLinks.map(r => ({
+        id: r.id, name: r.title || '', url: r.url || '',
+        category: r.category || ''
+      }));
+      LS.set('links', links);
+      renderLinks();
+    }
+
+    if (sheetTodos && sheetTodos.length) {
+      todos = sheetTodos.map(r => ({
+        id: r.id, text: r.text || '',
+        done: String(r.done).toUpperCase() === 'TRUE',
+        priority: r.priority || 'medium',
+        createdAt: Number(r.created) || Date.now()
+      }));
+      LS.set('todos', todos);
+      renderTodos();
+    }
+
+    if (sheetGoals && sheetGoals.length) {
+      goalsData = {};
+      sheetGoals.forEach(r => {
+        if (r.date && r.goals_json) {
+          try { goalsData[r.date] = JSON.parse(r.goals_json); } catch {}
+        }
+      });
+      LS.set('goals', goalsData);
+      renderGoals();
+    }
+
+    if (sheetRecent && sheetRecent.length) {
+      recentItems = sheetRecent.map(r => ({
+        id: r.id || '', type: r.type || '', title: r.text || '',
+        time: Number(r.time) || Date.now()
+      }));
+      LS.set('recent', recentItems);
+      renderRecent();
+    }
+
+    console.log('✓ Synced from Google Sheets');
+  } catch (e) {
+    console.warn('Sheets sync failed, using localStorage cache:', e);
+  }
+}
+
 init();
 </script>
 </body>

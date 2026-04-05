@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills・MCP・Hooks — Claude Code 指南</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="menu-toggle" id="menu-toggle">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main-content">
+    <header class="page-header">
+      <div class="page-number">CHAPTER 02</div>
+      <h1>Skills・MCP・Hooks</h1>
+      <p class="page-desc">自訂技能建立、MCP 伺服器整合、事件驅動鉤子、動態上下文注入</p>
+    </header>
+    <div class="content-body">
+<h2>使用 Skills 擴展 Claude</h2>
+<p>建立、管理和分享 skills，在 Claude Code 中擴展 Claude 的功能。包括自訂指令和捆綁 skills。</p>
+<p>Skills 擴展了 Claude 能做的事情。建立一個 <code>SKILL.md</code> 檔案，其中包含指示，Claude 會將其加入工具包中。Claude 在相關時使用 skills，或者你可以使用 <code>/skill-name</code> 直接呼叫。</p>
+<div class="note">
+<strong>注意：</strong> 對於內建指令（如 <code>/help</code> 和 <code>/compact</code>），請參閱內建指令參考。<br><br>
+<strong>自訂指令已合併到 skills 中。</strong> <code>.claude/commands/deploy.md</code> 中的檔案和 <code>.claude/skills/deploy/SKILL.md</code> 中的 skill 都會建立 <code>/deploy</code> 並以相同的方式運作。你現有的 <code>.claude/commands/</code> 檔案繼續運作。Skills 增加了可選功能：支援檔案的目錄、控制你或 Claude 是否呼叫它們的 frontmatter，以及 Claude 在相關時自動載入它們的能力。
+</div>
+<p>Claude Code skills 遵循 <a href="https://agentskills.io">Agent Skills</a> 開放標準，該標準適用於多個 AI 工具。Claude Code 使用額外功能擴展了該標準，如呼叫控制、subagent 執行和動態上下文注入。</p>
+<h3>捆綁 Skills</h3>
+<p>捆綁 skills 隨 Claude Code 一起提供，在每個工作階段中都可用。與內建指令不同，內建指令直接執行固定邏輯，捆綁 skills 是基於提示的：它們為 Claude 提供詳細的劇本，讓它使用其工具來編排工作。這意味著捆綁 skills 可以生成並行代理、讀取檔案並適應你的程式碼庫。</p>
+<p>你呼叫捆綁 skills 的方式與呼叫任何其他 skill 相同：輸入 <code>/</code> 後跟 skill 名稱。在下表中，<code>&lt;arg&gt;</code> 表示必需的參數，<code>[arg]</code> 表示可選參數。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Skill</th><th>目的</th></tr>
+</thead>
+<tbody>
+<tr><td><code>/batch &lt;instruction&gt;</code></td><td>在程式碼庫中並行編排大規模更改。研究程式碼庫，將工作分解為 5 到 30 個獨立單元，並呈現計畫。獲得批准後，在隔離的 git worktree 中為每個單元生成一個背景代理。每個代理實作其單元、執行測試並開啟 pull request。需要 git 存儲庫。範例：<code>/batch migrate src/ from Solid to React</code></td></tr>
+<tr><td><code>/claude-api</code></td><td>為你的專案語言（Python、TypeScript、Java、Go、Ruby、C#、PHP 或 cURL）載入 Claude API 參考資料，以及 Python 和 TypeScript 的 Agent SDK 參考。涵蓋工具使用、串流、批次處理、結構化輸出和常見陷阱。當你的程式碼匯入 <code>anthropic</code>、<code>@anthropic-ai/sdk</code> 或 <code>claude_agent_sdk</code> 時也會自動啟用</td></tr>
+<tr><td><code>/debug [description]</code></td><td>為目前工作階段啟用除錯日誌記錄並透過讀取工作階段除錯日誌來排查問題。預設情況下除錯日誌處於關閉狀態，除非你使用 <code>claude --debug</code> 啟動，因此在工作階段中期執行 <code>/debug</code> 會從該點開始擷取日誌。可選地描述問題以集中分析</td></tr>
+<tr><td><code>/loop [interval] &lt;prompt&gt;</code></td><td>在工作階段保持開啟狀態時按間隔重複執行提示。適用於輪詢部署、監督 PR 或定期重新執行另一個 skill。範例：<code>/loop 5m check if the deploy finished</code></td></tr>
+<tr><td><code>/simplify [focus]</code></td><td>查看你最近更改的檔案以尋找程式碼重用、品質和效率問題，然後修復它們。並行生成三個審查代理，彙總其發現並套用修復。傳遞文字以專注於特定問題：<code>/simplify focus on memory efficiency</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3>入門</h3>
+<h4>建立你的第一個 Skill</h4>
+<p>此範例建立一個 skill，教 Claude 使用視覺圖表和類比來解釋程式碼。由於它使用預設 frontmatter，Claude 可以在你詢問某事如何運作時自動載入它，或者你可以使用 <code>/explain-code</code> 直接呼叫它。</p>
+<p><strong>步驟 1：建立 skill 目錄</strong></p>
+<p>在你的個人 skills 資料夾中為 skill 建立一個目錄。個人 skills 在你的所有專案中都可用。</p>
+<pre data-lang="bash"><code>mkdir -p ~/.claude/skills/explain-code</code></pre>
+<p><strong>步驟 2：編寫 SKILL.md</strong></p>
+<p>每個 skill 都需要一個 <code>SKILL.md</code> 檔案，包含兩部分：YAML frontmatter（在 <code>---</code> 標記之間）告訴 Claude 何時使用該 skill，以及包含 Claude 在呼叫該 skill 時遵循的指示的 markdown 內容。<code>name</code> 欄位變成 <code>/slash-command</code>，<code>description</code> 幫助 Claude 決定何時自動載入它。</p>
+<p>建立 <code>~/.claude/skills/explain-code/SKILL.md</code>：</p>
+<pre data-lang="yaml"><code>---
+name: explain-code
+description: Explains code with visual diagrams and analogies. Use when explaining how code works, teaching about a codebase, or when the user asks "how does this work?"
+---
+
+When explaining code, always include:
+
+1. **Start with an analogy**: Compare the code to something from everyday life
+2. **Draw a diagram**: Use ASCII art to show the flow, structure, or relationships
+3. **Walk through the code**: Explain step-by-step what happens
+4. **Highlight a gotcha**: What's a common mistake or misconception?
+
+Keep explanations conversational. For complex concepts, use multiple analogies.</code></pre>
+<p><strong>步驟 3：測試 skill</strong></p>
+<p>你可以透過兩種方式測試它：</p>
+<p><strong>讓 Claude 自動呼叫它</strong>，透過詢問與描述匹配的內容：</p>
+<pre data-lang="text"><code>How does this code work?</code></pre>
+<p><strong>或直接使用 skill 名稱呼叫它</strong>：</p>
+<pre data-lang="text"><code>/explain-code src/auth/login.ts</code></pre>
+<p>無論哪種方式，Claude 都應該在其解釋中包含類比和 ASCII 圖表。</p>
+<h4>Skills 的位置</h4>
+<p>你儲存 skill 的位置決定了誰可以使用它：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>位置</th><th>路徑</th><th>適用於</th></tr>
+</thead>
+<tbody>
+<tr><td>企業</td><td>請參閱託管設定</td><td>你的組織中的所有使用者</td></tr>
+<tr><td>個人</td><td><code>~/.claude/skills/&lt;skill-name&gt;/SKILL.md</code></td><td>你的所有專案</td></tr>
+<tr><td>專案</td><td><code>.claude/skills/&lt;skill-name&gt;/SKILL.md</code></td><td>僅此專案</td></tr>
+<tr><td>外掛</td><td><code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/SKILL.md</code></td><td>啟用外掛的位置</td></tr>
+</tbody>
+</table>
+</div>
+<p>當 skills 在各個層級共享相同的名稱時，更高優先權的位置獲勝：企業 &gt; 個人 &gt; 專案。外掛 skills 使用 <code>plugin-name:skill-name</code> 命名空間，因此它們不能與其他層級衝突。如果你在 <code>.claude/commands/</code> 中有檔案，它們的運作方式相同，但如果 skill 和指令共享相同的名稱，skill 優先。</p>
+<h5>從巢狀目錄自動發現</h5>
+<p>當你在子目錄中處理檔案時，Claude Code 會自動從巢狀的 <code>.claude/skills/</code> 目錄中發現 skills。例如，如果你正在編輯 <code>packages/frontend/</code> 中的檔案，Claude Code 也會在 <code>packages/frontend/.claude/skills/</code> 中尋找 skills。這支援 monorepo 設定，其中套件有自己的 skills。</p>
+<p>每個 skill 都是一個以 <code>SKILL.md</code> 作為入口點的目錄：</p>
+<pre data-lang="text"><code>my-skill/
+├── SKILL.md           # 主要指示（必需）
+├── template.md        # Claude 要填寫的範本
+├── examples/
+│   └── sample.md      # 顯示預期格式的範例輸出
+└── scripts/
+    └── validate.sh    # Claude 可以執行的腳本</code></pre>
+<p><code>SKILL.md</code> 包含主要指示，是必需的。其他檔案是可選的，讓你建構更強大的 skills：Claude 要填寫的範本、顯示預期格式的範例輸出、Claude 可以執行的腳本或詳細的參考文件。從你的 <code>SKILL.md</code> 中引用支援檔案，以便 Claude 知道每個檔案包含什麼以及何時載入它。</p>
+<div class="note">
+<code>.claude/commands/</code> 中的檔案仍然有效，並支援相同的 frontmatter。建議使用 Skills，因為它們支援額外的功能，如支援檔案。
+</div>
+<h5>來自其他目錄的 Skills</h5>
+<p>在透過 <code>--add-dir</code> 新增的目錄中的 <code>.claude/skills/</code> 中定義的 skills 會自動載入並由即時更改偵測拾取，因此你可以在工作階段期間編輯它們而無需重新啟動。</p>
+<div class="note">
+來自 <code>--add-dir</code> 目錄的 CLAUDE.md 檔案預設不載入。要載入它們，請設定 <code>CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1</code>。
+</div>
+<h3>設定 Skills</h3>
+<p>Skills 透過 <code>SKILL.md</code> 頂部的 YAML frontmatter 和隨後的 markdown 內容進行設定。</p>
+<h4>Skill 內容的類型</h4>
+<p>Skill 檔案可以包含任何指示，但思考你想如何呼叫它們有助於指導要包含的內容：</p>
+<p><strong>參考內容</strong> 新增 Claude 應用於你目前工作的知識。慣例、模式、風格指南、領域知識。此內容內聯執行，以便 Claude 可以將其與你的對話上下文一起使用。</p>
+<pre data-lang="yaml"><code>---
+name: api-conventions
+description: API design patterns for this codebase
+---
+
+When writing API endpoints:
+- Use RESTful naming conventions
+- Return consistent error formats
+- Include request validation</code></pre>
+<p><strong>任務內容</strong> 為 Claude 提供特定操作的逐步指示，如部署、提交或程式碼產生。這些通常是你想使用 <code>/skill-name</code> 直接呼叫的操作，而不是讓 Claude 決定何時執行它們。加入 <code>disable-model-invocation: true</code> 以防止 Claude 自動觸發它。</p>
+<pre data-lang="yaml"><code>---
+name: deploy
+description: Deploy the application to production
+context: fork
+disable-model-invocation: true
+---
+
+Deploy the application:
+1. Run the test suite
+2. Build the application
+3. Push to the deployment target</code></pre>
+<h4>Frontmatter 參考</h4>
+<p>除了 markdown 內容外，你可以使用 <code>SKILL.md</code> 檔案頂部 <code>---</code> 標記之間的 YAML frontmatter 欄位來設定 skill 行為：</p>
+<pre data-lang="yaml"><code>---
+name: my-skill
+description: What this skill does
+disable-model-invocation: true
+allowed-tools: Read, Grep
+---
+
+Your skill instructions here...</code></pre>
+<p>所有欄位都是可選的。建議使用 <code>description</code>，以便 Claude 知道何時使用該 skill。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>必需</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>name</code></td><td>否</td><td>Skill 的顯示名稱。如果省略，使用目錄名稱。僅小寫字母、數字和連字號（最多 64 個字元）。</td></tr>
+<tr><td><code>description</code></td><td>建議</td><td>Skill 的功能以及何時使用它。Claude 使用它來決定何時套用該 skill。如果省略，使用 markdown 內容的第一段。</td></tr>
+<tr><td><code>argument-hint</code></td><td>否</td><td>自動完成期間顯示的提示，指示預期的參數。範例：<code>[issue-number]</code> 或 <code>[filename] [format]</code>。</td></tr>
+<tr><td><code>disable-model-invocation</code></td><td>否</td><td>設為 <code>true</code> 以防止 Claude 自動載入此 skill。用於你想使用 <code>/name</code> 手動觸發的工作流程。預設值：<code>false</code>。</td></tr>
+<tr><td><code>user-invocable</code></td><td>否</td><td>設為 <code>false</code> 以從 <code>/</code> 選單中隱藏。用於使用者不應直接呼叫的背景知識。預設值：<code>true</code>。</td></tr>
+<tr><td><code>allowed-tools</code></td><td>否</td><td>當此 skill 處於活動狀態時，Claude 可以使用而無需請求權限的工具。</td></tr>
+<tr><td><code>model</code></td><td>否</td><td>當此 skill 處於活動狀態時要使用的模型。</td></tr>
+<tr><td><code>effort</code></td><td>否</td><td>當此 skill 處於活動狀態時的工作量級別。覆蓋工作階段工作量級別。預設值：繼承自工作階段。選項：<code>low</code>、<code>medium</code>、<code>high</code>、<code>max</code>（僅 Opus 4.6）。</td></tr>
+<tr><td><code>context</code></td><td>否</td><td>設為 <code>fork</code> 以在分叉的 subagent 上下文中執行。</td></tr>
+<tr><td><code>agent</code></td><td>否</td><td>當設定 <code>context: fork</code> 時要使用的 subagent 類型。</td></tr>
+<tr><td><code>hooks</code></td><td>否</td><td>限定於此 skill 生命週期的 hooks。</td></tr>
+</tbody>
+</table>
+</div>
+<h5>可用的字串替換</h5>
+<p>Skills 支援 skill 內容中動態值的字串替換：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>變數</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>$ARGUMENTS</code></td><td>呼叫 skill 時傳遞的所有參數。如果內容中不存在 <code>$ARGUMENTS</code>，參數將作為 <code>ARGUMENTS: &lt;value&gt;</code> 附加。</td></tr>
+<tr><td><code>$ARGUMENTS[N]</code></td><td>按 0 基索引存取特定參數，如 <code>$ARGUMENTS[0]</code> 表示第一個參數。</td></tr>
+<tr><td><code>$N</code></td><td><code>$ARGUMENTS[N]</code> 的簡寫，如 <code>$0</code> 表示第一個參數或 <code>$1</code> 表示第二個參數。</td></tr>
+<tr><td><code>${CLAUDE_SESSION_ID}</code></td><td>目前工作階段 ID。適用於日誌記錄、建立工作階段特定檔案或將 skill 輸出與工作階段關聯。</td></tr>
+<tr><td><code>${CLAUDE_SKILL_DIR}</code></td><td>包含 skill 的 <code>SKILL.md</code> 檔案的目錄。在 bash 注入指令中使用它來引用與 skill 捆綁的腳本或檔案，無論目前工作目錄如何。</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>使用替換的範例：</strong></p>
+<pre data-lang="yaml"><code>---
+name: session-logger
+description: Log activity for this session
+---
+
+Log the following to logs/${CLAUDE_SESSION_ID}.log:
+
+$ARGUMENTS</code></pre>
+<h4>新增支援檔案</h4>
+<p>Skills 可以在其目錄中包含多個檔案。這使 <code>SKILL.md</code> 專注於要點，同時讓 Claude 僅在需要時存取詳細的參考資料。大型參考文件、API 規格或範例集合不需要在每次 skill 執行時載入到上下文中。</p>
+<pre data-lang="text"><code>my-skill/
+├── SKILL.md (required - overview and navigation)
+├── reference.md (detailed API docs - loaded when needed)
+├── examples.md (usage examples - loaded when needed)
+└── scripts/
+    └── helper.py (utility script - executed, not loaded)</code></pre>
+<p>從 <code>SKILL.md</code> 中引用支援檔案，以便 Claude 知道每個檔案包含什麼以及何時載入它：</p>
+<pre data-lang="markdown"><code>## Additional resources
+
+- For complete API details, see [reference.md](reference.md)
+- For usage examples, see [examples.md](examples.md)</code></pre>
+<div class="note">
+將 <code>SKILL.md</code> 保持在 500 行以下。將詳細的參考資料移到單獨的檔案中。
+</div>
+<h4>控制誰呼叫 Skill</h4>
+<p>預設情況下，你和 Claude 都可以呼叫任何 skill。你可以輸入 <code>/skill-name</code> 直接呼叫它，Claude 可以在與你的對話相關時自動載入它。兩個 frontmatter 欄位讓你限制這一點：</p>
+<ul>
+<li><strong><code>disable-model-invocation: true</code></strong>：只有你可以呼叫該 skill。用於有副作用的工作流程或你想控制時間的工作流程，如 <code>/commit</code>、<code>/deploy</code> 或 <code>/send-slack-message</code>。你不希望 Claude 因為你的程式碼看起來準備好了就決定部署。</li>
+<li><strong><code>user-invocable: false</code></strong>：只有 Claude 可以呼叫該 skill。用於不可作為指令操作的背景知識。<code>legacy-system-context</code> skill 解釋了舊系統的工作原理。Claude 在相關時應該知道這一點，但 <code>/legacy-system-context</code> 對使用者來說不是一個有意義的操作。</li>
+</ul>
+<p>以下是兩個欄位如何影響呼叫和上下文載入：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Frontmatter</th><th>你可以呼叫</th><th>Claude 可以呼叫</th><th>何時載入到上下文中</th></tr>
+</thead>
+<tbody>
+<tr><td>（預設）</td><td>是</td><td>是</td><td>描述始終在上下文中，呼叫時載入完整 skill</td></tr>
+<tr><td><code>disable-model-invocation: true</code></td><td>是</td><td>否</td><td>描述不在上下文中，你呼叫時載入完整 skill</td></tr>
+<tr><td><code>user-invocable: false</code></td><td>否</td><td>是</td><td>描述始終在上下文中，呼叫時載入完整 skill</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+在一般工作階段中，skill 描述被載入到上下文中，以便 Claude 知道什麼可用，但完整 skill 內容僅在呼叫時載入。預載入 skills 的 subagents 的運作方式不同：完整 skill 內容在啟動時注入。
+</div>
+<h4>限制工具存取</h4>
+<p>使用 <code>allowed-tools</code> 欄位來限制當 skill 處於活動狀態時 Claude 可以使用哪些工具。此 skill 建立一個唯讀模式，其中 Claude 可以瀏覽檔案但不能修改它們：</p>
+<pre data-lang="yaml"><code>---
+name: safe-reader
+description: Read files without making changes
+allowed-tools: Read, Grep, Glob
+---</code></pre>
+<h4>將參數傳遞給 Skills</h4>
+<p>你和 Claude 都可以在呼叫 skill 時傳遞參數。參數可透過 <code>$ARGUMENTS</code> 佔位符取得。</p>
+<p>此 skill 按編號修復 GitHub issue。<code>$ARGUMENTS</code> 佔位符被替換為 skill 名稱後面的任何內容：</p>
+<pre data-lang="yaml"><code>---
+name: fix-issue
+description: Fix a GitHub issue
+disable-model-invocation: true
+---
+
+Fix GitHub issue $ARGUMENTS following our coding standards.
+
+1. Read the issue description
+2. Understand the requirements
+3. Implement the fix
+4. Write tests
+5. Create a commit</code></pre>
+<p>當你執行 <code>/fix-issue 123</code> 時，Claude 收到 "Fix GitHub issue 123 following our coding standards..."</p>
+<p>如果你使用參數呼叫 skill 但 skill 不包含 <code>$ARGUMENTS</code>，Claude Code 會將 <code>ARGUMENTS: &lt;your input&gt;</code> 附加到 skill 內容的末尾，以便 Claude 仍然看到你輸入的內容。</p>
+<p>要按位置存取單個參數，使用 <code>$ARGUMENTS[N]</code> 或較短的 <code>$N</code>：</p>
+<pre data-lang="yaml"><code>---
+name: migrate-component
+description: Migrate a component from one framework to another
+---
+
+Migrate the $ARGUMENTS[0] component from $ARGUMENTS[1] to $ARGUMENTS[2].
+Preserve all existing behavior and tests.</code></pre>
+<p>執行 <code>/migrate-component SearchBar React Vue</code> 會將 <code>$ARGUMENTS[0]</code> 替換為 <code>SearchBar</code>，<code>$ARGUMENTS[1]</code> 替換為 <code>React</code>，<code>$ARGUMENTS[2]</code> 替換為 <code>Vue</code>。</p>
+<h3>進階模式</h3>
+<h4>注入動態上下文</h4>
+<p>`` !`&lt;command&gt;` `` 語法在將 skill 內容傳送給 Claude 之前執行 shell 指令。指令輸出替換佔位符，因此 Claude 接收實際資料，而不是指令本身。</p>
+<p>此 skill 透過使用 GitHub CLI 取得即時 PR 資料來摘要 pull request。`` !`gh pr diff` `` 和其他指令首先執行，其輸出被插入到提示中：</p>
+<pre data-lang="yaml"><code>---
+name: pr-summary
+description: Summarize changes in a pull request
+context: fork
+agent: Explore
+allowed-tools: Bash(gh *)
+---
+
+## Pull request context
+- PR diff: !`gh pr diff`
+- PR comments: !`gh pr view --comments`
+- Changed files: !`gh pr diff --name-only`
+
+## Your task
+Summarize this pull request...</code></pre>
+<p>當此 skill 執行時：</p>
+<ol>
+<li>每個 `` !`&lt;command&gt;` `` 立即執行（在 Claude 看到任何內容之前）</li>
+<li>輸出替換 skill 內容中的佔位符</li>
+<li>Claude 接收帶有實際 PR 資料的完全呈現的提示</li>
+</ol>
+<p>這是預處理，不是 Claude 執行的內容。Claude 只看到最終結果。</p>
+<div class="note">
+要在 skill 中啟用擴展思考 (extended thinking)，在你的 skill 內容中的任何地方包含單詞 "ultrathink"。
+</div>
+<h4>在 Subagent 中執行 Skills</h4>
+<p>當你想讓 skill 在隔離中執行時，在你的 frontmatter 中加入 <code>context: fork</code>。skill 內容變成驅動 subagent 的提示。它將無法存取你的對話歷史。</p>
+<div class="note">
+<strong>警告：</strong> <code>context: fork</code> 僅對具有明確指示的 skills 有意義。如果你的 skill 包含「使用這些 API 慣例」之類的指引而沒有任務，subagent 會收到指引但沒有可操作的提示，並返回而沒有有意義的輸出。
+</div>
+<p>Skills 和 subagents 以兩個方向協同工作：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>方法</th><th>系統提示</th><th>任務</th><th>也載入</th></tr>
+</thead>
+<tbody>
+<tr><td>帶有 <code>context: fork</code> 的 Skill</td><td>來自代理類型（<code>Explore</code>、<code>Plan</code> 等）</td><td>SKILL.md 內容</td><td>CLAUDE.md</td></tr>
+<tr><td>帶有 <code>skills</code> 欄位的 Subagent</td><td>Subagent 的 markdown 正文</td><td>Claude 的委派訊息</td><td>預載入的 skills + CLAUDE.md</td></tr>
+</tbody>
+</table>
+</div>
+<h4>限制 Claude 的 Skill 存取</h4>
+<p>預設情況下，Claude 可以呼叫任何沒有設定 <code>disable-model-invocation: true</code> 的 skill。</p>
+<p>控制 Claude 可以呼叫哪些 skills 的三種方式：</p>
+<p><strong>透過在 <code>/permissions</code> 中拒絕 Skill 工具來停用所有 skills</strong>：</p>
+<pre data-lang="text"><code># Add to deny rules:
+Skill</code></pre>
+<p><strong>使用權限規則允許或拒絕特定 skills</strong>：</p>
+<pre data-lang="text"><code># Allow only specific skills
+Skill(commit)
+Skill(review-pr *)
+
+# Deny specific skills
+Skill(deploy *)</code></pre>
+<p>權限語法：<code>Skill(name)</code> 用於精確匹配，<code>Skill(name *)</code> 用於帶有任何參數的前綴匹配。</p>
+<p><strong>透過在其 frontmatter 中加入 <code>disable-model-invocation: true</code> 來隱藏單個 skills</strong>。這會從 Claude 的上下文中完全移除該 skill。</p>
+<h3>分享 Skills</h3>
+<p>Skills 可以根據你的受眾在不同範圍內分發：</p>
+<ul>
+<li><strong>專案 skills</strong>：將 <code>.claude/skills/</code> 提交到版本控制</li>
+<li><strong>外掛</strong>：在你的外掛中建立 <code>skills/</code> 目錄</li>
+<li><strong>託管</strong>：透過託管設定部署組織範圍內</li>
+</ul>
+<h4>產生視覺輸出</h4>
+<p>Skills 可以捆綁並執行任何語言的腳本，為 Claude 提供單個提示中不可能的功能。一個強大的模式是產生視覺輸出：在瀏覽器中開啟的互動式 HTML 檔案，用於探索資料、除錯或建立報告。</p>
+<h3>疑難排解</h3>
+<h4>Skill 未觸發</h4>
+<p>如果 Claude 在預期時不使用你的 skill：</p>
+<ol>
+<li>檢查描述是否包含使用者會自然說的關鍵字</li>
+<li>驗證 skill 是否出現在 <code>What skills are available?</code> 中</li>
+<li>嘗試重新表述你的請求以更接近描述</li>
+<li>如果 skill 是使用者可呼叫的，使用 <code>/skill-name</code> 直接呼叫它</li>
+</ol>
+<h4>Skill 觸發過於頻繁</h4>
+<p>如果 Claude 在你不想要時使用你的 skill：</p>
+<ol>
+<li>使描述更具體</li>
+<li>如果你只想手動呼叫，加入 <code>disable-model-invocation: true</code></li>
+</ol>
+<h4>Claude 看不到我的所有 Skills</h4>
+<p>Skill 描述被載入到上下文中，以便 Claude 知道什麼可用。如果你有許多 skills，它們可能會超過字元預算。預算在上下文視窗的 2% 處動態擴展，回退為 16,000 個字元。執行 <code>/context</code> 以檢查有關排除的 skills 的警告。</p>
+<p>要覆蓋限制，設定 <code>SLASH_COMMAND_TOOL_CHAR_BUDGET</code> 環境變數。</p>
+<h3>相關資源</h3>
+<ul>
+<li><strong>Subagents</strong>：將任務委派給專門的代理</li>
+<li><strong>Plugins</strong>：打包和分發 skills 與其他擴展</li>
+<li><strong>Hooks</strong>：圍繞工具事件自動化工作流程</li>
+<li><strong>Memory</strong>：管理 CLAUDE.md 檔案以取得持久上下文</li>
+<li><strong>Built-in commands</strong>：內建 <code>/</code> 指令的參考</li>
+<li><strong>Permissions</strong>：控制工具和 skill 存取</li>
+</ul>
+<h2>透過 MCP 將 Claude Code 連接到工具</h2>
+<p>了解如何使用 Model Context Protocol (MCP) 將 Claude Code 連接到你的工具。</p>
+<p>Claude Code 可以透過 <a href="https://modelcontextprotocol.io/introduction">Model Context Protocol (MCP)</a>（一個用於 AI 工具整合的開源標準）連接到數百個外部工具和資料來源。MCP 伺服器為 Claude Code 提供對你的工具、資料庫和 API 的存取權限。</p>
+<h3>使用 MCP 可以做什麼</h3>
+<p>連接 MCP 伺服器後，你可以要求 Claude Code：</p>
+<ul>
+<li><strong>從問題追蹤器實作功能</strong>：「加入 JIRA issue ENG-4521 中描述的功能，並在 GitHub 上建立 PR。」</li>
+<li><strong>分析監控資料</strong>：「檢查 Sentry 和 Statsig 以檢查 ENG-4521 中描述的功能的使用情況。」</li>
+<li><strong>查詢資料庫</strong>：「根據我們的 PostgreSQL 資料庫，找出使用功能 ENG-4521 的 10 個隨機使用者的電子郵件。」</li>
+<li><strong>整合設計</strong>：「根據在 Slack 中發布的新 Figma 設計更新我們的標準電子郵件範本」</li>
+<li><strong>自動化工作流程</strong>：「建立 Gmail 草稿，邀請這 10 個使用者參加關於新功能的回饋會議。」</li>
+<li><strong>對外部事件做出反應</strong>：MCP 伺服器也可以充當 channels（頻道），將訊息推送到你的工作階段中，因此當你不在時，Claude 可以對 Telegram 訊息、Discord 聊天或 webhook 事件做出反應。</li>
+</ul>
+<h3>安裝 MCP 伺服器</h3>
+<p>MCP 伺服器可以根據你的需求以三種不同的方式進行設定：</p>
+<h4>選項 1：新增遠端 HTTP 伺服器</h4>
+<p>HTTP 伺服器是連接到遠端 MCP 伺服器的建議選項。這是雲端服務最廣泛支援的傳輸方式。</p>
+<pre data-lang="bash"><code># 基本語法
+claude mcp add --transport http &lt;name&gt; &lt;url&gt;
+
+# 真實範例：連接到 Notion
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+
+# 帶有 Bearer token 的範例
+claude mcp add --transport http secure-api https://api.example.com/mcp \
+  --header "Authorization: Bearer your-token"</code></pre>
+<h4>選項 2：新增遠端 SSE 伺服器</h4>
+<div class="note">
+<strong>警告：</strong> SSE (Server-Sent Events) 傳輸已棄用。請在可用的地方使用 HTTP 伺服器。
+</div>
+<pre data-lang="bash"><code># 基本語法
+claude mcp add --transport sse &lt;name&gt; &lt;url&gt;
+
+# 真實範例：連接到 Asana
+claude mcp add --transport sse asana https://mcp.asana.com/sse</code></pre>
+<h4>選項 3：新增本機 stdio 伺服器</h4>
+<p>Stdio 伺服器作為你機器上的本機程序執行。它們非常適合需要直接系統存取或自訂腳本的工具。</p>
+<pre data-lang="bash"><code># 基本語法
+claude mcp add [options] &lt;name&gt; -- &lt;command&gt; [args...]
+
+# 真實範例：新增 Airtable 伺服器
+claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable \
+  -- npx -y airtable-mcp-server</code></pre>
+<div class="note">
+<strong>重要：選項順序</strong><br><br>
+所有選項（<code>--transport</code>、<code>--env</code>、<code>--scope</code>、<code>--header</code>）必須在伺服器名稱<strong>之前</strong>。然後 <code>--</code>（雙破折號）將伺服器名稱與傳遞給 MCP 伺服器的指令和參數分開。
+</div>
+<h4>管理你的伺服器</h4>
+<p>設定後，你可以使用這些指令管理你的 MCP 伺服器：</p>
+<pre data-lang="bash"><code># 列出所有已設定的伺服器
+claude mcp list
+
+# 取得特定伺服器的詳細資訊
+claude mcp get github
+
+# 移除伺服器
+claude mcp remove github
+
+# （在 Claude Code 中）檢查伺服器狀態
+/mcp</code></pre>
+<h4>動態工具更新</h4>
+<p>Claude Code 支援 MCP <code>list_changed</code> 通知，允許 MCP 伺服器動態更新其可用工具、提示和資源，而無需你中斷連線並重新連線。當 MCP 伺服器傳送 <code>list_changed</code> 通知時，Claude Code 會自動重新整理來自該伺服器的可用功能。</p>
+<h4>使用 Channels 推送訊息</h4>
+<p>MCP 伺服器也可以直接將訊息推送到你的工作階段中，以便 Claude 可以對外部事件（如 CI 結果、監控警報或聊天訊息）做出反應。要啟用此功能，你的伺服器宣告 <code>claude/channel</code> 功能，並在啟動時使用 <code>--channels</code> 旗標選擇加入。</p>
+<div class="note">
+提示：<br><br>
+<ul>
+<li>使用 <code>--scope</code> 旗標指定設定的儲存位置：
+  <ul>
+    <li><code>local</code>（預設）：僅在目前專案中對你可用</li>
+    <li><code>project</code>：透過 <code>.mcp.json</code> 檔案與專案中的每個人共享</li>
+    <li><code>user</code>：在所有專案中對你可用</li>
+  </ul>
+</li>
+<li>使用 <code>--env</code> 旗標設定環境變數（例如，<code>--env KEY=value</code>）</li>
+<li>使用 MCP_TIMEOUT 環境變數設定 MCP 伺服器啟動逾時（例如，<code>MCP_TIMEOUT=10000 claude</code> 設定 10 秒逾時）</li>
+<li>當 MCP 工具輸出超過 10,000 個 token 時，Claude Code 將顯示警告。要增加此限制，請設定 <code>MAX_MCP_OUTPUT_TOKENS</code> 環境變數</li>
+<li>使用 <code>/mcp</code> 對需要 OAuth 2.0 驗證的遠端伺服器進行驗證</li>
+</ul>
+<br>
+<strong>Windows 使用者</strong>：在原生 Windows（不是 WSL）上，使用 <code>npx</code> 的本機 MCP 伺服器需要 <code>cmd /c</code> 包裝器以確保正確執行。<br><br>
+<pre data-lang="bash"><code>claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package</code></pre>
+</div>
+<h4>外掛提供的 MCP 伺服器</h4>
+<p>外掛可以捆綁 MCP 伺服器，在啟用外掛時自動提供工具和整合。外掛 MCP 伺服器的運作方式與使用者設定的伺服器相同。</p>
+<h3>MCP 安裝範圍</h3>
+<p>MCP 伺服器可以在三個不同的範圍層級進行設定：</p>
+<h4>本機範圍</h4>
+<p>本機範圍的伺服器代表預設設定層級。這些伺服器對你保持私密，僅在目前專案目錄中工作時可存取。此範圍非常適合個人開發伺服器、實驗設定或包含不應共享的敏感憑證的伺服器。</p>
+<pre data-lang="bash"><code># 新增本機範圍的伺服器（預設）
+claude mcp add --transport http stripe https://mcp.stripe.com
+
+# 明確指定本機範圍
+claude mcp add --transport http stripe --scope local https://mcp.stripe.com</code></pre>
+<h4>專案範圍</h4>
+<p>專案範圍的伺服器透過在專案根目錄中儲存設定在 <code>.mcp.json</code> 檔案中來啟用團隊協作。此檔案設計為簽入版本控制，確保所有團隊成員都可以存取相同的 MCP 工具和服務。</p>
+<pre data-lang="bash"><code># 新增專案範圍的伺服器
+claude mcp add --transport http paypal --scope project https://mcp.paypal.com/mcp</code></pre>
+<p>產生的 <code>.mcp.json</code> 檔案遵循標準化格式：</p>
+<pre data-lang="json"><code>{
+  "mcpServers": {
+    "shared-server": {
+      "command": "/path/to/server",
+      "args": [],
+      "env": {}
+    }
+  }
+}</code></pre>
+<p>出於安全原因，Claude Code 在使用來自 <code>.mcp.json</code> 檔案的專案範圍的伺服器之前會提示批准。如果你需要重置這些批准選擇，請使用 <code>claude mcp reset-project-choices</code> 指令。</p>
+<h4>使用者範圍</h4>
+<p>使用者範圍的伺服器儲存在 <code>~/.claude.json</code> 中，並提供跨專案可存取性，使其在你機器上的所有專案中可用，同時對你的使用者帳戶保持私密。</p>
+<pre data-lang="bash"><code># 新增使用者伺服器
+claude mcp add --transport http hubspot --scope user https://mcp.hubspot.com/anthropic</code></pre>
+<h4>選擇正確的範圍</h4>
+<p>根據以下條件選擇你的範圍：</p>
+<ul>
+<li><strong>本機範圍</strong>：個人伺服器、實驗設定或特定於一個專案的敏感憑證</li>
+<li><strong>專案範圍</strong>：團隊共享的伺服器、專案特定的工具或協作所需的服務</li>
+<li><strong>使用者範圍</strong>：跨多個專案需要的個人工具程式、開發工具或經常使用的服務</li>
+</ul>
+<h4>範圍階層和優先權</h4>
+<p>MCP 伺服器設定遵循清晰的優先權階層。當具有相同名稱的伺服器存在於多個範圍時，系統透過首先優先考慮本機範圍的伺服器、其次是專案範圍的伺服器，最後是使用者範圍的伺服器來解決衝突。</p>
+<h4>.mcp.json 中的環境變數擴展</h4>
+<p>Claude Code 支援 <code>.mcp.json</code> 檔案中的環境變數擴展，允許團隊共享設定，同時為特定於機器的路徑和 API 金鑰等敏感值保持彈性。</p>
+<p><strong>支援的語法：</strong></p>
+<ul>
+<li><code>${VAR}</code> - 擴展為環境變數 <code>VAR</code> 的值</li>
+<li><code>${VAR:-default}</code> - 如果設定了 <code>VAR</code>，則擴展為 <code>VAR</code>，否則使用 <code>default</code></li>
+</ul>
+<pre data-lang="json"><code>{
+  "mcpServers": {
+    "api-server": {
+      "type": "http",
+      "url": "${API_BASE_URL:-https://api.example.com}/mcp",
+      "headers": {
+        "Authorization": "Bearer ${API_KEY}"
+      }
+    }
+  }
+}</code></pre>
+<h3>實際範例</h3>
+<h4>範例：使用 Sentry 監控錯誤</h4>
+<pre data-lang="bash"><code>claude mcp add --transport http sentry https://mcp.sentry.dev/mcp</code></pre>
+<p>使用你的 Sentry 帳戶進行驗證：</p>
+<pre data-lang="text"><code>/mcp</code></pre>
+<p>然後除錯生產問題：</p>
+<pre data-lang="text"><code>過去 24 小時內最常見的錯誤是什麼？</code></pre>
+<h4>範例：連接到 GitHub 進行程式碼審查</h4>
+<pre data-lang="bash"><code>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></pre>
+<h4>範例：查詢你的 PostgreSQL 資料庫</h4>
+<pre data-lang="bash"><code>claude mcp add --transport stdio db -- npx -y @bytebase/dbhub \
+  --dsn "postgresql://readonly:pass@prod.db.com:5432/analytics"</code></pre>
+<h3>使用遠端 MCP 伺服器進行驗證</h3>
+<p>許多基於雲端的 MCP 伺服器需要驗證。Claude Code 支援 OAuth 2.0 以實現安全連線。</p>
+<ol>
+<li>新增需要驗證的伺服器</li>
+<li>在 Claude Code 中使用 <code>/mcp</code> 指令</li>
+<li>然後按照瀏覽器中的步驟登入</li>
+</ol>
+<h4>使用固定的 OAuth 回呼連接埠</h4>
+<p>某些 MCP 伺服器需要預先註冊的特定重導 URI。使用 <code>--callback-port</code> 固定連接埠。</p>
+<pre data-lang="bash"><code># 使用動態用戶端註冊的固定回呼連接埠
+claude mcp add --transport http \
+  --callback-port 8080 \
+  my-server https://mcp.example.com/mcp</code></pre>
+<h4>使用預設的 OAuth 憑證</h4>
+<p>某些 MCP 伺服器不支援自動 OAuth 設定。首先透過伺服器的開發者入口網站註冊 OAuth 應用，然後在新增伺服器時提供憑證。</p>
+<pre data-lang="bash"><code>claude mcp add --transport http \
+  --client-id your-client-id --client-secret --callback-port 8080 \
+  my-server https://mcp.example.com/mcp</code></pre>
+<h4>使用動態標頭進行自訂驗證</h4>
+<p>如果你的 MCP 伺服器使用 OAuth 以外的驗證方案，請使用 <code>headersHelper</code> 在連線時產生請求標頭。</p>
+<pre data-lang="json"><code>{
+  "mcpServers": {
+    "internal-api": {
+      "type": "http",
+      "url": "https://mcp.internal.example.com",
+      "headersHelper": "/opt/bin/get-mcp-auth-headers.sh"
+    }
+  }
+}</code></pre>
+<h3>從 JSON 設定新增 MCP 伺服器</h3>
+<pre data-lang="bash"><code># 基本語法
+claude mcp add-json &lt;name&gt; '&lt;json&gt;'
+
+# 範例：新增帶有 JSON 設定的 HTTP 伺服器
+claude mcp add-json weather-api '{"type":"http","url":"https://api.weather.com/mcp","headers":{"Authorization":"Bearer token"}}'</code></pre>
+<h3>從 Claude Desktop 匯入 MCP 伺服器</h3>
+<pre data-lang="bash"><code>claude mcp add-from-claude-desktop</code></pre>
+<p>此功能僅在 macOS 和 Windows Subsystem for Linux (WSL) 上有效。</p>
+<h3>使用來自 Claude.ai 的 MCP 伺服器</h3>
+<p>如果你已使用 Claude.ai 帳戶登入 Claude Code，你在 Claude.ai 中新增的 MCP 伺服器會自動在 Claude Code 中可用。</p>
+<p>要在 Claude Code 中停用 claude.ai MCP 伺服器：</p>
+<pre data-lang="bash"><code>ENABLE_CLAUDEAI_MCP_SERVERS=false claude</code></pre>
+<h3>將 Claude Code 用作 MCP 伺服器</h3>
+<p>你可以將 Claude Code 本身用作 MCP 伺服器，其他應用程式可以連接到它：</p>
+<pre data-lang="bash"><code># 啟動 Claude 作為 stdio MCP 伺服器
+claude mcp serve</code></pre>
+<h3>MCP 輸出限制和警告</h3>
+<ul>
+<li><strong>輸出警告閾值</strong>：當任何 MCP 工具輸出超過 10,000 個 token 時，Claude Code 顯示警告</li>
+<li><strong>可設定限制</strong>：你可以使用 <code>MAX_MCP_OUTPUT_TOKENS</code> 環境變數調整最大允許的 MCP 輸出 token</li>
+<li><strong>預設限制</strong>：預設最大值為 25,000 個 token</li>
+</ul>
+<pre data-lang="bash"><code># 為 MCP 工具輸出設定更高的限制
+export MAX_MCP_OUTPUT_TOKENS=50000
+claude</code></pre>
+<h3>回應 MCP 引發請求</h3>
+<p>MCP 伺服器可以在任務中途使用 elicitation（引發）來請求你的結構化輸入。當伺服器需要無法自行取得的資訊時，Claude Code 會顯示互動式對話框並將你的回應傳遞回伺服器。</p>
+<p>伺服器可以透過兩種方式請求輸入：</p>
+<ul>
+<li><strong>表單模式</strong>：Claude Code 顯示一個對話框，其中包含伺服器定義的表單欄位</li>
+<li><strong>URL 模式</strong>：Claude Code 開啟瀏覽器 URL 以進行驗證或批准</li>
+</ul>
+<h3>使用 MCP 資源</h3>
+<p>MCP 伺服器可以公開資源，你可以使用 <code>@</code> 提及來引用，類似於你引用檔案的方式。</p>
+<p>使用格式 <code>@server:protocol://resource/path</code> 來引用資源：</p>
+<pre data-lang="text"><code>Can you analyze @github:issue://123 and suggest a fix?</code></pre>
+<h3>使用 MCP 工具搜尋進行擴展</h3>
+<p>當你設定了許多 MCP 伺服器時，工具定義可能會消耗你的上下文視窗的很大一部分。MCP 工具搜尋透過動態按需載入工具而不是預載入所有工具來解決此問題。</p>
+<p>當你的 MCP 工具描述會消耗超過 10% 的上下文視窗時，Claude Code 會自動啟用工具搜尋。</p>
+<p>使用 <code>ENABLE_TOOL_SEARCH</code> 環境變數控制工具搜尋行為：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>值</th><th>行為</th></tr>
+</thead>
+<tbody>
+<tr><td>（未設定）</td><td>預設啟用</td></tr>
+<tr><td><code>true</code></td><td>始終啟用</td></tr>
+<tr><td><code>auto</code></td><td>當 MCP 工具超過 10% 的上下文時啟用</td></tr>
+<tr><td><code>auto:&lt;N&gt;</code></td><td>在自訂閾值啟用，其中 <code>&lt;N&gt;</code> 是百分比</td></tr>
+<tr><td><code>false</code></td><td>停用，所有 MCP 工具預先載入</td></tr>
+</tbody>
+</table>
+</div>
+<h3>將 MCP 提示用作指令</h3>
+<p>MCP 伺服器可以公開在 Claude Code 中作為指令可用的提示。輸入 <code>/</code> 以查看所有可用的指令，包括來自 MCP 伺服器的指令。MCP 提示以 <code>/mcp__servername__promptname</code> 的格式出現。</p>
+<h3>託管 MCP 設定</h3>
+<p>對於需要對 MCP 伺服器進行集中控制的組織，Claude Code 支援兩個設定選項：</p>
+<ol>
+<li><strong>使用 <code>managed-mcp.json</code> 的獨占控制</strong>：部署使用者無法修改或擴展的固定 MCP 伺服器集</li>
+<li><strong>使用允許清單/拒絕清單的基於策略的控制</strong>：允許使用者新增自己的伺服器，但限制允許的伺服器</li>
+</ol>
+<h4>選項 1：使用 managed-mcp.json 的獨占控制</h4>
+<p>系統管理員將設定檔部署到系統範圍的目錄：</p>
+<ul>
+<li>macOS：<code>/Library/Application Support/ClaudeCode/managed-mcp.json</code></li>
+<li>Linux 和 WSL：<code>/etc/claude-code/managed-mcp.json</code></li>
+<li>Windows：<code>C:\Program Files\ClaudeCode\managed-mcp.json</code></li>
+</ul>
+<h4>選項 2：使用允許清單和拒絕清單的基於策略的控制</h4>
+<p>管理員可以允許使用者設定自己的 MCP 伺服器，同時對允許的伺服器進行限制。此方法在託管設定檔中使用 <code>allowedMcpServers</code> 和 <code>deniedMcpServers</code>。</p>
+<p>限制選項：</p>
+<ol>
+<li><strong>按伺服器名稱</strong> (<code>serverName</code>)：匹配伺服器的設定名稱</li>
+<li><strong>按指令</strong> (<code>serverCommand</code>)：匹配用於啟動 stdio 伺服器的確切指令和參數</li>
+<li><strong>按 URL 模式</strong> (<code>serverUrl</code>)：匹配帶有萬用字元支援的遠端伺服器 URL</li>
+</ol>
+<h2>使用 Hooks 自動化工作流程</h2>
+<p>當 Claude Code 編輯檔案、完成任務或需要輸入時自動執行 shell 指令。格式化程式碼、傳送通知、驗證指令並強制執行專案規則。</p>
+<p>Hooks 是使用者定義的 shell 指令，在 Claude Code 生命週期中的特定點執行。它們對 Claude Code 的行為提供確定性控制，確保某些操作始終發生，而不是依賴 LLM 選擇執行它們。使用 hooks 來強制執行專案規則、自動化重複任務，並將 Claude Code 與現有工具整合。</p>
+<p>對於需要判斷而不是確定性規則的決策，你也可以使用基於提示的 hooks (prompt-based hooks) 或基於代理的 hooks (agent-based hooks)，它們使用 Claude 模型來評估條件。</p>
+<div class="note">
+本指南涵蓋常見用例和入門方法。有關完整的事件架構、JSON 輸入/輸出格式和非同步 hooks 及 MCP 工具 hooks 等進階功能，請參閱 Hooks 參考。
+</div>
+<h3>設定你的第一個 Hook</h3>
+<p>要建立 hook，請將 <code>hooks</code> 區塊新增到設定檔。本演練建立一個桌面通知 hook，這樣每當 Claude 等待你的輸入而不是監視終端時，你都會收到警報。</p>
+<p><strong>步驟 1：將 hook 新增到你的設定</strong></p>
+<p>開啟 <code>~/.claude/settings.json</code> 並新增一個 <code>Notification</code> hook：</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p><strong>步驟 2：驗證設定</strong></p>
+<p>輸入 <code>/hooks</code> 開啟 hooks 瀏覽器。你將看到所有可用 hook 事件的清單，每個設定了 hooks 的事件旁邊都有一個計數。</p>
+<p><strong>步驟 3：測試 hook</strong></p>
+<p>按 <code>Esc</code> 返回 CLI。要求 Claude 做需要權限的事情，然後切換離開終端。你應該會收到桌面通知。</p>
+<div class="note">
+<code>/hooks</code> 選單是唯讀的。要新增、修改或刪除 hooks，請直接編輯你的設定 JSON 或要求 Claude 進行更改。
+</div>
+<h3>你可以自動化什麼</h3>
+<p>Hooks 讓你在 Claude Code 生命週期中的關鍵點執行程式碼：編輯後格式化檔案、在執行前阻止指令、在 Claude 需要輸入時傳送通知、在工作階段開始時注入上下文等。</p>
+<h4>在 Claude 需要輸入時取得通知</h4>
+<p>每當 Claude 完成工作並需要你的輸入時取得桌面通知。此 hook 使用 <code>Notification</code> 事件，當 Claude 等待輸入或權限時觸發。</p>
+<p><strong>macOS：</strong></p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p><strong>Windows (PowerShell)：</strong></p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Claude Code needs your attention', 'Claude Code')\""
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h4>編輯後自動格式化程式碼</h4>
+<p>在 Claude 編輯的每個檔案上自動執行 Prettier，以便格式保持一致而無需手動介入。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | xargs npx prettier --write"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h4>阻止對受保護檔案的編輯</h4>
+<p>防止 Claude 修改敏感檔案，如 <code>.env</code>、<code>package-lock.json</code> 或 <code>.git/</code> 中的任何內容。</p>
+<p>將腳本儲存到 <code>.claude/hooks/protect-files.sh</code>：</p>
+<pre data-lang="bash"><code>#!/bin/bash
+# protect-files.sh
+
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+PROTECTED_PATTERNS=(".env" "package-lock.json" ".git/")
+
+for pattern in "${PROTECTED_PATTERNS[@]}"; do
+  if [[ "$FILE_PATH" == *"$pattern"* ]]; then
+    echo "Blocked: $FILE_PATH matches protected pattern '$pattern'" >&2
+    exit 2
+  fi
+done
+
+exit 0</code></pre>
+<h4>壓縮後重新注入上下文</h4>
+<p>當 Claude 的上下文視窗填滿時，壓縮會摘要對話以釋放空間。使用帶有 <code>compact</code> 匹配器的 <code>SessionStart</code> hook 在每次壓縮後重新注入關鍵上下文。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Reminder: use Bun, not npm. Run bun test before committing. Current sprint: auth refactor.'"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h4>審計設定更改</h4>
+<p>追蹤工作階段期間設定或 skills 檔案何時更改。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "ConfigChange": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -c '{timestamp: now | todate, source: .source, file: .file_path}' >> ~/claude-config-audit.log"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h4>當目錄或檔案更改時重新載入環境</h4>
+<p><code>CwdChanged</code> hook 在 Claude 每次更改目錄時執行，因此你可以為新位置重新載入正確的變數。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "CwdChanged": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "direnv export bash >> \"$CLAUDE_ENV_FILE\""
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>要對特定檔案而不是每個目錄更改做出反應，請使用 <code>FileChanged</code>：</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "FileChanged": [
+      {
+        "matcher": ".envrc|.env",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "direnv export bash >> \"$CLAUDE_ENV_FILE\""
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h4>自動批准特定權限提示</h4>
+<p>跳過你總是允許的工具呼叫的批准對話。此範例自動批准 <code>ExitPlanMode</code>：</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PermissionRequest\", \"decision\": {\"behavior\": \"allow\"}}}'"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>保持匹配器盡可能狹窄。匹配 <code>.*</code> 或留下匹配器為空會自動批准每個權限提示。</p>
+<h3>Hooks 如何運作</h3>
+<p>Hook 事件在 Claude Code 中的特定生命週期點觸發。當事件觸發時，所有匹配的 hooks 並行執行，相同的 hook 指令會自動去重。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>事件</th><th>何時觸發</th></tr>
+</thead>
+<tbody>
+<tr><td><code>SessionStart</code></td><td>工作階段開始或恢復時</td></tr>
+<tr><td><code>UserPromptSubmit</code></td><td>你提交提示時，在 Claude 處理之前</td></tr>
+<tr><td><code>PreToolUse</code></td><td>工具呼叫執行之前。可以阻止它</td></tr>
+<tr><td><code>PermissionRequest</code></td><td>權限對話框出現時</td></tr>
+<tr><td><code>PostToolUse</code></td><td>工具呼叫成功後</td></tr>
+<tr><td><code>PostToolUseFailure</code></td><td>工具呼叫失敗後</td></tr>
+<tr><td><code>Notification</code></td><td>Claude Code 傳送通知時</td></tr>
+<tr><td><code>SubagentStart</code></td><td>subagent 被產生時</td></tr>
+<tr><td><code>SubagentStop</code></td><td>subagent 完成時</td></tr>
+<tr><td><code>TaskCreated</code></td><td>透過 <code>TaskCreate</code> 建立任務時</td></tr>
+<tr><td><code>TaskCompleted</code></td><td>任務被標記為已完成時</td></tr>
+<tr><td><code>Stop</code></td><td>Claude 完成回應時</td></tr>
+<tr><td><code>StopFailure</code></td><td>回合因 API 錯誤而結束時</td></tr>
+<tr><td><code>TeammateIdle</code></td><td>代理團隊隊友即將閒置時</td></tr>
+<tr><td><code>InstructionsLoaded</code></td><td>CLAUDE.md 或 <code>.claude/rules/*.md</code> 檔案被載入到上下文中時</td></tr>
+<tr><td><code>ConfigChange</code></td><td>工作階段期間設定檔更改時</td></tr>
+<tr><td><code>CwdChanged</code></td><td>工作目錄更改時</td></tr>
+<tr><td><code>FileChanged</code></td><td>受監視的檔案在磁碟上更改時</td></tr>
+<tr><td><code>WorktreeCreate</code></td><td>worktree 正在建立時</td></tr>
+<tr><td><code>WorktreeRemove</code></td><td>worktree 正在移除時</td></tr>
+<tr><td><code>PreCompact</code></td><td>上下文壓縮之前</td></tr>
+<tr><td><code>PostCompact</code></td><td>上下文壓縮完成之後</td></tr>
+<tr><td><code>Elicitation</code></td><td>MCP 伺服器在工具呼叫期間請求使用者輸入時</td></tr>
+<tr><td><code>ElicitationResult</code></td><td>使用者回應 MCP elicitation 後</td></tr>
+<tr><td><code>SessionEnd</code></td><td>工作階段終止時</td></tr>
+</tbody>
+</table>
+</div>
+<p>每個 hook 都有一個 <code>type</code> 來決定它如何執行：</p>
+<ul>
+<li><code>"type": "command"</code>：執行 shell 指令</li>
+<li><code>"type": "http"</code>：將事件資料 POST 到 URL</li>
+<li><code>"type": "prompt"</code>：單輪 LLM 評估</li>
+<li><code>"type": "agent"</code>：具有工具存取權限的多輪驗證</li>
+</ul>
+<h4>讀取輸入並返回輸出</h4>
+<p>Hooks 透過 stdin、stdout、stderr 和退出代碼與 Claude Code 通訊。</p>
+<p><strong>Hook 輸入：</strong></p>
+<p>每個事件都包含常見欄位，如 <code>session_id</code> 和 <code>cwd</code>，但每個事件類型新增不同的資料。例如 <code>PreToolUse</code> hook 在 stdin 上接收：</p>
+<pre data-lang="json"><code>{
+  "session_id": "abc123",
+  "cwd": "/Users/sarah/myproject",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "npm test"
+  }
+}</code></pre>
+<p><strong>Hook 輸出：</strong></p>
+<p>退出代碼決定接下來會發生什麼：</p>
+<ul>
+<li><strong>退出 0</strong>：操作繼續。對於 <code>UserPromptSubmit</code> 和 <code>SessionStart</code> hooks，你寫入 stdout 的任何內容都會新增到 Claude 的上下文中。</li>
+<li><strong>退出 2</strong>：操作被阻止。寫入原因到 stderr，Claude 會收到它作為回饋。</li>
+<li><strong>任何其他退出代碼</strong>：操作繼續。Stderr 被記錄但不顯示給 Claude。使用 <code>Ctrl+O</code> 切換詳細模式以查看這些訊息。</li>
+</ul>
+<p><strong>結構化 JSON 輸出：</strong></p>
+<p>退出代碼給你兩個選項：允許或阻止。為了取得更多控制，退出 0 並改為將 JSON 物件印到 stdout。</p>
+<div class="note">
+使用退出 2 以 stderr 訊息阻止，或使用 JSON 退出 0 以取得結構化控制。不要混合它們：Claude Code 在你退出 2 時忽略 JSON。
+</div>
+<h4>使用匹配器過濾 Hooks</h4>
+<p>匹配器是一個正則表達式，讓你縮小 hook 觸發的範圍。每個事件類型在特定欄位上匹配：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>事件</th><th>匹配器過濾的內容</th><th>範例匹配器值</th></tr>
+</thead>
+<tbody>
+<tr><td><code>PreToolUse</code>、<code>PostToolUse</code>、<code>PostToolUseFailure</code>、<code>PermissionRequest</code></td><td>工具名稱</td><td><code>Bash</code>、<code>Edit\|Write</code>、<code>mcp__.*</code></td></tr>
+<tr><td><code>SessionStart</code></td><td>工作階段如何啟動</td><td><code>startup</code>、<code>resume</code>、<code>clear</code>、<code>compact</code></td></tr>
+<tr><td><code>SessionEnd</code></td><td>工作階段為什麼結束</td><td><code>clear</code>、<code>resume</code>、<code>logout</code></td></tr>
+<tr><td><code>Notification</code></td><td>通知類型</td><td><code>permission_prompt</code>、<code>idle_prompt</code></td></tr>
+<tr><td><code>SubagentStart</code>、<code>SubagentStop</code></td><td>代理類型</td><td><code>Bash</code>、<code>Explore</code>、<code>Plan</code></td></tr>
+<tr><td><code>PreCompact</code>、<code>PostCompact</code></td><td>什麼觸發了壓縮</td><td><code>manual</code>、<code>auto</code></td></tr>
+<tr><td><code>ConfigChange</code></td><td>設定來源</td><td><code>user_settings</code>、<code>project_settings</code></td></tr>
+<tr><td><code>FileChanged</code></td><td>檔名</td><td><code>.envrc</code>、<code>.env</code></td></tr>
+<tr><td><code>StopFailure</code></td><td>錯誤類型</td><td><code>rate_limit</code>、<code>server_error</code></td></tr>
+<tr><td><code>Elicitation</code>、<code>ElicitationResult</code></td><td>MCP 伺服器名稱</td><td>你設定的 MCP 伺服器名稱</td></tr>
+<tr><td><code>UserPromptSubmit</code>、<code>Stop</code>、<code>TeammateIdle</code>、<code>TaskCompleted</code>、<code>WorktreeCreate</code>、<code>WorktreeRemove</code>、<code>CwdChanged</code></td><td>不支援匹配器</td><td>始終在每次出現時觸發</td></tr>
+</tbody>
+</table>
+</div>
+<h4>設定 Hook 位置</h4>
+<p>你新增 hook 的位置決定了其範圍：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>位置</th><th>範圍</th><th>可共享</th></tr>
+</thead>
+<tbody>
+<tr><td><code>~/.claude/settings.json</code></td><td>所有你的專案</td><td>否，本機到你的機器</td></tr>
+<tr><td><code>.claude/settings.json</code></td><td>單個專案</td><td>是，可以提交到儲存庫</td></tr>
+<tr><td><code>.claude/settings.local.json</code></td><td>單個專案</td><td>否，gitignored</td></tr>
+<tr><td>託管策略設定</td><td>組織範圍</td><td>是，管理員控制</td></tr>
+<tr><td>Plugin <code>hooks/hooks.json</code></td><td>啟用外掛時</td><td>是，與外掛捆綁</td></tr>
+<tr><td>Skill 或 agent frontmatter</td><td>當 skill 或 agent 處於活動狀態時</td><td>是，在元件檔案中定義</td></tr>
+</tbody>
+</table>
+</div>
+<h3>基於提示的 Hooks</h3>
+<p>對於需要判斷而不是確定性規則的決策，使用 <code>type: "prompt"</code> hooks。Claude Code 不執行 shell 指令，而是將你的提示和 hook 的輸入資料傳送到 Claude 模型（預設為 Haiku）來做出決策。</p>
+<p>模型的唯一工作是返回一個是/否決策作為 JSON：</p>
+<ul>
+<li><code>"ok": true</code>：操作繼續</li>
+<li><code>"ok": false</code>：操作被阻止。模型的 <code>"reason"</code> 被回饋給 Claude。</li>
+</ul>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if all tasks are complete. If not, respond with {\"ok\": false, \"reason\": \"what remains to be done\"}."
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h3>基於代理的 Hooks</h3>
+<p>當驗證需要檢查檔案或執行指令時，使用 <code>type: "agent"</code> hooks。與只進行單個 LLM 呼叫的提示 hooks 不同，代理 hooks 產生一個 subagent，它可以讀取檔案、搜尋程式碼和使用其他工具來驗證條件，然後返回決策。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Verify that all unit tests pass. Run the test suite and check the results. $ARGUMENTS",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h3>HTTP Hooks</h3>
+<p>使用 <code>type: "http"</code> hooks 將事件資料 POST 到 HTTP 端點。端點接收指令 hook 在 stdin 上接收的相同 JSON，並使用相同的 JSON 格式透過 HTTP 回應本文返回結果。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:8080/hooks/tool-use",
+            "headers": {
+              "Authorization": "Bearer $MY_TOKEN"
+            },
+            "allowedEnvVars": ["MY_TOKEN"]
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>標頭值支援使用 <code>$VAR_NAME</code> 或 <code>${VAR_NAME}</code> 語法的環境變數插值。僅解析 <code>allowedEnvVars</code> 陣列中列出的變數。</p>
+<h3>限制和疑難排解</h3>
+<h4>限制</h4>
+<ul>
+<li>指令 hooks 僅透過 stdout、stderr 和退出代碼通訊。它們無法直接觸發指令或工具呼叫。</li>
+<li>Hook 逾時預設為 10 分鐘，可透過 <code>timeout</code> 欄位（以秒為單位）按 hook 設定。</li>
+<li><code>PostToolUse</code> hooks 無法撤銷操作，因為工具已經執行。</li>
+<li><code>PermissionRequest</code> hooks 不在非互動模式（<code>-p</code>）中觸發。對於自動化權限決策，使用 <code>PreToolUse</code> hooks。</li>
+<li><code>Stop</code> hooks 在 Claude 完成回應時觸發，而不僅僅在任務完成時。它們不在使用者中斷時觸發。</li>
+</ul>
+<h4>Hook 未觸發</h4>
+<ul>
+<li>執行 <code>/hooks</code> 並確認 hook 出現在正確的事件下</li>
+<li>檢查匹配器模式是否與工具名稱完全匹配（匹配器區分大小寫）</li>
+<li>驗證你是否觸發了正確的事件類型</li>
+</ul>
+<h4>Stop Hook 永遠執行</h4>
+<p>你的 Stop hook 腳本需要檢查它是否已經觸發了繼續。從 JSON 輸入中解析 <code>stop_hook_active</code> 欄位，如果為 <code>true</code> 則提前退出：</p>
+<pre data-lang="bash"><code>#!/bin/bash
+INPUT=$(cat)
+if [ "$(echo "$INPUT" | jq -r '.stop_hook_active')" = "true" ]; then
+  exit 0  # 允許 Claude 停止
+fi
+# ... 你的 hook 邏輯的其餘部分</code></pre>
+<h4>JSON 驗證失敗</h4>
+<p>如果你的 shell 設定檔包含無條件的 <code>echo</code> 語句，該輸出會被新增到你的 hook 的 JSON 前面。要修復此問題：</p>
+<pre data-lang="bash"><code># 在 ~/.zshrc 或 ~/.bashrc 中
+if [[ $- == *i* ]]; then
+  echo "Shell ready"
+fi</code></pre>
+<h4>除錯技巧</h4>
+<p>使用 <code>Ctrl+O</code> 切換詳細模式以在成績單中查看 hook 輸出，或執行 <code>claude --debug</code> 以取得完整的執行詳情。</p>
+<h3>Hooks 參考</h3>
+<p>Claude Code hook 事件、設定架構、JSON 輸入/輸出格式、退出代碼、非同步 hooks、HTTP hooks、提示 hooks 和 MCP 工具 hooks 的參考。</p>
+<p>Hooks 是使用者定義的 shell 指令、HTTP 端點或 LLM 提示，在 Claude Code 生命週期中的特定點自動執行。使用此參考查找事件架構、設定選項、JSON 輸入/輸出格式以及非同步 hooks、HTTP hooks 和 MCP 工具 hooks 等進階功能。</p>
+<h4>Hook 生命週期</h4>
+<p>Hooks 在 Claude Code 工作階段期間的特定點觸發。當事件觸發且匹配器匹配時，Claude Code 會將關於該事件的 JSON 上下文傳遞給你的 hook 處理程序。對於指令 hooks，輸入透過 stdin 到達。對於 HTTP hooks，它作為 POST 請求本文到達。</p>
+<h4>設定</h4>
+<p>Hooks 在 JSON 設定檔中定義。設定有三個巢狀層級：</p>
+<ol>
+<li>選擇要回應的 hook 事件，如 <code>PreToolUse</code> 或 <code>Stop</code></li>
+<li>新增匹配器群組以過濾何時觸發，如「僅針對 Bash 工具」</li>
+<li>定義一個或多個 hook 處理程序以在匹配時執行</li>
+</ol>
+<h5>匹配器模式</h5>
+<p><code>matcher</code> 欄位是一個正則表達式字串，用於過濾 hooks 何時觸發。使用 <code>"*"</code>、<code>""</code> 或完全省略 <code>matcher</code> 以匹配所有出現。</p>
+<p>匹配器是一個正則表達式，所以 <code>Edit|Write</code> 匹配任一工具，<code>Notebook.*</code> 匹配任何以 Notebook 開頭的工具。</p>
+<h6>匹配 MCP 工具</h6>
+<p>MCP 伺服器工具在工具事件中顯示為一般工具，遵循命名模式 <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>，例如：</p>
+<ul>
+<li><code>mcp__memory__create_entities</code>：Memory 伺服器的建立實體工具</li>
+<li><code>mcp__filesystem__read_file</code>：Filesystem 伺服器的讀取檔案工具</li>
+</ul>
+<p>使用正則表達式模式來針對特定 MCP 工具或工具群組：</p>
+<ul>
+<li><code>mcp__memory__.*</code> 匹配來自 <code>memory</code> 伺服器的所有工具</li>
+<li><code>mcp__.*__write.*</code> 匹配來自任何伺服器的任何包含 "write" 的工具</li>
+</ul>
+<h5>Hook 處理程序欄位</h5>
+<p>內部 <code>hooks</code> 陣列中的每個物件都是一個 hook 處理程序。有四種類型：</p>
+<ul>
+<li><strong>指令 hooks</strong> (<code>type: "command"</code>)：執行 shell 指令</li>
+<li><strong>HTTP hooks</strong> (<code>type: "http"</code>)：將事件的 JSON 輸入作為 HTTP POST 請求傳送到 URL</li>
+<li><strong>提示 hooks</strong> (<code>type: "prompt"</code>)：向 Claude 模型傳送提示以進行單輪評估</li>
+<li><strong>代理 hooks</strong> (<code>type: "agent"</code>)：產生一個可以使用工具來驗證條件的 subagent</li>
+</ul>
+<h6>通用欄位</h6>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>必需</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>type</code></td><td>是</td><td><code>"command"</code>、<code>"http"</code>、<code>"prompt"</code> 或 <code>"agent"</code></td></tr>
+<tr><td><code>timeout</code></td><td>否</td><td>取消前的秒數。預設值：指令 600、提示 30、代理 60</td></tr>
+<tr><td><code>statusMessage</code></td><td>否</td><td>hook 執行時顯示的自訂載入訊息</td></tr>
+<tr><td><code>once</code></td><td>否</td><td>如果為 <code>true</code>，每個工作階段僅執行一次</td></tr>
+</tbody>
+</table>
+</div>
+<h6>指令 Hook 欄位</h6>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>必需</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>command</code></td><td>是</td><td>要執行的 shell 指令</td></tr>
+<tr><td><code>async</code></td><td>否</td><td>如果為 <code>true</code>，在背景執行而不阻止</td></tr>
+</tbody>
+</table>
+</div>
+<h6>HTTP Hook 欄位</h6>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>必需</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>url</code></td><td>是</td><td>傳送 POST 請求的 URL</td></tr>
+<tr><td><code>headers</code></td><td>否</td><td>其他 HTTP 標頭作為鍵值對。值支援環境變數插值</td></tr>
+<tr><td><code>allowedEnvVars</code></td><td>否</td><td>可能被插值到標頭值中的環境變數名稱清單</td></tr>
+</tbody>
+</table>
+</div>
+<h6>提示和代理 Hook 欄位</h6>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>必需</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>prompt</code></td><td>是</td><td>要傳送給模型的提示文字。使用 <code>$ARGUMENTS</code> 作為 hook 輸入 JSON 的佔位符</td></tr>
+<tr><td><code>model</code></td><td>否</td><td>用於評估的模型。預設為快速模型</td></tr>
+</tbody>
+</table>
+</div>
+<h5>Skills 和代理中的 Hooks</h5>
+<p>除了設定檔和外掛外，hooks 還可以使用 frontmatter 直接在 skills 和 subagents 中定義。這些 hooks 的範圍限於元件的生命週期，僅在該元件活躍時執行。</p>
+<pre data-lang="yaml"><code>---
+name: secure-operations
+description: Perform operations with security checks
+hooks:
+  PreToolUse:
+    - matcher: "Bash"
+      hooks:
+        - type: command
+          command: "./scripts/security-check.sh"
+---</code></pre>
+<h5>/hooks 選單</h5>
+<p>在 Claude Code 中鍵入 <code>/hooks</code> 以開啟你設定的 hooks 的唯讀瀏覽器。選單顯示每個 hook 事件及其設定的 hooks 計數。</p>
+<p>選單顯示所有四種 hook 類型：<code>command</code>、<code>prompt</code>、<code>agent</code> 和 <code>http</code>。每個 hook 都標有 <code>[type]</code> 前綴和指示其定義位置的來源（<code>User</code>、<code>Project</code>、<code>Local</code>、<code>Plugin</code>、<code>Session</code>、<code>Built-in</code>）。</p>
+<h5>停用或移除 Hooks</h5>
+<p>要移除 hook，請從設定 JSON 檔案中刪除其條目。</p>
+<p>要暫時停用所有 hooks 而不移除它們，請在設定檔中設定 <code>"disableAllHooks": true</code>。</p>
+<h4>Hook 輸入和輸出</h4>
+<h5>通用輸入欄位</h5>
+<p>所有 hook 事件都接收這些欄位作為 JSON：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>session_id</code></td><td>目前工作階段識別碼</td></tr>
+<tr><td><code>transcript_path</code></td><td>對話 JSON 的路徑</td></tr>
+<tr><td><code>cwd</code></td><td>呼叫 hook 時的目前工作目錄</td></tr>
+<tr><td><code>permission_mode</code></td><td>目前權限模式</td></tr>
+<tr><td><code>hook_event_name</code></td><td>觸發的事件名稱</td></tr>
+</tbody>
+</table>
+</div>
+<p>使用 <code>--agent</code> 執行或在 subagent 內部時，包括兩個額外欄位：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>agent_id</code></td><td>Subagent 的唯一識別碼</td></tr>
+<tr><td><code>agent_type</code></td><td>代理名稱</td></tr>
+</tbody>
+</table>
+</div>
+<h5>退出代碼輸出</h5>
+<ul>
+<li><strong>退出 0</strong>：成功。Claude Code 解析 stdout 以取得 JSON 輸出欄位。</li>
+<li><strong>退出 2</strong>：阻止錯誤。stderr 文字被回饋給 Claude 作為錯誤訊息。</li>
+<li><strong>任何其他退出代碼</strong>：非阻止錯誤。stderr 在詳細模式中顯示。</li>
+</ul>
+<h5>每個事件的退出代碼 2 行為</h5>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>Hook 事件</th><th>可以阻止？</th><th>退出 2 時發生的情況</th></tr>
+</thead>
+<tbody>
+<tr><td><code>PreToolUse</code></td><td>是</td><td>阻止工具呼叫</td></tr>
+<tr><td><code>PermissionRequest</code></td><td>是</td><td>拒絕權限</td></tr>
+<tr><td><code>UserPromptSubmit</code></td><td>是</td><td>阻止提示處理</td></tr>
+<tr><td><code>Stop</code></td><td>是</td><td>防止 Claude 停止，繼續對話</td></tr>
+<tr><td><code>SubagentStop</code></td><td>是</td><td>防止 subagent 停止</td></tr>
+<tr><td><code>TeammateIdle</code></td><td>是</td><td>防止隊友閒置</td></tr>
+<tr><td><code>TaskCompleted</code></td><td>是</td><td>防止任務被標記為已完成</td></tr>
+<tr><td><code>ConfigChange</code></td><td>是</td><td>阻止設定更改生效</td></tr>
+<tr><td><code>PostToolUse</code></td><td>否</td><td>向 Claude 顯示 stderr</td></tr>
+<tr><td><code>PostToolUseFailure</code></td><td>否</td><td>向 Claude 顯示 stderr</td></tr>
+<tr><td><code>Notification</code></td><td>否</td><td>僅向使用者顯示 stderr</td></tr>
+<tr><td><code>Elicitation</code></td><td>是</td><td>拒絕 elicitation</td></tr>
+<tr><td><code>ElicitationResult</code></td><td>是</td><td>阻止回應</td></tr>
+<tr><td><code>WorktreeCreate</code></td><td>是</td><td>任何非零退出代碼都會導致 worktree 建立失敗</td></tr>
+<tr><td><code>WorktreeRemove</code></td><td>否</td><td>失敗僅在除錯模式下記錄</td></tr>
+</tbody>
+</table>
+</div>
+<h5>JSON 輸出</h5>
+<p>JSON 物件支援三種欄位：</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>欄位</th><th>預設</th><th>描述</th></tr>
+</thead>
+<tbody>
+<tr><td><code>continue</code></td><td><code>true</code></td><td>如果為 <code>false</code>，Claude 在 hook 執行後完全停止處理</td></tr>
+<tr><td><code>stopReason</code></td><td>無</td><td><code>continue</code> 為 <code>false</code> 時向使用者顯示的訊息</td></tr>
+<tr><td><code>suppressOutput</code></td><td><code>false</code></td><td>如果為 <code>true</code>，從詳細模式輸出中隱藏 stdout</td></tr>
+<tr><td><code>systemMessage</code></td><td>無</td><td>向使用者顯示的警告訊息</td></tr>
+</tbody>
+</table>
+</div>
+<h6>決策控制</h6>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>事件</th><th>決策模式</th><th>關鍵欄位</th></tr>
+</thead>
+<tbody>
+<tr><td>UserPromptSubmit、PostToolUse、PostToolUseFailure、Stop、SubagentStop、ConfigChange</td><td>頂層 <code>decision</code></td><td><code>decision: "block"</code>、<code>reason</code></td></tr>
+<tr><td>TeammateIdle、TaskCompleted</td><td>退出代碼或 <code>continue: false</code></td><td>退出代碼 2 阻止操作</td></tr>
+<tr><td>PreToolUse</td><td><code>hookSpecificOutput</code></td><td><code>permissionDecision</code>（allow/deny/ask）</td></tr>
+<tr><td>PermissionRequest</td><td><code>hookSpecificOutput</code></td><td><code>decision.behavior</code>（allow/deny）</td></tr>
+<tr><td>WorktreeCreate</td><td>stdout 路徑</td><td>Hook 印出建立的 worktree 的絕對路徑</td></tr>
+<tr><td>Elicitation</td><td><code>hookSpecificOutput</code></td><td><code>action</code>（accept/decline/cancel）</td></tr>
+</tbody>
+</table>
+</div>
+<h4>在背景執行 Hooks</h4>
+<p>預設情況下，hooks 阻止 Claude 的執行，直到它們完成。對於長時間運行的任務，設定 <code>"async": true</code> 以在背景執行 hook。</p>
+<p>非同步 hooks 無法阻止或控制 Claude 的行為。後台程序退出後，如果 hook 產生了帶有 <code>systemMessage</code> 或 <code>additionalContext</code> 欄位的 JSON 回應，該內容在下一個對話回合作為上下文傳遞給 Claude。</p>
+<pre data-lang="json"><code>{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/path/to/run-tests.sh",
+            "async": true,
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<h5>非同步 Hooks 的限制</h5>
+<ul>
+<li>僅 <code>type: "command"</code> hooks 支援 <code>async</code>。基於提示的 hooks 無法非同步執行。</li>
+<li>非同步 hooks 無法阻止工具呼叫或返回決策。</li>
+<li>Hook 輸出在下一個對話回合傳遞。</li>
+<li>同一非同步 hook 的多個觸發之間沒有去重。</li>
+</ul>
+<h4>安全考量</h4>
+<p>指令 hooks 使用你的系統使用者的完整權限執行。</p>
+<div class="note">
+<strong>警告：</strong> 指令 hooks 使用你的完整使用者權限執行 shell 指令。它們可以修改、刪除或存取你的使用者帳戶可以存取的任何檔案。在將任何 hook 指令新增到你的設定之前，請審查並測試它們。
+</div>
+<h5>安全最佳實務</h5>
+<ul>
+<li><strong>驗證和清理輸入</strong>：永遠不要盲目信任輸入資料</li>
+<li><strong>始終引用 shell 變數</strong>：使用 <code>"$VAR"</code> 而不是 <code>$VAR</code></li>
+<li><strong>阻止路徑遍歷</strong>：檢查檔案路徑中的 <code>..</code></li>
+<li><strong>使用絕對路徑</strong>：為腳本指定完整路徑，使用 <code>"$CLAUDE_PROJECT_DIR"</code> 作為專案根目錄</li>
+<li><strong>跳過敏感檔案</strong>：避免 <code>.env</code>、<code>.git/</code>、金鑰等</li>
+</ul>
+<h4>除錯 Hooks</h4>
+<p>執行 <code>claude --debug</code> 以查看 hook 執行詳細資訊，包括哪些 hooks 匹配、它們的退出代碼和輸出。使用 <code>Ctrl+O</code> 切換詳細模式以在成績單中查看 hook 進度。</p>
+<pre data-lang="text"><code>[DEBUG] Executing hooks for PostToolUse:Write
+[DEBUG] Getting matching hook commands for PostToolUse with query: Write
+[DEBUG] Found 1 hook matchers in settings
+[DEBUG] Matched 1 hooks for query "Write"
+[DEBUG] Found 1 hook commands to execute
+[DEBUG] Executing hook command: &lt;Your command&gt; with timeout 600000ms
+[DEBUG] Hook command completed with status 0: &lt;Your stdout&gt;</code></pre>
+    </div>
+    <nav class="page-nav">
+      <a href="desktop.html" class="prev"><span class="pn-label">← 上一頁</span><span class="pn-title">桌面版與 VS Code</span></a>
+      <a href="remote.html" class="next"><span class="pn-label">下一頁 →</span><span class="pn-title">遠端控制・頻道・代理</span></a>
+    </nav>
+    <footer class="site-footer">Claude Code 繁體中文指南 — 內容整理自 Anthropic 官方文件</footer>
+  </main>
+  <script src="nav.js"></script>
+</body>
+</html>

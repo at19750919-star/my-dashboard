@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>命令・工具・進階設定 — Claude Code 指南</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="menu-toggle" id="menu-toggle">☰</button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <header class="page-header">
+      <div class="page-number">CHAPTER 06</div>
+      <h1>命令・工具・進階設定</h1>
+      <p class="page-desc">內建命令總覽、工具參考、檢查點、輸出樣式、模型設定、環境變數、Slack 整合、程式碼審查</p>
+    </header>
+
+    <div class="content-body">
+
+      <!-- Built-in Commands Section -->
+      <h2>內建命令 Built-in Commands</h2>
+      <p>Claude Code 中可用的內建命令完整參考。在 Claude Code 中輸入 <code>/</code> 可以查看所有可用命令，或輸入 <code>/</code> 後跟任何字母來篩選。</p>
+      <p>並非所有命令對每個使用者都可見。某些命令取決於您的平台、方案或環境。例如，<code>/desktop</code> 僅在 macOS 和 Windows 上顯示，<code>/upgrade</code> 和 <code>/privacy-settings</code> 僅在 Pro 和 Max 方案上可用，而當您的終端機原生支援其快捷鍵時，<code>/terminal-setup</code> 會被隱藏。</p>
+
+      <p>Claude Code 還包括內建的 skills（技能），如 <code>/simplify</code>、<code>/batch</code>、<code>/debug</code> 和 <code>/loop</code>，當您輸入 <code>/</code> 時會與內建命令一起顯示。</p>
+
+      <p>在下表中，<code>&lt;arg&gt;</code> 表示必要的參數，<code>[arg]</code> 表示選用參數。</p>
+
+      <details>
+        <summary>完整命令參考表</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="text-align: left;">命令</th>
+                <th style="text-align: left;">用途</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>/add-dir &lt;path&gt;</code></td>
+                <td>向目前會話新增工作目錄</td>
+              </tr>
+              <tr>
+                <td><code>/agents</code></td>
+                <td>管理 agent（代理）設定</td>
+              </tr>
+              <tr>
+                <td><code>/btw &lt;question&gt;</code></td>
+                <td>提出快速附帶問題，不會加入對話中</td>
+              </tr>
+              <tr>
+                <td><code>/chrome</code></td>
+                <td>設定 Claude in Chrome</td>
+              </tr>
+              <tr>
+                <td><code>/clear</code></td>
+                <td>清除對話歷史記錄並釋放上下文。別名：<code>/reset</code>、<code>/new</code></td>
+              </tr>
+              <tr>
+                <td><code>/color [color|default]</code></td>
+                <td>為目前會話設定提示列顏色。可用顏色：<code>red</code>、<code>blue</code>、<code>green</code>、<code>yellow</code>、<code>purple</code>、<code>orange</code>、<code>pink</code>、<code>cyan</code>。使用 <code>default</code> 重置</td>
+              </tr>
+              <tr>
+                <td><code>/compact [instructions]</code></td>
+                <td>壓縮對話，可選擇性地提供焦點說明</td>
+              </tr>
+              <tr>
+                <td><code>/config</code></td>
+                <td>開啟設定介面以調整主題、模型、輸出樣式和其他偏好。別名：<code>/settings</code></td>
+              </tr>
+              <tr>
+                <td><code>/context</code></td>
+                <td>將目前上下文使用情況視覺化為彩色網格。顯示上下文密集型工具、記憶體膨脹和容量警告的最佳化建議</td>
+              </tr>
+              <tr>
+                <td><code>/copy [N]</code></td>
+                <td>將最後一個助手回應複製到剪貼簿。傳入數字 <code>N</code> 以複製第 N 個最新回應。當存在程式碼區塊時，顯示互動式選擇器</td>
+              </tr>
+              <tr>
+                <td><code>/cost</code></td>
+                <td>顯示 token（權杖）使用統計資訊</td>
+              </tr>
+              <tr>
+                <td><code>/desktop</code></td>
+                <td>在 Claude Code Desktop 應用程式中繼續目前會話。僅限 macOS 和 Windows。別名：<code>/app</code></td>
+              </tr>
+              <tr>
+                <td><code>/diff</code></td>
+                <td>開啟互動式差異檢視器，顯示未提交的變更和每輪差異</td>
+              </tr>
+              <tr>
+                <td><code>/doctor</code></td>
+                <td>診斷並驗證您的 Claude Code 安裝和設定</td>
+              </tr>
+              <tr>
+                <td><code>/effort [low|medium|high|max|auto]</code></td>
+                <td>設定模型工作量級別。<code>low</code>、<code>medium</code> 和 <code>high</code> 在會話間保持。<code>max</code> 僅適用於目前會話，需要 Opus 4.6</td>
+              </tr>
+              <tr>
+                <td><code>/exit</code></td>
+                <td>結束 CLI。別名：<code>/quit</code></td>
+              </tr>
+              <tr>
+                <td><code>/export [filename]</code></td>
+                <td>將目前對話匯出為純文字</td>
+              </tr>
+              <tr>
+                <td><code>/extra-usage</code></td>
+                <td>設定額外用量以在達到速率限制時繼續工作</td>
+              </tr>
+              <tr>
+                <td><code>/fast [on|off]</code></td>
+                <td>切換快速模式開啟或關閉</td>
+              </tr>
+              <tr>
+                <td><code>/feedback [report]</code></td>
+                <td>提交關於 Claude Code 的意見回饋。別名：<code>/bug</code></td>
+              </tr>
+              <tr>
+                <td><code>/branch [name]</code></td>
+                <td>在此點建立目前對話的分支。別名：<code>/fork</code></td>
+              </tr>
+              <tr>
+                <td><code>/help</code></td>
+                <td>顯示說明和可用命令</td>
+              </tr>
+              <tr>
+                <td><code>/hooks</code></td>
+                <td>檢視工具事件的 hook（鉤子）設定</td>
+              </tr>
+              <tr>
+                <td><code>/ide</code></td>
+                <td>管理 IDE 整合並顯示狀態</td>
+              </tr>
+              <tr>
+                <td><code>/init</code></td>
+                <td>使用 <code>CLAUDE.md</code> 指南初始化專案</td>
+              </tr>
+              <tr>
+                <td><code>/insights</code></td>
+                <td>產生報告，分析您的 Claude Code 會話</td>
+              </tr>
+              <tr>
+                <td><code>/install-github-app</code></td>
+                <td>為儲存庫設定 Claude GitHub Actions 應用程式</td>
+              </tr>
+              <tr>
+                <td><code>/install-slack-app</code></td>
+                <td>安裝 Claude Slack 應用程式</td>
+              </tr>
+              <tr>
+                <td><code>/keybindings</code></td>
+                <td>開啟或建立您的快捷鍵設定檔</td>
+              </tr>
+              <tr>
+                <td><code>/login</code></td>
+                <td>登入您的 Anthropic 帳號</td>
+              </tr>
+              <tr>
+                <td><code>/logout</code></td>
+                <td>從您的 Anthropic 帳號登出</td>
+              </tr>
+              <tr>
+                <td><code>/mcp</code></td>
+                <td>管理 MCP server 連線和 OAuth 身份驗證</td>
+              </tr>
+              <tr>
+                <td><code>/memory</code></td>
+                <td>編輯 <code>CLAUDE.md</code> 記憶體檔案，啟用或停用自動記憶體</td>
+              </tr>
+              <tr>
+                <td><code>/mobile</code></td>
+                <td>顯示 QR code 以下載 Claude 行動應用程式。別名：<code>/ios</code>、<code>/android</code></td>
+              </tr>
+              <tr>
+                <td><code>/model [model]</code></td>
+                <td>選擇或變更 AI 模型。使用左/右方向鍵調整工作量級別</td>
+              </tr>
+              <tr>
+                <td><code>/passes</code></td>
+                <td>與朋友分享一週免費的 Claude Code</td>
+              </tr>
+              <tr>
+                <td><code>/permissions</code></td>
+                <td>檢視或更新權限。別名：<code>/allowed-tools</code></td>
+              </tr>
+              <tr>
+                <td><code>/plan [description]</code></td>
+                <td>直接從提示進入計畫模式</td>
+              </tr>
+              <tr>
+                <td><code>/plugin</code></td>
+                <td>管理 Claude Code plugins（外掛）</td>
+              </tr>
+              <tr>
+                <td><code>/pr-comments [PR]</code></td>
+                <td>取得並顯示來自 GitHub pull request 的評論</td>
+              </tr>
+              <tr>
+                <td><code>/privacy-settings</code></td>
+                <td>檢視和更新您的隱私設定。僅對 Pro 和 Max 方案訂閱者可用</td>
+              </tr>
+              <tr>
+                <td><code>/release-notes</code></td>
+                <td>檢視完整的更新日誌</td>
+              </tr>
+              <tr>
+                <td><code>/reload-plugins</code></td>
+                <td>重新載入所有活躍 plugins（外掛）以套用待處理的變更</td>
+              </tr>
+              <tr>
+                <td><code>/remote-control</code></td>
+                <td>使此會話可從 claude.ai 進行遠端控制。別名：<code>/rc</code></td>
+              </tr>
+              <tr>
+                <td><code>/remote-env</code></td>
+                <td>為網頁會話設定預設遠端環境</td>
+              </tr>
+              <tr>
+                <td><code>/rename [name]</code></td>
+                <td>重新命名目前會話</td>
+              </tr>
+              <tr>
+                <td><code>/resume [session]</code></td>
+                <td>按 ID 或名稱恢復對話。別名：<code>/continue</code></td>
+              </tr>
+              <tr>
+                <td><code>/review</code></td>
+                <td>已棄用。改為安裝 code-review plugin</td>
+              </tr>
+              <tr>
+                <td><code>/rewind</code></td>
+                <td>將對話和/或程式碼倒回到上一個點。別名：<code>/checkpoint</code></td>
+              </tr>
+              <tr>
+                <td><code>/sandbox</code></td>
+                <td>切換 sandbox mode（沙箱模式）。僅在支援的平台上可用</td>
+              </tr>
+              <tr>
+                <td><code>/schedule [description]</code></td>
+                <td>建立、更新、列出或執行 Cloud scheduled tasks（雲端排程任務）</td>
+              </tr>
+              <tr>
+                <td><code>/security-review</code></td>
+                <td>分析目前分支上的待處理變更以查找安全漏洞</td>
+              </tr>
+              <tr>
+                <td><code>/skills</code></td>
+                <td>列出可用的 skills（技能）</td>
+              </tr>
+              <tr>
+                <td><code>/stats</code></td>
+                <td>視覺化每日使用情況、會話歷史記錄、連續記錄和模型偏好</td>
+              </tr>
+              <tr>
+                <td><code>/status</code></td>
+                <td>開啟設定介面，顯示版本、模型、帳號和連線狀態</td>
+              </tr>
+              <tr>
+                <td><code>/statusline</code></td>
+                <td>設定 Claude Code 的狀態列</td>
+              </tr>
+              <tr>
+                <td><code>/stickers</code></td>
+                <td>訂購 Claude Code 貼紙</td>
+              </tr>
+              <tr>
+                <td><code>/tasks</code></td>
+                <td>列出並管理背景任務</td>
+              </tr>
+              <tr>
+                <td><code>/terminal-setup</code></td>
+                <td>為 Shift+Enter 和其他快捷鍵設定終端機快捷鍵</td>
+              </tr>
+              <tr>
+                <td><code>/theme</code></td>
+                <td>變更顏色主題</td>
+              </tr>
+              <tr>
+                <td><code>/upgrade</code></td>
+                <td>開啟升級頁面以切換到更高的方案層級</td>
+              </tr>
+              <tr>
+                <td><code>/usage</code></td>
+                <td>顯示方案使用限制和速率限制狀態</td>
+              </tr>
+              <tr>
+                <td><code>/vim</code></td>
+                <td>在 Vim 和普通編輯模式之間切換</td>
+              </tr>
+              <tr>
+                <td><code>/voice</code></td>
+                <td>切換推播通話語音聽寫。需要 Claude.ai 帳號</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <h3>MCP prompts（MCP 提示）</h3>
+      <p>MCP servers 可以公開顯示為命令的 prompts。這些使用格式 <code>/mcp__&lt;server&gt;__&lt;prompt&gt;</code>，並從連線的伺服器動態發現。</p>
+
+      <!-- Checkpointing Section -->
+      <h2>檢查點 Checkpointing</h2>
+      <p>追蹤、回溯和摘要 Claude 的編輯和對話以管理會話狀態。Claude Code 自動追蹤 Claude 在工作時所做的檔案編輯，讓您可以快速撤銷變更並回溯到之前的狀態，以防任何事情出現偏差。</p>
+
+      <h3>檢查點如何運作 How Checkpointing Works</h3>
+      <p>當您與 Claude 合作時，checkpointing 會自動擷取每次編輯前程式碼的狀態。這個安全網讓您可以放心地執行大規模任務，因為您始終可以返回到之前的程式碼狀態。</p>
+
+      <h4>自動追蹤 Automatic Tracking</h4>
+      <p>Claude Code 追蹤其檔案編輯工具所做的所有變更：</p>
+      <ul>
+        <li>每個使用者提示都會建立一個新的 checkpoint（檢查點）</li>
+        <li>Checkpoints 在會話之間持久存在，因此您可以在恢復的對話中存取它們</li>
+        <li>在 30 天後自動清理（可設定）</li>
+      </ul>
+
+      <h4>回溯和摘要 Rewind and Summarize</h4>
+      <p>按兩次 <code>Esc</code>（<code>Esc</code> + <code>Esc</code>）或使用 <code>/rewind</code> 命令開啟回溯選單。一個可捲動的列表顯示會話中的每個提示。選擇您想要操作的點，然後選擇一個動作：</p>
+      <ul>
+        <li><strong>Restore code and conversation（恢復程式碼和對話）</strong>：將程式碼和對話都恢復到該點</li>
+        <li><strong>Restore conversation（恢復對話）</strong>：回溯到該訊息，同時保持目前程式碼</li>
+        <li><strong>Restore code（恢復程式碼）</strong>：恢復檔案變更，同時保持對話</li>
+        <li><strong>Summarize from here（從此處摘要）</strong>：將此點之後的對話壓縮為摘要，釋放 context window（上下文視窗）空間</li>
+        <li><strong>Never mind（算了）</strong>：返回訊息列表而不做任何變更</li>
+      </ul>
+
+      <h4>恢復與摘要 Restore vs. Summarize</h4>
+      <p>三個恢復選項恢復狀態：它們撤銷程式碼變更、對話歷史或兩者。「從此處摘要」（Summarize from here）的運作方式不同：</p>
+      <ul>
+        <li>所選訊息之前的訊息保持不變</li>
+        <li>所選訊息及其後的所有訊息被替換為精簡的 AI 產生摘要</li>
+        <li>磁碟上的檔案不會改變</li>
+        <li>原始訊息保存在會話記錄中，因此 Claude 可以在需要時參考詳細資訊</li>
+      </ul>
+
+      <p>這類似於 <code>/compact</code>，但更有針對性：您不是摘要整個對話，而是保持早期上下文的完整細節，只壓縮佔用空間的部分。您可以輸入選用說明來指導摘要的重點。</p>
+
+      <div class="note">注意：摘要將您保持在同一會話中並壓縮上下文。如果您想嘗試不同的方法，同時保持原始會話完整，請改用 fork（分支）。</div>
+
+      <h3>常見使用情境 Common Use Cases</h3>
+      <p>Checkpoints 在以下情況下特別有用：</p>
+      <ul>
+        <li><strong>探索替代方案</strong>：嘗試不同的實作方法，而不會遺失起點</li>
+        <li><strong>從錯誤中恢復</strong>：快速撤銷引入錯誤或破壞功能的變更</li>
+        <li><strong>迭代功能</strong>：進行變體實驗，知道您可以恢復到正常運作的狀態</li>
+        <li><strong>釋放上下文空間</strong>：從中間點開始摘要冗長的除錯會話，保持初始說明完整</li>
+      </ul>
+
+      <h3>限制 Limitations</h3>
+
+      <h4>Bash 命令變更未追蹤 Bash Command Changes Not Tracked</h4>
+      <p>Checkpointing 不追蹤由 bash 命令修改的檔案。例如，如果 Claude Code 執行：</p>
+      <pre data-lang="bash"><code>rm file.txt
+mv old.txt new.txt
+cp source.txt dest.txt</code></pre>
+      <p>這些檔案修改無法透過回溯撤銷。只有透過 Claude 的檔案編輯工具進行的直接檔案編輯才會被追蹤。</p>
+
+      <h4>外部變更未追蹤 External Changes Not Tracked</h4>
+      <p>Checkpointing 僅追蹤在目前會話中編輯過的檔案。您在 Claude Code 外部對檔案所做的手動變更以及來自其他並行會話的編輯通常不會被擷取。</p>
+
+      <h4>不是版本控制的替代品 Not a Replacement for Version Control</h4>
+      <p>Checkpoints 設計用於快速的會話級恢復。對於永久版本歷史和協作：</p>
+      <ul>
+        <li>繼續使用版本控制（例如 Git）進行提交、分支和長期歷史</li>
+        <li>Checkpoints 補充但不替代適當的版本控制</li>
+        <li>將 checkpoints 視為「本地撤銷」，將 Git 視為「永久歷史」</li>
+      </ul>
+
+      <!-- Tools Reference Section -->
+      <h2>工具參考 Tools Reference</h2>
+      <p>Claude Code 可以使用的工具完整參考，包括權限需求。下面的工具名稱是您在權限規則、subagent（子代理）工具列表和 hook（鉤子）匹配器中使用的確切字串。</p>
+
+      <details>
+        <summary>完整工具參考表</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="text-align: left;">工具</th>
+                <th style="text-align: left;">描述</th>
+                <th style="text-align: left;">需要權限</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Agent</code></td>
+                <td>產生一個具有自己 context window（上下文視窗）的 subagent（子代理），用於處理任務</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>AskUserQuestion</code></td>
+                <td>提出多選問題以收集需求或釐清歧義</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>Bash</code></td>
+                <td>在您的環境中執行 shell 命令</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>CronCreate</code></td>
+                <td>在目前會話中排程定期或一次性提示</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>CronDelete</code></td>
+                <td>按 ID 取消排程任務</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>CronList</code></td>
+                <td>列出會話中的所有排程任務</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>Edit</code></td>
+                <td>對特定檔案進行有針對性的編輯</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>EnterPlanMode</code></td>
+                <td>切換到 Plan Mode（計畫模式）以在編碼前設計方法</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>EnterWorktree</code></td>
+                <td>建立一個隔離的 git worktree 並切換到它</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>ExitPlanMode</code></td>
+                <td>提出計畫以供核准並離開 Plan Mode</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>ExitWorktree</code></td>
+                <td>離開 worktree 會話並返回到原始目錄</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>Glob</code></td>
+                <td>基於模式比對尋找檔案</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>Grep</code></td>
+                <td>在檔案內容中搜尋模式</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>ListMcpResourcesTool</code></td>
+                <td>列出連線的 MCP servers 公開的資源</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>LSP</code></td>
+                <td>透過語言伺服器進行程式碼智慧。在檔案編輯後自動報告型別錯誤和警告</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>NotebookEdit</code></td>
+                <td>修改 Jupyter notebook 儲存格</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>Read</code></td>
+                <td>讀取檔案內容</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>ReadMcpResourceTool</code></td>
+                <td>按 URI 讀取特定 MCP 資源</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>Skill</code></td>
+                <td>在主對話中執行 skill（技能）</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>TaskCreate</code></td>
+                <td>在任務列表中建立新任務</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>TaskGet</code></td>
+                <td>擷取特定任務的完整詳細資訊</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>TaskList</code></td>
+                <td>列出所有任務及其目前狀態</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>TaskOutput</code></td>
+                <td>（已棄用）擷取背景任務的輸出</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>TaskStop</code></td>
+                <td>按 ID 終止執行中的背景任務</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>TaskUpdate</code></td>
+                <td>更新任務狀態、依賴項、詳細資訊或刪除任務</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>TodoWrite</code></td>
+                <td>管理會話任務清單。在非互動模式和 Agent SDK 中可用</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>ToolSearch</code></td>
+                <td>當啟用 tool search（工具搜尋）時搜尋並載入延遲工具</td>
+                <td>否</td>
+              </tr>
+              <tr>
+                <td><code>WebFetch</code></td>
+                <td>從指定 URL 擷取內容</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>WebSearch</code></td>
+                <td>執行網頁搜尋</td>
+                <td>是</td>
+              </tr>
+              <tr>
+                <td><code>Write</code></td>
+                <td>建立或覆寫檔案</td>
+                <td>是</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <p>權限規則可以使用 <code>/permissions</code> 或在設定中設定。</p>
+
+      <h3>Bash 工具行為 Bash Tool Behavior</h3>
+      <p>Bash 工具在單獨的處理程序中執行每個命令，具有以下持久性行為：</p>
+      <ul>
+        <li>工作目錄在命令之間保持不變。設定 <code>CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1</code> 以在每個命令後重置為專案目錄</li>
+        <li>環境變數不持久。一個命令中的 <code>export</code> 在下一個命令中將不可用</li>
+      </ul>
+
+      <p>在啟動 Claude Code 之前啟動您的 virtualenv 或 conda 環境。要使環境變數在 Bash 命令之間保持不變，請在啟動 Claude Code 之前將 <code>CLAUDE_ENV_FILE</code> 設定為 shell 腳本，或使用 SessionStart hook 動態填充它。</p>
+
+      <!-- Output Styles Section -->
+      <h2>輸出樣式 Output Styles</h2>
+      <p>將 Claude Code 適配用於軟體工程之外的用途。輸出樣式讓您可以將 Claude Code 用作任何類型的代理，同時保留其核心功能，例如執行本地腳本、讀取/寫入檔案和追蹤 TODO。</p>
+
+      <h3>內建輸出樣式 Built-in Output Styles</h3>
+      <p>Claude Code 的 <strong>default（預設）</strong> 輸出樣式是現有的系統提示，旨在幫助您高效地完成軟體工程任務。還有兩種額外的內建輸出樣式，專注於教您了解程式碼庫和 Claude 的運作方式：</p>
+      <ul>
+        <li><strong>Explanatory（解釋型）</strong>：在幫助您完成軟體工程任務的同時提供教育性的「Insights（洞察）」。幫助您理解實作選擇和程式碼庫模式。</li>
+        <li><strong>Learning（學習型）</strong>：協作式的邊學邊做模式，Claude 不僅會在編碼時分享「Insights」，還會要求您自己貢獻小的、策略性的程式碼片段。Claude Code 將在您的程式碼中新增 <code>TODO(human)</code> 標記供您實作。</li>
+      </ul>
+
+      <h3>輸出樣式如何運作 How Output Styles Work</h3>
+      <p>輸出樣式直接修改 Claude Code 的系統提示。所有輸出樣式都排除了高效輸出的說明。自訂輸出樣式排除了編碼說明，除非 <code>keep-coding-instructions</code> 為 true。所有輸出樣式都在系統提示的末尾新增了自己的自訂說明。</p>
+
+      <h3>變更您的輸出樣式 Change Your Output Style</h3>
+      <p>執行 <code>/config</code> 並選擇 <strong>Output Style（輸出樣式）</strong> 從選單中選擇一種樣式。您的選擇會儲存到本地專案層級的 <code>.claude/settings.local.json</code>。</p>
+
+      <p>要在不使用選單的情況下設定樣式，直接編輯設定檔中的 <code>outputStyle</code> 欄位：</p>
+      <pre data-lang="json"><code>{
+  "outputStyle": "Explanatory"
+}</code></pre>
+
+      <p>由於輸出樣式是在會話開始時在系統提示中設定的，變更將在您下次啟動新會話時生效。</p>
+
+      <h3>建立自訂輸出樣式 Create Custom Output Styles</h3>
+      <p>自訂輸出樣式是包含 frontmatter 和將新增到系統提示的文字的 Markdown 檔案。您可以在使用者層級（<code>~/.claude/output-styles</code>）或專案層級（<code>.claude/output-styles</code>）儲存這些檔案。</p>
+
+      <h4>Frontmatter</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left;">Frontmatter</th>
+              <th style="text-align: left;">目的</th>
+              <th style="text-align: left;">預設值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>name</code></td>
+              <td>輸出樣式的名稱</td>
+              <td>從檔名繼承</td>
+            </tr>
+            <tr>
+              <td><code>description</code></td>
+              <td>輸出樣式的描述，在 <code>/config</code> 選擇器中顯示</td>
+              <td>無</td>
+            </tr>
+            <tr>
+              <td><code>keep-coding-instructions</code></td>
+              <td>是否保留 Claude Code 系統提示中與編碼相關的部分</td>
+              <td>false</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Model Configuration Section -->
+      <h2>模型設定 Model Configuration</h2>
+      <p>了解 Claude Code 模型設定，包括模型別名如 <code>opusplan</code>。</p>
+
+      <h3>可用模型 Available Models</h3>
+      <p>對於 Claude Code 中的 <code>model</code> 設定，您可以設定以下任一項：</p>
+      <ul>
+        <li>一個 <strong>model alias（模型別名）</strong></li>
+        <li>一個 <strong>model name（模型名稱）</strong>
+          <ul>
+            <li>Anthropic API：完整的模型名稱</li>
+            <li>Bedrock：推論設定檔 ARN</li>
+            <li>Foundry：部署名稱</li>
+            <li>Vertex：版本名稱</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>模型別名 Model Aliases</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left;">模型別名</th>
+              <th style="text-align: left;">行為</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>default</code></td>
+              <td>推薦的模型設定，取決於您的帳號類型</td>
+            </tr>
+            <tr>
+              <td><code>sonnet</code></td>
+              <td>使用最新的 Sonnet 模型（目前為 Sonnet 4.6）用於日常編碼任務</td>
+            </tr>
+            <tr>
+              <td><code>opus</code></td>
+              <td>使用最新的 Opus 模型（目前為 Opus 4.6）用於複雜推理任務</td>
+            </tr>
+            <tr>
+              <td><code>haiku</code></td>
+              <td>使用快速高效的 Haiku 模型用於簡單任務</td>
+            </tr>
+            <tr>
+              <td><code>sonnet[1m]</code></td>
+              <td>使用 Sonnet 和 100 萬 token 上下文視窗用於長會話</td>
+            </tr>
+            <tr>
+              <td><code>opus[1m]</code></td>
+              <td>使用 Opus 和 100 萬 token 上下文視窗用於長會話</td>
+            </tr>
+            <tr>
+              <td><code>opusplan</code></td>
+              <td>特殊模式，在 Plan Mode（計畫模式）中使用 <code>opus</code>，然後在執行時切換到 <code>sonnet</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>別名始終指向最新版本。要固定到特定版本，請使用完整模型名稱或設定相應的環境變數。</p>
+
+      <h3>設定您的模型 Set Your Model</h3>
+      <p>您可以透過多種方式設定模型，按優先順序列出：</p>
+      <ol>
+        <li><strong>在會話期間</strong> - 使用 <code>/model &lt;alias|name&gt;</code> 在會話中途切換模型</li>
+        <li><strong>啟動時</strong> - 使用 <code>claude --model &lt;alias|name&gt;</code> 啟動</li>
+        <li><strong>環境變數</strong> - 設定 <code>ANTHROPIC_MODEL=&lt;alias|name&gt;</code></li>
+        <li><strong>設定</strong> - 在設定檔中使用 <code>model</code> 欄位永久設定</li>
+      </ol>
+
+      <p>使用範例：</p>
+      <pre data-lang="bash"><code># 使用 Opus 啟動
+claude --model opus
+
+# 在會話期間切換到 Sonnet
+/model sonnet</code></pre>
+
+      <h3>調整工作量級別 Adjust Effort Level</h3>
+      <p>工作量級別控制自適應推理，根據任務複雜性動態分配思考。較低的工作量對於直接任務更快更便宜，而較高的工作量為複雜問題提供更深入的推理。</p>
+
+      <p>三個級別在會話中持續存在：<strong>low</strong>、<strong>medium</strong> 和 <strong>high</strong>。第四個級別 <strong>max</strong> 提供最深入的推理，對 token 支出沒有限制，因此回應速度更慢，成本比 <code>high</code> 更高。<code>max</code> 僅在 Opus 4.6 上可用。</p>
+
+      <p>Opus 4.6 和 Sonnet 4.6 預設為中等工作量。中等是大多數編碼任務的推薦級別：它平衡了速度和推理深度，更高的級別可能導致模型過度思考日常工作。為真正受益於更深入推理的任務保留 <code>high</code> 或 <code>max</code>。</p>
+
+      <p><strong>設定工作量：</strong></p>
+      <ul>
+        <li><strong><code>/effort</code></strong>：執行 <code>/effort low</code>、<code>/effort medium</code>、<code>/effort high</code> 或 <code>/effort max</code> 來變更級別</li>
+        <li><strong>在 <code>/model</code> 中</strong>：選擇模型時使用左右方向鍵調整工作量滑桿</li>
+        <li><strong><code>--effort</code> 旗標</strong>：在啟動 Claude Code 時傳入相應的值</li>
+        <li><strong>環境變數</strong>：設定 <code>CLAUDE_CODE_EFFORT_LEVEL</code></li>
+        <li><strong>設定</strong>：在設定檔中設定 <code>effortLevel</code></li>
+      </ul>
+
+      <h3>擴展上下文 Extended Context</h3>
+      <p>Opus 4.6 和 Sonnet 4.6 支援 100 萬 token 上下文視窗用於包含大型程式碼庫的長會話。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left;">方案</th>
+              <th style="text-align: left;">Opus 4.6 with 1M context</th>
+              <th style="text-align: left;">Sonnet 4.6 with 1M context</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Max、Team 和 Enterprise</td>
+              <td>包含在訂閱中</td>
+              <td>需要額外用量</td>
+            </tr>
+            <tr>
+              <td>Pro</td>
+              <td>需要額外用量</td>
+              <td>需要額外用量</td>
+            </tr>
+            <tr>
+              <td>API 和按用量付費</td>
+              <td>完全存取</td>
+              <td>完全存取</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>1M 上下文視窗使用標準模型定價，超過 200K 的 token 無需額外費用。</p>
+
+      <!-- Environment Variables Section -->
+      <h2>環境變數 Environment Variables</h2>
+      <p>控制 Claude Code 行為的環境變數完整參考。在啟動 <code>claude</code> 之前在 shell 中設定它們，或在 <code>settings.json</code> 中的 <code>env</code> 鍵下設定它們。</p>
+
+      <details>
+        <summary>完整環境變數參考表</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="text-align: left;">變數</th>
+                <th style="text-align: left;">目的</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ANTHROPIC_API_KEY</code></td>
+                <td>作為 <code>X-Api-Key</code> 標頭傳送的 API 金鑰</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_AUTH_TOKEN</code></td>
+                <td><code>Authorization</code> 標頭的自訂值</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_BASE_URL</code></td>
+                <td>覆寫 API 端點以透過代理或閘道路由請求</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_CUSTOM_HEADERS</code></td>
+                <td>要新增到請求的自訂標頭</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_CUSTOM_MODEL_OPTION</code></td>
+                <td>要在 <code>/model</code> 選擇器中新增為自訂項目的模型 ID</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_DEFAULT_HAIKU_MODEL</code></td>
+                <td>用於 <code>haiku</code> 別名的模型</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_DEFAULT_OPUS_MODEL</code></td>
+                <td>用於 <code>opus</code> 別名的模型</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_DEFAULT_SONNET_MODEL</code></td>
+                <td>用於 <code>sonnet</code> 別名的模型</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_FOUNDRY_API_KEY</code></td>
+                <td>Microsoft Foundry 身份驗證的 API 金鑰</td>
+              </tr>
+              <tr>
+                <td><code>ANTHROPIC_MODEL</code></td>
+                <td>要使用的模型設定名稱</td>
+              </tr>
+              <tr>
+                <td><code>AWS_BEARER_TOKEN_BEDROCK</code></td>
+                <td>用於身份驗證的 Bedrock API 金鑰</td>
+              </tr>
+              <tr>
+                <td><code>BASH_DEFAULT_TIMEOUT_MS</code></td>
+                <td>長時間執行的 bash 命令的預設逾時</td>
+              </tr>
+              <tr>
+                <td><code>BASH_MAX_OUTPUT_LENGTH</code></td>
+                <td>bash 輸出中的最大字元數</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_AUTOCOMPACT_PCT_OVERRIDE</code></td>
+                <td>設定觸發自動壓縮的上下文容量百分比（1-100）</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR</code></td>
+                <td>在每個 Bash 命令後返回到原始工作目錄</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_DISABLE_1M_CONTEXT</code></td>
+                <td>設定為 <code>1</code> 以停用 1M 上下文視窗支援</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING</code></td>
+                <td>設定為 <code>1</code> 以停用自適應推理</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_DISABLE_AUTO_MEMORY</code></td>
+                <td>設定為 <code>1</code> 以停用自動記憶體</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_DISABLE_BACKGROUND_TASKS</code></td>
+                <td>設定為 <code>1</code> 以停用所有背景任務功能</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_DISABLE_CRON</code></td>
+                <td>設定為 <code>1</code> 以停用排程任務</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_DISABLE_FAST_MODE</code></td>
+                <td>設定為 <code>1</code> 以停用快速模式</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_EFFORT_LEVEL</code></td>
+                <td>為支援的模型設定工作量級別（<code>low</code>、<code>medium</code>、<code>high</code>、<code>max</code> 或 <code>auto</code>）</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_ENABLE_TASKS</code></td>
+                <td>設定為 <code>true</code> 以在非互動模式中啟用任務追蹤系統</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_MAX_OUTPUT_TOKENS</code></td>
+                <td>設定大多數請求的最大輸出 token 數</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_SHELL</code></td>
+                <td>覆寫自動 shell 偵測</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_CODE_SIMPLE</code></td>
+                <td>設定為 <code>1</code> 以使用最小系統提示</td>
+              </tr>
+              <tr>
+                <td><code>CLAUDE_ENV_FILE</code></td>
+                <td>Claude Code 在每個 Bash 命令之前取得的 shell 腳本路徑</td>
+              </tr>
+              <tr>
+                <td><code>DISABLE_AUTOUPDATER</code></td>
+                <td>設定為 <code>1</code> 以停用自動更新</td>
+              </tr>
+              <tr>
+                <td><code>DISABLE_ERROR_REPORTING</code></td>
+                <td>設定為 <code>1</code> 以退出 Sentry 錯誤報告</td>
+              </tr>
+              <tr>
+                <td><code>DISABLE_TELEMETRY</code></td>
+                <td>設定為 <code>1</code> 以退出遙測</td>
+              </tr>
+              <tr>
+                <td><code>ENABLE_TOOL_SEARCH</code></td>
+                <td>控制 MCP 工具搜尋（<code>true</code>、<code>auto</code>、<code>false</code>）</td>
+              </tr>
+              <tr>
+                <td><code>HTTP_PROXY</code></td>
+                <td>為網路連線指定 HTTP 代理伺服器</td>
+              </tr>
+              <tr>
+                <td><code>HTTPS_PROXY</code></td>
+                <td>為網路連線指定 HTTPS 代理伺服器</td>
+              </tr>
+              <tr>
+                <td><code>MAX_THINKING_TOKENS</code></td>
+                <td>覆寫擴展思考 token 預算</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- Slack Section -->
+      <h2>Slack 中的 Claude Code - Claude Code in Slack</h2>
+      <p>直接從 Slack 工作區委派編碼任務。Slack 中的 Claude Code 將 Claude Code 的強大功能直接引入您的 Slack 工作區。當您使用編碼任務提及 <code>@Claude</code> 時，Claude 會自動偵測意圖並在網頁上建立 Claude Code 會話。</p>
+
+      <h3>使用情境 Use Cases</h3>
+      <ul>
+        <li><strong>Bug 調查和修復</strong>：要求 Claude 在 Slack 頻道中報告 Bug 時立即調查和修復</li>
+        <li><strong>快速程式碼審查和修改</strong>：讓 Claude 根據團隊回饋實作小功能或重構程式碼</li>
+        <li><strong>協作除錯</strong>：當團隊討論提供關鍵背景資訊時，Claude 可以使用該資訊來指導其除錯方法</li>
+        <li><strong>並行任務執行</strong>：在 Slack 中啟動編碼任務，同時繼續其他工作</li>
+      </ul>
+
+      <h3>前置條件 Prerequisites</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left;">要求</th>
+              <th style="text-align: left;">詳情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Claude 方案</td>
+              <td>Pro、Max、Team 或 Enterprise，具有 Claude Code 存取權限</td>
+            </tr>
+            <tr>
+              <td>網頁上的 Claude Code</td>
+              <td>必須啟用對網頁上的 Claude Code 的存取</td>
+            </tr>
+            <tr>
+              <td>GitHub 帳號</td>
+              <td>連接到網頁上的 Claude Code，至少有一個儲存庫已驗證</td>
+            </tr>
+            <tr>
+              <td>Slack 驗證</td>
+              <td>您的 Slack 帳號透過 Claude 應用程式連結到您的 Claude 帳號</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>在 Slack 中設定 Claude Code Set Up Claude Code in Slack</h3>
+      <p><strong>步驟 1：在 Slack 中安裝 Claude 應用程式</strong></p>
+      <p>工作區管理員必須從 Slack 應用程式市場安裝 Claude 應用程式。存取 Slack 應用程式市場並點擊「Add to Slack」開始安裝程序。</p>
+
+      <p><strong>步驟 2：連接您的 Claude 帳號</strong></p>
+      <p>安裝應用程式後，驗證您的個人 Claude 帳號：</p>
+      <ol>
+        <li>透過點擊您的應用程式部分中的「Claude」在 Slack 中開啟 Claude 應用程式</li>
+        <li>導覽到應用程式主頁頁籤</li>
+        <li>點擊「Connect」將您的 Slack 帳號與您的 Claude 帳號連結</li>
+        <li>在瀏覽器中完成驗證流程</li>
+      </ol>
+
+      <p><strong>步驟 3：設定網頁上的 Claude Code</strong></p>
+      <p>確保您網頁上的 Claude Code 已正確設定：</p>
+      <ul>
+        <li>存取 claude.ai/code 並使用您連接到 Slack 的同一帳號登入</li>
+        <li>如果尚未連接，請連接您的 GitHub 帳號</li>
+        <li>驗證至少一個您希望 Claude 使用的儲存庫</li>
+      </ul>
+
+      <p><strong>步驟 4：選擇您的路由模式</strong></p>
+      <p>連接您的帳號後，設定 Claude 如何在 Slack 中處理您的訊息。導覽到 Slack 中的 Claude 應用程式主頁以找到 <strong>路由模式</strong> 設定。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left;">模式</th>
+              <th style="text-align: left;">行為</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Code Only（僅程式碼）</strong></td>
+              <td>Claude 將所有 @mentions 路由到 Claude Code 會話。最適合僅將 Claude 用於 Slack 中開發任務的團隊</td>
+            </tr>
+            <tr>
+              <td><strong>Code + Chat（程式碼 + 聊天）</strong></td>
+              <td>Claude 分析每條訊息並在 Claude Code（用於編碼任務）和 Claude Chat（用於寫作、分析和常見問題）之間智慧路由</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">注意：在 Code + Chat 模式下，如果 Claude 將訊息路由到聊天但您想要編碼會話，您可以點擊「Retry as Code」來建立 Claude Code 會話。</div>
+
+      <h3>運作方式 How It Works</h3>
+      <p>當您在 Slack 頻道或執行緒中提及 @Claude 時，Claude 會自動分析您的訊息以確定它是否是編碼任務。如果 Claude 偵測到編碼意圖，它將把您的請求路由到網頁上的 Claude Code。</p>
+
+      <div class="note warning">警告：當在 Slack 中呼叫 @Claude 時，Claude 可以存取對話上下文以更好地理解您的請求。Claude 可能會遵循上下文中其他訊息的指示，因此使用者應確保僅在受信任的 Slack 對話中使用 Claude。</div>
+
+      <h3>會話流程 Session Flow</h3>
+      <ol>
+        <li><strong>啟動</strong>：您使用編碼請求 @mention Claude</li>
+        <li><strong>偵測</strong>：Claude 分析您的訊息並偵測編碼意圖</li>
+        <li><strong>會話建立</strong>：在 claude.ai/code 上建立新的 Claude Code 會話</li>
+        <li><strong>進度更新</strong>：Claude 在工作進行時向您的 Slack 執行緒發布狀態更新</li>
+        <li><strong>完成</strong>：完成後，Claude @mentions 您並提供摘要和操作按鈕</li>
+        <li><strong>審查</strong>：點擊「View Session」查看完整記錄，或點擊「Create PR」開啟 pull request</li>
+      </ol>
+
+      <h3>最佳實踐 Best Practices</h3>
+      <p><strong>撰寫有效的請求</strong></p>
+      <ul>
+        <li>具體說明：在相關時包括檔名、函式名或錯誤訊息</li>
+        <li>提供上下文：如果從對話中不清楚，請提及儲存庫或專案</li>
+        <li>定義成功：解釋「完成」的樣子 -- Claude 應該撰寫測試嗎？更新文件？</li>
+        <li>使用執行緒：在討論 Bug 或功能時在執行緒中回覆</li>
+      </ul>
+
+      <!-- Code Review Section -->
+      <h2>程式碼審查 Code Review</h2>
+      <p>設定自動化 PR 審查，透過對完整程式碼庫的多代理分析來捕獲邏輯錯誤、安全漏洞和迴歸問題。</p>
+
+      <div class="note warning">注意：Code Review 處於研究預覽階段，僅適用於 Teams 和 Enterprise 訂閱。</div>
+
+      <p>Code Review 分析您的 GitHub pull request，並在發現問題的程式碼行上發布內嵌評論。一支由專業代理組成的團隊在完整程式碼庫的上下文中檢查程式碼變更，尋找邏輯錯誤、安全漏洞、破損的邊界情況和微妙的迴歸問題。</p>
+
+      <h3>審查運作方式 How Reviews Work</h3>
+      <p>一旦管理員為您的組織啟用 Code Review，審查將在 PR 開啟時、每次推送時或手動請求時觸發，具體取決於儲存庫的設定行為。在任何模式下，註解 <code>@claude review</code> 可以在 PR 上啟動審查。</p>
+
+      <p>當審查執行時，多個代理在 Anthropic 基礎設施上並行分析差異和周圍程式碼。每個代理尋找不同類別的問題，然後驗證步驟檢查候選項是否與實際程式碼行為相符，以過濾掉誤報。結果被去重、按嚴重程度排序，並作為內嵌評論發布。</p>
+
+      <h4>嚴重程度級別 Severity Levels</h4>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left;">標記</th>
+              <th style="text-align: left;">嚴重程度</th>
+              <th style="text-align: left;">含義</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🔴</td>
+              <td>Normal（正常）</td>
+              <td>應在合併前修復的錯誤</td>
+            </tr>
+            <tr>
+              <td>🟡</td>
+              <td>Minor（小問題）</td>
+              <td>輕微問題，值得修復但不阻止</td>
+            </tr>
+            <tr>
+              <td>🟣</td>
+              <td>Pre-existing（預先存在）</td>
+              <td>程式碼庫中存在但不是由此 PR 引入的錯誤</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>設定 Code Review Set Up Code Review</h3>
+      <p><strong>步驟 1：開啟 Claude Code 管理員設定</strong></p>
+      <p>前往 claude.ai/admin-settings/claude-code 並找到 Code Review 部分。您需要對 Claude 組織具有管理員存取權限。</p>
+
+      <p><strong>步驟 2：開始設定</strong></p>
+      <p>點擊 <strong>Setup（設定）</strong>。這將開始 GitHub App 安裝流程。</p>
+
+      <p><strong>步驟 3：安裝 Claude GitHub App</strong></p>
+      <p>按照提示將 Claude GitHub App 安裝到您的 GitHub 組織。該應用程式請求這些儲存庫權限：</p>
+      <ul>
+        <li><strong>Contents（內容）</strong>：讀寫</li>
+        <li><strong>Issues（議題）</strong>：讀寫</li>
+        <li><strong>Pull requests</strong>：讀寫</li>
+      </ul>
+
+      <p><strong>步驟 4：選擇儲存庫</strong></p>
+      <p>選擇要為 Code Review 啟用的儲存庫。您可以稍後新增更多儲存庫。</p>
+
+      <p><strong>步驟 5：為每個儲存庫設定審查觸發器</strong></p>
+      <p>設定完成後，Code Review 部分在表格中顯示您的儲存庫。對於每個儲存庫，使用 <strong>Review Behavior（審查行為）</strong> 下拉選單選擇何時執行審查：</p>
+      <ul>
+        <li><strong>Once after PR creation（PR 建立後一次）</strong>：當 PR 開啟或標記為準備審查時執行一次審查</li>
+        <li><strong>After every push（每次推送後）</strong>：在每次推送到 PR 分支時執行審查</li>
+        <li><strong>Manual（手動）</strong>：僅當有人在 PR 上註解 <code>@claude review</code> 時才啟動審查</li>
+      </ul>
+
+      <h3>手動觸發審查 Manually Trigger Reviews</h3>
+      <p>在 pull request 上註解 <code>@claude review</code> 以啟動審查。要使註解觸發審查：</p>
+      <ul>
+        <li>將其作為頂層 PR 評論發布，而不是差異行上的內嵌評論</li>
+        <li>在註解開頭放置 <code>@claude review</code></li>
+        <li>您必須對儲存庫具有所有者、成員或協作者存取權限</li>
+        <li>PR 必須開啟且不是草稿</li>
+      </ul>
+
+      <h3>自訂審查 Customize Reviews</h3>
+      <p>Code Review 從您的儲存庫讀取兩個檔案來指導它標記的內容：</p>
+      <ul>
+        <li><strong><code>CLAUDE.md</code></strong>：共享專案說明，Claude Code 用於所有任務。Code Review 讀取您的儲存庫的 <code>CLAUDE.md</code> 檔案，並將新引入的違規視為小問題級別的發現。</li>
+        <li><strong><code>REVIEW.md</code></strong>：僅審查指導，在程式碼審查期間專門讀取。使用它來編碼公司或團隊風格指南、語言或框架特定的慣例，以及 Claude 應始終標記或跳過的內容。</li>
+      </ul>
+
+      <p>範例 <code>REVIEW.md</code>：</p>
+      <pre data-lang="markdown"><code># Code Review Guidelines
+
+## Always check
+- New API endpoints have corresponding integration tests
+- Database migrations are backward-compatible
+- Error messages don't leak internal details to users
+
+## Style
+- Prefer `match` statements over chained `isinstance` checks
+- Use structured logging, not f-string interpolation in log calls
+
+## Skip
+- Generated files under `src/gen/`
+- Formatting-only changes in `*.lock` files</code></pre>
+
+      <h3>檢視使用情況 View Usage</h3>
+      <p>前往 claude.ai/analytics/code-review 以檢視整個組織的 Code Review 活動。儀表板顯示審查的 PR 計數、每週成本、因開發人員解決問題而自動解決的審查評論計數，以及按儲存庫的分解。</p>
+
+      <h3>定價 Pricing</h3>
+      <p>Code Review 根據 token 使用情況計費。審查平均花費 $15-25，隨 PR 大小、程式碼庫複雜性和需要驗證的問題數量而擴展。Code Review 使用透過額外用量單獨計費，不計入您的方案包含的使用。</p>
+
+      <p>您選擇的審查觸發器影響總成本：</p>
+      <ul>
+        <li><strong>Once after PR creation（PR 建立後一次）</strong>：每個 PR 執行一次</li>
+        <li><strong>After every push（每次推送後）</strong>：在每次推送時執行，將成本乘以推送次數</li>
+        <li><strong>Manual（手動）</strong>：在有人在 PR 上註解 <code>@claude review</code> 之前沒有審查</li>
+      </ul>
+
+    </div>
+
+    <nav class="page-nav">
+      <a href="plugins.html" class="prev">
+        <span class="pn-label">← 上一頁</span>
+        <span class="pn-title">Plugins 外掛系統</span>
+      </a>
+      <a href="index.html" class="next">
+        <span class="pn-label">回到首頁 →</span>
+        <span class="pn-title">首頁</span>
+      </a>
+    </nav>
+
+    <footer class="site-footer">
+      Claude Code 繁體中文指南 — 內容整理自 Anthropic 官方文件
+    </footer>
+  </main>
+
+  <script src="nav.js"></script>
+</body>
+</html>
