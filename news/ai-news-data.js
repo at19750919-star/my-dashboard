@@ -5,347 +5,598 @@ const AI_NEWS_DATA = [
   {
     "date": "2026-04-10",
     "weekday": "星期五",
-    "stats": {
-      "claude": 7,
-      "news": 8,
-      "hf": 5,
-      "gh": 5
-    },
+    "stats": { "claude": 7, "news": 8, "hf": 5, "gh": 5 },
     "claude": [
       {
         "sub": "product",
-        "title": "<cite index=\"1-10,1-11\">Claude Cowork 正式在 macOS 和 Windows 桌面應用程式中全面上線</cite>",
-        "desc": "<cite index=\"1-10,1-12\">提供分析 API、使用情況分析、OpenTelemetry 支援，以及企業計劃的角色存取控制</cite>",
+        "title": "Claude Cowork 正式在 macOS 和 Windows 桌面應用程式中全面上線",
+        "desc": "Claude Cowork 脫離研究預覽階段，於 macOS 與 Windows Claude Desktop 全面上線，提供分析 API、使用情況分析、OpenTelemetry 支援，以及企業計畫的角色存取控制。",
+        "url": "https://www.anthropic.com/news/claude-cowork",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "product",
+        "title": "Claude Sonnet 4.6 發布，平衡速度與智能",
+        "desc": "新款 Claude Sonnet 4.6 改善代理搜尋效能，降低 token 消耗，支援擴展思考和 1M token 上下文，為日常 Agent 工作流提供兼顧速度與推理的平衡選擇。",
+        "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
+        "tags": ["claude", "model"]
+      },
+      {
+        "sub": "devtool",
+        "title": "ant CLI 發布：官方 Claude API 命令列客戶端",
+        "desc": "Anthropic 推出官方 ant CLI，提供更快的 Claude API 互動、與 Claude Code 原生整合，並支援以 YAML 檔案版本化管理 API 資源（如 Agent、技能與 Prompt）。",
         "url": "https://releasebot.io/updates/anthropic",
-        "tags": [
-          "claude",
-          "tool"
-        ]
-      },
-      {
-        "sub": "ecosystem",
-        "title": "<cite index=\"2-1,2-6\">Anthropic 發布 Claude Mythos Preview，專注網路安全防護</cite>",
-        "desc": "<cite index=\"2-3,2-4\">新模型在電腦安全任務表現卓越，啟動 Project Glasswing 協助保護關鍵軟體</cite>",
-        "url": "https://red.anthropic.com/2026/mythos-preview/",
-        "tags": [
-          "claude",
-          "model"
-        ]
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "devtool",
-        "title": "<cite index=\"4-12,4-13\">Claude Managed Agents 公開測試版上線</cite>",
-        "desc": "<cite index=\"4-12\">完全託管的代理框架，具備安全沙箱、內建工具和伺服器事件串流</cite>",
-        "url": "https://platform.claude.com/docs/en/release-notes/overview",
-        "tags": [
-          "claude",
-          "agent"
-        ]
+        "title": "Claude Code 持續優化：Plugin、Slack、VS Code 工作流全面改善",
+        "desc": "本週 Claude Code 更新聚焦工作流體驗：改善 Plugin 載入、Slack 整合、resume 速度與 VS Code 延伸支援，並修復登入、渲染、轉錄、搜尋和多位元組文字多項問題。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": ["claude", "tool"]
       },
       {
-        "sub": "devtool",
-        "title": "<cite index=\"4-16,4-17\">推出 ant CLI 命令列工具</cite>",
-        "desc": "<cite index=\"4-16\">Claude API 命令列客戶端，與 Claude Code 原生整合，支援 YAML 格式版本控制</cite>",
-        "url": "https://platform.claude.com/docs/en/release-notes/overview",
-        "tags": [
-          "claude",
-          "tool"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "<cite index=\"4-25,4-26\">Claude Sonnet 4.6 發布，平衡速度與智能</cite>",
-        "desc": "<cite index=\"4-25,4-26,4-27\">改善代理搜尋效能，降低 token 消耗，支援擴展思考和 1M token 上下文</cite>",
-        "url": "https://platform.claude.com/docs/en/release-notes/overview",
-        "tags": [
-          "claude",
-          "model"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "<cite index=\"6-2\">Claude 在 4 月 8 日再次遇到服務中斷問題</cite>",
-        "desc": "<cite index=\"6-2,6-4\">用戶回報登入失敗、聊天錯誤，距離前一次重大故障不到 24 小時</cite>",
-        "url": "https://www.ibtimes.com.au/claude-ai-down-again-april-8-2026-anthropic-outage-hits-users-after-yesterdays-major-incident-1865761",
-        "tags": [
-          "claude"
-        ]
+        "sub": "tutorial",
+        "title": "Claude Cowork 進階使用技巧：從桌面任務到手機派工",
+        "desc": "完整教學 Cowork 新特性：設定自訂技能市集、用 Dispatch 從手機指派任務、透過 OpenTelemetry 監控 Agent 執行、企業 RBAC 設定與稽核紀錄匯出。",
+        "url": "https://www.anthropic.com/news/claude-cowork",
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "ecosystem",
-        "title": "<cite index=\"9-2,9-11\">法院駁回 Anthropic 緊急請求，五角大廈對 Claude 的禁令維持有效</cite>",
-        "desc": "<cite index=\"9-13\">口頭辯論定於 5 月 19 日進行，此案件將影響美國政府 AI 採購政策</cite>",
-        "url": "https://news.bitcoin.com/federal-judges-deny-anthropic-relief-in-claude-military-ai-ban-set-may-oral-arguments/",
-        "tags": [
-          "claude"
-        ]
+        "title": "Project Glasswing 一週回顧：MCP 生態持續擴張",
+        "desc": "Project Glasswing 上線一週，合作夥伴數量持續增加，MCP 伺服器實作突破 250 個。Anthropic 強調 Mythos 僅限認證夥伴，同時開放更多 MCP 工具供 Claude 與 Claude Code 原生使用。",
+        "url": "https://www.anthropic.com/glasswing",
+        "tags": ["claude", "open"]
+      },
+      {
+        "sub": "product",
+        "title": "Claude Managed Agents 公測持續擴大：新增多 Agent pipeline 範例",
+        "desc": "Claude Managed Agents 公測進行一週，Anthropic 發布多 Agent pipeline 範例與最佳實踐，包含 research-then-code、plan-execute-review 等範式，需使用 managed-agents-2026-04-01 beta 標頭。",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "tags": ["claude", "agent"]
       }
     ],
     "news": [
       {
-        "title": "<cite index=\"22-1,22-3\">微軟發布 Agent Framework 1.0，統一 Semantic Kernel 和 AutoGen</cite>",
-        "desc": "<cite index=\"22-4,22-5\">提供穩定 API、長期支援承諾和企業級多代理協調，支援 MCP 和 A2A 1.0</cite>",
-        "url": "https://dev.to/alexmercedcoder/ai-tools-race-heats-up-week-of-april-3-9-2026-37fl",
-        "tags": [
-          "tool",
-          "agent"
-        ]
+        "title": "OpenAI 發布「企業 AI 下一階段」願景，鎖定代理工作流普及",
+        "desc": "OpenAI 公布企業 AI 下一階段策略，重點放在 Agent 工作流普及、資料治理整合、與企業既有系統無縫對接。業界解讀為對 Anthropic Claude Enterprise 的直接回應。",
+        "url": "https://openai.com/news/",
+        "tags": ["app", "agent"]
       },
       {
-        "title": "<cite index=\"29-1,29-19,29-23\">Meta 推出首個重大 AI 模型 Muse Spark</cite>",
-        "desc": "<cite index=\"29-1,29-7\">由 Alexandr Wang 領導的 Meta Superintelligence Labs 開發，支援購物模式和多模態任務</cite>",
+        "title": "Meta Muse Spark 進入私人預覽，將釋出開源版本",
+        "desc": "Meta Superintelligence Labs 宣布 Muse Spark 首先透過 API 私人預覽開放合作夥伴，後續將釋出付費 API 與開源授權版本，推動 Meta 超智能模型普及。",
         "url": "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
-        "tags": [
-          "model"
-        ]
+        "tags": ["model", "open"]
       },
       {
-        "title": "<cite index=\"32-8\">Gemini 3.1 Pro 在 16 項主要基準中領先 13 項</cite>",
-        "desc": "<cite index=\"32-8\">與 GPT-5.4 Pro 在人工智能指數上並列第一，API 成本僅為三分之一</cite>",
+        "title": "Google Gemini 3.1 Pro 持續領跑：13/16 主要基準領先",
+        "desc": "Gemini 3.1 Pro 在 Artificial Analysis 指數中持續領先 13/16 項主要基準，GPQA Diamond 達 94.3%，ARC-AGI-2 達 77.1%，API 成本僅為競品三分之一，性價比無人能敵。",
+        "url": "https://llm-stats.com/llm-updates",
+        "tags": ["model"]
+      },
+      {
+        "title": "Alibaba Qwen 3.6 Plus 免費 Preview 期結束，正式商用定價公布",
+        "desc": "Alibaba Qwen 3.6 Plus 免費預覽期結束，正式商用定價揭曉，每百萬 token 輸入與輸出價格皆低於 GPT-5.4，強調 1M 上下文與 Agentic 能力，吸引中小企業切換。",
+        "url": "https://www.buildfastwithai.com/blogs/qwen-3-6-plus-preview-review",
+        "tags": ["model", "open"]
+      },
+      {
+        "title": "AI 模型四月大戰：Claude、GPT、Gemini、Qwen 四強鼎立",
+        "desc": "四月 AI 模型發表密度創新高：Claude Mythos、Muse Spark、Qwen 3.6、MiniMax M2.7、Gemma 4 同月發布。業界分析進入「四強鼎立」格局，開源與閉源差距持續縮小。",
         "url": "https://renovateqr.com/blog/ai-models-april-2026",
-        "tags": [
-          "model"
-        ]
+        "tags": ["model", "open"]
       },
       {
-        "title": "<cite index=\"32-13\">GPT-5.5 (代號 Spud) 完成預訓練</cite>",
-        "desc": "<cite index=\"32-16\">2026 年 AI 前沿競爭激烈，Google、Anthropic、OpenAI、xAI 多方競逐</cite>",
-        "url": "https://renovateqr.com/blog/ai-models-april-2026",
-        "tags": [
-          "model"
-        ]
+        "title": "OpenAI 推出 Child Safety Blueprint，強化未成年保護",
+        "desc": "OpenAI 發布 Child Safety Blueprint，公開內部未成年使用者保護機制，包含內容過濾、年齡驗證、使用時間管理與家長控制，回應全球對 AI 兒童安全的關注。",
+        "url": "https://openai.com/news/",
+        "tags": ["app"]
       },
       {
-        "title": "<cite index=\"32-11\">Google Gemma 4 和 Meta Llama 4 成為頂級開源選擇</cite>",
-        "desc": "<cite index=\"32-11\">Gemma 4 採用 Apache 2.0 授權，Llama 4 Maverick 擁有 400B 參數和 10M 上下文</cite>",
-        "url": "https://renovateqr.com/blog/ai-models-april-2026",
-        "tags": [
-          "model",
-          "open"
-        ]
+        "title": "AI Agent 開發者工具大戰白熱化，Cursor、Windsurf、Claude Code 三分天下",
+        "desc": "四月 AI IDE 競爭達到新高峰：Cursor 3 的 Composer、Windsurf 的 Cascade、Claude Code 的 Plan Mode 各擅勝場。開發者社群調查顯示三者使用者重疊度持續上升。",
+        "url": "https://paddo.dev/blog/ai-roundup-april-2026/",
+        "tags": ["tool", "agent"]
       },
       {
-        "title": "<cite index=\"25-14,25-15\">塔夫茨大學研究顯示 AI 能耗可降低 100 倍</cite>",
-        "desc": "<cite index=\"25-14,25-15\">神經符號 AI 系統模擬人類批判性推理，顯著提升計算準確度並減少能源消耗</cite>",
-        "url": "https://blog.mean.ceo/ai-advancements-news-april-2026/",
-        "tags": [
-          "model"
-        ]
-      },
-      {
-        "title": "<cite index=\"25-17,25-18\">Salesforce 升級 Slack AI 功能</cite>",
-        "desc": "<cite index=\"25-17,25-18\">為小型企業提供更易用的先進 AI 功能，Forbes 稱此舉為營運效率遊戲規則改變者</cite>",
-        "url": "https://blog.mean.ceo/ai-advancements-news-april-2026/",
-        "tags": [
-          "tool",
-          "app"
-        ]
-      },
-      {
-        "title": "<cite index=\"24-1,24-5\">Mimir 在 NAB 2026 展示雲原生編輯和 AI 工具</cite>",
-        "desc": "<cite index=\"24-6,24-7\">展示無伺服器製作工作流程，包括 Mimir Cutter 雲端編輯工具和 AI 整合功能</cite>",
-        "url": "https://tvnewscheck.com/tech/article/mimir-to-showcase-new-cloud-native-editing-ai-tools-at-nab-2026/",
-        "tags": [
-          "tool",
-          "app"
-        ]
+        "title": "AI 醫療保健成本爭議持續：業界呼籲制定效率評估框架",
+        "desc": "延續 STAT News 報導，醫療業界對 AI scribe 推升成本問題的討論升溫，美國醫學會與保險協會聯合提案建立 AI 工具效率評估框架，避免效率提升反而變成成本負擔。",
+        "url": "https://www.statnews.com/2026/04/08/insurers-providers-agree-ai-scribes-raise-health-care-costs/",
+        "tags": ["app"]
       }
     ],
     "hf": [
-      {
-        "name": "CutClaw",
-        "author": "GVC Lab at Great Bay University",
-        "desc": "<cite index=\"42-1\">自主多代理框架，使用多模態語言模型自動編輯長視頻為節奏化短視頻</cite>",
-        "downloads": "N/A",
-        "likes": "N/A",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "daVinci-MagiHuman",
-        "author": "MIT",
-        "desc": "<cite index=\"42-17,42-18\">開源音視頻生成模型，透過單流 Transformer 架構同步文本、視頻和音頻</cite>",
-        "downloads": "N/A",
-        "likes": "N/A",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Memory Sparse Attention (MSA)",
-        "author": "未知",
-        "desc": "<cite index=\"42-7\">使大型語言模型能以線性複雜度處理極長上下文，具備高效率</cite>",
-        "downloads": "N/A",
-        "likes": "N/A",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "RAG-Anything",
-        "author": "未知",
-        "desc": "<cite index=\"42-10\">統一框架，通過整合跨模態關係和語義匹配增強多模態知識檢索</cite>",
-        "downloads": "N/A",
-        "likes": "N/A",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Gemma-4 Family",
-        "author": "Google",
-        "desc": "<cite index=\"62-2,62-4\">本週發布的主導模型系列，在 HuggingFace 熱門趨勢中佔據重要位置</cite>",
-        "downloads": "N/A",
-        "likes": "N/A",
-        "url": "https://github.com/duanyytop/agents-radar/issues/414",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量突破 334 萬次，穩居最受歡迎開源模型寶座。", "downloads": "3.3M", "likes": "13.2K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "基於 Diffusers 架構的文字生成圖片模型，創作社群持續熱愛。", "downloads": "686K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "1.9M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion v1-4", "author": "CompVis", "desc": "開啟開源圖片生成時代的經典模型，社群衍生模型眾多。", "downloads": "453K", "likes": "7.0K", "url": "https://huggingface.co/CompVis/stable-diffusion-v1-4", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.1M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] }
     ],
     "gh": [
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,291", "forks": "46,226", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "159,032", "forks": "20,827", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "90,423", "forks": "13,854", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "89,494", "forks": "13,008", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,961", "forks": "8,896", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
+    ]
+  },
+  {
+    "date": "2026-04-09",
+    "weekday": "星期四",
+    "stats": { "claude": 6, "news": 7, "hf": 5, "gh": 5 },
+    "claude": [
       {
-        "name": "OpenClaw",
-        "repo": "未知/openclaw",
-        "desc": "<cite index=\"51-1,51-4,51-5\">2026 年突破性明星項目，從 9,000 星增長到超過 210,000 星</cite>",
-        "stars": "210k+",
-        "forks": "N/A",
-        "lang": "TypeScript",
-        "url": "https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026",
-        "tags": [
-          "agent",
-          "tool"
-        ]
+        "sub": "product",
+        "title": "Claude Managed Agents 公開測試版正式上線",
+        "desc": "Anthropic 在 Claude Platform 推出 Managed Agents 公開測試，提供全託管 Agent harness，內建安全 sandbox、錯誤恢復與 checkpoints，支援單任務與多 Agent pipeline，開發速度最高可提升 10 倍。",
+        "url": "https://mlq.ai/news/anthropic-releases-claude-managed-agents-for-faster-ai-deployment/",
+        "tags": ["claude", "agent"]
       },
       {
-        "name": "mempalace",
-        "repo": "milla-jovovich/mempalace",
-        "desc": "<cite index=\"52-1,52-5\">有史以來基準測試評分最高的 AI 記憶系統，且免費</cite>",
-        "stars": "35.7k",
-        "forks": "4.5k",
-        "lang": "Python",
-        "url": "https://trendshift.io/",
-        "tags": [
-          "tool"
-        ]
+        "sub": "product",
+        "title": "Moody's 宣布整合 Claude，發布首款金融 MCP 應用",
+        "desc": "Moody's Agentic Solutions（MAS）將透過專屬 Model Context Protocol 應用開放，可直接在 Claude Desktop、Claude.ai 與 Claude Enterprise 使用，為金融分析與信評帶來 Agent 原生工作流。",
+        "url": "https://www.pymnts.com/artificial-intelligence-2/2026/moodys-integrates-ai-agents-with-anthropics-claude/",
+        "tags": ["claude", "agent"]
       },
       {
-        "name": "graphify",
-        "repo": "safishamsi/graphify",
-        "desc": "<cite index=\"52-3,52-7\">將任何程式碼、文檔、論文或圖片資料夾轉換為可查詢的知識圖譜</cite>",
-        "stars": "13.5k",
-        "forks": "1.4k",
-        "lang": "Python",
-        "url": "https://trendshift.io/",
-        "tags": [
-          "tool"
-        ]
+        "sub": "devtool",
+        "title": "Claude Code 廣泛更新：Vertex AI 精靈、Bash/sandbox 安全強化與 Monitor 工具",
+        "desc": "新版本帶來 Vertex AI 設定精靈、強化 Bash 與 sandbox 安全控制、新的 Monitor 工具、改善 LSP 追蹤支援，並修復 resume、權限、終端行為、語音模式、插件與 managed settings 等多項問題。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": ["claude", "tool"]
       },
       {
-        "name": "awesome-design-md",
-        "repo": "VoltAgent/awesome-design-md",
-        "desc": "<cite index=\"52-4,52-8\">收集流行網站設計系統的 DESIGN.md 檔案集合</cite>",
-        "stars": "31.2k",
-        "forks": "3.9k",
-        "lang": "HTML",
-        "url": "https://trendshift.io/",
-        "tags": [
-          "tool"
-        ]
+        "sub": "ecosystem",
+        "title": "Project Glasswing 擴大至 40-50 家合作夥伴，聚焦防禦性資安",
+        "desc": "Project Glasswing 持續發酵，合作夥伴擴大至 40-50 家科技企業。Anthropic 強調 Claude Mythos Preview 不會對外開放，僅限認證夥伴用於關鍵軟體防禦與漏洞修補。",
+        "url": "https://www.anthropic.com/glasswing",
+        "tags": ["claude", "open"]
       },
       {
-        "name": "n8n",
-        "repo": "未知/n8n",
-        "desc": "<cite index=\"51-15\">開源工作流程自動化平台，結合視覺化無程式碼介面與 AI 功能</cite>",
-        "stars": "162k",
-        "forks": "N/A",
-        "lang": "TypeScript",
-        "url": "https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026",
-        "tags": [
-          "tool",
-          "app"
-        ]
+        "sub": "product",
+        "title": "聯邦法官駁回 Anthropic 軍事 AI 禁令救濟申請",
+        "desc": "聯邦法官駁回 Anthropic 對 Claude 軍事用途禁令的緊急救濟請求，雙方將於 5 月進行口頭辯論。此案將影響 Claude 在國防合約與敏感政府部門的可用性。",
+        "url": "https://news.bitcoin.com/federal-judges-deny-anthropic-relief-in-claude-military-ai-ban-set-may-oral-arguments/",
+        "tags": ["claude"]
+      },
+      {
+        "sub": "tutorial",
+        "title": "Claude Mythos 技術解析：83.1% Cybergym 分數背後的 Agent 架構",
+        "desc": "深入解析 Mythos 如何在數小時內找出 OpenBSD 27 年老漏洞與 FFmpeg 16 年漏洞：結合長時程 Agent 規劃、自動 fuzzing 與 PoC 生成，成為首個達到資深安全研究員水準的模型。",
+        "url": "https://www.geeky-gadgets.com/claude-mythos-cybersecurity-2/",
+        "tags": ["claude", "agent"]
       }
+    ],
+    "news": [
+      {
+        "title": "Cursor 3 發布：全新 Composer Agent 與多模型支援",
+        "desc": "Cursor 3 帶來重寫的 Composer Agent、改善的多檔編輯體驗，並原生支援 Claude Opus 4.6、GPT-5.4 與 Gemini 3.1 Pro 在同一工作階段自由切換。",
+        "url": "https://paddo.dev/blog/ai-roundup-april-2026/",
+        "tags": ["tool", "agent"]
+      },
+      {
+        "title": "Meta Muse Spark 首日反響熱烈，contemplating mode 引關注",
+        "desc": "Meta Superintelligence Labs 首款模型 Muse Spark 發布隔日持續發酵。新的 contemplating mode 可同時運行多個 Agent 處理困難問題，業界視為對 Claude 與 GPT 的直接挑戰。",
+        "url": "https://techstartups.com/2026/04/09/meta-unveils-muse-spark-its-first-superintelligence-model-to-rival-openai-and-google/",
+        "tags": ["model", "agent"]
+      },
+      {
+        "title": "Alibaba Qwen 3.6 Plus 1M Token 上下文，對齊 Claude Opus 4.6",
+        "desc": "Qwen 3.6 Plus 採混合 linear attention + sparse MoE 架構，原生 1M token 上下文視窗（為 3.5 的 4 倍），具備強大 Agentic 行為，OpenRouter 提供免費 preview 使用。",
+        "url": "https://www.caixinglobal.com/2026-04-02/alibaba-releases-qwen-36-plus-ai-model-with-enhanced-coding-capabilities-102430395.html",
+        "tags": ["model", "open"]
+      },
+      {
+        "title": "MiniMax M2.7 自我進化訓練：SWE-Pro 56.22% 逼近 Claude Opus 4.6",
+        "desc": "MiniMax M2.7 引入「自我進化」訓練法，持續從互動中學習。SWE-Pro 得分 56.22%，在編碼與 Agent 基準與 Claude、GPT-5 並駕齊驅，推論速度快 3 倍。",
+        "url": "https://renovateqr.com/blog/ai-models-april-2026",
+        "tags": ["model", "agent"]
+      },
+      {
+        "title": "Claude Mythos 引發擔憂：資安界警告 AI 進入攻防新紀元",
+        "desc": "多位資安專家稱 Claude Mythos 為「terrifying」，認為 AI 已達到超越大多數人類安全研究員的漏洞挖掘能力，呼籲建立全球 AI 資安揭露與協作機制。",
+        "url": "https://www.megynkelly.com/2026/04/09/anthropic-pauses-public-release-of-new-claude-mythos-ai-model/",
+        "tags": ["model", "agent"]
+      },
+      {
+        "title": "OpenAI GPT-5.5（代號 Spud）預訓練完成，Q2 預計發表",
+        "desc": "OpenAI 內部確認 GPT-5.5（代號 Spud）預訓練階段已完成，業界共識 Q2 可能正式推出，預期在推理、Agent 與多模態能力持續進化。",
+        "url": "https://releasebot.io/updates/openai",
+        "tags": ["model"]
+      },
+      {
+        "title": "Gemma 4、Claude Mythos、Qwen 3.6 同週三大模型重磅消息",
+        "desc": "llm-stats 更新四月模型覆蓋範圍：納入 Gemma 4 開源模型、Claude Mythos 發布詳情、Alibaba Qwen 3.6 與 MiniMax 2.7，四月成為 2026 年最密集的 AI 模型發表週。",
+        "url": "https://llm-stats.com/llm-updates",
+        "tags": ["model", "open"]
+      }
+    ],
+    "hf": [
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量持續攀升至 320 萬次，依然是社群最熱門的開源 LLM。", "downloads": "3.2M", "likes": "13.1K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "基於 Diffusers 架構的文字生成圖片模型，繼續受到創作社群熱烈使用。", "downloads": "685K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "1.9M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Qwen3.6-Plus-Preview", "author": "Qwen", "desc": "Alibaba 新發表的 Agentic LLM，1M token 上下文、混合線性注意力 + sparse MoE，開源社群熱議。", "downloads": "120K", "likes": "5.9K", "url": "https://huggingface.co/Qwen", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.1M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] }
+    ],
+    "gh": [
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,260", "forks": "46,223", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "158,790", "forks": "20,789", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "90,321", "forks": "13,841", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "89,380", "forks": "12,992", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,890", "forks": "8,888", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
+    ]
+  },
+  {
+    "date": "2026-04-08",
+    "weekday": "星期三",
+    "stats": { "claude": 6, "news": 7, "hf": 5, "gh": 5 },
+    "claude": [
+      {
+        "sub": "devtool",
+        "title": "Claude Code 新增 Amazon Bedrock 支援（由 Mantle 驅動）",
+        "desc": "Claude Code 正式加入 Amazon Bedrock 整合，透過 Mantle 後端提供更順暢的 AWS 企業工作流；同時改善 plugin、Slack、resume 與 VS Code 工作流體驗。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "devtool",
+        "title": "Claude Code 預設 effort level 由 medium 提升至 high",
+        "desc": "針對 API Key、Bedrock/Vertex/Foundry、Team 與 Enterprise 使用者，Claude Code 預設 effort level 從 medium 提升至 high，提供更深入的規劃與推理，但可能略增 token 使用。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "devtool",
+        "title": "Claude Code 大量 bug 修復：登入、渲染、轉錄、搜尋與多位元組文字",
+        "desc": "此次釋出修復登入、渲染、轉錄、搜尋與多位元組文字（CJK）處理等多項問題，讓日文、韓文與中文使用者的使用體驗顯著提升。",
+        "url": "https://code.claude.com/docs/en/changelog",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "product",
+        "title": "Claude 服務再度中斷：4/7 outage 後 24 小時內再發",
+        "desc": "4 月 8 日 23:22-23:50 UTC，Claude.ai 桌面與網頁出現登入失敗與降級錯誤，距離 4/7 大規模 outage 不到 24 小時，Anthropic 已迅速修復並致歉。",
+        "url": "https://www.ibtimes.com.au/claude-ai-down-again-april-8-2026-anthropic-outage-hits-users-after-yesterdays-major-incident-1865761",
+        "tags": ["claude"]
+      },
+      {
+        "sub": "ecosystem",
+        "title": "OpenClaw 政策後續：用戶轉向 pay-as-you-go 訂閱",
+        "desc": "自 4/4 政策生效後，Claude Pro/Max 訂閱不再涵蓋 OpenClaw 等第三方 harness，需改用獨立的 pay-as-you-go 計費。部分重度用戶反映總花費顯著提升。",
+        "url": "https://www.indexbox.io/blog/anthropic-changes-claude-code-subscription-for-third-party-tools-in-2026/",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "tutorial",
+        "title": "Claude Code Bedrock 設定完整教學：從零到企業部署",
+        "desc": "配合新 Bedrock 支援，社群發布完整教學：IAM 角色設定、Mantle 後端選擇、成本控制與多區域路由，幫助企業快速導入 Claude Code。",
+        "url": "https://blog.mean.ceo/claude-code-news-april-2026/",
+        "tags": ["claude", "tool"]
+      }
+    ],
+    "news": [
+      {
+        "title": "Meta 發表 Muse Spark：超智能實驗室首款旗艦 AI 模型",
+        "desc": "Meta Superintelligence Labs 推出 Muse Spark（原代號 Avocado），為 Scale AI 創辦人 Alexandr Wang 加入九個月後首款重磅作品，支援文字、圖像與語音，並引入多 Agent 「contemplating mode」。",
+        "url": "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
+        "tags": ["model", "agent"]
+      },
+      {
+        "title": "Google Finance AI 工具擴展至 100+ 國家，支援在地語言",
+        "desc": "Google Finance 的 AI 功能擴展到澳洲、巴西、加拿大、印尼、日本、墨西哥等超過 100 個國家，提供完整在地語言支援，強化全球使用者的投資研究體驗。",
+        "url": "https://www.pymnts.com/google/2026/google-finance-scales-ai-tools-to-100-more-countries/",
+        "tags": ["app", "tool"]
+      },
+      {
+        "title": "Google AI Edge Eloquent：iOS 離線 AI 聽寫應用上架",
+        "desc": "Google 推出 AI Edge Eloquent，基於 Gemma 架構的裝置端語音辨識模型，可離線轉錄並選擇性透過 Gemini 雲端精修，為行動工作者帶來隱私友善的聽寫體驗。",
+        "url": "https://theaiinsider.tech/2026/04/08/google-launches-ai-edge-eloquent-dictation-app-to-advance-on-device-speech-recognition/",
+        "tags": ["app", "model"]
+      },
+      {
+        "title": "MiniMax M2.7 正式發布：自我進化訓練引業界關注",
+        "desc": "MiniMax 發布 M2.7，首度採用「自我進化」訓練方法，透過持續互動改進而非靜態訓練，在編碼與 Agent 能力接近 Claude Opus 4.6，且推論速度快 3 倍。",
+        "url": "https://llm-stats.com/ai-news",
+        "tags": ["model", "agent"]
+      },
+      {
+        "title": "研究：AI 醫療文書助理反而推升健康照護成本",
+        "desc": "STAT News 報導保險業與醫療服務商一致認為 AI scribe 工具推升整體費用：醫師看診更多病患、處置更複雜，使總支出上升。各方對因應之道仍無共識。",
+        "url": "https://www.statnews.com/2026/04/08/insurers-providers-agree-ai-scribes-raise-health-care-costs/",
+        "tags": ["app"]
+      },
+      {
+        "title": "AI 工具業者警告：企業應準備應對新世代 AI 資安威脅",
+        "desc": "延續 Project Glasswing 熱度，多家資安業者發出聯合聲明：AI 已能挖出數十年老漏洞，企業需重新審視軟體供應鏈與修補節奏，避免成為下一個目標。",
+        "url": "https://www.hawaiitribune-herald.com/2026/04/08/opinion/an-ai-threat-looms-and-we-are-not-prepared/",
+        "tags": ["agent"]
+      },
+      {
+        "title": "Cursor 3 發布搶佔 AI IDE 市場，挑戰 Claude Code 與 GitHub Copilot",
+        "desc": "Cursor 3 推出新世代 Composer Agent 與多模型動態路由，支援 Claude Opus 4.6、GPT-5.4、Gemini 3.1 Pro 同會話切換，成為 AI IDE 激烈競爭中的關鍵里程碑。",
+        "url": "https://paddo.dev/blog/ai-roundup-april-2026/",
+        "tags": ["tool", "app"]
+      }
+    ],
+    "hf": [
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量超過 310 萬次，持續霸榜最受歡迎開源模型。", "downloads": "3.1M", "likes": "13.1K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "文字生成圖片模型，基於 Diffusers 架構，創作社群熱門選擇。", "downloads": "684K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "1.9M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.1M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] },
+      { "name": "Muse-Spark-Preview", "author": "meta-llama", "desc": "Meta Superintelligence Labs 首款多模態模型 Muse Spark 預覽版，開發者搶先申請試用。", "downloads": "45K", "likes": "4.8K", "url": "https://huggingface.co/meta-llama", "tags": ["model", "open"] }
+    ],
+    "gh": [
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,225", "forks": "46,220", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "158,420", "forks": "20,740", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "90,215", "forks": "13,820", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "89,210", "forks": "12,960", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,815", "forks": "8,880", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
+    ]
+  },
+  {
+    "date": "2026-04-07",
+    "weekday": "星期二",
+    "stats": { "claude": 7, "news": 6, "hf": 5, "gh": 5 },
+    "claude": [
+      {
+        "sub": "product",
+        "title": "Claude Mythos Preview 正式亮相：最強資安 AI 模型",
+        "desc": "Anthropic 公布 Claude Mythos Preview，一款在資安任務表現驚人的前沿模型。在 Cybergym 得分 83.1%，已在主要作業系統與瀏覽器中找出數千個 0-day，僅對 Project Glasswing 夥伴開放。",
+        "url": "https://red.anthropic.com/2026/mythos-preview/",
+        "tags": ["claude", "model"]
+      },
+      {
+        "sub": "product",
+        "title": "Project Glasswing 啟動：11 家創始夥伴 + $100M Mythos 額度",
+        "desc": "Anthropic 推出 Project Glasswing，與 AWS、Apple、Broadcom、Cisco、CrowdStrike、Google、JPMorganChase、Microsoft、Nvidia 等 11 家創始夥伴合作，並提供最高 1 億美元 Mythos 使用額度用於防禦性資安。",
+        "url": "https://www.anthropic.com/glasswing",
+        "tags": ["claude", "open"]
+      },
+      {
+        "sub": "devtool",
+        "title": "Messages API 正式登陸 Amazon Bedrock（Research Preview）",
+        "desc": "Anthropic 宣布 Messages API 在 Amazon Bedrock 以 research preview 形式開放，開發者可直接透過 AWS 區域部署 Claude 最新模型，享受與 api.claude.com 相同的體驗。",
+        "url": "https://platform.claude.com/docs/en/release-notes/overview",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "devtool",
+        "title": "Claude Managed Agents 公測啟動：全託管 Agent 執行環境",
+        "desc": "Claude Managed Agents 進入 public beta，提供全託管 Agent 執行環境，含安全 sandbox、內建工具與 Server-Sent Events 串流，讓開發者無須自建基礎設施即可部署生產級 Agent。",
+        "url": "https://releasebot.io/updates/anthropic",
+        "tags": ["claude", "agent"]
+      },
+      {
+        "sub": "product",
+        "title": "Claude 遭遇 Major Outage，登入、語音模式全中斷",
+        "desc": "4 月 7 日 Claude.ai 出現大規模錯誤：登入失敗、語音模式異常、對話無法完成，數千名全球使用者受影響。Anthropic 在數小時內定位問題並恢復成功率。",
+        "url": "https://www.techradar.com/news/live/claude-anthropic-down-outage-april-6-2026",
+        "tags": ["claude"]
+      },
+      {
+        "sub": "tutorial",
+        "title": "Mythos 27 年 OpenBSD 老 bug 案例研究",
+        "desc": "Bitcoin News 深度報導 Mythos 如何在數小時內找出 OpenBSD 27 年老漏洞與 FFmpeg 16 年未被發現的 bug，展示 Agentic AI 對長尾軟體安全的突破能力。",
+        "url": "https://news.bitcoin.com/claude-mythos-preview-anthropics-unreleased-ai-cracked-linux-and-openbsd-bugs-humans-missed-for-decades/",
+        "tags": ["claude", "model"]
+      },
+      {
+        "sub": "ecosystem",
+        "title": "Anthropic 明確表態：Mythos 不會全面公開",
+        "desc": "Anthropic 同日確認 Claude Mythos 因資安風險太高，不會對外開放 API 或訂閱使用。僅透過 Project Glasswing 提供給 40-50 家受認證夥伴，強調「負責任發布」原則。",
+        "url": "https://fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity/",
+        "tags": ["claude", "open"]
+      }
+    ],
+    "news": [
+      {
+        "title": "Google AI Edge 離線聽寫 App 低調上架 iOS",
+        "desc": "Google 悄悄在 iOS 推出離線優先的 AI 聽寫 App，採用裝置端 Gemma 模型執行語音辨識，強調隱私與低延遲，為注重資料保護的企業使用者提供替代方案。",
+        "url": "https://techcrunch.com/2026/04/07/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/",
+        "tags": ["app", "model"]
+      },
+      {
+        "title": "Gemini 3.1 Pro 在 13/16 主要基準領先，GPQA Diamond 達 94.3%",
+        "desc": "Google DeepMind Gemini 3.1 Pro 在 13 項主要基準測試中奪冠，GPQA Diamond 達 94.3%，領先 Claude Opus 4.6 與 GPT-5.2；API 成本僅為競品三分之一，性價比備受關注。",
+        "url": "https://llm-stats.com/llm-updates",
+        "tags": ["model", "open"]
+      },
+      {
+        "title": "Q2 模型大戰前哨戰：Anthropic、OpenAI、Google 同步佈局",
+        "desc": "GPT-5.5（Spud）預訓練完成、Gemini 3.1 Pro 穩坐基準榜首、Claude Mythos 進入防禦性資安專用路線，三巨頭分工明確，預告 Q2 將是 AI 模型競爭最激烈的一季。",
+        "url": "https://whatllm.org/blog/new-ai-models-april-2026",
+        "tags": ["model"]
+      },
+      {
+        "title": "OpenAI 募資 1,220 億美元加速下一階段 AI 發展",
+        "desc": "OpenAI 宣布完成新一輪融資，總計募得 1,220 億美元，將用於擴充運算資源、資料中心與 agentic AI 產品線，鞏固在生成式 AI 領域的領先地位。",
+        "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
+        "tags": ["app"]
+      },
+      {
+        "title": "資安界震撼：AI 已能以數小時挖出數十年老漏洞",
+        "desc": "Claude Mythos 揭露讓資安研究圈陷入震撼：過去需數年、數十年才被發現的漏洞，AI 可在數小時內定位並生成 PoC。業界開始討論建立「AI 披露責任制」框架。",
+        "url": "https://wavespeed.ai/blog/posts/what-is-claude-mythos-preview/",
+        "tags": ["agent", "model"]
+      },
+      {
+        "title": "Gemma 4 推論基準公布：開源模型再度逼近閉源巨頭",
+        "desc": "Google Gemma 4 系列在推理、代碼、數學基準表現亮眼，在多項任務逼近 Claude Sonnet 與 GPT-5 Mini，讓開源社群在本地部署與微調場景有了新的最佳選擇。",
+        "url": "https://llm-stats.com/ai-news",
+        "tags": ["model", "open"]
+      }
+    ],
+    "hf": [
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量超過 300 萬次，依然穩居最受歡迎開源模型寶座。", "downloads": "3.0M", "likes": "13.1K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "基於 Diffusers 架構的文字生成圖片模型，繼續是創作者首選。", "downloads": "684K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "1.9M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Gemma-4-9B-it", "author": "google", "desc": "Google Gemma 4 系列 9B 指令微調版本，Apache 2.0 授權，推理與 Agent 任務表現亮眼。", "downloads": "180K", "likes": "5.4K", "url": "https://huggingface.co/google", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.1M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] }
+    ],
+    "gh": [
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,195", "forks": "46,215", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "158,050", "forks": "20,690", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "90,145", "forks": "13,805", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "89,110", "forks": "12,945", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,750", "forks": "8,870", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
+    ]
+  },
+  {
+    "date": "2026-04-06",
+    "weekday": "星期一",
+    "stats": { "claude": 6, "news": 7, "hf": 5, "gh": 5 },
+    "claude": [
+      {
+        "sub": "product",
+        "title": "Claude Cowork 桌面控制功能擴展至 Windows，可從手機派任務",
+        "desc": "Cowork 桌面控制已於 4/3 開放 Windows Pro/Max 使用者，可直接操控應用程式、瀏覽網頁與本地檔案。新增 Dispatch 功能讓用戶從手機指派任務，回到桌面即見成果。",
+        "url": "https://winbuzzer.com/2026/04/04/anthropic-claude-desktop-control-windows-cowork-dispatch-xcxwbn/",
+        "tags": ["claude", "app"]
+      },
+      {
+        "sub": "product",
+        "title": "Anthropic 年化營收逼近 $190 億，MCP 安裝量突破 9,700 萬",
+        "desc": "Anthropic 2026 年年化營收接近 190 億美元，僅次於 OpenAI 的 250 億。Model Context Protocol 三月安裝量突破 9,700 萬次，所有主流 AI 供應商皆已支援 MCP 相容工具。",
+        "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+        "tags": ["claude", "open"]
+      },
+      {
+        "sub": "devtool",
+        "title": "Claude Code 新增 Bedrock 設定精靈、成本洞察與強化政策控制",
+        "desc": "最新更新加入 Bedrock 設定精靈簡化 AWS 整合、更豐富的成本洞察面板、互動式版本說明選擇器，並強化遠端控制預設值與 sandbox 支援。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "devtool",
+        "title": "Claude Code Write 工具效能提升 60%，大檔寫入顯著加速",
+        "desc": "Write 工具 diff 運算針對含 tab/&/$ 等特殊字元的檔案提速 60%；Homebrew 安裝更新提示改用 cask 發行頻道；多項 CLI、權限與長對話穩定性問題修復。",
+        "url": "https://github.com/anthropics/claude-code/releases",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "tutorial",
+        "title": "Claude Code 進階技巧：無閃爍渲染、命名子代理與離線插件",
+        "desc": "設定 CLAUDE_CODE_NO_FLICKER=1 啟用 alt-screen 無閃爍捲動；@ 提及呼叫命名子代理；CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE 變數讓離線環境保留現有市集快取。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": ["claude", "tool"]
+      },
+      {
+        "sub": "ecosystem",
+        "title": "MCP 2026 路線圖聚焦企業就緒：審計追蹤、SSO 與閘道行為",
+        "desc": "MCP 2026 路線圖著重傳輸可擴展性、Agent 通訊、治理成熟化與企業就緒。MCP Apps 正式上線，可回傳互動式 UI 元件如儀表板、表單與多步驟工作流。",
+        "url": "https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/",
+        "tags": ["claude", "open"]
+      }
+    ],
+    "news": [
+      {
+        "title": "Google 發表 Gemma 4 開源模型系列，專為推理與 Agent 工作流設計",
+        "desc": "Google 推出 Gemma 4 系列開源模型，以 Apache 2.0 授權釋出，專門針對進階推理與 Agentic 工作流程最佳化，為開源社群帶來新選擇。",
+        "url": "https://llm-stats.com/ai-news",
+        "tags": ["model", "open"]
+      },
+      {
+        "title": "Google TurboQuant 演算法大幅降低 KV Cache 記憶體開銷",
+        "desc": "Google 研究團隊在 ICLR 2026 發表 TurboQuant，顯著減少大型語言模型運行時 KV cache 的記憶體消耗，有望讓更多設備能高效運行大模型。",
+        "url": "https://www.fool.com/investing/2026/04/03/googles-newest-ai-development-surprise-winner/",
+        "tags": ["model", "tool"]
+      },
+      {
+        "title": "OpenAI 年化營收破 $250 億，最快 2026 年底考慮 IPO",
+        "desc": "OpenAI 年化營收突破 250 億美元，據報正考慮最快於 2026 年底啟動上市流程，標誌 AI 產業商業化進入新階段。",
+        "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+        "tags": ["app"]
+      },
+      {
+        "title": "Google Veo 3.1 Lite：成本僅 Fast 版一半的文字生影片模型",
+        "desc": "Google 推出 Veo 3.1 Lite，可從文字或圖片生成影片，成本不到 Veo 3.1 Fast 的 50%，速度不減，降低企業與創作者的影片 AI 門檻。",
+        "url": "https://llm-stats.com/ai-news",
+        "tags": ["model", "tool"]
+      },
+      {
+        "title": "Moises AI 虛擬錄音室搜尋量暴增，成四月最熱音樂 AI 工具",
+        "desc": "Moises AI 以強大的虛擬錄音室功能爆紅，可分離音軌、即時調整 BPM 與音調，搜尋量持續飆升，成為音樂創作者最受關注的 AI 工具。",
+        "url": "https://www.aitechboss.com/trending-ai-tools-right-now-2026/",
+        "tags": ["tool", "app"]
+      },
+      {
+        "title": "喬治亞州三項 AI 法案送交州長簽署，涵蓋聊天機器人揭露與兒童安全",
+        "desc": "喬治亞州議會通過三項 AI 相關法案：聊天機器人揭露與兒童安全法案、AI 研究委員會法案、禁止保險決策完全依賴 AI 系統法案，待州長簽署。",
+        "url": "https://www.transparencycoalition.ai/news/ai-legislative-update-april3-2026",
+        "tags": ["agent"]
+      },
+      {
+        "title": "一人 AI 遠距醫療公司 Medvi 首年營收破 $4 億，僅一名員工",
+        "desc": "Matthew Gallagher 花 $20,000 和兩個月用 AI 建立 GLP-1 減重藥遠距醫療公司 Medvi，首年營收達 4.01 億美元，完全無外部資金，僅一名員工。",
+        "url": "https://blog.mean.ceo/ai-news-april-2026/",
+        "tags": ["app", "agent"]
+      }
+    ],
+    "hf": [
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量超過 284 萬次，持續蟬聯最受歡迎開源模型。", "downloads": "2.8M", "likes": "13.1K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "基於 Diffusers 架構的文字生成圖片模型，Stable Diffusion 生態系重要新成員。", "downloads": "683K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "2.0M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion v1-4", "author": "CompVis", "desc": "開啟開源圖片生成時代的經典模型，社群衍生模型眾多。", "downloads": "462K", "likes": "7.0K", "url": "https://huggingface.co/CompVis/stable-diffusion-v1-4", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.1M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] }
+    ],
+    "gh": [
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,165", "forks": "46,211", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "157,611", "forks": "20,637", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "90,077", "forks": "13,788", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "88,967", "forks": "12,918", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,650", "forks": "8,857", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
     ]
   },
   {
     "date": "2026-04-05",
     "weekday": "星期日",
-    "stats": {
-      "claude": 6,
-      "news": 7,
-      "hf": 5,
-      "gh": 5
-    },
+    "stats": { "claude": 6, "news": 7, "hf": 5, "gh": 5 },
     "claude": [
       {
         "sub": "product",
         "title": "Anthropic 開放 Claude 整合 Outlook、OneDrive 與 SharePoint",
         "desc": "Anthropic 將 Claude 開放給所有方案使用者，可直接連結 Outlook、OneDrive 及 SharePoint，即時存取郵件與檔案，無需手動上傳，對標 Microsoft Copilot。",
         "url": "https://www.newsbytesapp.com/news/science/anthropic-opens-claude-to-all-plans-rivals-microsoft-copilot/tldr",
-        "tags": [
-          "claude",
-          "app"
-        ]
+        "tags": ["claude", "app"]
       },
       {
         "sub": "product",
         "title": "Claude 訂閱不再涵蓋第三方 Agent 工具，4/17 前可換取抵用金",
         "desc": "自 4/4 起 Claude Pro/Max 訂閱禁止接入 OpenClaw 等第三方工具，Anthropic 稱需保護基礎設施容量。用戶可在 4/17 前兌換一個月等值抵用金，或享額外用量包七折優惠。",
         "url": "https://www.roborhythms.com/anthropic-blocks-openclaw-claude-subscription-2026/",
-        "tags": [
-          "claude",
-          "tool"
-        ]
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "devtool",
         "title": "Claude Code 新增無閃爍渲染、命名子代理與插件可執行檔",
         "desc": "設定 CLAUDE_CODE_NO_FLICKER=1 啟用 alt-screen 無閃爍捲動；@ 提及可呼叫命名子代理；插件可在 bin 目錄附帶可執行檔；MCP 工具結果持久化上限升至 500K。",
         "url": "https://github.com/anthropics/claude-code/releases",
-        "tags": [
-          "claude",
-          "tool"
-        ]
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "devtool",
         "title": "Claude Code /powerup 互動式學習課程正式上線",
         "desc": "新增 /powerup 指令提供動畫展示的互動學習課程，教導 Claude Code 核心功能。同步改善 resume 流程、新增 hook 事件，修復對話框、捲動與 PowerShell 權限問題。",
         "url": "https://releasebot.io/updates/anthropic/claude-code",
-        "tags": [
-          "claude",
-          "tool"
-        ]
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "tutorial",
         "title": "45 個 Claude Code 實用技巧：從基礎到進階完整指南",
         "desc": "涵蓋自訂狀態列腳本、將系統提示精簡一半、用 Gemini CLI 當子代理、容器化執行等進階技巧，GitHub 已超過 4K 星。",
         "url": "https://github.com/ykdojo/claude-code-tips",
-        "tags": [
-          "claude"
-        ]
+        "tags": ["claude"]
       },
       {
         "sub": "ecosystem",
         "title": "企業 Agentic AI 市場達 $75.1 億，MCP 生態持續擴大",
         "desc": "2026 年企業 Agentic AI 市場規模達 75.1 億美元（CAGR 27.3%）。MCP 已有 200+ 伺服器實作，由 Linux Foundation 旗下 AAIF 管理，Claude、Cursor、Zed 均原生支援。",
         "url": "https://cloud.google.com/resources/content/ai-agent-trends-2026",
-        "tags": [
-          "claude",
-          "open"
-        ]
+        "tags": ["claude", "open"]
       }
     ],
     "news": [
@@ -353,274 +604,113 @@ const AI_NEWS_DATA = [
         "title": "Microsoft 發表三款 MAI 模型：語音轉錄、語音生成與圖像生成",
         "desc": "Microsoft 推出 MAI-Transcribe-1（25 種語言語音轉錄，速度為 Azure Fast 的 2.5 倍）、MAI-Voice-1（語音生成）和 MAI-Image-2（圖像生成速度提升 2 倍以上），均可透過 Foundry 使用。",
         "url": "https://microsoft.ai/news/today-were-announcing-3-new-world-class-mai-models-available-in-foundry/",
-        "tags": [
-          "model",
-          "tool"
-        ]
+        "tags": ["model", "tool"]
       },
       {
         "title": "GPT-5.4 Thinking 在桌面任務基準首次超越人類表現",
         "desc": "OpenAI GPT-5.4 Thinking 版本在 OSWorld-Verified 桌面生產力測試中得分 75%，可自主操作檔案、瀏覽器與終端機，標誌 AI 首次在真實桌面任務超越人類水準。",
         "url": "https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs",
-        "tags": [
-          "model",
-          "agent"
-        ]
+        "tags": ["model", "agent"]
       },
       {
         "title": "Alibaba Qwen 3.5-Omni：原生全模態大模型支援 113 種語言",
         "desc": "阿里巴巴推出 Qwen 3.5-Omni，可處理超過 10 小時音訊與 400 秒 720P 影片，支援 113 種語言與方言的語音辨識，為真正的全模態模型。",
         "url": "https://llm-stats.com/ai-news",
-        "tags": [
-          "model",
-          "open"
-        ]
+        "tags": ["model", "open"]
       },
       {
         "title": "Google Gemini 3.1 Flash Live 全球 200+ 國家上線",
         "desc": "Gemini 3.1 Flash Live 成為最快的即時語音 AI，已在 200+ 國家透過 Google Search 提供服務，支援免手操作即時對話與問題排除。",
         "url": "https://www.humai.blog/ai-news-trends-april-2026-complete-monthly-digest/",
-        "tags": [
-          "model",
-          "app"
-        ]
+        "tags": ["model", "app"]
       },
       {
         "title": "Krea AI 即時視覺渲染工具搜尋量暴增",
         "desc": "Krea AI 以即時視覺渲染技術爆紅，可將簡單線條塗鴉即時轉換為逼真 8K 圖像，搜尋量持續攀升，成為四月最受關注的 AI 創作工具。",
         "url": "https://www.aitechboss.com/trending-ai-tools-right-now-2026/",
-        "tags": [
-          "tool",
-          "app"
-        ]
+        "tags": ["tool", "app"]
       },
       {
         "title": "OpenAI 估值 $852B，ChatGPT 超級應用整合聊天、搜尋與 Agent",
         "desc": "OpenAI 完成新一輪融資估值達 8,520 億美元，同時推出 ChatGPT 超級應用，將聊天、編碼、搜尋與 Agent 功能整合至單一體驗。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "app",
-          "agent"
-        ]
+        "tags": ["app", "agent"]
       },
       {
         "title": "Q1 2026 科技業裁員 45,000+，兩成明確歸因 AI 自動化",
         "desc": "2026 年第一季科技產業已裁撤超過 45,000 個職位，其中 20% 明確指出 AI 為裁員原因，凸顯 AI 對就業市場的結構性衝擊加速。",
         "url": "https://bostoninstituteofanalytics.org/blog/agentic-ai-weekly-roundup-march-29-april-3-2026-biggest-breakthroughs-risks-trends/",
-        "tags": [
-          "agent"
-        ]
+        "tags": ["agent"]
       }
     ],
     "hf": [
-      {
-        "name": "DeepSeek-R1",
-        "author": "deepseek-ai",
-        "desc": "推理增強文字生成模型，下載量超過 274 萬次，持續蟬聯最受歡迎開源模型。",
-        "downloads": "2.7M",
-        "likes": "13.1K",
-        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "FLUX.1-dev",
-        "author": "black-forest-labs",
-        "desc": "基於 Diffusers 架構的文字生成圖片模型，Stable Diffusion 生態系重要新成員。",
-        "downloads": "678K",
-        "likes": "12.6K",
-        "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Stable Diffusion XL Base 1.0",
-        "author": "stabilityai",
-        "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。",
-        "downloads": "2.0M",
-        "likes": "7.6K",
-        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Stable Diffusion v1-4",
-        "author": "CompVis",
-        "desc": "開啟開源圖片生成時代的經典模型，社群衍生模型眾多。",
-        "downloads": "460K",
-        "likes": "7.0K",
-        "url": "https://huggingface.co/CompVis/stable-diffusion-v1-4",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Meta Llama 3 8B",
-        "author": "meta-llama",
-        "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。",
-        "downloads": "3.3M",
-        "likes": "6.5K",
-        "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量超過 274 萬次，持續蟬聯最受歡迎開源模型。", "downloads": "2.7M", "likes": "13.1K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "基於 Diffusers 架構的文字生成圖片模型，Stable Diffusion 生態系重要新成員。", "downloads": "678K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "2.0M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion v1-4", "author": "CompVis", "desc": "開啟開源圖片生成時代的經典模型，社群衍生模型眾多。", "downloads": "460K", "likes": "7.0K", "url": "https://huggingface.co/CompVis/stable-diffusion-v1-4", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.3M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] }
     ],
     "gh": [
-      {
-        "name": "AutoGPT",
-        "repo": "Significant-Gravitas/AutoGPT",
-        "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。",
-        "stars": "183,131",
-        "forks": "46,212",
-        "lang": "Python",
-        "url": "https://github.com/Significant-Gravitas/AutoGPT",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Awesome ChatGPT Prompts",
-        "repo": "f/prompts.chat",
-        "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。",
-        "stars": "157,448",
-        "forks": "20,619",
-        "lang": "HTML",
-        "url": "https://github.com/f/prompts.chat",
-        "tags": [
-          "open",
-          "tool"
-        ]
-      },
-      {
-        "name": "LLMs-from-scratch",
-        "repo": "rasbt/LLMs-from-scratch",
-        "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。",
-        "stars": "89,974",
-        "forks": "13,763",
-        "lang": "Jupyter",
-        "url": "https://github.com/rasbt/LLMs-from-scratch",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Deep-Live-Cam",
-        "repo": "hacksider/Deep-Live-Cam",
-        "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。",
-        "stars": "88,475",
-        "forks": "12,838",
-        "lang": "Python",
-        "url": "https://github.com/hacksider/Deep-Live-Cam",
-        "tags": [
-          "app",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenHands",
-        "repo": "OpenHands/OpenHands",
-        "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。",
-        "stars": "70,581",
-        "forks": "8,844",
-        "lang": "Python",
-        "url": "https://github.com/OpenHands/OpenHands",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,131", "forks": "46,212", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "157,448", "forks": "20,619", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "89,974", "forks": "13,763", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "88,475", "forks": "12,838", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,581", "forks": "8,844", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
     ]
   },
   {
     "date": "2026-04-04",
     "weekday": "星期六",
-    "stats": {
-      "claude": 7,
-      "news": 8,
-      "hf": 5,
-      "gh": 5
-    },
+    "stats": { "claude": 7, "news": 8, "hf": 5, "gh": 5 },
     "claude": [
       {
         "sub": "product",
         "title": "Claude Code 原始碼因 npm 打包錯誤意外洩漏",
         "desc": "Anthropic 在 4/1 因流程錯誤意外釋出 Claude Code 內部原始碼，約 1,900 個檔案、512,000 行程式碼曝光。官方已緊急處理並歸因於快速產品發布週期中的疏失。",
         "url": "https://www.bloomberg.com/news/articles/2026-04-01/anthropic-accidentally-releases-source-code-for-claude-ai-agent",
-        "tags": [
-          "claude",
-          "tool"
-        ]
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "product",
         "title": "1M Token 上下文視窗 Beta 將於 4/30 退役",
         "desc": "Claude Sonnet 4.5 和 Sonnet 4 的 1M token 上下文視窗 Beta 將於月底結束。新一代 Opus 4.6 與 Sonnet 4.6 已內建完整 1M 上下文支援。",
         "url": "https://platform.claude.com/docs/en/release-notes/overview",
-        "tags": [
-          "claude",
-          "model"
-        ]
+        "tags": ["claude", "model"]
       },
       {
         "sub": "product",
         "title": "Message Batches API 支援 300K max_tokens 輸出",
         "desc": "Opus 4.6 和 Sonnet 4.6 在 Batches API 上的輸出上限提升至 300K tokens，搭配 output-300k-2026-03-24 beta 標頭即可啟用。",
         "url": "https://releasebot.io/updates/anthropic",
-        "tags": [
-          "claude",
-          "model"
-        ]
+        "tags": ["claude", "model"]
       },
       {
         "sub": "devtool",
         "title": "Claude Code 四月更新：互動式 /powerup 與效能提升",
         "desc": "新增互動式 /powerup 學習課程、更快的 resume 流程、新 hook 事件，並修復對話框、編輯、捲動、PowerShell 權限等多項問題。",
         "url": "https://releasebot.io/updates/anthropic/claude-code",
-        "tags": [
-          "claude",
-          "tool"
-        ]
+        "tags": ["claude", "tool"]
       },
       {
         "sub": "devtool",
         "title": "Q1 回顧：Computer Use、Auto Mode、遠端控制全面上線",
         "desc": "2026 Q1 密集推出 Computer Use 直接操控 Mac 應用、Auto Mode 減少人工監督、Cloud Auto-Fix 自動修復 CI 失敗、排程任務支援週期性開發工作。",
         "url": "https://www.geeky-gadgets.com/claude-code-channels/",
-        "tags": [
-          "claude",
-          "tool",
-          "agent"
-        ]
+        "tags": ["claude", "tool", "agent"]
       },
       {
         "sub": "tutorial",
         "title": "50 個 Claude Code 日常使用技巧與最佳實踐",
         "desc": "從基礎到進階的完整指南：善用 /clear 保持上下文精簡、用 \"think\" 觸發深度推理、透過 Skills 按需載入知識、Plan Mode 先規劃後執行。",
         "url": "https://www.builder.io/blog/claude-code-tips-best-practices",
-        "tags": [
-          "claude"
-        ]
+        "tags": ["claude"]
       },
       {
         "sub": "ecosystem",
         "title": "MCP 生態系 2026：200+ 伺服器整合、多平台原生支援",
         "desc": "Model Context Protocol 已發展 200+ 伺服器實作，涵蓋 GitHub、Slack、Google Drive、PostgreSQL 等。Claude、Cursor、Windsurf、Zed 均原生支援。",
         "url": "https://lumichats.com/blog/model-context-protocol-mcp-complete-guide-2026",
-        "tags": [
-          "claude",
-          "open"
-        ]
+        "tags": ["claude", "open"]
       }
     ],
     "news": [
@@ -628,200 +718,64 @@ const AI_NEWS_DATA = [
         "title": "OpenAI 發表 GPT-5.4：百萬 Token 上下文 + 自主多步驟工作流",
         "desc": "GPT-5.4 支援百萬 token 上下文視窗，可自主執行多步驟工作流程，在真實桌面生產力任務中達到 75% 得分。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "model",
-          "agent"
-        ]
+        "tags": ["model", "agent"]
       },
       {
         "title": "Famous.ai：用自然語言描述即可自動建立完整電商網站",
         "desc": "Famous Labs 推出 AI 電商平台，只需文字描述即可生成專業線上商店，內建支付處理，零程式碼快速開店。",
         "url": "https://www.globenewswire.com/news-release/2026/04/02/3267747/0/en/Famous-Labs-Launches-Famous-ai-to-Give-Every-Entrepreneur-a-Fast-and-Professional-Online-Store.html",
-        "tags": [
-          "app",
-          "tool"
-        ]
+        "tags": ["app", "tool"]
       },
       {
         "title": "Yahoo 推出 Scout AI 搜尋引擎，底層採用 Anthropic 技術",
         "desc": "Yahoo 為 2.5 億美國使用者推出 AI 回答引擎 Scout，由 Anthropic 技術驅動，直接挑戰 Google、OpenAI 及 Perplexity。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "app"
-        ]
+        "tags": ["app"]
       },
       {
         "title": "華為發表 950PR 推論晶片，搶攻 AI 基礎設施市場",
         "desc": "華為推出新一代 950PR 推論晶片，大幅提升推論運算速度，強化國產 AI 基礎設施供應鏈。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "tool"
-        ]
+        "tags": ["tool"]
       },
       {
         "title": "AWS 推出自主智能體服務，自動化企業營運作業",
         "desc": "AWS 發表全新自主智能體服務，可自動處理營運任務流程，降低企業維運複雜度。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "agent",
-          "tool"
-        ]
+        "tags": ["agent", "tool"]
       },
       {
         "title": "Codenotary AgentMon：AI 智能體行為監控工具上線",
         "desc": "AgentMon 幫助企業追蹤 AI 智能體行為模式、檔案存取與資料流向，為 AI 治理提供可觀察性基礎。",
         "url": "https://aiagentstore.ai/ai-agent-news/this-week",
-        "tags": [
-          "agent",
-          "tool"
-        ]
+        "tags": ["agent", "tool"]
       },
       {
         "title": "Fujitsu Application Transform：AI 讀取遺留程式碼自動生成設計文件",
         "desc": "能自動讀取舊系統程式碼並產出設計文件，速度提升 97%，文件品質提高 60%，加速企業系統現代化。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "tool",
-          "app"
-        ]
+        "tags": ["tool", "app"]
       },
       {
         "title": "Klient PSA：8 個 AI 智能體搭配人類顧問的混合式專案交付",
         "desc": "結合 8 個專業 AI 智能體與人類顧問協作，每用戶月費 $15 加每智能體 $1,000，探索人機協作新模式。",
         "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
-        "tags": [
-          "agent"
-        ]
+        "tags": ["agent"]
       }
     ],
     "hf": [
-      {
-        "name": "DeepSeek-R1",
-        "author": "deepseek-ai",
-        "desc": "推理增強文字生成模型，下載量超過 258 萬次，最受歡迎的開源模型之一。",
-        "downloads": "2.6M",
-        "likes": "13.1K",
-        "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "FLUX.1-dev",
-        "author": "black-forest-labs",
-        "desc": "文字生成圖片模型，基於 Diffusers 架構，Stable Diffusion 生態系的重要新成員。",
-        "downloads": "687K",
-        "likes": "12.6K",
-        "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Stable Diffusion XL Base 1.0",
-        "author": "stabilityai",
-        "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。",
-        "downloads": "2.0M",
-        "likes": "7.6K",
-        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Stable Diffusion v1-4",
-        "author": "CompVis",
-        "desc": "開啟開源圖片生成時代的經典模型，社群衍生模型眾多。",
-        "downloads": "461K",
-        "likes": "7.0K",
-        "url": "https://huggingface.co/CompVis/stable-diffusion-v1-4",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Meta Llama 3 8B",
-        "author": "meta-llama",
-        "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。",
-        "downloads": "3.3M",
-        "likes": "6.5K",
-        "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
+      { "name": "DeepSeek-R1", "author": "deepseek-ai", "desc": "推理增強文字生成模型，下載量超過 258 萬次，最受歡迎的開源模型之一。", "downloads": "2.6M", "likes": "13.1K", "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1", "tags": ["model", "open"] },
+      { "name": "FLUX.1-dev", "author": "black-forest-labs", "desc": "文字生成圖片模型，基於 Diffusers 架構，Stable Diffusion 生態系的重要新成員。", "downloads": "687K", "likes": "12.6K", "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion XL Base 1.0", "author": "stabilityai", "desc": "Stability AI 旗艦圖片生成模型，社群最廣泛使用的基礎模型。", "downloads": "2.0M", "likes": "7.6K", "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0", "tags": ["model", "open"] },
+      { "name": "Stable Diffusion v1-4", "author": "CompVis", "desc": "開啟開源圖片生成時代的經典模型，社群衍生模型眾多。", "downloads": "461K", "likes": "7.0K", "url": "https://huggingface.co/CompVis/stable-diffusion-v1-4", "tags": ["model", "open"] },
+      { "name": "Meta Llama 3 8B", "author": "meta-llama", "desc": "80 億參數開源語言模型，同量級表現出色，適合本地部署與微調。", "downloads": "3.3M", "likes": "6.5K", "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B", "tags": ["model", "open"] }
     ],
     "gh": [
-      {
-        "name": "AutoGPT",
-        "repo": "Significant-Gravitas/AutoGPT",
-        "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。",
-        "stars": "183,120",
-        "forks": "46,219",
-        "lang": "Python",
-        "url": "https://github.com/Significant-Gravitas/AutoGPT",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Awesome ChatGPT Prompts",
-        "repo": "f/prompts.chat",
-        "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。",
-        "stars": "157,171",
-        "forks": "20,603",
-        "lang": "HTML",
-        "url": "https://github.com/f/prompts.chat",
-        "tags": [
-          "open",
-          "tool"
-        ]
-      },
-      {
-        "name": "LLMs-from-scratch",
-        "repo": "rasbt/LLMs-from-scratch",
-        "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。",
-        "stars": "89,916",
-        "forks": "13,737",
-        "lang": "Jupyter",
-        "url": "https://github.com/rasbt/LLMs-from-scratch",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Deep-Live-Cam",
-        "repo": "hacksider/Deep-Live-Cam",
-        "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。",
-        "stars": "87,862",
-        "forks": "12,732",
-        "lang": "Python",
-        "url": "https://github.com/hacksider/Deep-Live-Cam",
-        "tags": [
-          "app",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenHands",
-        "repo": "OpenHands/OpenHands",
-        "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。",
-        "stars": "70,525",
-        "forks": "8,834",
-        "lang": "Python",
-        "url": "https://github.com/OpenHands/OpenHands",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
+      { "name": "AutoGPT", "repo": "Significant-Gravitas/AutoGPT", "desc": "可自主執行任務的 AI 智能體框架，最受歡迎的 AI 開源專案之一。", "stars": "183,120", "forks": "46,219", "lang": "Python", "url": "https://github.com/Significant-Gravitas/AutoGPT", "tags": ["agent", "open"] },
+      { "name": "Awesome ChatGPT Prompts", "repo": "f/prompts.chat", "desc": "社群驅動的 Prompt 資源庫，可分享、發現和收集提示詞，已開放自架。", "stars": "157,171", "forks": "20,603", "lang": "HTML", "url": "https://github.com/f/prompts.chat", "tags": ["open", "tool"] },
+      { "name": "LLMs-from-scratch", "repo": "rasbt/LLMs-from-scratch", "desc": "用 PyTorch 從零實作類 ChatGPT 的 LLM，學習 LLM 原理的最佳教材。", "stars": "89,916", "forks": "13,737", "lang": "Jupyter", "url": "https://github.com/rasbt/LLMs-from-scratch", "tags": ["model", "open"] },
+      { "name": "Deep-Live-Cam", "repo": "hacksider/Deep-Live-Cam", "desc": "即時換臉與一鍵深度偽造影片工具，僅需一張照片即可運作。", "stars": "87,862", "forks": "12,732", "lang": "Python", "url": "https://github.com/hacksider/Deep-Live-Cam", "tags": ["app", "open"] },
+      { "name": "OpenHands", "repo": "OpenHands/OpenHands", "desc": "AI 驅動開發平台，自動化軟體開發流程，支援 Claude AI 和 ChatGPT。", "stars": "70,525", "forks": "8,834", "lang": "Python", "url": "https://github.com/OpenHands/OpenHands", "tags": ["agent", "open"] }
     ]
   }
 ];
