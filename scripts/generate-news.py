@@ -162,9 +162,6 @@ def update_data_file(new_day):
     # Prepend new day
     existing.insert(0, new_day)
 
-    # Keep only 7 days
-    existing = existing[:7]
-
     # Write back
     data_json = json.dumps(existing, ensure_ascii=False, indent=2)
     output = (
@@ -172,8 +169,7 @@ def update_data_file(new_day):
         "\uff08\u7531\u6392\u7a0b\u81ea\u52d5\u66f4\u65b0\uff09\n"
         "// \u683c\u5f0f\uff1a\u6bcf\u500b\u7269\u4ef6\u4ee3\u8868\u4e00\u5929"
         "\uff0cnewest first\n"
-        "// \u8d85\u904e 7 \u5929\u7684\u8cc7\u6599\u7531\u6392\u7a0b"
-        "\u81ea\u52d5\u6e05\u9664\n"
+        "// \u6240\u6709\u6b77\u53f2\u8cc7\u6599\u5747\u6c38\u4e45\u4fdd\u7559\n"
         f"const AI_NEWS_DATA = {data_json};\n"
     )
 
