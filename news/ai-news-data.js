@@ -1,7 +1,255 @@
 // AI 工具日報 — 每日資料檔（由排程自動更新）
 // 格式：每個物件代表一天，newest first
-// 超過 7 天的資料由排程自動清除
+// 所有歷史資料均永久保留
 const AI_NEWS_DATA = [
+  {
+    "date": "2026-04-13",
+    "weekday": "星期一",
+    "stats": {
+      "claude": 6,
+      "news": 6,
+      "hf": 5,
+      "gh": 5
+    },
+    "claude": [
+      {
+        "sub": "product",
+        "title": "<cite index=\"1-2,1-17\">Claude 新增自訂圖表和內嵌視覺化功能</cite>",
+        "desc": "<cite index=\"1-2,1-17\">Claude 現在可以在回應中建立自訂圖表、圖形和其他視覺化內容</cite>，提升數據呈現能力",
+        "url": "https://releasebot.io/updates/anthropic/claude",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "product",
+        "title": "<cite index=\"1-4\">Claude 行動應用程式支援互動式應用連接</cite>",
+        "desc": "<cite index=\"1-4,1-5\">Claude 行動應用程式現在可以連接到完全互動式應用程式，支援即時圖表和可分享資產</cite>",
+        "url": "https://releasebot.io/updates/anthropic/claude",
+        "tags": [
+          "claude",
+          "app"
+        ]
+      },
+      {
+        "sub": "devtool",
+        "title": "<cite index=\"1-8,1-10\">Claude Code 新增電腦使用功能及 Dispatch 改進</cite>",
+        "desc": "<cite index=\"1-9,1-10\">Pro 和 Max 用戶可讓 Claude 存取電腦使用功能，可開啟檔案、執行開發工具和螢幕操作</cite>",
+        "url": "https://releasebot.io/updates/anthropic/claude",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "product",
+        "title": "<cite index=\"1-34,1-36\">Claude Sonnet 4.6 正式發布並支援 1M token 上下文</cite>",
+        "desc": "<cite index=\"1-34,1-35\">Anthropic 推出最強大的 Sonnet 模型，具備編程、電腦使用和長文本推理能力升級</cite>",
+        "url": "https://releasebot.io/updates/anthropic/claude",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "ecosystem",
+        "title": "<cite index=\"4-9,4-11\">Anthropic 發布 Claude Mythos Preview 但限制公開釋出</cite>",
+        "desc": "<cite index=\"4-10,4-11\">新模型在安全相關任務表現突出，但因網路安全風險暫不對一般用戶開放</cite>",
+        "url": "https://www.rte.ie/news/business/2026/0412/1567631-anthropic-claude-ai/",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "ecosystem",
+        "title": "<cite index=\"6-3,6-4\">Anthropic 與 CoreWeave 簽署多年容量協議</cite>",
+        "desc": "<cite index=\"6-4,6-5\">協議將協助 Anthropic 建立和部署 Claude AI 模型，包含美國資料中心的 NVIDIA 晶片架構</cite>",
+        "url": "https://www.bloomberg.com/news/articles/2026-04-10/anthropic-agrees-to-rent-coreweave-ai-capacity-to-power-claude",
+        "tags": [
+          "claude",
+          "open"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "<cite index=\"24-19,24-23\">Meta 推出首個重大 AI 模型 Muse Spark</cite>",
+        "desc": "<cite index=\"24-7,24-8\">採用改進的 AI 訓練技術，在多模態感知、推理和代理任務中表現出色</cite>",
+        "url": "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
+        "tags": [
+          "model"
+        ]
+      },
+      {
+        "title": "<cite index=\"22-1,22-4\">研究團隊發表 AI 節能突破技術</cite>",
+        "desc": "<cite index=\"22-4,22-5\">結合神經網路與符號推理的新方法可將 AI 能耗降低 100 倍並提升準確性</cite>",
+        "url": "https://www.sciencedaily.com/releases/2026/04/260405003952.htm",
+        "tags": [
+          "model"
+        ]
+      },
+      {
+        "title": "<cite index=\"30-1,30-3\">Microsoft 發布 Agent Framework 1.0</cite>",
+        "desc": "<cite index=\"30-4,30-5\">統合 Semantic Kernel 和 AutoGen 的生產就緒 SDK，支援跨執行時互通性</cite>",
+        "url": "https://dev.to/alexmercedcoder/ai-tools-race-heats-up-week-of-april-3-9-2026-37fl",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "title": "<cite index=\"28-1,28-2\">Perplexity AI 年營收達到 4.5 億美元</cite>",
+        "desc": "<cite index=\"28-2,28-4\">單月增長 50%，擁有超過 1 億月活用戶，新增稅務代理功能</cite>",
+        "url": "https://www.theaimarketers.ai/news041026/",
+        "tags": [
+          "app"
+        ]
+      },
+      {
+        "title": "<cite index=\"25-5,25-6\">Mimir 在 NAB 2026 展示雲端原生編輯和 AI 工具</cite>",
+        "desc": "<cite index=\"25-7,25-8\">推出 Mimir Cutter 雲端編輯工具和擴展的人工智慧整合功能</cite>",
+        "url": "https://tvnewscheck.com/tech/article/mimir-to-showcase-new-cloud-native-editing-ai-tools-at-nab-2026/",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "title": "<cite index=\"21-18,21-19\">Google 將 NotebookLM 完全整合至 Gemini 介面</cite>",
+        "desc": "<cite index=\"21-19,21-20\">用戶可直接透過 Gemini 側邊欄上傳文件建立可搜尋的資訊庫</cite>",
+        "url": "https://www.humai.blog/ai-news-trends-april-2026-complete-monthly-digest/",
+        "tags": [
+          "tool"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Qwen 3.5",
+        "author": "Alibaba",
+        "desc": "<cite index=\"45-5,45-10\">生態系統主導本週趨勢圖表，9B 基礎模型領先所有下載量達 480 萬</cite>",
+        "downloads": "4.8M",
+        "likes": "N/A",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "Gemma-4",
+        "author": "Google",
+        "desc": "<cite index=\"45-6,45-12\">推出多個變體，涵蓋 2B 到 31B 參數，包含實驗性多模態架構</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "GLM-4.7-Flash",
+        "author": "Zhipu AI",
+        "desc": "<cite index=\"46-8,46-9\">強大的專家混合模型，在邏輯和推理基準測試中表現出色，支援保留思考模式</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "SAM3",
+        "author": "Meta",
+        "desc": "<cite index=\"46-16,46-17\">統一的圖像和視頻分割基礎模型，可識別視頻中的特定物件</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "MiniMax M2.1",
+        "author": "MiniMax",
+        "desc": "<cite index=\"46-24,46-25\">針對多語言編程優化的代理模型，支援 Rust、Java、Golang 等多種語言</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "OpenClaw",
+        "repo": "openclaw/openclaw",
+        "desc": "<cite index=\"51-4,51-5\">2026 年突破之星，從 9000 星增長到超過 21 萬星的個人 AI 助手</cite>",
+        "stars": "210k+",
+        "forks": "N/A",
+        "lang": "Unknown",
+        "url": "https://github.com/openclaw/openclaw",
+        "tags": [
+          "agent",
+          "tool"
+        ]
+      },
+      {
+        "name": "caveman",
+        "repo": "JuliusBrussee/caveman",
+        "desc": "<cite index=\"54-1,54-3\">Claude Code 技能，通過類似原始人的交流方式減少 65% 的 token 使用量</cite>",
+        "stars": "18.7k",
+        "forks": "852",
+        "lang": "Python",
+        "url": "https://github.com/JuliusBrussee/caveman",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "name": "andrej-karpathy-skills",
+        "repo": "forrestchang/andrej-karpathy-skills",
+        "desc": "<cite index=\"54-2,54-3\">單一 CLAUDE.md 檔案改善 Claude Code 行為，基於 Andrej Karpathy 的 LLM 編程陷阱觀察</cite>",
+        "stars": "13.3k",
+        "forks": "904",
+        "lang": "Unknown",
+        "url": "https://github.com/forrestchang/andrej-karpathy-skills",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "name": "hermes-agent",
+        "repo": "NousResearch/hermes-agent",
+        "desc": "<cite index=\"54-2,54-4\">與你共同成長的 AI 代理，專注於 AI 代理和技能開發</cite>",
+        "stars": "61k",
+        "forks": "8.2k",
+        "lang": "Python",
+        "url": "https://github.com/NousResearch/hermes-agent",
+        "tags": [
+          "agent"
+        ]
+      },
+      {
+        "name": "Ollama",
+        "repo": "ollama/ollama",
+        "desc": "<cite index=\"56-2,56-3\">輕量級本地 LLM 執行框架，支援 Llama、DeepSeek、Mistral、Gemma 等模型</cite>",
+        "stars": "165k+",
+        "forks": "N/A",
+        "lang": "Go",
+        "url": "https://github.com/ollama/ollama",
+        "tags": [
+          "tool",
+          "open"
+        ]
+      }
+    ]
+  },
   {
     "date": "2026-04-12",
     "weekday": "星期日",
