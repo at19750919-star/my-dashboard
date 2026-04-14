@@ -3,6 +3,269 @@
 // 所有歷史資料均永久保留
 const AI_NEWS_DATA = [
   {
+    "date": "2026-04-14",
+    "weekday": "星期二",
+    "stats": {
+      "claude": 6,
+      "news": 7,
+      "hf": 5,
+      "gh": 5
+    },
+    "claude": [
+      {
+        "sub": "product",
+        "title": "Claude Mythos Preview 發布但限制公開存取",
+        "desc": "<cite index=\"1-2,5-1\">Anthropic 發布了最先進的 Claude Mythos Preview 模型，在推理、編程和網路安全方面有顯著改進</cite>，但<cite index=\"5-2,5-7\">由於安全考量，該模型不會公開發布，僅限定透過 Project Glasswing 計畫向精選合作夥伴提供</cite>",
+        "url": "https://red.anthropic.com/2026/mythos-preview/",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "product",
+        "title": "Claude 新增自訂圖表和視覺化功能",
+        "desc": "<cite index=\"2-2,2-17\">Claude 現在可以在回應中創建自訂圖表、圖解和其他視覺化內容</cite>，並且<cite index=\"2-4,2-5\">Claude 行動應用程式現在可以連接到完全互動式應用程式，支援即時圖表、繪圖和可分享資產</cite>",
+        "url": "https://releasebot.io/updates/anthropic/claude",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "product",
+        "title": "Claude 4.6 Sonnet 模型正式發布",
+        "desc": "<cite index=\"2-34,2-35\">推出了最具能力的 Sonnet 模型，在編程、電腦使用、長文本推理、代理規劃、知識工作和設計等方面全面升級</cite>，<cite index=\"8-19\">支援延伸思考和 100 萬 token 上下文窗口（測試版）</cite>",
+        "url": "https://releasebot.io/updates/anthropic/claude",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "product",
+        "title": "Claude 完整整合 Microsoft Office 套件",
+        "desc": "<cite index=\"6-1,6-2\">Anthropic 推出了 Claude for Word 附加元件，完成了 Claude 與微軟 Office 三大應用程式（Word、Excel、PowerPoint）的完整整合</cite>，<cite index=\"2-20,2-21\">附加元件現在可以分享完整對話上下文，使 Claude 在一個應用程式中的每個操作都能被其他應用程式感知</cite>",
+        "url": "https://www.financialcontent.com/article/abnewswire-2026-4-13-anthropic-rolls-out-claude-for-word-add-in-now-full-microsoft-office-suite-word-excel-powerpoint-natively-supports-claude",
+        "tags": [
+          "claude",
+          "app"
+        ]
+      },
+      {
+        "sub": "devtool",
+        "title": "Claude Code 發布重大更新",
+        "desc": "<cite index=\"10-3\">Claude Code 發布廣泛更新，包含團隊導入指南、更強的遠端會話設定、更智慧的簡報和聚焦模式、更好的插件和 MCP 處理，以及跨恢復、驗證、設定和編輯器工作流程的主要可靠性修復</cite>",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "ecosystem",
+        "title": "Anthropic 與 CoreWeave 簽署多年合作協議",
+        "desc": "<cite index=\"7-3,7-4\">Anthropic 與 CoreWeave 達成多年協議，利用數據中心容量來處理其 AI 服務日益增長的需求，該協議將幫助 Anthropic 構建和部署其 Claude AI 模型</cite>",
+        "url": "https://www.bloomberg.com/news/articles/2026-04-10/anthropic-agrees-to-rent-coreweave-ai-capacity-to-power-claude",
+        "tags": [
+          "claude",
+          "open"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "Meta 發布首個專有 AI 模型 Muse Spark",
+        "desc": "<cite index=\"24-19,24-23\">Meta 推出首個重大 AI 模型 Muse Spark，由首席 AI 官 Alexandr Wang 領導開發</cite>，<cite index=\"40-4,40-5\">該模型將保持專有性質，標誌著 Meta 從 Llama 系列的開源路線轉變</cite>",
+        "url": "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
+        "tags": [
+          "model"
+        ]
+      },
+      {
+        "title": "PwC 研究顯示 20% 企業掌握 AI 經濟收益的四分之三",
+        "desc": "<cite index=\"22-1,22-2\">根據 PwC 新的 AI 性能研究，少數企業在從人工智慧獲得真實財務回報的競賽中明顯領先，AI 領先者和落後者之間的性能差距可能會進一步擴大</cite>",
+        "url": "https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-performance-study.html",
+        "tags": [
+          "open"
+        ]
+      },
+      {
+        "title": "OpenAI 發布 GPT-5.3 Instant Mini 模型",
+        "desc": "<cite index=\"38-1,38-14\">OpenAI 在 ChatGPT 中發布了 GPT-5.3 Instant Mini，作為用戶達到 GPT-5.3 Instant 速率限制後的後備模型，在對話中感覺更自然，寫作能力更強，上下文感知能力更佳</cite>",
+        "url": "https://releasebot.io/updates/openai",
+        "tags": [
+          "model"
+        ]
+      },
+      {
+        "title": "Google 整合 NotebookLM 到 Gemini 聊天機器人",
+        "desc": "<cite index=\"23-18,23-19\">Google 將其 AI 驅動的研究助手 NotebookLM 直接整合到 Gemini 聊天機器人介面中，允許用戶無需切換應用程式即可創建研究筆記本</cite>",
+        "url": "https://www.humai.blog/ai-news-trends-april-2026-complete-monthly-digest/",
+        "tags": [
+          "tool"
+        ]
+      },
+      {
+        "title": "Perplexity AI 年度經常性收入達 4.5 億美元",
+        "desc": "<cite index=\"28-1,28-2\">Perplexity 不再只是 Google 搜尋殺手，而是專注於能夠執行任務的 AI 代理，年度經常性收入在 3 月達到 4.5 億美元，單月成長 50%</cite>",
+        "url": "https://www.theaimarketers.ai/news041026/",
+        "tags": [
+          "agent"
+        ]
+      },
+      {
+        "title": "AI 工具正在幫助對抗氣候變化",
+        "desc": "<cite index=\"30-1,30-4\">AI 工具正在通過優化能源生產來幫助對抗氣候變化</cite>，同時<cite index=\"30-5,30-6\">加密貨幣市場正在利用 AI 做出更好的交易決策和風險管理，教育機構正在使用 AI 技術增強學習體驗</cite>",
+        "url": "https://www.aiandnews.com/blog/latest-ai-news-april-2026/",
+        "tags": [
+          "app"
+        ]
+      },
+      {
+        "title": "Cognitiv 推出 AudienceGPT 實時定向工具",
+        "desc": "<cite index=\"21-1,21-2\">Cognitiv 推出了 AudienceGPT，一個 AI 驅動的定向工具，旨在用動態、實時配置文件取代靜態受眾細分</cite>",
+        "url": "https://www.marketingprofs.com/opinions/2026/54530/ai-update-april-10-2026-ai-news-and-views-from-the-past-week",
+        "tags": [
+          "tool"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Qwen 3.5 系列",
+        "author": "qwen-ai",
+        "desc": "<cite index=\"45-5,45-10\">Qwen 3.5 生態系統主導本週趨勢榜，社群微調者 Jackrong 透過將 Claude 4.6 Opus 推理能力蒸餾到 27B 參數模型中佔據榜首</cite>",
+        "downloads": "4.8M",
+        "likes": "487K",
+        "url": "https://huggingface.co/qwen-ai",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "Google Gemma-4",
+        "author": "google",
+        "desc": "<cite index=\"45-6\">Google 的 Gemma-4 系列強勢推出，涵蓋從 2B 到 31B 參數的多個變體，包括實驗性的「任意對任意」多模態架構</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/google/gemma-4",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "MinerU2.5",
+        "author": "opendatalab",
+        "desc": "<cite index=\"42-14,42-15\">一個 12 億參數的文檔解析視覺語言模型，通過粗到細的解析策略實現最先進的識別準確性和計算效率</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/opendatalab/MinerU2.5",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "VibeVoice",
+        "author": "vibeai",
+        "desc": "<cite index=\"42-8,42-9\">使用下一個 token 擴散和高效連續語音分詞器合成長格式多說話人語音，實現卓越性能和保真度</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/vibeai",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "QuantAgent",
+        "author": "quantlab",
+        "desc": "<cite index=\"42-1\">一個多代理 LLM 框架，通過利用技術指標、圖表模式、趨勢和風險的專業代理，在高頻交易中表現出色，優於現有的神經和基於規則的系統</cite>",
+        "downloads": "N/A",
+        "likes": "N/A",
+        "url": "https://huggingface.co/quantlab",
+        "tags": [
+          "model",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "OpenClaw",
+        "repo": "steinberger/openclaw",
+        "desc": "<cite index=\"51-1,51-4,51-5\">2026 年的突破之星，可能是 GitHub 歷史上成長最快的開源項目，由 PSPDFKit 創始人 Peter Steinberger 創建，在短短幾天內從 9,000 顆星暴增至 60,000 顆星</cite>",
+        "stars": "210K+",
+        "forks": "N/A",
+        "lang": "Python",
+        "url": "https://github.com/steinberger/openclaw",
+        "tags": [
+          "agent",
+          "tool",
+          "open"
+        ]
+      },
+      {
+        "name": "Andrej Karpathy Skills",
+        "repo": "forrestchang/andrej-karpathy-skills",
+        "desc": "<cite index=\"53-3,53-5\">一個單一的 CLAUDE.md 文件，用於改善 Claude Code 行為，來源於 Andrej Karpathy 對 LLM 編程陷阱的觀察</cite>",
+        "stars": "13.3K",
+        "forks": "904",
+        "lang": "Markdown",
+        "url": "https://github.com/forrestchang/andrej-karpathy-skills",
+        "tags": [
+          "tool",
+          "open"
+        ]
+      },
+      {
+        "name": "Hermes Agent",
+        "repo": "NousResearch/hermes-agent",
+        "desc": "<cite index=\"53-3,53-4\">與你一起成長的代理</cite>",
+        "stars": "61K",
+        "forks": "8.2K",
+        "lang": "Python",
+        "url": "https://github.com/NousResearch/hermes-agent",
+        "tags": [
+          "agent",
+          "tool",
+          "open"
+        ]
+      },
+      {
+        "name": "Kronos",
+        "repo": "shiyu-coder/Kronos",
+        "desc": "<cite index=\"53-4\">金融市場語言的基礎模型</cite>",
+        "stars": "16.7K",
+        "forks": "3.1K",
+        "lang": "Python",
+        "url": "https://github.com/shiyu-coder/Kronos",
+        "tags": [
+          "model",
+          "app",
+          "open"
+        ]
+      },
+      {
+        "name": "Google ADK Python",
+        "repo": "google/adk-python",
+        "desc": "<cite index=\"56-19\">Google 代理開發工具包，用於構建多代理系統</cite>",
+        "stars": "8.2K+",
+        "forks": "N/A",
+        "lang": "Python",
+        "url": "https://github.com/google/adk-python",
+        "tags": [
+          "agent",
+          "tool",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-04-13",
     "weekday": "星期一",
     "stats": {
