@@ -159,7 +159,7 @@ function cardHTML(item, extraBottom=''){
 function renderDay(day, idx){
   const isToday = idx === 0;
   const s = day.stats;
-  const total = s.claude + s.news + s.hf + s.gh;
+  const total = s.claude + s.news + (s.skill||0);
 
   // Group claude items by sub
   const claudeBySub = {};
@@ -195,23 +195,17 @@ function renderDay(day, idx){
   (day.news||[]).forEach(n => { html += cardHTML(n); });
   html += `</div></div>`;
 
-  // HF section
-  html += `<div class="section sec-hf">
-    <div class="sec-hdr" onclick="toggleSec(this)"><h2>HuggingFace 熱門模型 <span class="sec-cnt">${s.hf}</span></h2><span class="sec-toggle">&#9662;</span></div>
-    <div class="sec-body">`;
-  (day.hf||[]).forEach(m => {
-    html += cardHTML(m, `<div class="gh-stats"><span>⬇ ${m.downloads}</span><span>❤ ${m.likes}</span></div>`);
-  });
-  html += `</div></div>`;
-
-  // GH section
-  html += `<div class="section sec-gh">
-    <div class="sec-hdr" onclick="toggleSec(this)"><h2>GitHub 熱門 AI 專案 <span class="sec-cnt">${s.gh}</span></h2><span class="sec-toggle">&#9662;</span></div>
-    <div class="sec-body">`;
-  (day.gh||[]).forEach(g => {
-    html += cardHTML(g, `<div class="gh-stats"><span>★ ${g.stars}</span><span>🍴 ${g.forks}</span><span>${g.lang}</span></div>`);
-  });
-  html += `</div></div>`;
+  // Skill section
+  if((day.skill||[]).length > 0){
+    html += `<div class="section sec-gh">
+      <div class="sec-hdr" onclick="toggleSec(this)"><h2>熱門 Agent Skills <span class="sec-cnt">${s.skill||day.skill.length}</span></h2><span class="sec-toggle">&#9662;</span></div>
+      <div class="sec-body">`;
+    (day.skill||[]).forEach(sk => {
+      const meta = sk.author ? `<div class="gh-stats"><span>${sk.author}</span>${sk.source?`<span>${sk.source}</span>`:''}</div>` : '';
+      html += cardHTML(sk, meta);
+    });
+    html += `</div></div>`;
+  }
 
   if(AI_NEWS_DATA.length > 1) html += `</div>`; // close day-content
   html += `</div>`; // close day-block
@@ -257,9 +251,8 @@ function updateStats(day){
   document.getElementById('statsStrip').innerHTML =
     `<div class="stat-item">Claude <span class="stat-num">${s.claude}</span></div>
      <div class="stat-item">新聞 <span class="stat-num">${s.news}</span></div>
-     <div class="stat-item">HF <span class="stat-num">${s.hf}</span></div>
-     <div class="stat-item">GitHub <span class="stat-num">${s.gh}</span></div>
-     <div class="stat-item">合計 <span class="stat-num">${s.claude+s.news+s.hf+s.gh}</span></div>`;
+     <div class="stat-item">Skills <span class="stat-num">${s.skill||0}</span></div>
+     <div class="stat-item">合計 <span class="stat-num">${s.claude+s.news+(s.skill||0)}</span></div>`;
 }
 
 function scrollToDay(idx){
