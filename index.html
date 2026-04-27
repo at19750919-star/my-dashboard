@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@100;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Chocolate+Classical+Sans&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Pacifico&family=Monoton&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Audiowide&family=Russo+One&family=Major+Mono+Display&family=Abril+Fatface&family=Rubik+Glitch&family=Bungee+Shade&family=Rubik+Wet+Paint&family=Cherry+Bomb+One&family=Kablammo&family=Faster+One&family=Wallpoet&family=Iceberg&family=Rubik+Mono+One&family=Modak&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/taipei-sans-tc/dist/Regular/TaipeiSansTCBeta-Regular.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf.css" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════════
@@ -365,6 +369,9 @@ body {
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0px var(--border);
 }
+.link-pin { color: var(--text-tertiary); transition: color 0.2s; }
+.link-pin:hover { color: #f5a623; }
+.link-pin.pinned { color: #f5a623; }
 .quick-link img {
   width: 28px; height: 28px; border-radius: 6px;
 }
@@ -1082,6 +1089,663 @@ body {
 
 /* select styling */
 select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px !important; }
+
+/* ═══════════════════════════════════════════
+   專案 — 手繪筆記本風格
+   ═══════════════════════════════════════════ */
+:root {
+  --hp-hand: 'Caveat', 'Patrick Hand', 'Noto Sans TC', cursive;
+  --hp-hand-cjk: 'Noto Sans TC', 'Patrick Hand', sans-serif;
+  --hp-ink: #2a2420;
+  --hp-paper: #fbf8f2;
+  --hp-grid: rgba(42, 36, 32, 0.05);
+  --hp-grid-strong: rgba(42, 36, 32, 0.08);
+}
+[data-theme="dark"] {
+  --hp-ink: #f0e6d4;
+  --hp-paper: #1a1814;
+  --hp-grid: rgba(240, 230, 212, 0.05);
+  --hp-grid-strong: rgba(240, 230, 212, 0.09);
+}
+
+#page-goals { padding-bottom: 80px; }
+
+.hp-wrap {
+  position: relative;
+  padding: 40px clamp(20px, 4vw, 56px) 60px;
+  background: var(--hp-paper);
+  background-image:
+    linear-gradient(var(--hp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hp-grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  border-radius: 24px;
+  min-height: 72vh;
+  box-shadow: 0 20px 60px -30px rgba(0,0,0,0.2);
+  color: var(--hp-ink);
+}
+.hp-wrap::before {
+  /* punched-hole notebook decoration on left edge */
+  content: '';
+  position: absolute;
+  left: 20px; top: 40px; bottom: 40px;
+  width: 14px;
+  background-image: radial-gradient(circle, var(--hp-grid-strong) 5px, transparent 6px);
+  background-size: 14px 56px;
+  background-repeat: repeat-y;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hp-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 10px 18px 46px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.hp-title {
+  font-family: var(--hp-hand);
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 700;
+  line-height: 0.95;
+  color: var(--hp-ink);
+  transform: rotate(-1.5deg);
+  position: relative;
+  display: inline-block;
+}
+.hp-title::after {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px; bottom: -10px;
+  height: 14px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14' preserveAspectRatio='none'><path d='M3 10 Q 60 2, 140 8 T 298 6' stroke='%23e8804a' stroke-width='3.5' stroke-linecap='round' fill='none'/></svg>") no-repeat center / 100% 100%;
+}
+.hp-sub {
+  font-family: var(--hp-hand);
+  font-size: 1.4rem;
+  color: var(--hp-ink);
+  opacity: 0.65;
+  transform: rotate(1deg);
+  padding-bottom: 6px;
+}
+
+.hp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 36px;
+  padding-left: 38px;
+}
+
+.hp-card {
+  --c-bg: #eee;
+  --c-ink: #333;
+  --c-stroke: #333;
+  background: var(--c-bg);
+  border: 2.5px solid var(--c-stroke);
+  border-radius: 28px 18px 32px 20px;
+  padding: 22px 26px 22px;
+  position: relative;
+  box-shadow:
+    5px 5px 0 -1px var(--c-stroke),
+    0 14px 30px -22px rgba(0,0,0,0.35);
+  transition: transform 0.3s cubic-bezier(.5, 1.6, .4, 1), box-shadow 0.3s ease;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+}
+.hp-card:nth-child(6n+1) { transform: rotate(-0.8deg); }
+.hp-card:nth-child(6n+2) { transform: rotate(0.6deg); }
+.hp-card:nth-child(6n+3) { transform: rotate(0.3deg); }
+.hp-card:nth-child(6n+4) { transform: rotate(-0.5deg); }
+.hp-card:nth-child(6n+5) { transform: rotate(0.9deg); }
+.hp-card:nth-child(6n)   { transform: rotate(-0.4deg); }
+.hp-card:hover {
+  transform: rotate(0) translateY(-4px);
+  box-shadow:
+    6px 8px 0 -1px var(--c-stroke),
+    0 20px 40px -22px rgba(0,0,0,0.4);
+}
+
+.hp-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 2.5px dashed var(--c-stroke);
+}
+.hp-dot {
+  width: 42px; height: 42px;
+  background: var(--c-stroke);
+  border-radius: 52% 48% 46% 54% / 48% 52% 48% 52%;
+  color: var(--c-bg);
+  font-family: var(--hp-hand-cjk);
+  font-size: 1.2rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-8deg);
+  flex-shrink: 0;
+  letter-spacing: -0.05em;
+}
+.hp-name {
+  font-family: var(--hp-hand-cjk);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--c-ink);
+  line-height: 1.1;
+  flex: 1;
+  letter-spacing: -0.015em;
+}
+.hp-count {
+  font-family: var(--hp-hand);
+  font-size: 1.1rem;
+  color: var(--c-ink);
+  opacity: 0.7;
+  white-space: nowrap;
+  transform: rotate(-2deg);
+}
+
+.hp-desc {
+  font-family: var(--hp-hand-cjk);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--c-ink);
+  opacity: 0.88;
+  flex: 1;
+}
+
+.hp-desc-wrap {
+  position: relative;
+  flex: 1;
+}
+.hp-desc-edit {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px dashed var(--c-stroke);
+  border-radius: 10px 8px 12px 9px;
+  padding: 1px 9px 2px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--c-ink);
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  line-height: 1.2;
+}
+.hp-card:hover .hp-desc-edit { opacity: 0.7; }
+.hp-desc-edit:hover {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.7);
+  transform: rotate(-3deg);
+}
+[data-theme="dark"] .hp-desc-edit { background: rgba(255, 255, 255, 0.06); }
+[data-theme="dark"] .hp-desc-edit:hover { background: rgba(255, 255, 255, 0.14); }
+
+.hp-desc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 4px 0 6px;
+}
+.hp-desc-text {
+  font-family: var(--hp-hand-cjk);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--c-ink);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1.5px dashed var(--c-stroke);
+  border-radius: 10px 8px 12px 9px;
+  padding: 8px 11px;
+  resize: vertical;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.hp-name-text {
+  font-family: var(--hp-hand-cjk);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--c-ink);
+  letter-spacing: -0.015em;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1.5px dashed var(--c-stroke);
+  border-radius: 10px 8px 12px 9px;
+  padding: 2px 10px 4px;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.1;
+}
+[data-theme="dark"] .hp-name-text { background: rgba(255, 255, 255, 0.06); }
+.hp-name-text:focus {
+  background: rgba(255, 255, 255, 0.8);
+  border-style: solid;
+}
+[data-theme="dark"] .hp-name-text:focus { background: rgba(255, 255, 255, 0.14); }
+[data-theme="dark"] .hp-desc-text { background: rgba(255, 255, 255, 0.06); }
+.hp-desc-text:focus {
+  background: rgba(255, 255, 255, 0.75);
+  border-style: solid;
+}
+[data-theme="dark"] .hp-desc-text:focus { background: rgba(255, 255, 255, 0.12); }
+.hp-btn-desc-save {
+  font-family: var(--hp-hand);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--c-bg);
+  background: var(--c-stroke);
+  border: 1.5px solid var(--c-stroke);
+  border-radius: 12px 9px 14px 10px;
+  padding: 4px 14px 5px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.hp-btn-desc-save:hover {
+  background: var(--c-ink);
+  transform: translateY(-1px);
+}
+
+.hp-repo {
+  font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  opacity: 0.7;
+  margin-left: 6px;
+  letter-spacing: -0.01em;
+}
+
+.hp-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.hp-link {
+  font-family: var(--hp-hand);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px solid var(--c-stroke);
+  border-radius: 12px 9px 14px 10px;
+  padding: 3px 12px 4px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.hp-link:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px) rotate(-0.8deg);
+}
+.hp-link-deploy {
+  background: var(--c-stroke);
+  color: var(--c-bg);
+}
+.hp-link-deploy:hover {
+  background: var(--c-ink);
+  color: var(--c-bg);
+}
+[data-theme="dark"] .hp-link {
+  background: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .hp-link:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.hp-card-foot {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1.5px dashed var(--c-stroke);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hp-tag-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.hp-tag {
+  font-family: var(--hp-hand);
+  font-size: 1.1rem;
+  color: var(--c-ink);
+  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+}
+.hp-tag::before {
+  content: '';
+  width: 11px; height: 11px;
+  display: inline-block;
+  background: var(--t-color, currentColor);
+}
+.hp-tag[data-kind="todo"]   { --t-color: var(--t-todo); }
+.hp-tag[data-kind="todo"]::before   { border-radius: 2px; transform: rotate(45deg); }
+.hp-tag[data-kind="idea"]   { --t-color: var(--t-idea); }
+.hp-tag[data-kind="idea"]::before   { border-radius: 50%; }
+.hp-tag[data-kind="change"] { --t-color: var(--t-change); }
+.hp-tag[data-kind="change"]::before { border-radius: 2px; }
+
+.hp-add {
+  font-family: var(--hp-hand);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  background: transparent;
+  border: 1.5px dashed var(--c-stroke);
+  border-radius: 14px 10px 16px 11px;
+  padding: 4px 14px 5px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  letter-spacing: 0.02em;
+}
+.hp-add:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px) rotate(-1deg);
+}
+[data-theme="dark"] .hp-add:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* ── 6 colors (light mode pastels) ── */
+.hp-card[data-color="green"]  { --c-bg:#d9e9b5; --c-stroke:#4f6a26; --c-ink:#2f4015; }
+.hp-card[data-color="blue"]   { --c-bg:#c7d5ef; --c-stroke:#2f4678; --c-ink:#1a2b55; }
+.hp-card[data-color="peach"]  { --c-bg:#f8d2bc; --c-stroke:#a24a24; --c-ink:#6e2f12; }
+.hp-card[data-color="yellow"] { --c-bg:#f7e39e; --c-stroke:#8f6a1a; --c-ink:#604812; }
+.hp-card[data-color="teal"]   { --c-bg:#b5e3d6; --c-stroke:#2d6c60; --c-ink:#1c4a40; }
+.hp-card[data-color="violet"] { --c-bg:#decfee; --c-stroke:#5d4086; --c-ink:#3d2962; }
+
+[data-theme="dark"] .hp-card[data-color="green"]  { --c-bg:#2e3f1c; --c-stroke:#b2d486; --c-ink:#d9e9b5; }
+[data-theme="dark"] .hp-card[data-color="blue"]   { --c-bg:#1f2c4e; --c-stroke:#9bb3db; --c-ink:#c7d5ef; }
+[data-theme="dark"] .hp-card[data-color="peach"]  { --c-bg:#4d2613; --c-stroke:#e59e7c; --c-ink:#f8d2bc; }
+[data-theme="dark"] .hp-card[data-color="yellow"] { --c-bg:#4a3810; --c-stroke:#e3c674; --c-ink:#f7e39e; }
+[data-theme="dark"] .hp-card[data-color="teal"]   { --c-bg:#1e3e38; --c-stroke:#7fc8ba; --c-ink:#b5e3d6; }
+[data-theme="dark"] .hp-card[data-color="violet"] { --c-bg:#3a2a57; --c-stroke:#b39fd2; --c-ink:#decfee; }
+
+/* ── per-type accent colors (consistent across all 6 cards) ── */
+:root {
+  --t-todo:   #d65a2a;   /* 朱紅 — 待辦，最搶眼 */
+  --t-idea:   #c99018;   /* 金黃 — 想法 */
+  --t-change: #4f73a8;   /* 藍灰 — 更動 */
+}
+[data-theme="dark"] {
+  --t-todo:   #f08a5c;
+  --t-idea:   #ecc862;
+  --t-change: #8ba8d6;
+}
+
+/* notes inside card */
+.hp-notes {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hp-note {
+  --t-color: var(--c-stroke);
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  gap: 8px 10px;
+  align-items: baseline;
+  font-family: var(--hp-hand-cjk);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--c-ink);
+  padding: 7px 10px 7px 14px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 11px 8px 12px 9px;
+  border-left: 4px solid var(--t-color);
+  position: relative;
+}
+[data-theme="dark"] .hp-note { background: rgba(0, 0, 0, 0.18); }
+
+.hp-note[data-type="todo"]   { --t-color: var(--t-todo); }
+.hp-note[data-type="idea"]   { --t-color: var(--t-idea); }
+.hp-note[data-type="change"] { --t-color: var(--t-change); }
+
+.hp-note-type {
+  font-family: var(--hp-hand-cjk);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 2px 10px 3px;
+  border-radius: 9px 6px 10px 7px;
+  white-space: nowrap;
+  line-height: 1.3;
+  background: var(--t-color);
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+[data-theme="dark"] .hp-note-type { color: var(--hp-paper); }
+.hp-note-date {
+  font-family: var(--hp-hand);
+  font-size: 0.95rem;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+.hp-note-text {
+  word-break: break-word;
+  opacity: 0.95;
+  white-space: pre-wrap;
+}
+.hp-note-del {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--c-ink);
+  opacity: 0.25;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 2px 6px;
+  transition: opacity 0.15s ease;
+  align-self: center;
+}
+.hp-note:hover .hp-note-del { opacity: 0.55; }
+.hp-note-del:hover { opacity: 1 !important; }
+
+/* inline add form */
+.hp-form {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 2.5px dashed var(--c-stroke);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hp-form-types { display: flex; gap: 8px; flex-wrap: wrap; }
+.hp-form-type {
+  --t-color: var(--c-stroke);
+  font-family: var(--hp-hand-cjk);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 4px 14px 5px;
+  border: 1.5px solid var(--t-color);
+  border-radius: 13px 9px 15px 10px;
+  background: transparent;
+  color: var(--t-color);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.hp-form-type[data-type="todo"]   { --t-color: var(--t-todo); }
+.hp-form-type[data-type="idea"]   { --t-color: var(--t-idea); }
+.hp-form-type[data-type="change"] { --t-color: var(--t-change); }
+.hp-form-type:hover { background: rgba(255, 255, 255, 0.3); }
+.hp-form-type.active {
+  background: var(--t-color);
+  color: #fff;
+  transform: rotate(-1deg);
+}
+[data-theme="dark"] .hp-form-type.active { color: var(--hp-paper); }
+[data-theme="dark"] .hp-form-type:hover { background: rgba(255, 255, 255, 0.08); }
+
+.hp-form-row { display: flex; gap: 8px; align-items: center; }
+.hp-form-date, .hp-form-text {
+  font-family: var(--hp-hand-cjk);
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border: 1.5px solid var(--c-stroke);
+  border-radius: 11px 8px 12px 9px;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--c-ink);
+  outline: none;
+  box-sizing: border-box;
+}
+.hp-form-date { width: 160px; }
+.hp-form-text { width: 100%; resize: vertical; min-height: 50px; line-height: 1.55; }
+[data-theme="dark"] .hp-form-date,
+[data-theme="dark"] .hp-form-text { background: rgba(0, 0, 0, 0.2); }
+.hp-form-date:focus, .hp-form-text:focus { background: rgba(255, 255, 255, 0.7); }
+[data-theme="dark"] .hp-form-date:focus,
+[data-theme="dark"] .hp-form-text:focus { background: rgba(0, 0, 0, 0.35); }
+
+.hp-form-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.hp-btn-cancel, .hp-btn-save {
+  font-family: var(--hp-hand);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 4px 18px 5px;
+  border-radius: 13px 9px 15px 10px;
+  cursor: pointer;
+  border: 1.5px solid var(--c-stroke);
+  transition: transform 0.15s ease;
+}
+.hp-btn-cancel { background: transparent; color: var(--c-ink); border-style: dashed; }
+.hp-btn-save { background: var(--c-stroke); color: var(--c-bg); }
+.hp-btn-cancel:hover { transform: rotate(-1deg); }
+.hp-btn-save:hover { transform: rotate(1deg) translateY(-1px); }
+
+/* responsive */
+@media (max-width: 960px) {
+  .hp-wrap::before { display: none; }
+  .hp-head, .hp-grid { padding-left: 0; }
+  .hp-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hp-note { grid-template-columns: auto auto 1fr; }
+  .hp-note-del { grid-column: 3; justify-self: end; }
+}
+
+/* ═══ 效果 / 字型展示 ═══ */
+.fx-section { margin-bottom: 40px; }
+.fx-section-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed var(--border-primary);
+}
+.fx-section-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 800;
+  margin: 0;
+}
+.fx-section-head .fx-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-primary);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.fx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.fx-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-primary);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 4px 4px 0 var(--border-primary);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.fx-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border-primary);
+}
+.fx-card-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle, rgba(0,0,0,0.08));
+}
+.fx-font-name {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+.fx-font-tag {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+}
+.fx-sample {
+  font-size: 2.6rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+  word-break: break-word;
+  min-height: 3.5rem;
+}
+.fx-sample-sub {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.fx-card.fx-num .fx-sample {
+  font-size: 3.2rem;
+  letter-spacing: 0.04em;
+}
+
+/* 繁中字型 */
+.ff-noto-serif-tc   { font-family: 'Noto Serif TC', serif; font-weight: 500; }
+.ff-noto-sans-tc    { font-family: 'Noto Sans TC', sans-serif; font-weight: 900; }
+.ff-chocolate       { font-family: 'Chocolate Classical Sans', 'Noto Sans TC', sans-serif; }
+.ff-lxgw            { font-family: 'LXGW WenKai TC', 'Noto Serif TC', serif; }
+.ff-kaiti           { font-family: "標楷體", "DFKai-SB", "BiauKai", "Kaiti TC", "STKaiti", cursive; font-weight: 500; }
+
+/* 英文字型 */
+.ff-playfair        { font-family: 'Playfair Display', serif; font-weight: 700; font-style: italic; }
+.ff-bebas           { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; }
+.ff-pacifico        { font-family: 'Pacifico', cursive; }
+.ff-monoton         { font-family: 'Monoton', cursive; }
+.ff-pressstart      { font-family: 'Press Start 2P', monospace; font-size: 1.4rem !important; line-height: 1.8 !important; }
+
+/* 數字字型 */
+.ff-orbitron        { font-family: 'Orbitron', sans-serif; font-weight: 900; }
+.ff-audiowide       { font-family: 'Audiowide', cursive; }
+.ff-russo           { font-family: 'Russo One', sans-serif; }
+.ff-majormono       { font-family: 'Major Mono Display', monospace; }
+.ff-abril           { font-family: 'Abril Fatface', serif; }
+
+/* === 追加:更有特色的字型 === */
+/* 繁中 */
+.ff-taipei-sans     { font-family: 'Taipei Sans TC', 'Noto Sans TC', sans-serif; font-weight: 400; }
+.ff-chiron-sung     { font-family: 'Chiron Sung HK WS', 'Noto Serif TC', serif; font-weight: 500; }
+.ff-lxgw-mono       { font-family: 'LXGW WenKai Mono TC', 'LXGW WenKai TC', monospace; }
+.ff-noto-sans-thin  { font-family: 'Noto Sans TC', sans-serif; font-weight: 100; }
+.ff-noto-serif-black{ font-family: 'Noto Serif TC', serif; font-weight: 900; }
+
+/* 英文實驗 */
+.ff-rubik-glitch    { font-family: 'Rubik Glitch', sans-serif; }
+.ff-bungee-shade    { font-family: 'Bungee Shade', cursive; }
+.ff-rubik-wetpaint  { font-family: 'Rubik Wet Paint', cursive; }
+.ff-cherry-bomb     { font-family: 'Cherry Bomb One', cursive; }
+.ff-kablammo        { font-family: 'Kablammo', cursive; }
+
+/* 數字特殊造型 */
+.ff-faster-one      { font-family: 'Faster One', cursive; }
+.ff-wallpoet        { font-family: 'Wallpoet', cursive; }
+.ff-iceberg         { font-family: 'Iceberg', cursive; }
+.ff-rubik-mono-one  { font-family: 'Rubik Mono One', sans-serif; }
+.ff-modak           { font-family: 'Modak', cursive; }
 </style>
 </head>
 <body>
@@ -1124,10 +1788,13 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
         <a><span class="nav-icon"><i data-lucide="check-square" style="width:20px;height:20px"></i></span><span class="nav-label">待辦事項</span></a>
       </li>
       <li class="nav-item" data-page="goals">
-        <a><span class="nav-icon"><i data-lucide="target" style="width:20px;height:20px"></i></span><span class="nav-label">每日目標</span></a>
+        <a><span class="nav-icon"><i data-lucide="activity" style="width:20px;height:20px"></i></span><span class="nav-label">專案</span></a>
       </li>
       <li class="nav-item" data-page="toolkit">
         <a><span class="nav-icon"><i data-lucide="wrench" style="width:20px;height:20px"></i></span><span class="nav-label">工具總覽</span></a>
+      </li>
+      <li class="nav-item" data-page="effects">
+        <a><span class="nav-icon"><i data-lucide="type" style="width:20px;height:20px"></i></span><span class="nav-label">效果</span></a>
       </li>
       <li class="nav-item">
         <a href="layout-playground.html" target="_blank"><span class="nav-icon"><i data-lucide="layout" style="width:20px;height:20px"></i></span><span class="nav-label">截圖排版</span></a>
@@ -1184,18 +1851,13 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
           <div class="recent-list" id="recentList"></div>
         </div>
 
-        <!-- Today's Goals -->
+        <!-- Today's Progress -->
         <div class="glass-card accent-bar-yellow">
           <div class="card-header">
-            <div class="card-title"><div class="title-icon"><i data-lucide="star" style="width:18px;height:18px"></i></div>今日目標</div>
+            <div class="card-title"><div class="title-icon"><i data-lucide="activity" style="width:18px;height:18px"></i></div>今日工作進度</div>
           </div>
-          <div class="goal-progress-ring">
-            <div class="goal-bar">
-              <div class="goal-bar-track"><div class="goal-bar-fill" id="dashGoalFill" style="width:0%"></div></div>
-              <div class="goal-count" id="dashGoalCount">0/0</div>
-            </div>
-            <div id="dashGoalList"></div>
-          </div>
+          <div id="dashProgSummary" style="font-size:0.85rem;line-height:1.6;color:var(--text);margin-bottom:8px">尚未產生今日進度</div>
+          <div id="dashProgStats" style="font-size:0.75rem;color:var(--text-muted)"></div>
         </div>
       </div>
     </section>
@@ -1323,27 +1985,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     </section>
 
     <section class="page" id="page-goals">
-      <div class="page-header">
-        <div class="page-title"><i data-lucide="target" style="width:24px;height:24px"></i> 每日目標</div>
-      </div>
-      <div class="glass-card">
-        <div class="goals-header">
-          <div class="goals-date-nav">
-            <button class="btn-icon" id="goalPrevDay">&#9664;</button>
-            <div class="goals-date" id="goalsDate"></div>
-            <button class="btn-icon" id="goalNextDay">&#9654;</button>
-          </div>
-          <button class="btn btn-accent" id="addGoalBtn">+ 新增目標</button>
-        </div>
-        <div class="goal-bar" style="margin-bottom:20px">
-          <div class="goal-bar-track"><div class="goal-bar-fill" id="goalBarFill" style="width:0%"></div></div>
-          <div class="goal-count" id="goalBarCount">0/0</div>
-        </div>
-        <div id="goalsList"></div>
-        <div class="goals-summary" style="margin-top:24px">
-          <div class="goals-streak" id="goalsStreak">&#128293; 連續完成：0 天</div>
-        </div>
-      </div>
+      <div class="hp-wrap" id="progBoard"></div>
     </section>
 
     <!-- ═══ TOOLKIT ═══ -->
@@ -1730,6 +2372,287 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 
     </section>
 
+    <!-- ═══ 效果 ═══ -->
+    <section class="page" id="page-effects">
+      <div class="page-header">
+        <h1 class="page-title">
+          <i data-lucide="type" style="width:28px;height:28px"></i>
+          效果 — 字型展示
+        </h1>
+      </div>
+
+      <!-- 繁體中文 -->
+      <div class="fx-section">
+        <div class="fx-section-head">
+          <h2>繁體中文</h2>
+          <span class="fx-kicker">Traditional Chinese · 10 fonts</span>
+        </div>
+        <div class="fx-grid">
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Noto Serif TC</span>
+              <span class="fx-font-tag">古典襯線宋體</span>
+            </div>
+            <div class="fx-sample ff-noto-serif-tc">輕舟已過萬重山</div>
+            <div class="fx-sample-sub ff-noto-serif-tc">永和有風，山明水秀，字正腔圓。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Noto Sans TC 900</span>
+              <span class="fx-font-tag">極粗黑體</span>
+            </div>
+            <div class="fx-sample ff-noto-sans-tc">大膽俐落的聲音</div>
+            <div class="fx-sample-sub ff-noto-sans-tc">適合標題與強調，視覺衝擊強。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Chocolate Classical Sans</span>
+              <span class="fx-font-tag">優雅現代</span>
+            </div>
+            <div class="fx-sample ff-chocolate">雅緻與留白之美</div>
+            <div class="fx-sample-sub ff-chocolate">筆畫清秀、間架端正，適合長文閱讀。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">LXGW WenKai TC</span>
+              <span class="fx-font-tag">霞鶩文楷</span>
+            </div>
+            <div class="fx-sample ff-lxgw">手寫楷書的溫度</div>
+            <div class="fx-sample-sub ff-lxgw">開源免費的繁體楷書，閱讀感親切溫潤。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">系統標楷體</span>
+              <span class="fx-font-tag">傳統楷書</span>
+            </div>
+            <div class="fx-sample ff-kaiti">書法筆意入數位</div>
+            <div class="fx-sample-sub ff-kaiti">Windows／Mac 內建楷書，經典文件用字。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Taipei Sans TC</span>
+              <span class="fx-font-tag">台北黑體 · 在地開源</span>
+            </div>
+            <div class="fx-sample ff-taipei-sans">在地的溫度</div>
+            <div class="fx-sample-sub ff-taipei-sans">台灣教育部審訂字體，適用公部門與在地設計。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Chiron Sung HK</span>
+              <span class="fx-font-tag">港式現代宋</span>
+            </div>
+            <div class="fx-sample ff-chiron-sung">字骨俐落如刀</div>
+            <div class="fx-sample-sub ff-chiron-sung">承襲文鼎宋體骨架，筆畫收放更銳利現代。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">LXGW WenKai Mono TC</span>
+              <span class="fx-font-tag">等寬楷書 · 罕見</span>
+            </div>
+            <div class="fx-sample ff-lxgw-mono">程式碼也能寫楷</div>
+            <div class="fx-sample-sub ff-lxgw-mono">每字固定寬度，楷書 × monospace 的罕見組合。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Noto Sans TC Thin 100</span>
+              <span class="fx-font-tag">極細線條黑體</span>
+            </div>
+            <div class="fx-sample ff-noto-sans-thin">輕盈的呼吸感</div>
+            <div class="fx-sample-sub ff-noto-sans-thin">極細筆畫，適合大字特效、精品調性版面。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Noto Serif TC Black 900</span>
+              <span class="fx-font-tag">極粗宋體標題</span>
+            </div>
+            <div class="fx-sample ff-noto-serif-black">黑墨重磅落紙</div>
+            <div class="fx-sample-sub ff-noto-serif-black">極粗襯線體，視覺重量十足的雜誌標題字。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 英文 -->
+      <div class="fx-section">
+        <div class="fx-section-head">
+          <h2>英文</h2>
+          <span class="fx-kicker">English · 10 fonts</span>
+        </div>
+        <div class="fx-grid">
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Playfair Display</span>
+              <span class="fx-font-tag">Editorial Serif</span>
+            </div>
+            <div class="fx-sample ff-playfair">Elegance &amp; Grace</div>
+            <div class="fx-sample-sub ff-playfair">The quick brown fox jumps over the lazy dog.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Bebas Neue</span>
+              <span class="fx-font-tag">Condensed Display</span>
+            </div>
+            <div class="fx-sample ff-bebas">BOLD &amp; TALL</div>
+            <div class="fx-sample-sub ff-bebas">THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Pacifico</span>
+              <span class="fx-font-tag">Handwritten Script</span>
+            </div>
+            <div class="fx-sample ff-pacifico">Hello, friend!</div>
+            <div class="fx-sample-sub ff-pacifico">The quick brown fox jumps over the lazy dog.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Monoton</span>
+              <span class="fx-font-tag">Retro Stripe</span>
+            </div>
+            <div class="fx-sample ff-monoton">NEON NIGHT</div>
+            <div class="fx-sample-sub ff-monoton">THE QUICK BROWN FOX.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Press Start 2P</span>
+              <span class="fx-font-tag">8-bit Pixel</span>
+            </div>
+            <div class="fx-sample ff-pressstart">GAME START</div>
+            <div class="fx-sample-sub ff-pressstart">LEVEL UP!</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Rubik Glitch</span>
+              <span class="fx-font-tag">Glitch · 故障風</span>
+            </div>
+            <div class="fx-sample ff-rubik-glitch">Corrupted</div>
+            <div class="fx-sample-sub ff-rubik-glitch">Signal loss, broken data, CRT glitch.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Bungee Shade</span>
+              <span class="fx-font-tag">3D Shadow</span>
+            </div>
+            <div class="fx-sample ff-bungee-shade">CITY POP</div>
+            <div class="fx-sample-sub ff-bungee-shade">STREET SIGNS &amp; ARCADE</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Rubik Wet Paint</span>
+              <span class="fx-font-tag">Dripping Paint</span>
+            </div>
+            <div class="fx-sample ff-rubik-wetpaint">Splash!</div>
+            <div class="fx-sample-sub ff-rubik-wetpaint">graffiti &amp; street art feel.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Cherry Bomb One</span>
+              <span class="fx-font-tag">Bubbly Display</span>
+            </div>
+            <div class="fx-sample ff-cherry-bomb">POP!</div>
+            <div class="fx-sample-sub ff-cherry-bomb">Playful, chubby, kid-friendly.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Kablammo</span>
+              <span class="fx-font-tag">Variable Blob</span>
+            </div>
+            <div class="fx-sample ff-kablammo">Kablammo!</div>
+            <div class="fx-sample-sub ff-kablammo">Organic, wavy, comic impact.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 數字 -->
+      <div class="fx-section">
+        <div class="fx-section-head">
+          <h2>數字</h2>
+          <span class="fx-kicker">Numbers · 10 fonts</span>
+        </div>
+        <div class="fx-grid">
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Orbitron</span>
+              <span class="fx-font-tag">Futuristic Tech</span>
+            </div>
+            <div class="fx-sample ff-orbitron">0123456789</div>
+            <div class="fx-sample-sub ff-orbitron">2026 · 04 · 22</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Audiowide</span>
+              <span class="fx-font-tag">Neon Retro</span>
+            </div>
+            <div class="fx-sample ff-audiowide">0123456789</div>
+            <div class="fx-sample-sub ff-audiowide">24 : 00 : 00</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Russo One</span>
+              <span class="fx-font-tag">Heavy Display</span>
+            </div>
+            <div class="fx-sample ff-russo">0123456789</div>
+            <div class="fx-sample-sub ff-russo">$ 1,234.56</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Major Mono Display</span>
+              <span class="fx-font-tag">Geometric Mono</span>
+            </div>
+            <div class="fx-sample ff-majormono">0123456789</div>
+            <div class="fx-sample-sub ff-majormono">v2.0.1 build</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Abril Fatface</span>
+              <span class="fx-font-tag">Magazine Serif</span>
+            </div>
+            <div class="fx-sample ff-abril">0123456789</div>
+            <div class="fx-sample-sub ff-abril">No. 42 — Chapter I</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Faster One</span>
+              <span class="fx-font-tag">Speed Stripe</span>
+            </div>
+            <div class="fx-sample ff-faster-one">0123456789</div>
+            <div class="fx-sample-sub ff-faster-one">120 km/h · TURBO</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Wallpoet</span>
+              <span class="fx-font-tag">Wireframe Grid</span>
+            </div>
+            <div class="fx-sample ff-wallpoet">0123456789</div>
+            <div class="fx-sample-sub ff-wallpoet">GRID 0x1A · PORT 80</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Iceberg</span>
+              <span class="fx-font-tag">Outlined 3D</span>
+            </div>
+            <div class="fx-sample ff-iceberg">0123456789</div>
+            <div class="fx-sample-sub ff-iceberg">ROOM · 3F · #204</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Rubik Mono One</span>
+              <span class="fx-font-tag">Heavy Mono</span>
+            </div>
+            <div class="fx-sample ff-rubik-mono-one">0123456789</div>
+            <div class="fx-sample-sub ff-rubik-mono-one">COUNT 9999 · MAX</div>
+          </div>
+          <div class="fx-card fx-num">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Modak</span>
+              <span class="fx-font-tag">Chubby Display</span>
+            </div>
+            <div class="fx-sample ff-modak">0123456789</div>
+            <div class="fx-sample-sub ff-modak">99 cents · sweet</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
   </main>
 </div>
 
@@ -1763,6 +2686,9 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     </div>
   </div>
 </div>
+
+<!-- Daily progress data (local only, .gitignored; missing on GitHub Pages) -->
+<script src="progress/daily-progress-data.js" onerror="window.DAILY_PROGRESS_DATA = []"></script>
 
 <script>
 /* ═══════════════════════════════════════════
@@ -1948,7 +2874,7 @@ function navigateTo(page) {
   if (page === 'images') renderImages();
   if (page === 'links') renderLinks();
   if (page === 'todos') renderTodos();
-  if (page === 'goals') renderGoals();
+  if (page === 'goals') renderProgress();
   if (page === 'ainews') renderAINews();
 }
 $$('.nav-item').forEach(item => {
@@ -2335,7 +3261,7 @@ function saveLinks() {
   LS.set('links', links);
   SheetDB.replaceAll('links', links.map(l => ({
     id: l.id, title: l.name || '', url: l.url || '',
-    icon: '', category: l.category || '', created: ''
+    icon: '', category: l.category || '', created: '', pinned: l.pinned ? '1' : ''
   })));
 }
 
@@ -2362,6 +3288,7 @@ function renderLinks() {
         <div class="link-card-url">${escHtml(l.url)}</div>
       </div>
       <div class="link-card-actions">
+        <button class="btn-icon btn-sm link-pin${l.pinned ? ' pinned' : ''}" data-id="${l.id}" title="釘選到首頁快速連結">&#9733;</button>
         <button class="btn-icon btn-sm link-edit" data-id="${l.id}">&#9998;</button>
         <button class="btn-icon btn-sm link-delete" data-id="${l.id}">&times;</button>
       </div>
@@ -2389,6 +3316,15 @@ function renderLinks() {
       $('#linkModal').classList.add('active');
     });
   });
+  $$('.link-pin').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const link = links.find(l => l.id === el.dataset.id);
+      if (link) { link.pinned = !link.pinned; }
+      saveLinks();
+      renderLinks();
+    });
+  });
   $$('.link-delete').forEach(el => {
     el.addEventListener('click', e => {
       e.stopPropagation();
@@ -2404,7 +3340,8 @@ function renderLinks() {
 }
 
 function renderDashQuickLinks() {
-  const top = links.slice(0, 7);
+  const pinned = links.filter(l => l.pinned);
+  const top = pinned.length ? pinned : links.slice(0, 7);
   $('#dashQuickLinks').innerHTML = top.map(l => `
     <a class="quick-link" href="${escHtml(l.url)}" target="_blank" title="${escHtml(l.name)}">
       <img src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(l.url)}&sz=64" alt="" onerror="this.style.display='none'">
@@ -2530,110 +3467,405 @@ $$('.todo-filters .tag-pill').forEach(el => {
 });
 
 // ═══════════════════════════════════════════
-// GOALS MODULE
+// DAILY PROGRESS MODULE — 手繪專案卡片
+// 六個專案區塊可在卡片上新增「待辦 / 想法 / 更動」記事
+// 底層排程仍會寫 progress/daily-progress-data.js（今日首頁小卡仍用它）
 // ═══════════════════════════════════════════
-let goalsData = LS.get('goals', {});
-let goalsViewDate = todayKey();
+const HP_PROJECTS = [
+  { key: 'teach',   name: '教材',         color: 'green',  initial: '教',
+    repo: 'baccarat-dealer-training',
+    repoUrl: 'https://github.com/at19750919-star/baccarat-dealer-training',
+    deployUrl: 'https://at19750919-star.github.io/baccarat-dealer-training/dealer.html',
+    desc: '荷官訓練教材:dealer.html 等 HTML 教學頁與圖片素材。' },
+  { key: 'century', name: '世紀',         color: 'blue',   initial: '世',
+    repo: 'snow',
+    repoUrl: 'https://github.com/at19750919-star/snow',
+    deployUrl: 'https://at19750919-star.github.io/snow/',
+    desc: '世紀髮廊景美店預約排班系統(FullCalendar 前端 + GAS Web App 後端)。' },
+  { key: 'arena',   name: '小巨蛋週帳',   color: 'peach',  initial: '小',
+    repo: 'dome-weekly-auto',
+    repoUrl: 'https://github.com/at19750919-star/dome-weekly-auto',
+    deployUrl: 'https://docs.google.com/spreadsheets/d/1QdB3nRaB4e6TbL10A2p-96ipSQoFekeCa7MdnAg76rk/edit?gid=206268197#gid=206268197',
+    desc: '週帳自動化:微信圖片辨識→寫 Google Sheets→積分/線報表比對→LINE 推送。' },
+  { key: 'baijia',  name: '百家3.0',      color: 'yellow', initial: '百',
+    repo: 'AT666',
+    repoUrl: 'https://github.com/at19750919-star/AT666',
+    deployUrl: 'https://at19750919-star.github.io/AT666/',
+    desc: '純前端百家樂分析工具 + 手動輸入(HTML/Vanilla JS,無建置步驟)。' },
+  { key: 'dash',    name: 'my-dashboard', color: 'teal',   initial: 'D',
+    repo: 'my-dashboard',
+    repoUrl: 'https://github.com/at19750919-star/my-dashboard',
+    deployUrl: 'https://at19750919-star.github.io/my-dashboard/',
+    desc: '個人首頁(就是這頁)+ 版面遊樂場 + AI 新聞日報。' },
+  { key: 'dashbrd', name: '營運儀表板',   color: 'violet', initial: '儀',
+    repo: 'baccarat-dashboard',
+    repoUrl: 'https://github.com/at19750919-star/baccarat-dashboard',
+    deployUrl: 'https://at19750919.pages.dev',
+    desc: '百家樂營運儀表板:洗碼部隊嫌疑偵測、玩家獲利排名(部署於 Cloudflare Pages)。' },
+  { key: 'roadmap', name: 'baccarat-roadmap', color: 'green', initial: '圖',
+    repo: 'baccarat-roadmap',
+    repoUrl: 'https://github.com/at19750919-star/baccarat-roadmap',
+    deployUrl: 'https://at19750919-star.github.io/baccarat-roadmap/',
+    desc: '百家樂版路單。' },
+  { key: 'loan',    name: 'loan-ledger',  color: 'blue', initial: '貸',
+    repo: 'loan-ledger',
+    repoUrl: 'https://github.com/at19750919-star/loan-ledger',
+    deployUrl: 'https://at19750919-star.github.io/loan-ledger/',
+    desc: '(待補)' },
+  { key: 'liao',    name: '友謙',         color: 'peach', initial: '友',
+    repo: 'Liao',
+    repoUrl: 'https://github.com/at19750919-star/Liao',
+    deployUrl: 'https://at19750919-star.github.io/Liao/',
+    desc: '友謙專案:深度分析報告(PDF/HTML/Markdown)+ 部署 zip。' },
+  { key: 'bjdvid',  name: 'bjd-video',    color: 'yellow', initial: '影',
+    repo: 'bjd-video',
+    repoUrl: 'https://github.com/at19750919-star/bjd-video',
+    desc: '百家樂下注行為影像分析 pipeline (OpenCV)。' },
+];
 
-function saveGoals() {
-  LS.set('goals', goalsData);
-  const rows = Object.entries(goalsData).map(([date, goals]) => ({
-    date, goals_json: JSON.stringify(goals)
-  }));
-  SheetDB.replaceAll('goals', rows);
+function progressData() {
+  return (typeof window.DAILY_PROGRESS_DATA !== 'undefined' && Array.isArray(window.DAILY_PROGRESS_DATA))
+    ? window.DAILY_PROGRESS_DATA : [];
 }
+function findProgEntry(dateKey) { return progressData().find(e => e.date === dateKey) || null; }
 
-function renderGoals() {
-  $('#goalsDate').textContent = goalsViewDate;
-  const dayGoals = goalsData[goalsViewDate] || [];
-  const completed = dayGoals.filter(g => g.done).length;
-  const total = dayGoals.length;
-  const pct = total ? Math.round(completed / total * 100) : 0;
-  $('#goalBarFill').style.width = pct + '%';
-  $('#goalBarCount').textContent = `${completed}/${total}`;
+function renderProgress() {
+  const root = $('#progBoard');
+  if (!root) return;
+  const today = todayKey();
+  const d = new Date(today);
+  const wk = ['週日','週一','週二','週三','週四','週五','週六'][d.getDay()];
 
-  // dash widget
-  const todayGoals = goalsData[todayKey()] || [];
-  const todayDone = todayGoals.filter(g => g.done).length;
-  const todayTotal = todayGoals.length;
-  const todayPct = todayTotal ? Math.round(todayDone / todayTotal * 100) : 0;
-  $('#dashGoalFill').style.width = todayPct + '%';
-  $('#dashGoalCount').textContent = `${todayDone}/${todayTotal}`;
+  const cardsHtml = HP_PROJECTS.map(p => renderHpCard(p)).join('');
 
-  $('#goalsList').innerHTML = dayGoals.length ? dayGoals.map(g => `
-    <div class="goal-item ${g.done ? 'completed' : ''}" data-id="${g.id}">
-      <div class="todo-checkbox ${g.done ? 'checked' : ''}" data-id="${g.id}">${g.done ? '✓' : ''}</div>
-      <span class="goal-text">${escHtml(g.text)}</span>
-      <button class="btn-icon btn-sm goal-delete" data-id="${g.id}">&times;</button>
+  root.innerHTML = `
+    <div class="hp-head">
+      <div class="hp-title">專案</div>
+      <div class="hp-sub">${today} · ${wk}</div>
     </div>
-  `).join('') : '<div class="empty-state">今天還沒有設定目標</div>';
-
-  // dash goal list (today only, top 3)
-  const topGoals = todayGoals.slice(0, 3);
-  $('#dashGoalList').innerHTML = topGoals.map(g => `
-    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.85rem">
-      <span style="color:${g.done ? 'var(--accent)' : 'var(--text-muted)'}">${g.done ? '✓' : '○'}</span>
-      <span style="${g.done ? 'text-decoration:line-through;opacity:0.5' : ''}">${escHtml(g.text)}</span>
+    <div class="hp-grid">
+      ${cardsHtml}
     </div>
-  `).join('');
+  `;
 
-  // streak
-  let streak = 0;
-  const d = new Date();
-  for (let i = 0; i < 365; i++) {
-    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    const dg = goalsData[key];
-    if (dg && dg.length > 0 && dg.every(g => g.done)) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    } else if (i === 0) {
-      // today might not be complete yet, skip
-      d.setDate(d.getDate() - 1);
-      continue;
-    } else {
-      break;
-    }
+  bindProgBoard();
+
+  if (progAddingFor) {
+    const ta = root.querySelector(`.hp-card[data-key="${progAddingFor}"] .hp-form-text`);
+    if (ta) ta.focus();
   }
-  $('#goalsStreak').innerHTML = `&#128293; 連續完成：${streak} 天`;
 
-  // events
-  $$('#goalsList .todo-checkbox').forEach(el => {
-    el.addEventListener('click', () => {
-      const g = (goalsData[goalsViewDate] || []).find(g => g.id === el.dataset.id);
-      if (g) { g.done = !g.done; saveGoals(); renderGoals(); }
-    });
+  refreshDashProg();
+}
+
+// ── progress notes state (persisted to LS + SheetDB) ──
+let progNotes = LS.get('progNotes', []);
+let progAddingFor = null;
+let progNewType = 'todo';
+let progDescs = LS.get('progDescs', {});
+let progNames = LS.get('progNames', {});
+let progEditDescFor = null;
+
+function saveProgNotes() {
+  LS.set('progNotes', progNotes);
+  SheetDB.replaceAll('prog_notes', progNotes.map(n => ({
+    id: n.id, project: n.project, type: n.type,
+    date: n.date, text: n.text, created: n.createdAt
+  })));
+}
+
+function saveProgDescs() {
+  LS.set('progDescs', progDescs);
+  SheetDB.replaceAll('prog_descs', Object.entries(progDescs).map(([key, text]) => ({
+    project: key, text
+  })));
+}
+
+function saveProgNames() {
+  LS.set('progNames', progNames);
+  SheetDB.replaceAll('prog_names', Object.entries(progNames).map(([key, text]) => ({
+    project: key, text
+  })));
+}
+
+function setProgDesc(key, text) {
+  const t = (text || '').trim();
+  if (t) progDescs[key] = t;
+  else delete progDescs[key];
+  saveProgDescs();
+}
+
+function setProgName(key, text) {
+  const t = (text || '').trim();
+  if (t) progNames[key] = t;
+  else delete progNames[key];
+  saveProgNames();
+}
+
+function getProgDesc(p) {
+  return progDescs[p.key] || p.desc;
+}
+
+function getProgName(p) {
+  return progNames[p.key] || p.name;
+}
+
+function addProgNote(projectKey, type, date, text) {
+  progNotes.unshift({
+    id: genId(), project: projectKey, type, date,
+    text: text.trim(), createdAt: Date.now()
   });
-  $$('.goal-delete').forEach(el => {
-    el.addEventListener('click', () => {
-      if (!goalsData[goalsViewDate]) return;
-      goalsData[goalsViewDate] = goalsData[goalsViewDate].filter(g => g.id !== el.dataset.id);
-      saveGoals();
-      renderGoals();
-    });
+  saveProgNotes();
+}
+
+function deleteProgNote(id) {
+  progNotes = progNotes.filter(n => n.id !== id);
+  saveProgNotes();
+}
+
+function notesForProject(key) {
+  return progNotes
+    .filter(n => n.project === key)
+    .sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.createdAt - a.createdAt));
+}
+
+function progCounts(key) {
+  const ns = notesForProject(key);
+  return {
+    todo: ns.filter(n => n.type === 'todo').length,
+    idea: ns.filter(n => n.type === 'idea').length,
+    change: ns.filter(n => n.type === 'change').length,
+    total: ns.length,
+  };
+}
+
+function noteTypeLabel(t) { return { todo: '待辦', idea: '想法', change: '更動' }[t] || t; }
+function formatNoteDate(dk) {
+  if (!dk) return '';
+  const parts = dk.split('-');
+  if (parts.length !== 3) return dk;
+  return `${parts[1]}/${parts[2]}`;
+}
+
+function renderHpCard(p) {
+  const counts = progCounts(p.key);
+  const notes = notesForProject(p.key);
+  const adding = progAddingFor === p.key;
+
+  const notesHtml = notes.length ? `
+    <div class="hp-notes">
+      ${notes.map(n => `
+        <div class="hp-note" data-id="${n.id}" data-type="${n.type}">
+          <span class="hp-note-type">${noteTypeLabel(n.type)}</span>
+          <span class="hp-note-date">${formatNoteDate(n.date)}</span>
+          <span class="hp-note-text">${escHtml(n.text)}</span>
+          <button class="hp-note-del" type="button" data-del="${n.id}" aria-label="刪除">×</button>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+  const formHtml = adding ? `
+    <div class="hp-form">
+      <div class="hp-form-types">
+        ${['todo','idea','change'].map(t => `
+          <button type="button" class="hp-form-type${progNewType===t?' active':''}" data-type="${t}">${noteTypeLabel(t)}</button>
+        `).join('')}
+      </div>
+      <div class="hp-form-row">
+        <input type="date" class="hp-form-date" value="${todayKey()}">
+      </div>
+      <textarea class="hp-form-text" placeholder="寫點什麼..." rows="2"></textarea>
+      <div class="hp-form-btns">
+        <button type="button" class="hp-btn-cancel">取消</button>
+        <button type="button" class="hp-btn-save" data-save="${p.key}">儲存</button>
+      </div>
+    </div>
+  ` : '';
+
+  const footHtml = adding ? '' : `
+    <footer class="hp-card-foot">
+      <div class="hp-tag-row">
+        <span class="hp-tag" data-kind="todo">待辦 ${counts.todo}</span>
+        <span class="hp-tag" data-kind="idea">想法 ${counts.idea}</span>
+        <span class="hp-tag" data-kind="change">更動 ${counts.change}</span>
+      </div>
+      <button class="hp-add" type="button" data-add-for="${p.key}">+ 加記事</button>
+    </footer>
+  `;
+
+  const linksHtml = (p.repoUrl || p.deployUrl) ? `
+    <div class="hp-links">
+      ${p.repoUrl ? `<a class="hp-link hp-link-repo" href="${p.repoUrl}" target="_blank" rel="noopener">GitHub</a>` : ''}
+      ${p.deployUrl ? `<a class="hp-link hp-link-deploy" href="${p.deployUrl}" target="_blank" rel="noopener">部署網址</a>` : ''}
+    </div>
+  ` : '';
+
+  const editing = progEditDescFor === p.key;
+  const currentName = getProgName(p);
+  const currentDesc = getProgDesc(p);
+  const nameHtml = p.repo
+    ? `${escHtml(currentName)}<span class="hp-repo"> · ${escHtml(p.repo)}</span>`
+    : escHtml(currentName);
+
+  const headHtml = editing ? `
+    <header class="hp-card-head">
+      <div class="hp-dot">${escHtml(p.initial)}</div>
+      <input type="text" class="hp-name-text" value="${escHtml(currentName)}" placeholder="標題">
+      <div class="hp-count">${counts.total} 則記事</div>
+    </header>
+  ` : `
+    <header class="hp-card-head">
+      <div class="hp-dot">${escHtml(p.initial)}</div>
+      <div class="hp-name">${nameHtml}</div>
+      <div class="hp-count">${counts.total} 則記事</div>
+    </header>
+  `;
+
+  const bodyHtml = editing ? `
+    <div class="hp-desc-form">
+      <textarea class="hp-desc-text" rows="3" placeholder="說明這個專案在做什麼...">${escHtml(currentDesc)}</textarea>
+      <div class="hp-form-btns">
+        <button type="button" class="hp-btn-cancel hp-btn-desc-cancel">取消</button>
+        <button type="button" class="hp-btn-desc-save" data-save-desc="${p.key}">儲存</button>
+      </div>
+    </div>
+  ` : `
+    <div class="hp-desc-wrap">
+      <div class="hp-desc">${escHtml(currentDesc)}</div>
+      <button class="hp-desc-edit" type="button" data-edit-desc="${p.key}" title="編輯標題與描述" aria-label="編輯">✎</button>
+    </div>
+  `;
+
+  return `
+    <article class="hp-card" data-color="${p.color}" data-key="${p.key}">
+      ${headHtml}
+      ${bodyHtml}
+      ${linksHtml}
+      ${notesHtml}
+      ${formHtml}
+      ${footHtml}
+    </article>
+  `;
+}
+
+function bindProgBoard() {
+  const root = $('#progBoard');
+  if (!root || root._hpBound) return;
+  root._hpBound = true;
+
+  root.addEventListener('click', e => {
+    const addBtn = e.target.closest('[data-add-for]');
+    if (addBtn) {
+      progAddingFor = addBtn.dataset.addFor;
+      progNewType = 'todo';
+      renderProgress();
+      return;
+    }
+    if (e.target.closest('.hp-btn-cancel')) {
+      progAddingFor = null;
+      renderProgress();
+      return;
+    }
+    const typeBtn = e.target.closest('.hp-form-type');
+    if (typeBtn) {
+      progNewType = typeBtn.dataset.type;
+      typeBtn.closest('.hp-form-types').querySelectorAll('.hp-form-type')
+        .forEach(b => b.classList.toggle('active', b === typeBtn));
+      return;
+    }
+    const saveBtn = e.target.closest('[data-save]');
+    if (saveBtn) {
+      const card = saveBtn.closest('.hp-card');
+      const ta = card.querySelector('.hp-form-text');
+      const dateEl = card.querySelector('.hp-form-date');
+      const text = (ta.value || '').trim();
+      if (!text) { ta.focus(); return; }
+      const date = dateEl.value || todayKey();
+      addProgNote(saveBtn.dataset.save, progNewType, date, text);
+      progAddingFor = null;
+      renderProgress();
+      return;
+    }
+    const delBtn = e.target.closest('[data-del]');
+    if (delBtn) {
+      if (confirm('刪除這則記事？')) {
+        deleteProgNote(delBtn.dataset.del);
+        renderProgress();
+      }
+      return;
+    }
+    const editDescBtn = e.target.closest('[data-edit-desc]');
+    if (editDescBtn) {
+      progEditDescFor = editDescBtn.dataset.editDesc;
+      renderProgress();
+      const nameInput = $(`.hp-card[data-key="${progEditDescFor}"] .hp-name-text`);
+      if (nameInput) { nameInput.focus(); nameInput.select(); }
+      return;
+    }
+    if (e.target.closest('.hp-btn-desc-cancel')) {
+      progEditDescFor = null;
+      renderProgress();
+      return;
+    }
+    const saveDescBtn = e.target.closest('[data-save-desc]');
+    if (saveDescBtn) {
+      const card = saveDescBtn.closest('.hp-card');
+      const nameInput = card.querySelector('.hp-name-text');
+      const ta = card.querySelector('.hp-desc-text');
+      setProgName(saveDescBtn.dataset.saveDesc, nameInput?.value || '');
+      setProgDesc(saveDescBtn.dataset.saveDesc, ta?.value || '');
+      progEditDescFor = null;
+      renderProgress();
+      return;
+    }
+  });
+
+  root.addEventListener('keydown', e => {
+    const inEditCard = progEditDescFor &&
+      (e.target.classList.contains('hp-name-text') || e.target.classList.contains('hp-desc-text'));
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      const ta = e.target.closest('.hp-form-text');
+      if (ta) {
+        const saveBtn = ta.closest('.hp-card').querySelector('.hp-btn-save');
+        if (saveBtn) saveBtn.click();
+        return;
+      }
+      if (inEditCard) {
+        const saveBtn = e.target.closest('.hp-card').querySelector('.hp-btn-desc-save');
+        if (saveBtn) saveBtn.click();
+      }
+    } else if (e.key === 'Enter' && e.target.classList.contains('hp-name-text')) {
+      e.preventDefault();
+      const descTa = e.target.closest('.hp-card').querySelector('.hp-desc-text');
+      if (descTa) descTa.focus();
+    } else if (e.key === 'Escape') {
+      if (e.target.closest('.hp-form')) {
+        progAddingFor = null;
+        renderProgress();
+      } else if (inEditCard) {
+        progEditDescFor = null;
+        renderProgress();
+      }
+    }
   });
 }
 
-$('#addGoalBtn').addEventListener('click', () => {
-  const text = prompt('輸入今日目標：');
-  if (!text?.trim()) return;
-  if (!goalsData[goalsViewDate]) goalsData[goalsViewDate] = [];
-  goalsData[goalsViewDate].push({ id: genId(), text: text.trim(), done: false });
-  saveGoals();
-  renderGoals();
-});
-
-$('#goalPrevDay').addEventListener('click', () => {
-  const d = new Date(goalsViewDate);
-  d.setDate(d.getDate() - 1);
-  goalsViewDate = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-  renderGoals();
-});
-$('#goalNextDay').addEventListener('click', () => {
-  const d = new Date(goalsViewDate);
-  d.setDate(d.getDate() + 1);
-  goalsViewDate = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-  renderGoals();
-});
+function refreshDashProg() {
+  const today = findProgEntry(todayKey());
+  const dashSum = $('#dashProgSummary');
+  const dashStats = $('#dashProgStats');
+  if (!dashSum) return;
+  if (today) {
+    dashSum.textContent = today.summary || '（今日尚無摘要）';
+    const s = today.stats || {};
+    dashStats.textContent = `${s.projects ?? 0} 專案 · ${s.messages ?? 0} 則訊息 · ${s.files_touched ?? 0} 個檔案`;
+  } else {
+    dashSum.textContent = '尚未產生今日進度（排程於每日 23:30 執行）';
+    dashStats.textContent = '';
+  }
+}
 
 // ═══════════════════════════════════════════
 // RECENT ITEMS
@@ -2677,7 +3909,7 @@ function renderRecent() {
 function refreshDashboard() {
   renderRecent();
   renderDashQuickLinks();
-  renderGoals();
+  renderProgress();
 }
 
 // ─── AI News ───
@@ -2822,12 +4054,14 @@ async function init() {
 
 async function loadFromSheets() {
   try {
-    const [sheetNotes, sheetLinks, sheetTodos, sheetGoals, sheetRecent] = await Promise.all([
+    const [sheetNotes, sheetLinks, sheetTodos, sheetRecent, sheetProgNotes, sheetProgDescs, sheetProgNames] = await Promise.all([
       SheetDB.getAll('notes'),
       SheetDB.getAll('links'),
       SheetDB.getAll('todos'),
-      SheetDB.getAll('goals'),
       SheetDB.getAll('recent'),
+      SheetDB.getAll('prog_notes'),
+      SheetDB.getAll('prog_descs'),
+      SheetDB.getAll('prog_names'),
     ]);
 
     if (sheetNotes && sheetNotes.length) {
@@ -2844,7 +4078,7 @@ async function loadFromSheets() {
     if (sheetLinks && sheetLinks.length) {
       links = sheetLinks.map(r => ({
         id: r.id, name: r.title || '', url: r.url || '',
-        category: r.category || ''
+        category: r.category || '', pinned: r.pinned === '1'
       }));
       LS.set('links', links);
       renderLinks();
@@ -2861,17 +4095,6 @@ async function loadFromSheets() {
       renderTodos();
     }
 
-    if (sheetGoals && sheetGoals.length) {
-      goalsData = {};
-      sheetGoals.forEach(r => {
-        if (r.date && r.goals_json) {
-          try { goalsData[r.date] = JSON.parse(r.goals_json); } catch {}
-        }
-      });
-      LS.set('goals', goalsData);
-      renderGoals();
-    }
-
     if (sheetRecent && sheetRecent.length) {
       recentItems = sheetRecent.map(r => ({
         id: r.id || '', type: r.type || '', title: r.text || '',
@@ -2879,6 +4102,34 @@ async function loadFromSheets() {
       }));
       LS.set('recent', recentItems);
       renderRecent();
+    }
+
+    if (sheetProgNotes && sheetProgNotes.length) {
+      progNotes = sheetProgNotes.map(r => ({
+        id: r.id, project: r.project || '', type: r.type || 'todo',
+        date: r.date || '', text: r.text || '',
+        createdAt: Number(r.created) || Date.now()
+      }));
+      LS.set('progNotes', progNotes);
+      if ($('#progBoard')) renderProgress();
+    }
+
+    if (sheetProgDescs && sheetProgDescs.length) {
+      progDescs = {};
+      for (const r of sheetProgDescs) {
+        if (r.project && r.text) progDescs[r.project] = r.text;
+      }
+      LS.set('progDescs', progDescs);
+      if ($('#progBoard')) renderProgress();
+    }
+
+    if (sheetProgNames && sheetProgNames.length) {
+      progNames = {};
+      for (const r of sheetProgNames) {
+        if (r.project && r.text) progNames[r.project] = r.text;
+      }
+      LS.set('progNames', progNames);
+      if ($('#progBoard')) renderProgress();
     }
 
     console.log('✓ Synced from Google Sheets');
