@@ -1,0 +1,84 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: D
+      - generic [ref=e6]: Dashboard
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - generic [ref=e9] [cursor=pointer]:
+          - img [ref=e11]
+          - generic [ref=e16]: 首頁
+      - listitem [ref=e17]:
+        - link "AI 新聞" [ref=e18] [cursor=pointer]:
+          - /url: news/ai-news.html
+          - img [ref=e20]
+          - generic [ref=e23]: AI 新聞
+      - listitem [ref=e24]:
+        - generic [ref=e25] [cursor=pointer]:
+          - img [ref=e27]
+          - generic [ref=e30]: 筆記
+      - listitem [ref=e31]:
+        - generic [ref=e32] [cursor=pointer]:
+          - img [ref=e34]
+          - generic [ref=e38]: 圖片庫
+      - listitem [ref=e39]:
+        - generic [ref=e40] [cursor=pointer]:
+          - img [ref=e42]
+          - generic [ref=e45]: 常用連結
+      - listitem [ref=e46]:
+        - generic [ref=e47] [cursor=pointer]:
+          - img [ref=e49]
+          - generic [ref=e52]: 待辦事項
+      - listitem [ref=e53]:
+        - generic [ref=e54] [cursor=pointer]:
+          - img [ref=e56]
+          - generic [ref=e58]: 每日工作進度
+      - listitem [ref=e59]:
+        - generic [ref=e60] [cursor=pointer]:
+          - img [ref=e62]
+          - generic [ref=e64]: 工具總覽
+      - listitem [ref=e65]:
+        - generic [ref=e66] [cursor=pointer]:
+          - img [ref=e68]
+          - generic [ref=e70]: 效果
+      - listitem [ref=e71]:
+        - link "截圖排版" [ref=e72] [cursor=pointer]:
+          - /url: layout-playground.html
+          - img [ref=e74]
+          - generic [ref=e76]: 截圖排版
+      - listitem [ref=e77]:
+        - link "Claude Code 文件" [ref=e78] [cursor=pointer]:
+          - /url: claude-code-docs/index.html
+          - img [ref=e80]
+          - generic [ref=e82]: Claude Code 文件
+    - button "切換主題" [ref=e84] [cursor=pointer]:
+      - img [ref=e86]
+      - generic [ref=e92]: 切換主題
+  - main [ref=e93]:
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]: 10:03:58
+          - generic [ref=e98]: 2026 年 4 月 22 日 星期三
+        - generic [ref=e100]: 定位中...
+      - generic [ref=e101]:
+        - generic:
+          - img
+        - textbox "搜尋 Google..." [ref=e102]
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - generic [ref=e106]:
+            - img [ref=e108]
+            - text: 快速連結
+          - generic [ref=e113] [cursor=pointer]: +
+        - generic [ref=e114]:
+          - generic [ref=e116]:
+            - img [ref=e118]
+            - text: 最近項目
+          - generic [ref=e122]: 尚無最近活動
+        - generic [ref=e123]:
+          - generic [ref=e125]:
+            - img [ref=e127]
+            - text: 今日工作進度
+          - generic [ref=e129]: 尚未產生今日進度（排程於每日 23:30 執行）
+    - text: ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸

@@ -1,0 +1,14 @@
+[     467ms] [LOG] [SUCCESS] 訊號牌測試系統初始化完成 @ http://localhost:8765/signals_ui.js?v=13:2554
+[     478ms] [LOG] 穿越掃描器已載入。使用方式：scanTraverse() 或點擊「穿越掃描」按鈕 @ http://localhost:8765/traverse.js:1042
+[     480ms] [LOG] 已新增「穿越掃描」按鈕 @ http://localhost:8765/traverse.js:1023
+[     481ms] [LOG] ═══════════════════════════════════════ @ http://localhost:8765/auto_fix_plugin.js?v=2:410
+[     481ms] [LOG]   自動修正違規插件 v1.0 已載入 @ http://localhost:8765/auto_fix_plugin.js?v=2:411
+[     481ms] [LOG] ═══════════════════════════════════════ @ http://localhost:8765/auto_fix_plugin.js?v=2:412
+[     481ms] [LOG] ✓ 平均回復上限已設為 4.5 @ http://localhost:8765/auto_fix_plugin.js?v=2:30
+[     481ms] [LOG] ✓ 「一鍵修正」按鈕已新增 @ http://localhost:8765/auto_fix_plugin.js?v=2:398
+[     481ms] [LOG]  @ http://localhost:8765/auto_fix_plugin.js?v=2:417
+[     481ms] [LOG] 使用方式： @ http://localhost:8765/auto_fix_plugin.js?v=2:418
+[     481ms] [LOG]   1. 點擊「一鍵修正」按鈕 @ http://localhost:8765/auto_fix_plugin.js?v=2:419
+[     481ms] [LOG]   2. 或在 Console 輸入: autoFixAllViolations() @ http://localhost:8765/auto_fix_plugin.js?v=2:420
+[     481ms] [LOG]  @ http://localhost:8765/auto_fix_plugin.js?v=2:421
+[     617ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8765/favicon.ico:0

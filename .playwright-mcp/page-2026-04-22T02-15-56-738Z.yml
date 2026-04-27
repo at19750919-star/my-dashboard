@@ -1,0 +1,97 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]: 正版路單
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "莊" [ref=e7] [cursor=pointer]
+        - button "閒" [ref=e8] [cursor=pointer]
+        - button "和" [ref=e9] [cursor=pointer]
+        - button "莊對" [ref=e10] [cursor=pointer]
+        - button "閒對" [ref=e11] [cursor=pointer]
+        - button "6" [ref=e12] [cursor=pointer]
+      - generic [ref=e13]:
+        - button "退" [ref=e14] [cursor=pointer]
+        - button "清" [ref=e15] [cursor=pointer]
+    - generic [ref=e16]:
+      - generic [ref=e17]: 時間：30
+      - generic [ref=e18]: 靴號：1
+      - generic [ref=e19]: 桌號：1
+      - generic [ref=e20]: 局數：0
+  - generic [ref=e21]:
+    - heading "大路" [level=3]
+  - generic [ref=e275]:
+    - generic [ref=e276]:
+      - generic [ref=e277]:
+        - heading "大眼仔" [level=3]
+      - generic [ref=e531]:
+        - heading "小路" [level=3]
+    - generic [ref=e785]:
+      - generic [ref=e786]:
+        - heading "蟑螂路" [level=3]
+      - generic [ref=e1040]:
+        - generic [ref=e1041]: Win
+        - heading "公告欄" [level=3]
+  - generic [ref=e1042]:
+    - list [ref=e1044]:
+      - listitem [ref=e1045]:
+        - generic [ref=e1046]: 莊
+        - generic [ref=e1047]: "0"
+      - listitem [ref=e1048]:
+        - generic [ref=e1049]: 閒
+        - generic [ref=e1050]: "0"
+      - listitem [ref=e1051]:
+        - generic [ref=e1052]: 和
+        - generic [ref=e1053]: "0"
+      - listitem [ref=e1054]:
+        - generic [ref=e1055]: 莊對
+        - generic [ref=e1056]: "0"
+      - listitem [ref=e1057]:
+        - generic [ref=e1058]: 閒對
+        - generic [ref=e1059]: "0"
+      - listitem [ref=e1060]:
+        - generic [ref=e1061]: 幸運6
+        - generic [ref=e1062]: "0"
+    - generic [ref=e1063]:
+      - heading "珠子路" [level=3]
+    - generic [ref=e1149]:
+      - generic [ref=e1150]: 下局指示
+      - generic [ref=e1152]:
+        - generic [ref=e1153]: 莊
+        - generic [ref=e1154]: 閒
+    - generic [ref=e1164]:
+      - generic [ref=e1165]:
+        - generic [ref=e1166]: 莊/閒
+        - generic [ref=e1167]:
+          - generic [ref=e1168]:
+            - generic [ref=e1169]: 最高：
+            - spinbutton "最高：" [ref=e1170]: "10000"
+          - generic [ref=e1171]:
+            - generic [ref=e1172]: 最低：
+            - spinbutton "最低：" [ref=e1173]: "100"
+      - generic [ref=e1174]:
+        - generic [ref=e1175]: 和
+        - generic [ref=e1176]:
+          - generic [ref=e1177]:
+            - generic [ref=e1178]: 最高：
+            - spinbutton "最高：" [ref=e1179]: "10000"
+          - generic [ref=e1180]:
+            - generic [ref=e1181]: 最低：
+            - spinbutton "最低：" [ref=e1182]: "100"
+      - generic [ref=e1183]:
+        - generic [ref=e1184]: 對子
+        - generic [ref=e1185]:
+          - generic [ref=e1186]:
+            - generic [ref=e1187]: 最高：
+            - spinbutton "最高：" [ref=e1188]: "10000"
+          - generic [ref=e1189]:
+            - generic [ref=e1190]: 最低：
+            - spinbutton "最低：" [ref=e1191]: "100"
+      - generic [ref=e1192]:
+        - generic [ref=e1193]: 幸運6
+        - generic [ref=e1194]:
+          - generic [ref=e1195]:
+            - generic [ref=e1196]: 最高：
+            - spinbutton "最高：" [ref=e1197]: "10000"
+          - generic [ref=e1198]:
+            - generic [ref=e1199]: 最低：
+            - spinbutton "最低：" [ref=e1200]: "100"

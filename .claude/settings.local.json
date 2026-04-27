@@ -9,7 +9,32 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8766/)",
       "Bash(zip -r __TRACKED_VAR__/Desktop/ui-ux-pro-max-full.zip . -x '.git/*' '.github/*' 'screenshots/*' 'preview/*')",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8767/)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8767/)",
+      "Bash(claude mcp:*)",
+      "Bash(gh run:*)",
+      "Bash(curl -s -L 'https://script.google.com/macros/s/AKfycbySm5X4weo1SSgZK6tE5y1FnpZ81UE4uuuLTxDI_f-mnrCJPQfnswV-H_hO6tWzC8iy/exec?action=getAll&sheet=notes')",
+      "Bash(curl -s -L -X POST 'https://script.google.com/macros/s/AKfycbySm5X4weo1SSgZK6tE5y1FnpZ81UE4uuuLTxDI_f-mnrCJPQfnswV-H_hO6tWzC8iy/exec?action=replaceAll&sheet=notes' -H 'Content-Type: text/plain' -d '{\"rows\":[{\"id\":\"test1\",\"title\":\"測試\",\"content\":\"hello\",\"tags\":\"\",\"created\":123,\"updated\":456}]}')",
+      "Bash(curl -s -L -X POST 'https://script.google.com/macros/s/AKfycbySm5X4weo1SSgZK6tE5y1FnpZ81UE4uuuLTxDI_f-mnrCJPQfnswV-H_hO6tWzC8iy/exec?action=replaceAll&sheet=notes' -H 'Content-Type: text/plain' -H 'Content-Length: 94' --data-binary '{\"rows\":[{\"id\":\"t1\",\"title\":\"測試\",\"content\":\"hi\",\"tags\":\"\",\"created\":1,\"updated\":2}]}')",
+      "Bash(curl -s -L -X POST 'https://script.google.com/macros/s/AKfycbySm5X4weo1SSgZK6tE5y1FnpZ81UE4uuuLTxDI_f-mnrCJPQfnswV-H_hO6tWzC8iy/exec?action=replaceAll&sheet=notes' -H 'Content-Type: application/json' --data '{\"rows\":[{\"id\":\"t1\",\"title\":\"test\",\"content\":\"hi\",\"tags\":\"\",\"created\":1,\"updated\":2}]}')",
+      "Bash(python -m http.server 8765)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8765/index.html)",
+      "Bash(curl -s http://localhost:8765/index.html)",
+      "WebFetch(domain:opencv.org)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:docs.opencv.org)",
+      "WebSearch",
+      "mcp__obsidian__list_directory",
+      "mcp__obsidian__read_note",
+      "mcp__obsidian__write_note",
+      "Bash(sort -k6,7)",
+      "Bash(sort -k6,8)",
+      "Bash(cp 7506faf4-0eac-443e-a9f7-25fd6cb691f1.jsonl /tmp/cowork_auto.jsonl)",
+      "Read(//tmp/**)",
+      "Bash(powershell -NoProfile -Command \"Get-CimInstance Win32_Process -Filter \\\\\"Name='pythonw.exe' OR Name='python.exe'\\\\\" | Select-Object ProcessId, Name, CommandLine | Format-List\")",
+      "Bash(powershell -NoProfile -Command \"Get-Process -Id 25980,26004 -ErrorAction SilentlyContinue | Select-Object Id, Name\")",
+      "Bash(powershell -NoProfile -Command \"Get-CimInstance Win32_Process -Filter \\\\\"Name='pythonw.exe'\\\\\" | Select-Object ProcessId, CommandLine | Format-List\")",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }

@@ -1,0 +1,227 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: D
+      - generic [ref=e6]: Dashboard
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - generic [ref=e9] [cursor=pointer]:
+          - img [ref=e11]
+          - generic [ref=e16]: 首頁
+      - listitem [ref=e17]:
+        - link "AI 新聞" [ref=e18] [cursor=pointer]:
+          - /url: news/ai-news.html
+          - img [ref=e20]
+          - generic [ref=e23]: AI 新聞
+      - listitem [ref=e24]:
+        - generic [ref=e25] [cursor=pointer]:
+          - img [ref=e27]
+          - generic [ref=e30]: 筆記
+      - listitem [ref=e31]:
+        - generic [ref=e32] [cursor=pointer]:
+          - img [ref=e34]
+          - generic [ref=e38]: 圖片庫
+      - listitem [ref=e39]:
+        - generic [ref=e40] [cursor=pointer]:
+          - img [ref=e42]
+          - generic [ref=e45]: 常用連結
+      - listitem [ref=e46]:
+        - generic [ref=e47] [cursor=pointer]:
+          - img [ref=e49]
+          - generic [ref=e52]: 待辦事項
+      - listitem [ref=e53]:
+        - generic [ref=e54] [cursor=pointer]:
+          - img [ref=e56]
+          - generic [ref=e58]: 專案
+      - listitem [ref=e59]:
+        - generic [ref=e60] [cursor=pointer]:
+          - img [ref=e62]
+          - generic [ref=e64]: 工具總覽
+      - listitem [ref=e65]:
+        - generic [ref=e66] [cursor=pointer]:
+          - img [ref=e68]
+          - generic [ref=e70]: 效果
+      - listitem [ref=e71]:
+        - link "截圖排版" [ref=e72] [cursor=pointer]:
+          - /url: layout-playground.html
+          - img [ref=e74]
+          - generic [ref=e76]: 截圖排版
+      - listitem [ref=e77]:
+        - link "Claude Code 文件" [ref=e78] [cursor=pointer]:
+          - /url: claude-code-docs/index.html
+          - img [ref=e80]
+          - generic [ref=e82]: Claude Code 文件
+    - button "切換主題" [ref=e84] [cursor=pointer]:
+      - img [ref=e86]
+      - generic [ref=e92]: 切換主題
+  - main [ref=e93]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]: 專案
+        - generic [ref=e98]: 2026-04-28 · 週二
+      - generic [ref=e99]:
+        - article [ref=e100]:
+          - generic [ref=e101]:
+            - generic [ref=e102]: 教
+            - generic [ref=e103]: 教材 · baccarat-dealer-training
+            - generic [ref=e104]: 0 則記事
+          - generic [ref=e105]: 荷官訓練教材:dealer.html 等 HTML 教學頁與圖片素材。
+          - generic [ref=e106]:
+            - link "GitHub" [ref=e107] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/baccarat-dealer-training
+            - link "部署網址" [ref=e108] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/baccarat-dealer-training/dealer.html
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]: 待辦 0
+              - generic [ref=e112]: 想法 0
+              - generic [ref=e113]: 更動 0
+            - button "+ 加記事" [ref=e114] [cursor=pointer]
+        - article [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]: 世
+            - generic [ref=e118]: 世紀 · snow
+            - generic [ref=e119]: 0 則記事
+          - generic [ref=e120]: 世紀髮廊景美店預約排班系統(FullCalendar 前端 + GAS Web App 後端)。
+          - generic [ref=e121]:
+            - link "GitHub" [ref=e122] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/snow
+            - link "部署網址" [ref=e123] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/snow/
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]: 待辦 0
+              - generic [ref=e127]: 想法 0
+              - generic [ref=e128]: 更動 0
+            - button "+ 加記事" [ref=e129] [cursor=pointer]
+        - article [ref=e130]:
+          - generic [ref=e131]:
+            - generic [ref=e132]: 小
+            - generic [ref=e133]: 小巨蛋週帳 · dome-weekly-auto
+            - generic [ref=e134]: 0 則記事
+          - generic [ref=e135]: 週帳自動化:微信圖片辨識→寫 Google Sheets→積分/線報表比對→LINE 推送。
+          - link "GitHub" [ref=e137] [cursor=pointer]:
+            - /url: https://github.com/at19750919-star/dome-weekly-auto
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]: 待辦 0
+              - generic [ref=e141]: 想法 0
+              - generic [ref=e142]: 更動 0
+            - button "+ 加記事" [ref=e143] [cursor=pointer]
+        - article [ref=e144]:
+          - generic [ref=e145]:
+            - generic [ref=e146]: 百
+            - generic [ref=e147]: 百家3.0 · AT666
+            - generic [ref=e148]: 0 則記事
+          - generic [ref=e149]: 純前端百家樂分析工具 + 手動輸入(HTML/Vanilla JS,無建置步驟)。
+          - generic [ref=e150]:
+            - link "GitHub" [ref=e151] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/AT666
+            - link "部署網址" [ref=e152] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/AT666/
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - generic [ref=e155]: 待辦 0
+              - generic [ref=e156]: 想法 0
+              - generic [ref=e157]: 更動 0
+            - button "+ 加記事" [ref=e158] [cursor=pointer]
+        - article [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: D
+            - generic [ref=e162]: my-dashboard · my-dashboard
+            - generic [ref=e163]: 0 則記事
+          - generic [ref=e164]: 個人首頁(就是這頁)+ 版面遊樂場 + AI 新聞日報。
+          - generic [ref=e165]:
+            - link "GitHub" [ref=e166] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/my-dashboard
+            - link "部署網址" [ref=e167] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/my-dashboard/
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: 待辦 0
+              - generic [ref=e171]: 想法 0
+              - generic [ref=e172]: 更動 0
+            - button "+ 加記事" [ref=e173] [cursor=pointer]
+        - article [ref=e174]:
+          - generic [ref=e175]:
+            - generic [ref=e176]: 儀
+            - generic [ref=e177]: 營運儀表板 · baccarat-dashboard
+            - generic [ref=e178]: 0 則記事
+          - generic [ref=e179]: 百家樂營運儀表板:洗碼部隊嫌疑偵測、玩家獲利排名(部署於 Cloudflare Pages)。
+          - generic [ref=e180]:
+            - link "GitHub" [ref=e181] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/baccarat-dashboard
+            - link "部署網址" [ref=e182] [cursor=pointer]:
+              - /url: https://at19750919.pages.dev
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: 待辦 0
+              - generic [ref=e186]: 想法 0
+              - generic [ref=e187]: 更動 0
+            - button "+ 加記事" [ref=e188] [cursor=pointer]
+        - article [ref=e189]:
+          - generic [ref=e190]:
+            - generic [ref=e191]: 圖
+            - generic [ref=e192]: baccarat-roadmap · baccarat-roadmap
+            - generic [ref=e193]: 0 則記事
+          - generic [ref=e194]: (待補)
+          - generic [ref=e195]:
+            - link "GitHub" [ref=e196] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/baccarat-roadmap
+            - link "部署網址" [ref=e197] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/baccarat-roadmap/
+          - generic [ref=e198]:
+            - generic [ref=e199]:
+              - generic [ref=e200]: 待辦 0
+              - generic [ref=e201]: 想法 0
+              - generic [ref=e202]: 更動 0
+            - button "+ 加記事" [ref=e203] [cursor=pointer]
+        - article [ref=e204]:
+          - generic [ref=e205]:
+            - generic [ref=e206]: 貸
+            - generic [ref=e207]: loan-ledger · loan-ledger
+            - generic [ref=e208]: 0 則記事
+          - generic [ref=e209]: (待補)
+          - generic [ref=e210]:
+            - link "GitHub" [ref=e211] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/loan-ledger
+            - link "部署網址" [ref=e212] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/loan-ledger/
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - generic [ref=e215]: 待辦 0
+              - generic [ref=e216]: 想法 0
+              - generic [ref=e217]: 更動 0
+            - button "+ 加記事" [ref=e218] [cursor=pointer]
+        - article [ref=e219]:
+          - generic [ref=e220]:
+            - generic [ref=e221]: 友
+            - generic [ref=e222]: 友謙 · Liao
+            - generic [ref=e223]: 0 則記事
+          - generic [ref=e224]: 友謙專案:深度分析報告(PDF/HTML/Markdown)+ 部署 zip。
+          - generic [ref=e225]:
+            - link "GitHub" [ref=e226] [cursor=pointer]:
+              - /url: https://github.com/at19750919-star/Liao
+            - link "部署網址" [ref=e227] [cursor=pointer]:
+              - /url: https://at19750919-star.github.io/Liao/
+          - generic [ref=e228]:
+            - generic [ref=e229]:
+              - generic [ref=e230]: 待辦 0
+              - generic [ref=e231]: 想法 0
+              - generic [ref=e232]: 更動 0
+            - button "+ 加記事" [ref=e233] [cursor=pointer]
+        - article [ref=e234]:
+          - generic [ref=e235]:
+            - generic [ref=e236]: 影
+            - generic [ref=e237]: bjd-video · bjd-video
+            - generic [ref=e238]: 0 則記事
+          - generic [ref=e239]: 百家樂下注行為影像分析 pipeline (OpenCV)。
+          - link "GitHub" [ref=e241] [cursor=pointer]:
+            - /url: https://github.com/at19750919-star/bjd-video
+          - generic [ref=e242]:
+            - generic [ref=e243]:
+              - generic [ref=e244]: 待辦 0
+              - generic [ref=e245]: 想法 0
+              - generic [ref=e246]: 更動 0
+            - button "+ 加記事" [ref=e247] [cursor=pointer]
+    - text: ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸

@@ -1,0 +1,126 @@
+- generic [active] [ref=e1]:
+  - button "🌙" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3]: 🌙
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e9] [cursor=pointer]: ♠
+          - generic [ref=e11] [cursor=pointer]: ♥
+          - generic [ref=e13] [cursor=pointer]: ♦
+          - generic [ref=e15] [cursor=pointer]: ♣
+        - generic [ref=e16]:
+          - button "生成" [ref=e17] [cursor=pointer]
+          - button "停止" [disabled] [ref=e18]
+          - button "清除" [ref=e19] [cursor=pointer]
+      - generic [ref=e20]:
+        - generic [ref=e22]: "64"
+        - generic [ref=e23]: ♠♥♦♣ × A,2
+        - generic "勾選後牌靴前4張卡色允許 BBBR / RRRB / BBRR / RRBB 四種" [ref=e24] [cursor=pointer]:
+          - checkbox "混和卡色" [checked] [ref=e25]
+          - generic [ref=e26]: 混和卡色
+        - generic [ref=e27]:
+          - button "A2" [ref=e28] [cursor=pointer]
+          - button "♥0" [ref=e29] [cursor=pointer]
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - generic [ref=e32]: 平均上限
+          - spinbutton [ref=e33]: "4.5"
+        - generic [ref=e34]:
+          - generic [ref=e35]: 莊閒差距
+          - spinbutton [ref=e36]
+        - generic [ref=e37]:
+          - generic [ref=e38]: 和局上限
+          - spinbutton [ref=e39]: "3"
+        - generic [ref=e40]:
+          - generic [ref=e41]: 4張局上限%
+          - spinbutton [ref=e42]
+        - generic [ref=e43]:
+          - generic [ref=e44]: 7點逆轉上限
+          - spinbutton [ref=e45]: "2"
+        - generic [ref=e46]:
+          - generic [ref=e47]: 對調莊6局數
+          - spinbutton [ref=e48]: "9"
+        - generic [ref=e49]:
+          - checkbox "避開莊6點贏" [ref=e50]
+          - generic [ref=e51]: 避開莊6點贏
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]: 莊
+          - generic [ref=e56]: "0"
+        - generic [ref=e57]:
+          - generic [ref=e58]: 閒
+          - generic [ref=e60]: "0"
+        - generic [ref=e61]:
+          - generic [ref=e62]: 和
+          - generic [ref=e64]: "0"
+        - generic [ref=e65]:
+          - generic [ref=e66]: TOTAL
+          - generic [ref=e67]: "0"
+        - generic [ref=e68]:
+          - spinbutton [ref=e69]
+          - button "切牌" [ref=e70] [cursor=pointer]
+          - spinbutton [ref=e71]
+          - button "定位" [ref=e72] [cursor=pointer]
+    - generic [ref=e74]:
+      - generic [ref=e76] [cursor=pointer]: A
+      - generic [ref=e78] [cursor=pointer]: "2"
+      - generic [ref=e80] [cursor=pointer]: "3"
+      - generic [ref=e82] [cursor=pointer]: "4"
+      - generic [ref=e84] [cursor=pointer]: "5"
+      - generic [ref=e86] [cursor=pointer]: "6"
+      - generic [ref=e88] [cursor=pointer]: "7"
+      - generic [ref=e90] [cursor=pointer]: "8"
+      - generic [ref=e92] [cursor=pointer]: "9"
+      - generic [ref=e94] [cursor=pointer]: "10"
+      - generic [ref=e96] [cursor=pointer]: J
+      - generic [ref=e98] [cursor=pointer]: Q
+      - generic [ref=e100] [cursor=pointer]: K
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - generic [ref=e103]: 訊號牌違規
+          - generic [ref=e104]: 無
+        - generic [ref=e105]:
+          - generic [ref=e106]: 連續5局4張
+          - generic [ref=e107]: 無
+        - generic [ref=e108]:
+          - generic [ref=e109]: 連續莊閒
+          - generic [ref=e110]: 無
+        - generic [ref=e111]:
+          - generic [ref=e112]: 無法對調
+          - generic [ref=e113]: 無
+        - generic [ref=e114]:
+          - generic [ref=e115]: 其他違規
+          - generic [ref=e116]: 無
+    - generic [ref=e117]:
+      - generic [ref=e118]:
+        - button "換牌" [disabled] [ref=e119]
+        - button "換局" [disabled] [ref=e120]
+        - button "自動重排" [disabled] [ref=e121]
+        - button "換色" [disabled] [ref=e122]
+        - button "一鍵修正" [ref=e123] [cursor=pointer]
+        - button "取消" [disabled] [ref=e124]
+        - button "套用" [disabled] [ref=e125]
+        - button "清空" [ref=e126] [cursor=pointer]
+        - button "導出" [ref=e127] [cursor=pointer]
+        - button "匯入" [ref=e128] [cursor=pointer]
+        - button "驗證" [ref=e129] [cursor=pointer]
+        - button "語音" [ref=e130] [cursor=pointer]
+        - button "點數統計" [ref=e131] [cursor=pointer]
+        - button "手動輸入" [ref=e132] [cursor=pointer]
+        - button "發牌" [ref=e133] [cursor=pointer]
+        - button "計算" [ref=e134] [cursor=pointer]
+        - generic [ref=e135]:
+          - checkbox "啟用換牌預覽" [ref=e136]
+          - generic [ref=e137]: 啟用換牌預覽
+        - button "穿越掃描" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - table:
+          - rowgroup
+          - rowgroup
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - text: 紀錄 · LOG
+          - generic [ref=e142]: "[上午2:31:25] 訊號牌測試系統初始化完成"
+        - generic [ref=e145]: 尚無牌靴資料
+  - generic [ref=e147]: 生成中...

@@ -1,0 +1,167 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: D
+      - generic [ref=e6]: Dashboard
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - generic [ref=e9] [cursor=pointer]:
+          - img [ref=e11]
+          - generic [ref=e16]: 首頁
+      - listitem [ref=e17]:
+        - link "AI 新聞" [ref=e18] [cursor=pointer]:
+          - /url: news/ai-news.html
+          - img [ref=e20]
+          - generic [ref=e23]: AI 新聞
+      - listitem [ref=e24]:
+        - generic [ref=e25] [cursor=pointer]:
+          - img [ref=e27]
+          - generic [ref=e30]: 筆記
+      - listitem [ref=e31]:
+        - generic [ref=e32] [cursor=pointer]:
+          - img [ref=e34]
+          - generic [ref=e38]: 圖片庫
+      - listitem [ref=e39]:
+        - generic [ref=e40] [cursor=pointer]:
+          - img [ref=e42]
+          - generic [ref=e45]: 常用連結
+      - listitem [ref=e46]:
+        - generic [ref=e47] [cursor=pointer]:
+          - img [ref=e49]
+          - generic [ref=e52]: 待辦事項
+      - listitem [ref=e53]:
+        - generic [ref=e54] [cursor=pointer]:
+          - img [ref=e56]
+          - generic [ref=e58]: 每日工作進度
+      - listitem [ref=e59]:
+        - generic [ref=e60] [cursor=pointer]:
+          - img [ref=e62]
+          - generic [ref=e64]: 工具總覽
+      - listitem [ref=e65]:
+        - generic [ref=e66] [cursor=pointer]:
+          - img [ref=e68]
+          - generic [ref=e70]: 效果
+      - listitem [ref=e71]:
+        - link "截圖排版" [ref=e72] [cursor=pointer]:
+          - /url: layout-playground.html
+          - img [ref=e74]
+          - generic [ref=e76]: 截圖排版
+      - listitem [ref=e77]:
+        - link "Claude Code 文件" [ref=e78] [cursor=pointer]:
+          - /url: claude-code-docs/index.html
+          - img [ref=e80]
+          - generic [ref=e82]: Claude Code 文件
+    - button "切換主題" [ref=e84] [cursor=pointer]:
+      - img [ref=e86]
+      - generic [ref=e92]: 切換主題
+  - main [ref=e93]:
+    - text: ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸ ▸
+    - generic [ref=e137]:
+      - heading "效果 — 字型展示" [level=1] [ref=e139]:
+        - img [ref=e140]
+        - text: 效果 — 字型展示
+      - generic [ref=e142]:
+        - generic [ref=e143]:
+          - heading "繁體中文" [level=2] [ref=e144]
+          - generic [ref=e145]: Traditional Chinese · 5 fonts
+        - generic [ref=e146]:
+          - generic [ref=e147]:
+            - generic [ref=e148]:
+              - generic [ref=e149]: Noto Serif TC
+              - generic [ref=e150]: 古典襯線宋體
+            - generic [ref=e151]: 輕舟已過萬重山
+            - generic [ref=e152]: 永和有風，山明水秀，字正腔圓。
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - generic [ref=e155]: Noto Sans TC 900
+              - generic [ref=e156]: 極粗黑體
+            - generic [ref=e157]: 大膽俐落的聲音
+            - generic [ref=e158]: 適合標題與強調，視覺衝擊強。
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - generic [ref=e161]: Chocolate Classical Sans
+              - generic [ref=e162]: 優雅現代
+            - generic [ref=e163]: 雅緻與留白之美
+            - generic [ref=e164]: 筆畫清秀、間架端正，適合長文閱讀。
+          - generic [ref=e165]:
+            - generic [ref=e166]:
+              - generic [ref=e167]: LXGW WenKai TC
+              - generic [ref=e168]: 霞鶩文楷
+            - generic [ref=e169]: 手寫楷書的溫度
+            - generic [ref=e170]: 開源免費的繁體楷書，閱讀感親切溫潤。
+          - generic [ref=e171]:
+            - generic [ref=e172]:
+              - generic [ref=e173]: 系統標楷體
+              - generic [ref=e174]: 傳統楷書
+            - generic [ref=e175]: 書法筆意入數位
+            - generic [ref=e176]: Windows／Mac 內建楷書，經典文件用字。
+      - generic [ref=e177]:
+        - generic [ref=e178]:
+          - heading "英文" [level=2] [ref=e179]
+          - generic [ref=e180]: English · 5 fonts
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e184]: Playfair Display
+              - generic [ref=e185]: Editorial Serif
+            - generic [ref=e186]: Elegance & Grace
+            - generic [ref=e187]: The quick brown fox jumps over the lazy dog.
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - generic [ref=e190]: Bebas Neue
+              - generic [ref=e191]: Condensed Display
+            - generic [ref=e192]: BOLD & TALL
+            - generic [ref=e193]: THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - generic [ref=e196]: Pacifico
+              - generic [ref=e197]: Handwritten Script
+            - generic [ref=e198]: Hello, friend!
+            - generic [ref=e199]: The quick brown fox jumps over the lazy dog.
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - generic [ref=e202]: Monoton
+              - generic [ref=e203]: Retro Stripe
+            - generic [ref=e204]: NEON NIGHT
+            - generic [ref=e205]: THE QUICK BROWN FOX.
+          - generic [ref=e206]:
+            - generic [ref=e207]:
+              - generic [ref=e208]: Press Start 2P
+              - generic [ref=e209]: 8-bit Pixel
+            - generic [ref=e210]: GAME START
+            - generic [ref=e211]: LEVEL UP!
+      - generic [ref=e212]:
+        - generic [ref=e213]:
+          - heading "數字" [level=2] [ref=e214]
+          - generic [ref=e215]: Numbers · 5 fonts
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - generic [ref=e219]: Orbitron
+              - generic [ref=e220]: Futuristic Tech
+            - generic [ref=e221]: "0123456789"
+            - generic [ref=e222]: 2026 · 04 · 22
+          - generic [ref=e223]:
+            - generic [ref=e224]:
+              - generic [ref=e225]: Audiowide
+              - generic [ref=e226]: Neon Retro
+            - generic [ref=e227]: "0123456789"
+            - generic [ref=e228]: "24 : 00 : 00"
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - generic [ref=e231]: Russo One
+              - generic [ref=e232]: Heavy Display
+            - generic [ref=e233]: "0123456789"
+            - generic [ref=e234]: $ 1,234.56
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - generic [ref=e237]: Major Mono Display
+              - generic [ref=e238]: Geometric Mono
+            - generic [ref=e239]: "0123456789"
+            - generic [ref=e240]: v2.0.1 build
+          - generic [ref=e241]:
+            - generic [ref=e242]:
+              - generic [ref=e243]: Abril Fatface
+              - generic [ref=e244]: Magazine Serif
+            - generic [ref=e245]: "0123456789"
+            - generic [ref=e246]: No. 42 — Chapter I
