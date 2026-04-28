@@ -1064,23 +1064,23 @@ body {
 .toolkit-status.warning { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
 .toolkit-status.error { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.4); }
 .toolkit-info { flex: 1; min-width: 0; }
-.toolkit-name { font-weight: 600; font-size: 0.95rem; }
-.toolkit-desc { font-size: 0.82rem; color: var(--text-dim); margin-top: 2px; }
+.toolkit-name { font-weight: 600; font-size: 18px; }
+.toolkit-desc { font-size: 15px; color: var(--text-dim); margin-top: 2px; }
 .toolkit-tag {
   flex-shrink: 0; padding: 3px 10px; border-radius: 6px;
-  font-size: 0.75rem; font-weight: 600;
+  font-size: 14px; font-weight: 600;
   background: rgba(34,197,94,0.12); color: #22c55e;
 }
 .toolkit-tag.tag-warn { background: rgba(245,158,11,0.12); color: #f59e0b; }
 .toolkit-tag.tag-err { background: rgba(239,68,68,0.12); color: #ef4444; }
 .toolkit-tag.tag-skill { background: rgba(124,92,252,0.12); color: #7c5cfc; }
 .toolkit-item.expandable { cursor: pointer; }
-.toolkit-item.expandable .toolkit-name::after { content: ' ▸'; font-size: 0.75rem; color: var(--text-dim); }
+.toolkit-item.expandable .toolkit-name::after { content: ' ▸'; font-size: 14px; color: var(--text-dim); }
 .toolkit-item.expandable.open .toolkit-name::after { content: ' ▾'; }
 .toolkit-detail {
   display: none; margin-top: 8px; padding: 12px 14px;
   background: var(--glass-bg, rgba(255,255,255,0.02)); border: 1px solid var(--border);
-  border-radius: 8px; font-size: 0.82rem; line-height: 1.8; color: var(--text-dim);
+  border-radius: 8px; font-size: 15px; line-height: 1.8; color: var(--text-dim);
   white-space: pre-wrap; word-break: break-word;
 }
 .toolkit-detail.open { display: block; }
@@ -2074,7 +2074,8 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 
       <!-- Skills - Claude Code -->
       <div class="glass-card accent-bar-purple" style="margin-bottom:20px">
-        <div class="card-header"><div class="card-title"><div class="title-icon">&#9889;</div>Skills（Claude Code）</div></div>
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#9889;</div>Skills（Claude Code · 個人 ~/.claude/skills/）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">✅ 描述可永久改成繁體中文（檔案在本機,不會被覆蓋）</div>
         <div class="toolkit-list">
           <div>
             <div class="toolkit-item expandable" onclick="toggleDetail(this)">
@@ -2152,12 +2153,80 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
             <div class="toolkit-detail"><strong>觸發詞：</strong>「解釋程式碼」「說明這個檔案」「加中文註解」「explain code」
 <strong>功能：</strong>指定檔案後逐函式產生中文說明，標註參數、回傳值、副作用，幫助理解陌生程式碼的邏輯與資料流。</div>
           </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">psych-deep-research</div>
+                <div class="toolkit-desc">心理學深度研究（DSM/ICD、案例分析、文獻回顧）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>功能：</strong>系統性研究心理學主題，含臨床、發展、認知、社會、神經心理學、心理衡鑑、ASD/ADHD/情緒障礙鑑別診斷等。
+<strong>觸發情境：</strong>「研究這個心理狀態」「分析這個案例」「DSM 診斷標準」「發展里程碑」「心理治療方法比較」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gws-calendar</div>
+                <div class="toolkit-desc">Google 日曆：管理行事曆與事件</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>透過 gws CLI 操作 Google 日曆，建立、查詢、更新、刪除事件與行事曆。
+<strong>觸發情境：</strong>「新增一個會議」「查下週行程」「改這個事件」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gws-drive</div>
+                <div class="toolkit-desc">Google 雲端硬碟：管理檔案、資料夾、共用雲端硬碟</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>透過 gws CLI 操作 Google Drive，列檔、上傳、下載、移動、分享、處理共用雲端硬碟。
+<strong>觸發情境：</strong>「找這個檔案」「上傳到 Drive」「這個資料夾分享給誰」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gws-gmail</div>
+                <div class="toolkit-desc">Gmail：寄信、讀信、管理郵件與標籤</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>透過 gws CLI 操作 Gmail，搜尋信件、寄信、回信、管理標籤、處理草稿。
+<strong>觸發情境：</strong>「寄一封信」「找老闆上週寄的信」「整理收件匣」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gws-sheets</div>
+                <div class="toolkit-desc">Google 試算表：讀寫儲存格與工作表</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>透過 gws CLI 讀寫 Google Sheets，含儲存格範圍讀取、寫入、新增/刪除分頁。
+<strong>觸發情境：</strong>「讀這個試算表的某分頁」「寫資料進去」「新增一個工作表」
+<strong>備註：</strong>跟你既有的 google-sheets MCP 功能重疊，差別推測：MCP 走 Google Sheets API，gws 走 CLI。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gws-shared</div>
+                <div class="toolkit-desc">gws CLI 共用模式（被其他 gws-* skill 共用）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>gws-calendar / gws-drive / gws-gmail / gws-sheets 共用的底層模式：身分驗證、全域旗標、輸出格式。
+<strong>備註：</strong>不會單獨用，都是被其他 gws-* skill 引用。</div>
+          </div>
         </div>
       </div>
 
       <!-- Plugins - Claude Code -->
       <div class="glass-card accent-bar-pink" style="margin-bottom:20px">
-        <div class="card-header"><div class="card-title"><div class="title-icon">&#128296;</div>Plugins（Claude Code）</div></div>
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128296;</div>Plugins（Claude Code · ~/.claude/plugins/）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 改了會在 plugin 更新或 git pull 時被覆蓋（檔案在本機,但會被同步還原）</div>
         <div class="toolkit-list">
           <div>
             <div class="toolkit-item expandable" onclick="toggleDetail(this)">
@@ -2221,7 +2290,8 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 
       <!-- Skills - Cowork -->
       <div class="glass-card accent-bar-yellow" style="margin-bottom:20px">
-        <div class="card-header"><div class="card-title"><div class="title-icon">&#9889;</div>Skills（Cowork / Claude Desktop）</div></div>
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#9889;</div>Skills（Cowork / Claude Desktop · anthropic-skills:*）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 雲端同步,推測：改了會被同步還原（檔案在 ~/AppData/Roaming/Claude/local-agent-mode-sessions/）</div>
         <div class="toolkit-list">
           <div>
             <div class="toolkit-item expandable" onclick="toggleDetail(this)">
@@ -2366,6 +2436,655 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
               <span class="toolkit-tag tag-skill">skill</span>
             </div>
             <div class="toolkit-detail"><strong>功能：</strong>建立、讀取、編輯 .xlsx Excel 檔案，支援格式設定與公式。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">consolidate-memory</div>
+                <div class="toolkit-desc">memory 檔整理（合併重複、修正過時、清整索引）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>對 auto memory 檔做反思整理，合併重複條目、修正過時事實、刪掉沒用的索引。
+<strong>觸發情境：</strong>memory 累積過多、想瘦身或釐清。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">setup-cowork</div>
+                <div class="toolkit-desc">引導式 Cowork 設定（裝 plugin、試 skill、接工具）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>第一次用 Cowork 時的引導流程，幫你裝對應 plugin、試一個 skill、接上工具。
+<strong>觸發情境：</strong>新進 Cowork、想做基本設定。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">frontend-design-pro</div>
+                <div class="toolkit-desc">前端設計品質審查（audit/polish/critique）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>讓 AI 生成的 UI/前端程式碼更專業，避開常見設計反模式。參考 impeccable 設計語言。
+<strong>觸發詞：</strong>/audit /polish /critique /colorize /animate /bolder /quieter /distill；「審查 UI 設計」「優化介面」「讓設計好看」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">ui（anthropic 版）</div>
+                <div class="toolkit-desc">獨特、可上線的前端介面（與本機個人版同名）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>同本機個人 ui skill，打造獨特、有設計品質的前端介面，避免千篇一律的 AI 風格。
+<strong>注意：</strong>跟你 ~/.claude/skills/ui 同名，推測：兩者擇一觸發。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cowork plugin: operations -->
+      <div class="glass-card accent-bar-blue" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128188;</div>operations:*（Cowork plugin · 營運管理）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 雲端同步,推測：改了會被覆蓋</div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:capacity-plan</div>
+                <div class="toolkit-desc">資源產能規劃（工作負載分析、產能預測）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>季度規劃前抓出團隊可承接量、人手是否要再聘、現有專案排得下不排得下。
+<strong>觸發情境：</strong>「團隊產能評估」「我們能不能多接一個專案」「下季要不要請人」「資源負載」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:change-request</div>
+                <div class="toolkit-desc">變更申請單（影響分析、回滾計畫）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>系統/流程變更前要送審的單,含影響分析、風險、回滾步驟、利害關係人溝通。
+<strong>觸發情境：</strong>「準備 CAB 變更紀錄」「上線前的回滾計畫」「change request」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:compliance-tracking</div>
+                <div class="toolkit-desc">合規追蹤（SOC 2、ISO 27001、GDPR、稽核準備）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>追蹤合規要求、稽核準備度、文件化合規活動。
+<strong>觸發詞：</strong>「compliance」「audit prep」「SOC 2」「ISO 27001」「GDPR」「法規要求」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:process-doc</div>
+                <div class="toolkit-desc">流程文件（流程圖、RACI、SOP）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把藏在某人腦子裡的流程文件化、釐清誰負責什麼(RACI)、寫交接 SOP、補上例外與邊角案例。
+<strong>觸發情境：</strong>「我要把這個流程寫下來」「做張 RACI 表」「寫 SOP」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:process-optimization</div>
+                <div class="toolkit-desc">流程優化（找瓶頸、簡化步驟）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>分析現有流程哪裡慢、哪裡多餘,提出簡化方案。
+<strong>觸發詞：</strong>「這個流程太慢」「怎麼改善」「太多步驟」「瓶頸在哪」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:risk-assessment</div>
+                <div class="toolkit-desc">風險評估與緩解（風險清單、機率/衝擊矩陣）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>盤點與評估專案/廠商/流程/決策的風險,產出風險清單與緩解方案。
+<strong>觸發詞：</strong>「有什麼風險」「risk register」「可能會出什麼錯」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:runbook</div>
+                <div class="toolkit-desc">維運 runbook（重複任務的 step-by-step、回滾、升級）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把 on-call/維運要重複跑的任務,變成可重複執行的逐步指令、加上排錯與回滾、寫升級路徑。
+<strong>觸發情境：</strong>「把這個流程寫成 runbook」「值班手冊」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:status-report</div>
+                <div class="toolkit-desc">專案狀態報告（KPI、紅黃綠燈、風險、待辦）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>寫每週/每月給主管看的狀態報告,把零碎的專案動態彙整成可讀的敘事。
+<strong>觸發情境：</strong>「週報」「給老闆的 update」「專案健康度」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">operations:vendor-review</div>
+                <div class="toolkit-desc">廠商評估（成本、風險、TCO、議價要點）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>新廠商提案評估、續約 vs 換廠商、兩家比一比、採購前的 TCO 與議價要點。
+<strong>觸發情境：</strong>「評估這家供應商」「該換廠商嗎」「報價比較」</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cowork plugin: data -->
+      <div class="glass-card accent-bar-blue" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128202;</div>data:*（Cowork plugin · 資料分析）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 雲端同步,推測：改了會被覆蓋</div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:analyze</div>
+                <div class="toolkit-desc">回答資料問題（單一指標查詢～完整分析報告）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>從快查單一數字、追問為什麼某個趨勢在掉、跨時間/區段比較,到準備正式給主管看的資料報告。
+<strong>觸發情境：</strong>「上週訂單為何下滑」「比一下兩個渠道的轉換率」「給我一份完整分析」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:explore-data</div>
+                <div class="toolkit-desc">資料集 profiling（看欄位、分佈、品質、異常）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>拿到一張新表/新檔時先 profiling,看 null 比例、欄位分佈,挑出可疑值與重複,決定要分析哪些維度與指標。
+<strong>觸發情境：</strong>「這份資料長什麼樣」「先看一下品質」「有沒有重複/異常」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:write-query</div>
+                <div class="toolkit-desc">寫優化的 SQL（多 CTE、JOIN、聚合）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把自然語言需求翻成 SQL、組多 CTE 帶 JOIN 與聚合的查詢、針對大型分區表優化、給特定方言(Snowflake/BigQuery/Postgres)語法。
+<strong>觸發情境：</strong>「幫我寫一個 SQL」「優化這個查詢」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:sql-queries</div>
+                <div class="toolkit-desc">跨資料倉庫方言寫 SQL（Snowflake、BigQuery、Postgres 等）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>跨主流資料倉庫(Snowflake、BigQuery、Databricks、PostgreSQL 等)寫正確且高效能的 SQL,含 CTE、視窗函式、聚合,並可在方言間互譯。
+<strong>跟 write-query 差別：</strong>推測 write-query 偏「翻譯需求 → SQL」,sql-queries 偏「方言語法手冊」。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:create-viz</div>
+                <div class="toolkit-desc">用 Python 做出版品質的圖表</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把查詢結果或 DataFrame 變成圖、為趨勢/比較選對的圖表類型、報告或簡報用、需要 hover/zoom 的互動圖。
+<strong>觸發情境：</strong>「畫一張圖」「視覺化這份資料」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:data-visualization</div>
+                <div class="toolkit-desc">資料視覺化（matplotlib、seaborn、plotly）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>用 Python 三大圖表函式庫做有效視覺化,選對圖表類型、套設計原則(配色、無障礙)。
+<strong>跟 create-viz 差別：</strong>推測 create-viz 偏「結果輸出」,data-visualization 偏「圖表類型挑選與設計」。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:build-dashboard</div>
+                <div class="toolkit-desc">建互動式 HTML 儀表板（KPI 卡、圖表、篩選、表格）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>產出可分享的單檔 HTML dashboard,給主管看的 KPI 概覽、查詢結果包成報告、團隊監控快照,瀏覽器一開就用。
+<strong>觸發情境：</strong>「做一個 dashboard」「KPI 監控頁面」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:statistical-analysis</div>
+                <div class="toolkit-desc">統計分析（描述統計、趨勢、異常偵測、假設檢定）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>分析分佈、做顯著性檢定、找異常、算相關係數、解讀統計結果。
+<strong>觸發情境：</strong>「這個差異有沒有統計顯著」「相關性分析」「找 outlier」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:validate-data</div>
+                <div class="toolkit-desc">分析報告 QA（方法、準確性、偏誤檢查）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>分析在送出前 QA,檢查方法、計算與聚合邏輯、SQL 結果是否合理、結論是不是真的有資料支持。
+<strong>觸發情境：</strong>「這份分析給主管前先檢查」「結果合理嗎」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">data:data-context-extractor</div>
+                <div class="toolkit-desc">產生公司專屬資料分析 skill（提取資料倉庫的 tribal knowledge）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>幫公司產生/改進專屬的資料分析 skill,包含 schema 知識、術語、指標定義、常用查詢模式。
+<strong>觸發情境：</strong>「為我們倉庫建一個 data context skill」「補充這個領域的指標說明」</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cowork plugin: cowork-plugin-management -->
+      <div class="glass-card accent-bar-blue" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128230;</div>cowork-plugin-management:*（Cowork plugin · Plugin 管理）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 雲端同步,推測：改了會被覆蓋</div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">cowork-plugin-management:create-cowork-plugin</div>
+                <div class="toolkit-desc">在 Cowork session 內從零建立新 plugin</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>引導使用者在 Cowork session 中從零做出新 plugin，最後交付 .plugin 檔。
+<strong>需要：</strong>Cowork 模式、可寫 outputs 目錄。
+<strong>觸發情境：</strong>「做一個 plugin」「scaffold plugin」「新建 plugin」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">cowork-plugin-management:cowork-plugin-customizer</div>
+                <div class="toolkit-desc">為特定組織客製化 plugin（連接器、skill 設定）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把現有 plugin 調整成特定組織的工具與工作流，含連接器、skill 設定的客製化。
+<strong>觸發情境：</strong>「設定 plugin」「客製化 plugin」「調整 plugin 設定」</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- claude-code-settings 子 skill 詳細列表 -->
+      <div class="glass-card accent-bar-pink" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#127919;</div>claude-code-settings:*（plugin 子 skill 詳細）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 改了會在 plugin 更新時被覆蓋</div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:eureka</div>
+                <div class="toolkit-desc">捕捉技術突破並轉成可重用文件</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把當下解出來的技術突破、優化、難題解法，整理成日後可以再用的文件。
+<strong>觸發情境：</strong>「這個發現要記下來」「這個解法值得紀錄」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:reflection</div>
+                <div class="toolkit-desc">分析並改進 Claude Code 指令</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>檢視對話歷史，找出 CLAUDE.md 哪邊指令不清楚或可以改進，經人工審核後寫入。
+<strong>觸發情境：</strong>「reflect 一下我的指令」「review CLAUDE.md」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:reflection-harder</div>
+                <div class="toolkit-desc">完整 session 分析與學習擷取</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>比 reflection 更深入的整段 session 分析，擷取使用者偏好、可改進處，給未來互動參考。建議在重要工作 session 結束後跑。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:think-harder</div>
+                <div class="toolkit-desc">複雜問題的強化分析思考</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>需要進一步思考再回答的複雜問題用，推測：會延長 thinking 時間/換更慎重的推理路徑。
+<strong>觸發情境：</strong>遇到棘手抉擇、設計取捨、難解 bug 時。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:think-ultra</div>
+                <div class="toolkit-desc">最複雜問題的超深度分析</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>think-harder 的更激進版本，給最複雜的問題用。比一般推理慢但更全面。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:translate</div>
+                <div class="toolkit-desc">翻譯文字為中文</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把指定文字翻譯成中文。
+<strong>觸發情境：</strong>「翻成中文」「translate」。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:gh:fix-issue</div>
+                <div class="toolkit-desc">修復 GitHub issue</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>分析、規劃、修復指定 GitHub issue，含測試與 PR 建立流程。
+<strong>觸發情境：</strong>「修這個 issue #123」「fix issue」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:gh:review-pr</div>
+                <div class="toolkit-desc">審查 GitHub PR（詳細程式碼分析）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>給 GitHub PR 做完整程式碼審查，聚焦品質、安全、最佳實務。
+<strong>觸發情境：</strong>「review PR」「幫我看這個 PR」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:autonomous-skill</div>
+                <div class="toolkit-desc">自主執行需多 session 的長時任務</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把長任務拆成子任務，用 Claude Code headless 模式自動續跑、追蹤進度。適合幾小時～幾天的工程。
+<strong>觸發情境：</strong>「autonomous」「長時任務」「multi-session」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:codex-skill</div>
+                <div class="toolkit-desc">用 OpenAI Codex/GPT 自主寫程式碼</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把實作任務丟給 OpenAI Codex / GPT-5 系列模型 full-auto 跑。
+<strong>觸發情境：</strong>「用 codex 實作」「let openai do it」「full-auto」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:kiro-skill</div>
+                <div class="toolkit-desc">互動式需求→設計→實作工作流（EARS、設計文件、任務清單）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>從點子到實作的互動式 feature 開發流程，產出 EARS 格式需求、設計文件、任務清單。
+<strong>觸發情境：</strong>「kiro」「需求文件」「設計文件」「實作計畫」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:nanobanana-skill</div>
+                <div class="toolkit-desc">用 Google Gemini API 生成/編輯圖片</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>透過 nanobanana 套件呼叫 Google Gemini API 生成或編輯圖片。
+<strong>觸發情境：</strong>「生成圖片」「edit image」「AI 繪圖」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:spec-kit-skill</div>
+                <div class="toolkit-desc">GitHub Spec-Kit 整合（憲章式規格驅動開發、7 階段流程）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>整合 GitHub Spec-Kit，以「憲章(constitution)」為基礎跑 7 階段規格驅動開發。
+<strong>觸發情境：</strong>「spec-kit」「.specify/」「規格驅動」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:youtube-transcribe-skill</div>
+                <div class="toolkit-desc">YouTube 字幕/逐字稿提取</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>從 YouTube 影片擷取字幕/逐字稿。
+<strong>觸發情境：</strong>「字幕提取」「YouTube 轉文字」「video captions」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-code-settings:deep-research</div>
+                <div class="toolkit-desc">多 Agent 並行深度調研（拆子目標、headless 子進程、聚合精修）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把調研目標拆成可並行子目標，用 Claude Code 非互動模式（claude -p）跑子進程，優先用已安裝 skill 與 MCP 工具，最後聚合分章精修，交付完整報告檔。
+<strong>觸發情境：</strong>系統性網頁/資料調研、競品/行業分析、批量連結檢索、長文寫作。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- claude-reflect 子 skill -->
+      <div class="glass-card accent-bar-pink" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128270;</div>claude-reflect:*（plugin 子 skill）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">⚠️ 改了會在 plugin 更新時被覆蓋</div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-reflect:reflect</div>
+                <div class="toolkit-desc">反思 session 中的修正，更新 CLAUDE.md（需人工審核）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>分析這個 session 裡你修正過 Claude 的地方，把可重用的規則提出來給你審核，通過後寫入 CLAUDE.md。
+<strong>觸發情境：</strong>覺得 Claude 一直犯同類錯、想把今天的修正紀錄成永久規則。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-reflect:reflect-skills</div>
+                <div class="toolkit-desc">從重複模式中發現可建立的新 skill</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>從多個 session 的重複工作模式中，找出值得做成新 skill 的候選。
+<strong>觸發情境：</strong>覺得某類任務一直在重做、想自動化。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-reflect:skip-reflect</div>
+                <div class="toolkit-desc">丟棄排隊中的學習紀錄</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把已排隊但你不想處理的學習紀錄清掉，避免之後 reflect 又拿來問你。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-reflect:view-queue</div>
+                <div class="toolkit-desc">查看排隊中的學習紀錄</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>看一下目前 reflect 隊列裡有哪些待處理的學習紀錄（不直接處理）。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 內建 / 工具型 skill -->
+      <div class="glass-card accent-bar-yellow" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title"><div class="title-icon">&#128736;&#65039;</div>內建（Claude Code / Cowork 自帶）</div></div>
+        <div style="padding:0 20px 12px;font-size:16px;color:var(--text-secondary)">推測：內建在 Claude Code / Cowork 程式裡,本機沒有 SKILL.md 檔可改</div>
+        <div class="toolkit-list">
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">update-config</div>
+                <div class="toolkit-desc">透過 settings.json 設定 Claude Code（hook、權限、環境變數）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>改 settings.json/settings.local.json，包括「以後每次 X 都要做 Y」這類自動化（要走 hook，因為 memory/偏好沒辦法做到自動觸發）。
+<strong>觸發情境：</strong>「允許 X 指令」「設環境變數」「Claude 結束時提示我」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">keybindings-help</div>
+                <div class="toolkit-desc">自訂鍵盤快捷鍵（~/.claude/keybindings.json）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>調整 Claude Code 的鍵盤快捷鍵，例如 rebind ctrl+s、加 chord 組合鍵、改送出鍵。
+<strong>觸發情境：</strong>「綁快捷鍵」「自訂 keybindings」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">simplify</div>
+                <div class="toolkit-desc">審查改動的程式碼（重用、品質、效率）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>檢視這次改動的程式碼，找出可以重用、品質、效率上的問題並修掉。
+<strong>觸發情境：</strong>寫完一段程式碼想自己 review、想簡化重構。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">fewer-permission-prompts</div>
+                <div class="toolkit-desc">掃 transcript 找常用唯讀指令，加進 allowlist</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>掃過去對話，找出你常用、安全的唯讀 Bash/MCP 指令，加進 .claude/settings.json 的 allowlist，減少權限詢問次數。
+<strong>觸發情境：</strong>覺得每次都要按「允許」很煩。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">loop</div>
+                <div class="toolkit-desc">用迴圈執行 prompt 或 slash command（/loop 5m /foo）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把一個 prompt 或 slash command 改成「每隔 N 分鐘跑一次」（例：/loop 5m /babysit-prs），不寫 interval 則由模型自己抓節奏。
+<strong>觸發情境：</strong>「每 5 分鐘檢查 deploy」「持續 babysit PR」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">schedule</div>
+                <div class="toolkit-desc">建立排程遠端 agent（cron 定期或一次性）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>建立、修改、列出、執行排程的遠端 agent（routine），可 cron 定期或一次性指定時間。
+<strong>觸發情境：</strong>「每週一跑這個」「兩週後幫我清理這個 flag」「自動化定期任務」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">claude-api</div>
+                <div class="toolkit-desc">建構/除錯/優化 Claude API / Anthropic SDK app（含 prompt caching）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>用 Anthropic SDK（Python/TS）寫應用、加 prompt caching、思考、工具使用、batch、citations、memory；版本遷移（4.5→4.6→4.7）。
+<strong>觸發情境：</strong>程式碼 import anthropic 套件、處理 API 與 cache hit rate。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">evaluating-candidates</div>
+                <div class="toolkit-desc">面試決策輔助（評估 candidate、reference check、calibration）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>協助做更好的招募決策，含評估 candidate、reference check、看 take-home 作業、校準錄取門檻、決策 finalist。
+<strong>觸發情境：</strong>「我在面試」「評估這個人」「兩個 candidate 怎麼選」</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">init</div>
+                <div class="toolkit-desc">產生新的 CLAUDE.md（含 codebase 文件，可選 skills/hooks）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>掃描 codebase，產出新的 CLAUDE.md 文件，並可選擇加上 skills/hooks。
+<strong>觸發情境：</strong>新進專案、想為 repo 建立 CLAUDE.md。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">review</div>
+                <div class="toolkit-desc">審查 PR</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>給 pull request 做程式碼審查。比 gh:review-pr 簡單，推測：通用版本，不限 GitHub。</div>
+          </div>
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">security-review</div>
+                <div class="toolkit-desc">當前 branch 的安全審查</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>對當前 branch 待提交的改動做完整安全審查，找潛在漏洞。
+<strong>觸發情境：</strong>送 PR 前的最後安全檢查。</div>
           </div>
         </div>
       </div>
