@@ -6,7 +6,7 @@
 <title>My Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@100;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Chocolate+Classical+Sans&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Pacifico&family=Monoton&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Audiowide&family=Russo+One&family=Major+Mono+Display&family=Abril+Fatface&family=Rubik+Glitch&family=Bungee+Shade&family=Rubik+Wet+Paint&family=Cherry+Bomb+One&family=Kablammo&family=Faster+One&family=Wallpoet&family=Iceberg&family=Rubik+Mono+One&family=Modak&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@100;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Chocolate+Classical+Sans&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Pacifico&family=Monoton&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Audiowide&family=Russo+One&family=Major+Mono+Display&family=Abril+Fatface&family=Rubik+Glitch&family=Bungee+Shade&family=Rubik+Wet+Paint&family=Cherry+Bomb+One&family=Kablammo&family=Faster+One&family=Wallpoet&family=Iceberg&family=Rubik+Mono+One&family=Modak&family=DM+Serif+Display&family=Bodoni+Moda:wght@700;800&family=Yeseva+One&family=Libre+Bodoni:wght@700&family=Roboto+Slab:wght@700&family=Old+Standard+TT:wght@700&family=Cormorant+SC:wght@700&family=Source+Serif+4:wght@800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/taipei-sans-tc/dist/Regular/TaipeiSansTCBeta-Regular.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf.css" rel="stylesheet">
@@ -1756,6 +1756,40 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 .ff-iceberg         { font-family: 'Iceberg', cursive; }
 .ff-rubik-mono-one  { font-family: 'Rubik Mono One', sans-serif; }
 .ff-modak           { font-family: 'Modak', cursive; }
+
+/* === 電話號碼字型對照(雜誌粗 serif / display serif) === */
+/* 重點：強制 tabular figures，比較 0–9 寬度與 1 是否等寬 */
+.fx-card.fx-phone .fx-sample,
+.fx-card.fx-phone .fx-sample-sub {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0.04em;
+}
+.fx-card.fx-phone .fx-sample {
+  /* 用紅色顯示前段 0–9（::before），方便對照 1 寬度 */
+  font-size: 2.4rem;
+}
+.fx-card.fx-phone .fx-sample::before {
+  content: "0123456789  ";
+  color: var(--accent2);
+}
+.fx-card.fx-phone .fx-sample-sub {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.ff-abril-phone        { font-family: 'Abril Fatface', serif; }
+.ff-dmserif            { font-family: 'DM Serif Display', serif; }
+.ff-bodoni-800         { font-family: 'Bodoni Moda', serif; font-weight: 800; }
+.ff-playfair-900       { font-family: 'Playfair Display', serif; font-weight: 900; font-style: normal; }
+.ff-yeseva             { font-family: 'Yeseva One', serif; }
+.ff-libre-bodoni       { font-family: 'Libre Bodoni', serif; font-weight: 700; }
+.ff-roboto-slab        { font-family: 'Roboto Slab', serif; font-weight: 700; }
+.ff-old-standard       { font-family: 'Old Standard TT', serif; font-weight: 700; }
+.ff-cormorant-sc       { font-family: 'Cormorant SC', serif; font-weight: 700; }
+.ff-source-serif-4     { font-family: 'Source Serif 4', serif; font-weight: 800; }
 </style>
 </head>
 <body>
@@ -3448,6 +3482,99 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
             </div>
             <div class="fx-sample ff-modak">0123456789</div>
             <div class="fx-sample-sub ff-modak">99 cents · sweet</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 電話號碼對照(雜誌粗 serif / display serif) -->
+      <div class="fx-section">
+        <div class="fx-section-head">
+          <h2>電話號碼對照</h2>
+          <span class="fx-kicker">Phone Numbers · 10 fonts · tabular-nums</span>
+        </div>
+        <p class="fx-sample-sub" style="margin: -8px 0 16px;">
+          每張卡上方紅色 0–9 是對照組，用來檢查 1 是否與其他數字等寬。下方為實際電話號碼預覽。
+        </p>
+        <div class="fx-grid">
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Abril Fatface</span>
+              <span class="fx-font-tag">原參考 · 1 偏窄</span>
+            </div>
+            <div class="fx-sample ff-abril-phone"></div>
+            <div class="fx-sample-sub ff-abril-phone">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">DM Serif Display</span>
+              <span class="fx-font-tag">高對比 display serif</span>
+            </div>
+            <div class="fx-sample ff-dmserif"></div>
+            <div class="fx-sample-sub ff-dmserif">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Bodoni Moda 800</span>
+              <span class="fx-font-tag">★ 推薦 · 經典 Bodoni 黑體</span>
+            </div>
+            <div class="fx-sample ff-bodoni-800"></div>
+            <div class="fx-sample-sub ff-bodoni-800">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Playfair Display 900</span>
+              <span class="fx-font-tag">雜誌標題常用</span>
+            </div>
+            <div class="fx-sample ff-playfair-900"></div>
+            <div class="fx-sample-sub ff-playfair-900">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Yeseva One</span>
+              <span class="fx-font-tag">裝飾 display serif</span>
+            </div>
+            <div class="fx-sample ff-yeseva"></div>
+            <div class="fx-sample-sub ff-yeseva">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Libre Bodoni 700</span>
+              <span class="fx-font-tag">Bodoni 開源版</span>
+            </div>
+            <div class="fx-sample ff-libre-bodoni"></div>
+            <div class="fx-sample-sub ff-libre-bodoni">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Roboto Slab 700</span>
+              <span class="fx-font-tag">完全等寬 slab serif</span>
+            </div>
+            <div class="fx-sample ff-roboto-slab"></div>
+            <div class="fx-sample-sub ff-roboto-slab">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Old Standard TT 700</span>
+              <span class="fx-font-tag">古典書本 serif</span>
+            </div>
+            <div class="fx-sample ff-old-standard"></div>
+            <div class="fx-sample-sub ff-old-standard">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Cormorant SC 700</span>
+              <span class="fx-font-tag">小型大寫 serif</span>
+            </div>
+            <div class="fx-sample ff-cormorant-sc"></div>
+            <div class="fx-sample-sub ff-cormorant-sc">0966-579836　0973-268945</div>
+          </div>
+          <div class="fx-card fx-phone">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Source Serif 4 800</span>
+              <span class="fx-font-tag">Adobe 開源 · 中性現代</span>
+            </div>
+            <div class="fx-sample ff-source-serif-4"></div>
+            <div class="fx-sample-sub ff-source-serif-4">0966-579836　0973-268945</div>
           </div>
         </div>
       </div>
