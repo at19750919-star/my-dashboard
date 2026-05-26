@@ -6,11 +6,11 @@
 <title>My Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@100;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Chocolate+Classical+Sans&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Pacifico&family=Monoton&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Audiowide&family=Russo+One&family=Major+Mono+Display&family=Abril+Fatface&family=Rubik+Glitch&family=Bungee+Shade&family=Rubik+Wet+Paint&family=Cherry+Bomb+One&family=Kablammo&family=Faster+One&family=Wallpoet&family=Iceberg&family=Rubik+Mono+One&family=Modak&family=DM+Serif+Display&family=Bodoni+Moda:wght@700;800&family=Yeseva+One&family=Libre+Bodoni:wght@700&family=Roboto+Slab:wght@700&family=Old+Standard+TT:wght@700&family=Cormorant+SC:wght@700&family=Source+Serif+4:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@100;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Chocolate+Classical+Sans&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Pacifico&family=Monoton&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Audiowide&family=Russo+One&family=Major+Mono+Display&family=Abril+Fatface&family=Rubik+Glitch&family=Bungee+Shade&family=Rubik+Wet+Paint&family=Cherry+Bomb+One&family=Kablammo&family=Faster+One&family=Wallpoet&family=Iceberg&family=Rubik+Mono+One&family=Modak&family=DM+Serif+Display&family=Bodoni+Moda:wght@700;800&family=Yeseva+One&family=Libre+Bodoni:wght@700&family=Roboto+Slab:wght@700&family=Old+Standard+TT:wght@700&family=Cormorant+SC:wght@700&family=Source+Serif+4:wght@800&family=Kaisei+Opti:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/taipei-sans-tc/dist/Regular/TaipeiSansTCBeta-Regular.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf.css" rel="stylesheet">
-               <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Old+Mincho:wght@400;700;900&family=Rampart+One&family=Reggae+One&family=Hachi+Maru+Pop&family=Stick&family=Fraunces:opsz,wght@9..144,400;9..144,700&display=swap" rel="stylesheet">
+               <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Old+Mincho:wght@400;700;900&family=Rampart+One&family=Reggae+One&family=Hachi+Maru+Pop&family=Stick&family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Potta+One&family=RocknRoll+One&family=DotGothic16&family=Palette+Mosaic&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════════
@@ -1630,6 +1630,37 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 
 /* ═══ 效果 / 字型展示 ═══ */
 .fx-section { margin-bottom: 40px; }
+
+/* 四個 section 色彩主題 */
+.fx-cjk   { background: #DBEAFE; border-radius: 16px; padding: 24px; }
+.fx-en    { background: #FEF3C7; border-radius: 16px; padding: 24px; }
+.fx-num   { background: #EDE9FE; border-radius: 16px; padding: 24px; }
+.fx-phone { background: #D1FAE5; border-radius: 16px; padding: 24px; }
+
+.fx-cjk   .fx-section-head { border-bottom-color: #93C5FD; }
+.fx-en    .fx-section-head { border-bottom-color: #FCD34D; }
+.fx-num   .fx-section-head { border-bottom-color: #C4B5FD; }
+.fx-phone .fx-section-head { border-bottom-color: #6EE7B7; }
+
+.fx-cjk   .fx-section-head h2 { color: #1D4ED8; }
+.fx-en    .fx-section-head h2 { color: #B45309; }
+.fx-num   .fx-section-head h2 { color: #6D28D9; }
+.fx-phone .fx-section-head h2 { color: #065F46; }
+
+.fx-cjk   .fx-kicker { background: #BFDBFE; border-color: #93C5FD; color: #1D4ED8; }
+.fx-en    .fx-kicker { background: #FDE68A; border-color: #FCD34D; color: #92400E; }
+.fx-num   .fx-kicker { background: #DDD6FE; border-color: #C4B5FD; color: #5B21B6; }
+.fx-phone .fx-kicker { background: #A7F3D0; border-color: #6EE7B7; color: #065F46; }
+
+.fx-cjk   .fx-card { background: #EFF6FF; border-color: #93C5FD; box-shadow: 4px 4px 0 #93C5FD; }
+.fx-en    .fx-card { background: #FFFBEB; border-color: #FCD34D; box-shadow: 4px 4px 0 #FCD34D; }
+.fx-num   .fx-card { background: #F5F3FF; border-color: #C4B5FD; box-shadow: 4px 4px 0 #C4B5FD; }
+.fx-phone .fx-card { background: #ECFDF5; border-color: #6EE7B7; box-shadow: 4px 4px 0 #6EE7B7; }
+
+.fx-cjk   .fx-card:hover { box-shadow: 6px 6px 0 #93C5FD; }
+.fx-en    .fx-card:hover { box-shadow: 6px 6px 0 #FCD34D; }
+.fx-num   .fx-card:hover { box-shadow: 6px 6px 0 #C4B5FD; }
+.fx-phone .fx-card:hover { box-shadow: 6px 6px 0 #6EE7B7; }
 .fx-section-head {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 20px;
@@ -1790,6 +1821,68 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
 .ff-old-standard       { font-family: 'Old Standard TT', serif; font-weight: 700; }
 .ff-cormorant-sc       { font-family: 'Cormorant SC', serif; font-weight: 700; }
 .ff-source-serif-4     { font-family: 'Source Serif 4', serif; font-weight: 800; }
+
+/* === 本機安裝字型 (已安裝於使用者字型目錄) === */
+@font-face { font-family: 'ff-chenyuluoyan-font'; src: url('fonts/ChenYuluoyan-Thin.ttf') format('truetype'); }
+@font-face { font-family: 'ff-genwan-font';      src: url('fonts/GenWanMin2TC-R.otf') format('opentype'); }
+@font-face { font-family: 'ff-glowsans-font';    src: url('fonts/GlowSansTC-Extended.otf') format('opentype'); }
+@font-face { font-family: 'ff-satsuki-font';     src: url('fonts/SatsukiGendaiMincho.ttf') format('truetype'); }
+@font-face { font-family: 'ff-swei-font';        src: url('fonts/SweiSpringCJKtc.ttf') format('truetype'); }
+@font-face { font-family: 'ff-toneoz-font';      src: url('fonts/ToneOZ-Tsuipita-TC.ttf') format('truetype'); }
+@font-face { font-family: 'ff-xiangcui-font';    src: url('fonts/XiangcuiKesong.ttf') format('truetype'); }
+
+.ff-chenyuluoyan { font-family: 'ff-chenyuluoyan-font', 'Noto Serif TC', serif; }
+.ff-genwan       { font-family: 'ff-genwan-font', 'Noto Serif TC', serif; }
+.ff-glowsans     { font-family: 'ff-glowsans-font', 'Noto Sans TC', sans-serif; }
+.ff-kaisei       { font-family: 'Kaisei Opti', 'Noto Serif TC', serif; }
+.ff-satsuki      { font-family: 'ff-satsuki-font', 'Noto Serif TC', serif; }
+.ff-swei         { font-family: 'ff-swei-font', 'Noto Sans TC', sans-serif; }
+.ff-toneoz       { font-family: 'ff-toneoz-font', 'Noto Serif TC', serif; }
+.ff-xiangcui     { font-family: 'ff-xiangcui-font', 'Noto Serif TC', serif; }
+.ff-potta        { font-family: 'Potta One', sans-serif; }
+.ff-rocknroll    { font-family: 'RocknRoll One', sans-serif; }
+.ff-dotgothic    { font-family: 'DotGothic16', sans-serif; }
+.ff-palette      { font-family: 'Palette Mosaic', sans-serif; }
+
+/* === 字型02 本機安裝字型 === */
+@font-face { font-family: 'ff-gete-font';    src: url('fonts/GeTeShiZiTi.ttf') format('truetype'); }
+@font-face { font-family: 'ff-caiyun-font';  src: url('fonts/HanYiCaiYunTiFan.ttf') format('truetype'); }
+@font-face { font-family: 'ff-hyqihei-font'; src: url('fonts/HanYiQiHei.ttf') format('truetype'); }
+@font-face { font-family: 'ff-shanhai1-font';src: url('fonts/ShanHaiHeiQiShiGeTe.ttf') format('truetype'); }
+@font-face { font-family: 'ff-shanhai2-font';src: url('fonts/ShanHaiXingYeGeTe.ttf') format('truetype'); }
+@font-face { font-family: 'ff-genei-font';   src: url('fonts/GenEiGothicP-Heavy.ttf') format('truetype'); }
+@font-face { font-family: 'ff-armincho-font'; src: url('fonts/AR-RomanMinchoJP-UL.ttc') format('truetype'); }
+
+/* === 字型03 英文字型 === */
+@font-face { font-family: 'ff-auberge';    src: url('fonts/AubergeScriptPro.ttf') format('truetype'); }
+@font-face { font-family: 'ff-bacchus';    src: url('fonts/Bacchus-ExtraBold.ttf') format('truetype'); }
+@font-face { font-family: 'ff-bickham';    src: url('fonts/BickhamScriptPro3.otf') format('opentype'); }
+@font-face { font-family: 'ff-cfreaks';    src: url('fonts/CollegeFreaks.ttf') format('truetype'); }
+@font-face { font-family: 'ff-hijack';     src: url('fonts/HiJack.ttf') format('truetype'); }
+@font-face { font-family: 'ff-klipan';     src: url('fonts/Klipan-Black.ttf') format('truetype'); }
+@font-face { font-family: 'ff-midfield';   src: url('fonts/MidfieldStencil.ttf') format('truetype'); }
+@font-face { font-family: 'ff-monoton2';   src: url('fonts/Monoton-Local.ttf') format('truetype'); }
+@font-face { font-family: 'ff-sounso';     src: url('fonts/SounsoSagacity.ttf') format('truetype'); }
+@font-face { font-family: 'ff-united';     src: url('fonts/UnitedSerifSemiCond-Thin.otf') format('opentype'); }
+
+.ff-auberge  { font-family: 'ff-auberge', cursive; }
+.ff-bacchus  { font-family: 'ff-bacchus', sans-serif; }
+.ff-bickham  { font-family: 'ff-bickham', cursive; }
+.ff-cfreaks  { font-family: 'ff-cfreaks', sans-serif; }
+.ff-hijack   { font-family: 'ff-hijack', sans-serif; }
+.ff-klipan   { font-family: 'ff-klipan', sans-serif; }
+.ff-midfield { font-family: 'ff-midfield', sans-serif; }
+.ff-monoton2 { font-family: 'ff-monoton2', cursive; }
+.ff-sounso   { font-family: 'ff-sounso', serif; }
+.ff-united   { font-family: 'ff-united', serif; }
+
+.ff-gete     { font-family: 'ff-gete-font',    'Noto Sans TC', sans-serif; }
+.ff-caiyun   { font-family: 'ff-caiyun-font',  'Noto Serif TC', serif; }
+.ff-hyqihei  { font-family: 'ff-hyqihei-font', 'Noto Sans TC', sans-serif; font-weight: 700; }
+.ff-shanhai1 { font-family: 'ff-shanhai1-font','Noto Sans TC', sans-serif; }
+.ff-shanhai2 { font-family: 'ff-shanhai2-font','Noto Sans TC', sans-serif; }
+.ff-genei    { font-family: 'ff-genei-font',   'Noto Sans TC', sans-serif; }
+.ff-armincho { font-family: 'ff-armincho-font', 'Noto Serif TC', serif; }
 </style>
 </head>
 <body>
@@ -2264,6 +2357,396 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
             <div class="toolkit-detail"><strong>用途：</strong>gws-calendar / gws-drive / gws-gmail / gws-sheets 共用的底層模式：身分驗證、全域旗標、輸出格式。
 <strong>備註：</strong>不會單獨用，都是被其他 gws-* skill 引用。</div>
           </div>
+
+          <!-- ============ obra/superpowers ============ -->
+          <div style="padding:12px 20px 4px;font-size:14px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">obra/superpowers（整組軟體工程紀律）</div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">using-superpowers</div>
+                <div class="toolkit-desc">每次對話開頭都該用：建立「先查 skill 再回答」的紀律</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>每次對話一開始就調用，建立 superpowers 體系的使用模式（任何回答前先檢索 skill 庫）。
+<strong>觸發情境：</strong>開新對話、想用 superpowers 工具鏈。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">brainstorming</div>
+                <div class="toolkit-desc">創作前必做：先釐清需求與設計再動手</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>任何創作型工作（新功能、新元件、新行為）開始前都必用，探索使用者意圖、需求、設計。
+<strong>觸發情境：</strong>「想做一個 X」「幫我加個 Y 功能」之前。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">systematic-debugging</div>
+                <div class="toolkit-desc">遇 bug / 測試失敗 / 怪行為前必走的系統化除錯流程</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>遇到任何 bug、測試失敗、預期外行為時，先用這套流程，才提修正方案。
+<strong>觸發情境：</strong>「壞了」「測試紅了」「為什麼會這樣」。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">writing-plans</div>
+                <div class="toolkit-desc">多步任務動手前先寫實作計畫</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>拿到 spec / 需求後，碰程式碼之前先寫一份多步驟實作計畫。
+<strong>觸發情境：</strong>大型 feature、重構、跨檔變更。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">requesting-code-review</div>
+                <div class="toolkit-desc">完工、上 PR、合併前的自我審查</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>完成任務、實作大型 feature、合併前，用此檢驗成品是否符合需求。
+<strong>觸發情境：</strong>準備發 PR 之前的最後檢查。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">receiving-code-review</div>
+                <div class="toolkit-desc">收到 code review 意見後，技術驗證再行動</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>收到 review feedback 時，不要表面附和也不要盲改，先做技術驗證再決定。
+<strong>觸發情境：</strong>看到 reviewer 留言、有疑慮但不確定該不該照改。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">test-driven-development</div>
+                <div class="toolkit-desc">寫實作前先寫測試（superpowers 版）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>實作任何 feature 或 bugfix 之前，先寫測試。
+<strong>備註：</strong>跟 mattpocock 的 tdd 是不同 skill，這個是強制流程版。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">verification-before-completion</div>
+                <div class="toolkit-desc">宣稱「完成」之前，先跑驗證指令</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>準備說「完成」「修好了」「測試通過」「可以 commit」之前，必須先跑驗證指令並確認輸出。
+<strong>原則：</strong>Evidence before assertions（先有證據，才能下結論）。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">executing-plans</div>
+                <div class="toolkit-desc">在獨立 session 執行已寫好的實作計畫（含 review 檢查點）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>有 writing-plans 產生的計畫文件後，在另一個 session 中執行，並含中途 review 檢查點。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">subagent-driven-development</div>
+                <div class="toolkit-desc">當前 session 直接派 subagent 跑各獨立子任務</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>計畫中的任務彼此獨立時，在當前 session 直接派 subagent 並行執行。
+<strong>差別：</strong>不換 session，跟 executing-plans 不同。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">dispatching-parallel-agents</div>
+                <div class="toolkit-desc">2 個以上獨立任務時派並行 agent</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>當前有 2+ 個彼此獨立、無共享狀態、無順序依賴的任務時，派並行 agent 一起跑。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">using-git-worktrees</div>
+                <div class="toolkit-desc">隔離工作空間，避免污染當前 workspace</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>開始需要與當前 workspace 隔離的 feature work，或執行實作計畫前，建立 worktree。
+<strong>備註：</strong>會用原生工具或 git worktree fallback。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">finishing-a-development-branch</div>
+                <div class="toolkit-desc">實作完成後決定如何整合（merge / PR / cleanup）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>實作完成、測試通過後，引導決定下一步要 merge、開 PR、還是清理 branch。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">writing-skills</div>
+                <div class="toolkit-desc">建立、編輯、驗證 skill</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>創建新 skill、編輯既有 skill、部署前驗證 skill 是否能運作。
+<strong>備註：</strong>跟「技能創建」「write-a-skill」三者重疊，superpowers 版偏 deploy 驗證。</div>
+          </div>
+
+          <!-- ============ garrytan/gstack ============ -->
+          <div style="padding:12px 20px 4px;font-size:14px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">garrytan/gstack（瀏覽器 QA）</div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gstack</div>
+                <div class="toolkit-desc">headless 瀏覽器做 QA 測試、頁面驗證、截圖蒐證</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>用快速 headless 瀏覽器導頁、互動、驗證狀態、做 before/after diff、標註截圖、測試 RWD/表單/上傳/對話框、留 bug 證據。
+<strong>觸發情境：</strong>「打開這個網站測一下」「驗證部署」「dogfood 一個流程」「截圖回報 bug」。
+<strong>⚠️ 安全評估：</strong>High Risk（20 alerts）— 使用前自評風險。</div>
+          </div>
+
+          <!-- ============ mattpocock/skills ============ -->
+          <div style="padding:12px 20px 4px;font-size:14px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">mattpocock/skills（個人工作流）</div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">grill-me</div>
+                <div class="toolkit-desc">對你的計畫一路追問、釐清每個決策分支</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>對使用者的計畫或設計一路追問，逐個解決決策樹的每個分支，直到達成共識。
+<strong>觸發情境：</strong>「stress-test 我的計畫」「grill me」「想被狠狠質疑」。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">grill-with-docs</div>
+                <div class="toolkit-desc">grill-me 進階版：對照 CONTEXT.md / ADR 並同步更新文件</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>跟 grill-me 一樣追問，但同時對照專案的 domain model、CONTEXT.md、ADR，過程中把決策結果寫進文件。
+<strong>觸發情境：</strong>想針對「專案內部既有用語與決策」做計畫的壓力測試。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">improve-codebase-architecture</div>
+                <div class="toolkit-desc">找架構深化機會（依據 CONTEXT.md + ADR）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>掃 codebase 找架構深化機會，依據 CONTEXT.md 的領域語言、docs/adr/ 的歷史決策。
+<strong>觸發情境：</strong>想改善架構、找重構機會、合併耦合過深的模組、讓 codebase 更可測。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">tdd</div>
+                <div class="toolkit-desc">紅綠重構循環（mattpocock 版）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>用紅綠重構（red-green-refactor）方式做 TDD，蓋 integration tests。
+<strong>觸發情境：</strong>「我要 TDD」「red-green-refactor」「test-first」。
+<strong>差別：</strong>superpowers 版 test-driven-development 偏「強制流程」，這個偏「教學循環」。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">to-prd</div>
+                <div class="toolkit-desc">把目前對話脈絡濃縮成 PRD 發到 issue tracker</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把當前對話討論的內容整理成 PRD（產品需求文件），並發布到專案的 issue tracker。
+<strong>觸發情境：</strong>聊得差不多了想沉澱成 PRD。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">to-issues</div>
+                <div class="toolkit-desc">把計畫/spec/PRD 切成獨立可領取的 issue（tracer-bullet 切片）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把計畫、spec、或 PRD 切成「彼此獨立、可單獨領取」的 issue，用 tracer-bullet vertical slice 方式劃分。
+<strong>觸發情境：</strong>計畫做完想拆成可派工的 ticket。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">triage</div>
+                <div class="toolkit-desc">用狀態機 + 角色把 issue 分流</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>透過 triage 角色驅動的狀態機處理 issue 分流。
+<strong>觸發情境：</strong>「建立 issue」「分流 bug 回報」「準備給 AFK agent 派工」「管理 issue 流程」。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">zoom-out</div>
+                <div class="toolkit-desc">推測：拉高層級看大局（資料夾存在於 .agents/skills 但 Available 清單未列）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>備註：</strong>資料夾存在於 C:\Users\at197\.agents\skills\zoom-out\，但 Available skills 清單沒列到，可能未被 symlink 進 Claude Code。
+<strong>推測用途：</strong>從細節跳出來看整體脈絡。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">caveman</div>
+                <div class="toolkit-desc">超壓縮溝通模式（減 ~75% token）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>切換成「穴居人模式」回話：去掉冠詞、客套話、贅字，保留技術精確度，token 用量大減。
+<strong>觸發詞：</strong>「caveman mode」「talk like caveman」「less tokens」「be brief」「/caveman」。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">handoff</div>
+                <div class="toolkit-desc">把當前對話壓縮成交接文件給下一個 agent</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把當前對話精煉成交接文件（handoff doc），讓另一個 agent 能無縫接手。
+<strong>觸發情境：</strong>對話太長要轉手、要派給別的 session、context 即將被壓縮。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">write-a-skill</div>
+                <div class="toolkit-desc">建立新 agent skill（含結構、漸進揭露、bundled 資源）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>引導建立新的 agent skill，含正確結構、progressive disclosure、bundled resources。
+<strong>備註：</strong>跟「技能創建」「writing-skills」三者主題重疊，這是 mattpocock 版。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">diagnose</div>
+                <div class="toolkit-desc">硬 bug / 效能回歸的紀律性診斷循環</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>處理難 bug、效能回歸用的紀律性流程：重現 → 縮小範圍 → 假設 → 加 instrumentation → 修復 → 加 regression test。
+<strong>觸發情境：</strong>「diagnose this」「debug this」「壞了 / throw / 失敗」「效能突然變慢」。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">prototype</div>
+                <div class="toolkit-desc">寫拋棄式原型，先驗證設計再認真做</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>寫拋棄式 prototype 來釐清設計，再決定要不要正式做。會路由到兩種模式：(1) 終端 app 驗證狀態/業務邏輯 (2) 同一路由放多種 radically 不同的 UI 變體切換。
+<strong>觸發情境：</strong>「prototype this」「let me play with it」「想試幾種設計」「sanity-check 這個 data model」。</div>
+          </div>
+
+          <!-- ============ 其他個人 SKILL ============ -->
+          <div style="padding:12px 20px 4px;font-size:14px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px">其他個人 SKILL</div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">gpt-image</div>
+                <div class="toolkit-desc">用 GPT Image 2 生成 / 編輯圖像（海報、字體、中文文字、UI mockup、圖表）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>用 GPT Image 2（gpt-image-2）做 text-to-image、reference-image 編輯、inpainting、海報、字體設計、中文文字、UI mockup、圖表、gallery prompt。流程：分析需求 → 搜尋 bundled Reference Gallery / craft 檔找匹配的設計樣式 → 必要時討論方向 → 呼叫打包的 <code>gpt-image</code> CLI 或 <code>scripts/generate.py</code>。
+<strong>觸發詞：</strong>「生成圖片」「畫圖」「render」「edit image」「inpaint」「海報」「typography」「中文字 AI 圖」「gpt-image-2」。
+<strong>需求：</strong>Python 3.11+、<code>gpt-image</code> / <code>uv</code> / <code>uvx</code>、<code>OPENAI_API_KEY</code>（會產生 OpenAI API 費用）。
+<strong>規則：</strong>除非使用者明確要求改 repo，否則不要自己寫新的圖像生成程式碼。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">prompt-master</div>
+                <div class="toolkit-desc">為特定 AI 工具產生最佳化 prompt（LLM / Cursor / Midjourney / 圖像 / 影片 / coding agent）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>把使用者的粗略想法轉成單一可直接貼用、針對特定 AI 工具最佳化、零浪費 token 的 production-ready prompt。只在使用者明確要求「寫 / 修 / 改 / 改編」prompt 時啟動。
+<strong>觸發情境：</strong>「幫我寫一個 prompt 給 ___」「修一下這個 prompt」「把這個 prompt 改成給 Midjourney 用」「優化這個 Cursor prompt」。
+<strong>不啟動：</strong>一般對話、寫程式、寫文件等非 prompt engineering 任務。
+<strong>產出格式：</strong>1 個可複製的 prompt 區塊 + 一行 Target/Why 註解；必要時補 1-2 行 setup 說明。</div>
+          </div>
+
+          <div>
+            <div class="toolkit-item expandable" onclick="toggleDetail(this)">
+              <div class="toolkit-info">
+                <div class="toolkit-name">baccarat-fix</div>
+                <div class="toolkit-desc">百家樂牌靴違規修復規範（ATLL 專案專用）</div>
+              </div>
+              <span class="toolkit-tag tag-skill">skill</span>
+            </div>
+            <div class="toolkit-detail"><strong>用途：</strong>給 ATLL 百家樂專案用的牌靴違規修復規範。定義違規類型 + 修復優先順序：(1) 無法對調 (2) 連續5局4張違規 (3) 連續6局莊/閒違規 (4) 訊號牌違規 (5) 卡色違規（永遠最後做）。
+<strong>規則內容：</strong>卡色規則（RRRB / BBBR / RRBB / BBRR）、訊號牌定義（預設34模式：♠♥♦♣ 全花色 3、4 共 64 張；舊模式：♥♦ 的 T/J/Q/K）、交換限制（同點數、不得產生新違規）。
+<strong>34 模式特例：</strong>連續莊/閒不修復，靠「2 段 × 6 局」容許規則 + 重跑處理；訊號牌違規只能用「對調下一局前兩張」，不能換掉訊號牌。
+<strong>備註：</strong>此 SKILL.md 在 <code>ATLL/SKILL.md</code>，不在 ~/.claude/skills/，是專案層級 skill 但 Claude Code 仍會載入。</div>
+          </div>
+
         </div>
       </div>
 
@@ -3145,10 +3628,10 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
       </div>
 
       <!-- 繁體中文 -->
-      <div class="fx-section">
+      <div class="fx-section fx-cjk">
         <div class="fx-section-head">
           <h2>繁體中文</h2>
-          <span class="fx-kicker">Traditional Chinese · 15 fonts</span>
+          <span class="fx-kicker">Traditional Chinese · 34 fonts</span>
         </div>
         <div class="fx-grid">
           <div class="fx-card">
@@ -3287,14 +3770,166 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
                                                     <div class="fx-sample ff-noto-sans-tc">諳驊請吐吊</div>
                                                     <div class="fx-sample-sub ff-noto-sans-tc">Google 譯體，適合 UI 與長文閱讀。</div>
                              </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">ChenYuluoyan Thin</span>
+              <span class="fx-font-tag">極細毛筆楷書</span>
+            </div>
+            <div class="fx-sample ff-chenyuluoyan">靈氣飄逸若羽</div>
+            <div class="fx-sample-sub ff-chenyuluoyan">仿毛筆極細筆畫，字形靈動飄逸，適合詩詞書法風設計。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">GenWanMin2 TC</span>
+              <span class="fx-font-tag">文鼎開源宋體</span>
+            </div>
+            <div class="fx-sample ff-genwan">雲起千山外</div>
+            <div class="fx-sample-sub ff-genwan">基於文鼎字型授權的開源宋體，多字重，適合正文閱讀。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Glow Sans TC Extended</span>
+              <span class="fx-font-tag">多字重無襯線</span>
+            </div>
+            <div class="fx-sample ff-glowsans">光明坦蕩行</div>
+            <div class="fx-sample-sub ff-glowsans">台灣開源黑體 Extended 寬版，字重從 Thin 到 Heavy 完整齊備。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Kaisei Opti</span>
+              <span class="fx-font-tag">日式優雅明朝</span>
+            </div>
+            <div class="fx-sample ff-kaisei">詩韻縈懷遠</div>
+            <div class="fx-sample-sub ff-kaisei">兼具閱讀感與裝飾性的日系明朝體，字形優雅沉穩。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Satsuki Gendai Mincho</span>
+              <span class="fx-font-tag">現代感明朝</span>
+            </div>
+            <div class="fx-sample ff-satsuki">摩登與古雅並存</div>
+            <div class="fx-sample-sub ff-satsuki">融合現代設計感的明朝體，兼顧傳統線條與當代美學。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Swei Spring CJK TC</span>
+              <span class="fx-font-tag">台灣手感黑體</span>
+            </div>
+            <div class="fx-sample ff-swei">春風輕拂過</div>
+            <div class="fx-sample-sub ff-swei">台灣開源字型，帶手感的無襯線體，多字重完整支援。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">ToneOZ Tsuipita TC</span>
+              <span class="fx-font-tag">注音符號標注</span>
+            </div>
+            <div class="fx-sample ff-toneoz">文字有聲音</div>
+            <div class="fx-sample-sub ff-toneoz">支援注音符號標注，適合台語學習與國語教材設計。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">香萃刻宋</span>
+              <span class="fx-font-tag">精刻宋體</span>
+            </div>
+            <div class="fx-sample ff-xiangcui">墨跡刻骨千年</div>
+            <div class="fx-sample-sub ff-xiangcui">高品質刻宋風格，刀鋒精刻，傳承古典活版印刷美學。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Potta One</span>
+              <span class="fx-font-tag">超粗膨脹黑體</span>
+            </div>
+            <div class="fx-sample ff-potta">爆炸登場</div>
+            <div class="fx-sample-sub ff-potta">筆畫極粗膨脹飽滿，視覺衝擊強，適合演唱會大字報。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">RocknRoll One</span>
+              <span class="fx-font-tag">活力手感黑體</span>
+            </div>
+            <div class="fx-sample ff-rocknroll">搖滾不死</div>
+            <div class="fx-sample-sub ff-rocknroll">筆畫帶抖動感，充滿街頭與演唱會的活力張力。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">DotGothic16</span>
+              <span class="fx-font-tag">像素點陣黑體</span>
+            </div>
+            <div class="fx-sample ff-dotgothic">像素電玩世界</div>
+            <div class="fx-sample-sub ff-dotgothic">筆畫由方格點構成，復古電玩感，二次元文化必備。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Palette Mosaic</span>
+              <span class="fx-font-tag">馬賽克拼貼</span>
+            </div>
+            <div class="fx-sample ff-palette">彩磚拼字</div>
+            <div class="fx-sample-sub ff-palette">筆畫由彩色小磚塊拼成，視覺最特殊的裝飾字型。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">哥特式字體</span>
+              <span class="fx-font-tag">西式哥特裝飾</span>
+            </div>
+            <div class="fx-sample ff-gete">暗夜哥德</div>
+            <div class="fx-sample-sub ff-gete">融合西方哥特風格，筆畫帶稜角與尖銳感，適合黑暗系設計。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">漢儀彩雲體繁</span>
+              <span class="fx-font-tag">雲朵裝飾輪廓</span>
+            </div>
+            <div class="fx-sample ff-caiyun">雲彩流光</div>
+            <div class="fx-sample-sub ff-caiyun">筆畫帶雲朵般的裝飾輪廓，飄逸奇幻，漢儀經典裝飾字型。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">漢儀齊黑繁</span>
+              <span class="fx-font-tag">方正均勻黑體</span>
+            </div>
+            <div class="fx-sample ff-hyqihei">方正整齊</div>
+            <div class="fx-sample-sub ff-hyqihei">漢儀齊黑系列，筆畫粗壯均勻，結構方正，適合標題排版。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">山海黑奇式格特</span>
+              <span class="fx-font-tag">奇幻哥特黑體</span>
+            </div>
+            <div class="fx-sample ff-shanhai1">山海奇境</div>
+            <div class="fx-sample-sub ff-shanhai1">帶奇幻哥特風格的黑體，適合遊戲、插畫、黑暗系設計。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">山海星夜格特</span>
+              <span class="fx-font-tag">星夜哥特黑體</span>
+            </div>
+            <div class="fx-sample ff-shanhai2">星夜繁空</div>
+            <div class="fx-sample-sub ff-shanhai2">星夜風格哥特體，適合科幻、奇幻主題與夜景設計。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Gen Ei Gothic P Heavy</span>
+              <span class="fx-font-tag">源暎圓角超粗黑</span>
+            </div>
+            <div class="fx-sample ff-genei">渾厚圓潤</div>
+            <div class="fx-sample-sub ff-genei">日系圓角超粗黑體，字形飽滿渾厚，適合標題強調用字。</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">AR RomanMinchoJP UL</span>
+              <span class="fx-font-tag">日系超細明朝</span>
+            </div>
+            <div class="fx-sample ff-armincho">雅緻輕盈</div>
+            <div class="fx-sample-sub ff-armincho">日系超細明朝體，線條纖細優雅，適合高端品牌與時尚版面。</div>
+          </div>
         </div>
       </div>
 
       <!-- 英文 -->
-      <div class="fx-section">
+      <div class="fx-section fx-en">
         <div class="fx-section-head">
           <h2>英文</h2>
-          <span class="fx-kicker">English · 12 fonts</span>
+          <span class="fx-kicker">English · 22 fonts</span>
         </div>
         <div class="fx-grid">
           <div class="fx-card">
@@ -3377,27 +4012,107 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
             <div class="fx-sample ff-kablammo">Kablammo!</div>
             <div class="fx-sample-sub ff-kablammo">Organic, wavy, comic impact.</div>
           </div>
-                                   <div class="fx-card">
-                                                  <div class="fx-card-meta">
-                                                                           <span class="fx-font-name">Fraunces</span>
-                                                                           <span class="fx-font-tag">Modern Italic Serif</span>
-                                                  </div>
-                                                  <div class="fx-sample ff-fraunces">Velvet Hours</div>
-                                                  <div class="fx-sample-sub ff-fraunces">Editorial italic with playful curves &amp; warmth.</div>
-                           </div>
-                           <div class="fx-card">
-                                                  <div class="fx-card-meta">
-                                                                           <span class="fx-font-name">JetBrains Mono</span>
-                                                                           <span class="fx-font-tag">Code Mono</span>
-                                                  </div>
-                                                  <div class="fx-sample ff-jetbrains">const idea = true;</div>
-                                                  <div class="fx-sample-sub ff-jetbrains">Programmer-grade monospace for terminals &amp; code.</div>
-                           </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Fraunces</span>
+              <span class="fx-font-tag">Modern Italic Serif</span>
+            </div>
+            <div class="fx-sample ff-fraunces">Velvet Hours</div>
+            <div class="fx-sample-sub ff-fraunces">Editorial italic with playful curves &amp; warmth.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">JetBrains Mono</span>
+              <span class="fx-font-tag">Code Mono</span>
+            </div>
+            <div class="fx-sample ff-jetbrains">const idea = true;</div>
+            <div class="fx-sample-sub ff-jetbrains">Programmer-grade monospace for terminals &amp; code.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Auberge Script Pro</span>
+              <span class="fx-font-tag">Elegant Script</span>
+            </div>
+            <div class="fx-sample ff-auberge">Love &amp; Bloom</div>
+            <div class="fx-sample-sub ff-auberge">Fluid cursive strokes, perfect for wedding &amp; luxury branding.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Bacchus ExtraBold</span>
+              <span class="fx-font-tag">Bold Display</span>
+            </div>
+            <div class="fx-sample ff-bacchus">BACCHUS</div>
+            <div class="fx-sample-sub ff-bacchus">Heavy decorative display with festive character.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Bickham Script Pro 3</span>
+              <span class="fx-font-tag">Formal Calligraphy</span>
+            </div>
+            <div class="fx-sample ff-bickham">Fine Penmanship</div>
+            <div class="fx-sample-sub ff-bickham">Traditional calligraphic elegance for invitations &amp; certificates.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">College Freaks</span>
+              <span class="fx-font-tag">Varsity Letterman</span>
+            </div>
+            <div class="fx-sample ff-cfreaks">GAME DAY</div>
+            <div class="fx-sample-sub ff-cfreaks">Classic collegiate letterman style for sports &amp; campus designs.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Hi Jack</span>
+              <span class="fx-font-tag">Grunge Display</span>
+            </div>
+            <div class="fx-sample ff-hijack">HIGH VOLTAGE</div>
+            <div class="fx-sample-sub ff-hijack">Raw, gritty energy for posters &amp; punk-inspired headlines.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Klipan Black</span>
+              <span class="fx-font-tag">Ultra Black Sans</span>
+            </div>
+            <div class="fx-sample ff-klipan">KLIPAN</div>
+            <div class="fx-sample-sub ff-klipan">Ultra-black weight, maximum visual impact for display headlines.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Midfield Stencil</span>
+              <span class="fx-font-tag">Military Stencil</span>
+            </div>
+            <div class="fx-sample ff-midfield">CLASSIFIED</div>
+            <div class="fx-sample-sub ff-midfield">Industrial stencil lettering, military and utility aesthetic.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Monoton</span>
+              <span class="fx-font-tag">Retro Stripe</span>
+            </div>
+            <div class="fx-sample ff-monoton2">NEON NIGHT</div>
+            <div class="fx-sample-sub ff-monoton2">Double inline stripe, retro neon sign aesthetic.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">Sounso Sagacity</span>
+              <span class="fx-font-tag">Decorative Display</span>
+            </div>
+            <div class="fx-sample ff-sounso">Sagacity</div>
+            <div class="fx-sample-sub ff-sounso">Distinctive decorative character with refined personality.</div>
+          </div>
+          <div class="fx-card">
+            <div class="fx-card-meta">
+              <span class="fx-font-name">United Serif SemiCond Thin</span>
+              <span class="fx-font-tag">Condensed Thin Serif</span>
+            </div>
+            <div class="fx-sample ff-united">Refined &amp; Thin</div>
+            <div class="fx-sample-sub ff-united">Semi-condensed editorial serif, magazine and luxury print ready.</div>
+          </div>
         </div>
       </div>
 
       <!-- 數字 -->
-      <div class="fx-section">
+      <div class="fx-section fx-num">
         <div class="fx-section-head">
           <h2>數字</h2>
           <span class="fx-kicker">Numbers · 10 fonts</span>
@@ -3487,7 +4202,7 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
       </div>
 
       <!-- 電話號碼對照(雜誌粗 serif / display serif) -->
-      <div class="fx-section">
+      <div class="fx-section fx-phone">
         <div class="fx-section-head">
           <h2>電話號碼對照</h2>
           <span class="fx-kicker">Phone Numbers · 10 fonts · tabular-nums</span>

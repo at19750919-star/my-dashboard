@@ -1,0 +1,12 @@
+.playwright-mcp/
+*.bak
+*.bak2
+armincho-verify.png
+effects-new-cards*.png
+effects-page-verify.png
+en-verify*.png
+font-url-fix-verify*.png
+font02-verify*.png
+new4-fonts.png
+section-*.png
+section-color-verify.png
