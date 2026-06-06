@@ -1,5 +1,3003 @@
 const AI_NEWS_DATA = [
   {
+    "date": "2026-06-06",
+    "weekday": "星期六",
+    "stats": {
+      "claude": 4,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，強化長時間 coding 與代理任務穩定度",
+        "desc": "Anthropic 於 2026 年 5 月 28 日發布 Claude Opus 4.8，主打比 Opus 4.7 更穩定的程式撰寫、代理式任務與專業知識工作表現，並同步替 Claude Code 加入可處理超大型問題的 dynamic workflows。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "security",
+        "title": "Anthropic 擴大 Project Glasswing，新增約 150 家機構使用 Claude Mythos Preview",
+        "desc": "Anthropic 於 2026 年 6 月 2 日宣布擴大 Project Glasswing，表示首批夥伴已用 Claude Mythos Preview 找出超過一萬個高風險或重大漏洞，接下來將把計畫延伸到約 150 個新組織與更多關鍵基礎設施場景。",
+        "url": "https://www.anthropic.com/news/expanding-project-glasswing",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "security"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 推出 Claude Partner Hub，可透過 MCP 查詢夥伴認證與部署狀態",
+        "desc": "Anthropic 於 2026 年 6 月 3 日發表 Claude Partner Network 的 Services Track 與 Partner Hub，讓合作夥伴能把 Hub 接進 Claude，直接查詢團隊認證、客戶部署與升級門檻。",
+        "url": "https://www.anthropic.com/news/services-track-partner-hub",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      },
+      {
+        "sub": "business",
+        "title": "Anthropic 機密遞交 S-1 草案，正式保留 IPO 選項",
+        "desc": "Anthropic 於 2026 年 6 月 1 日宣布，已向美國證交會機密提交 S-1 註冊草案，為首次公開募股保留選項；公司強調是否上市仍取決於市場條件與後續審查進度。",
+        "url": "https://www.anthropic.com/news/confidential-draft-s1-sec",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "business"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "OpenAI 為 Codex 加入角色型外掛、Sites 與註解功能，擴大知識工作應用",
+        "desc": "OpenAI 於 2026 年 6 月 2 日宣布，Codex 新增角色導向 plugins、可分享網址的 Sites，以及可原地修訂內容的 annotations，讓分析、研究、行銷與設計等非工程工作也能直接在 Codex 內完成。",
+        "url": "https://openai.com/index/codex-for-every-role-tool-workflow/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "security",
+        "title": "ChatGPT 推出 Active sessions，集中檢視與登出已登入工作階段",
+        "desc": "OpenAI 在 2026 年 6 月 4 日更新的 ChatGPT release notes 中推出 Active sessions，讓使用者可於 Security 設定查看 ChatGPT、Codex 與 API Platform 的第一方登入工作階段，並逐一或全部登出。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "security"
+        ]
+      },
+      {
+        "sub": "memory",
+        "title": "OpenAI 發布 Dreaming 記憶架構升級，強化 ChatGPT 的長期個人化",
+        "desc": "OpenAI 於 2026 年 6 月 4 日公布更完整的 Dreaming 記憶系統，讓 ChatGPT 能自動更新過期記憶，持續整合多輪對話中的偏好、專案與限制，降低個人化資訊陳舊或互相矛盾的情況。",
+        "url": "https://openai.com/index/chatgpt-memory-dreaming/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "memory"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "OpenAI 模型與 Codex 正式在 AWS 上全面可用",
+        "desc": "OpenAI 於 2026 年 6 月 1 日宣布，旗下前沿模型與 Codex 已在 AWS 正式上線，企業可透過既有的安全、治理、採購與計費流程，把 OpenAI 能力導入 Amazon Bedrock 與既有雲端工作流。",
+        "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "platform"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 推出 Gemini 3.5 Flash，成為 Gemini app 與 AI Mode 預設模型",
+        "desc": "Google 於 2026 年 5 月 20 日宣布 Gemini 3.5 正式登場，首波推出的 3.5 Flash 主打代理式工作流與程式任務，並已成為 Gemini 應用程式與 Google 搜尋 AI Mode 的預設模型。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Gemini API 新增 Managed Agents，可在隔離 Linux 環境執行工具與程式碼",
+        "desc": "Google 於 2026 年 5 月 19 日宣布 Gemini API 支援 Managed Agents，開發者可透過單一呼叫啟動會推理、能用工具，且可在隔離暫時性 Linux 環境中執行程式碼的代理。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/managed-agents-gemini-api/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 朝全天候代理升級，新增 Daily Brief 與 Gemini Spark",
+        "desc": "Google 在 2026 年 5 月 20 日說明，Gemini app 每月已吸引超過 9 億人使用，並新增 Daily Brief 與 Gemini Spark 等主動協助功能，朝 24 小時個人助理演進。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-apps-all-up/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "search",
+        "title": "Google 搜尋導入資訊代理與迷你應用，強化 AI 搜尋互動",
+        "desc": "Google 於 2026 年 5 月 20 日宣布，AI Mode 除了升級到 Gemini 3.5 Flash，還將加入可在背景持續追蹤主題的 information agents，以及能即時生成互動式資訊頁與 mini apps 的搜尋體驗。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/search-io-2026/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "search"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，讓訂閱用戶直接在終端機使用 AI coding agent",
+        "desc": "xAI 於 2026 年 5 月 25 日發布 Grok Build 早期 beta，主打可在終端機中規劃、審核與執行複雜軟體工程任務，開放給 SuperGrok 與 X Premium Plus 訂閱者使用。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 進入 API 公測，主打代理式程式開發與 MCP 支援",
+        "desc": "xAI 於 2026 年 5 月 28 日把 grok-build-0.1 帶進 API 公測，定位為高速程式模型，支援 web 開發、除錯、工具呼叫與 MCP 場景，也是 Grok Build CLI 背後使用的核心模型。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 讓 Grok 接進 Kilo Code，訂閱帳號可直接帶入 IDE 與 CLI",
+        "desc": "xAI 於 2026 年 5 月 27 日宣布，SuperGrok 與 X Premium Plus 用戶可把 Grok 帳號接進 Kilo Code，在 VS Code、JetBrains 與終端機中直接使用最新 Grok 模型與 Grok Build。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "video",
+        "title": "xAI 推出 grok-imagine-video-1.5-preview，開放以單張圖片生成影片",
+        "desc": "xAI 於 2026 年 6 月 3 日把 grok-imagine-video-1.5-preview 開放到 API 預覽版，支援用單張靜態圖片加自然語言提示生成最長 720p 的動態影片，補強 Grok 的多模態創作能力。",
+        "url": "https://x.ai/news/grok-imagine-1-5",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "video"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "iThome：OpenAI 發表 Codex 知識工作者導向工具",
+        "desc": "iThome 於 2026 年 6 月 3 日報導，OpenAI 正把 Codex 從程式開發助理擴大到知識工作場景，加入角色型外掛、Sites 協作網站與 annotations，瞄準分析、研究與行銷等辦公流程。",
+        "url": "https://www.ithome.com.tw/news/176307",
+        "source": "iThome",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "title": "INSIDE：Anthropic 正式向 SEC 提交 S-1，搶先啟動 IPO 流程",
+        "desc": "INSIDE 於 2026 年 6 月 2 日報導，Anthropic 已機密提交 S-1 草案，正式保留上市選項，代表 Claude 開發商在資本市場布局上又往前一步。",
+        "url": "https://www.inside.com.tw/article/41440-anthropic-s1-sec-ipo-filing-2026-openai-spacex",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "business"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，加入 AI 程式代理工具戰局",
+        "desc": "iThome 於 2026 年 5 月 18 日指出，Grok Build 採 CLI 與 Plan Mode 設計，並支援多子代理與 MCP，顯示 xAI 正式切入 AI coding agent 市場。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "title": "INSIDE：Anthropic 共同創辦人 Ben Mann 訪台，聚焦 Claude Code 與 AI 安全",
+        "desc": "INSIDE 於 2026 年 6 月 5 日報導，Anthropic 共同創辦人 Ben Mann 在台北談 Claude Code、MCP 與 AI 安全邊界，顯示 Anthropic 持續加強在開發者與基礎設施生態的布局。",
+        "url": "https://www.inside.com.tw/article/41483-anthropic-ben-mann-taiwan-visit-ai-safety-jobs-2026",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "developer"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
+        "author": "University of Waterloo",
+        "desc": "這篇 2026 年 6 月 5 日在 Hugging Face Daily Papers 排名第 1 的論文，提出可為程式模型生成儲存庫專屬 LoRA adapter 的 Code2LoRA，並釋出涵蓋 604 個 Python repo 的 RepoPeftBench 基準。",
+        "url": "https://huggingface.co/papers/2606.06492",
+        "tags": [
+          "code",
+          "open"
+        ]
+      },
+      {
+        "name": "AdaPlanBench: Evaluating Adaptive Planning in Large Language Model Agents under World and User Constraints",
+        "author": "University of Illinois Urbana-Champaign",
+        "desc": "這篇 2026 年 6 月 5 日受到關注的 Daily Paper，建立 307 個家庭任務的互動式基準，專門測試 LLM 代理在逐步揭露世界限制與使用者偏好時，能否持續重規劃與修正方案。",
+        "url": "https://huggingface.co/papers/2606.05622",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "n8n",
+        "repo": "n8n-io/n8n",
+        "desc": "n8n 持續是熱門 AI 自動化與代理工作流專案；GitHub 顯示約 191k stars，最新版本 2.23.4 於 2026 年 6 月 5 日發布。",
+        "stars": "191k stars",
+        "lang": "TypeScript",
+        "url": "https://github.com/n8n-io/n8n",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Dify",
+        "repo": "langgenius/dify",
+        "desc": "Dify 仍是熱門 agentic workflow 平台；GitHub 顯示約 144k stars，最新版本 1.14.2 於 2026 年 5 月 19 日發布。",
+        "stars": "144k stars",
+        "lang": "Python",
+        "url": "https://github.com/langgenius/dify",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-05",
+    "weekday": "星期五",
+    "stats": {
+      "claude": 4,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，強化長時間 coding 與代理式任務穩定度",
+        "desc": "Anthropic 於 2026 年 5 月 28 日發布 Claude Opus 4.8，主打在程式開發、代理式工作與專業知識任務上的更高一致性，並把長時間執行的工作表現列為升級重點。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "safety",
+        "title": "Anthropic 擴大 Project Glasswing，讓更多關鍵機構用 Claude 做漏洞掃描",
+        "desc": "Anthropic 於 2026 年 6 月 2 日宣布，Project Glasswing 將從原本約 50 個合作夥伴擴大到約 150 個新組織，讓更多關鍵基礎設施與軟體維護方能用 Claude Mythos Preview 進行高風險漏洞檢測。",
+        "url": "https://www.anthropic.com/news/expanding-project-glasswing",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "safety"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 推出 Claude Partner Hub，合作夥伴可透過 MCP 直接查詢部署狀態",
+        "desc": "Anthropic 於 2026 年 6 月 3 日發表 Claude Partner Network 的 Services Track 與 Claude Partner Hub，讓合作夥伴能在 Claude 內透過新的 MCP connector 查詢認證、客戶部署與升級資格。",
+        "url": "https://www.anthropic.com/news/services-track-partner-hub",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      },
+      {
+        "sub": "business",
+        "title": "Anthropic 完成 Series H 融資，表示會擴大 Claude 產品與算力供應",
+        "desc": "Anthropic 於 2026 年 5 月 28 日宣布完成 650 億美元 Series H 融資，並表示新資金將用於擴充安全研究、算力基礎設施，以及客戶依賴的 Claude 產品與合作夥伴體系。",
+        "url": "https://www.anthropic.com/news/series-h",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "business"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "model",
+        "title": "OpenAI 把 GPT-5.5 Instant 升為 ChatGPT 預設模型，並加入記憶來源檢視",
+        "desc": "OpenAI 於 2026 年 5 月 5 日宣布 GPT-5.5 Instant 成為 ChatGPT 新的預設模型，同步把個人化記憶來源檢視功能帶到消費版方案，讓使用者看到回應參考了哪些聊天、記憶、檔案或連接資料。",
+        "url": "https://openai.com/index/gpt-5-5-instant/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "safety",
+        "title": "OpenAI 推出 Trusted Contact，讓 ChatGPT 在高風險情境可通知信任聯絡人",
+        "desc": "OpenAI 於 2026 年 5 月 7 日開始推出 Trusted Contact，成年人可在 ChatGPT 中指定一位信任聯絡人；若系統與人工審查偵測到嚴重自傷風險，平台可通知該聯絡人協助關懷。",
+        "url": "https://openai.com/index/introducing-trusted-contact-in-chatgpt/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "safety"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Codex 支援 Windows Computer Use，擴大到桌面應用操作場景",
+        "desc": "OpenAI 在 2026 年 5 月 29 日的 ChatGPT release notes 中宣布，Codex 已支援 Windows Computer Use，可直接查看、點擊與輸入桌面應用程式，延伸 AI coding agent 的可操作範圍。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "security",
+        "title": "ChatGPT 新增 Active account session controls，集中管理已登入工作階段",
+        "desc": "OpenAI 在 2026 年 6 月 1 日更新 ChatGPT release notes，新增 Active account session controls，讓使用者可在 Security 設定中檢視與登出 ChatGPT、Codex 與 API Platform 的已登入工作階段。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "security"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 正式推出 Gemini 3.5 Flash，主打高速代理式工作流與程式任務",
+        "desc": "Google 台灣官方部落格於 2026 年 5 月 20 日宣布 Gemini 3.5 Flash 正式成為 Gemini 應用程式與 Google 搜尋 AI 模式的預設模型，強調它兼具前沿智慧、行動力與更快輸出速度。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Gemini API 新增 Managed Agents，可在隔離 Linux 環境中執行工具與程式碼",
+        "desc": "Google 於 2026 年 5 月 19 日宣布 Managed Agents 進入 Gemini API，開發者可用單一呼叫啟動會推理、會用工具、也能在隔離暫時性 Linux 環境中執行程式碼的代理。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/managed-agents-gemini-api/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 加入每日摘要與 Gemini Spark，朝全天候個人代理前進",
+        "desc": "Google 台灣官方部落格在 2026 年 5 月 20 日說明，Gemini 應用程式新增每日摘要與 Gemini Spark，能主動整理當天資訊、處理待辦並在背景持續協助使用者完成任務。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-apps-all-up/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "Google 持續推進 Gemini Enterprise Agent Platform，整合企業代理治理與部署",
+        "desc": "Google 在 2026 年 4 月 22 日介紹 Gemini Enterprise Agent Platform，將模型建置、代理整合、安全治理與 DevOps 能力整合到單一平台，讓企業更容易大規模管理 Gemini 與其他模型代理。",
+        "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-enterprise-agent-platform/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "enterprise"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，讓 coding agent 直接進入終端機",
+        "desc": "xAI 於 2026 年 5 月 25 日發布 Grok Build 早期 beta，讓 SuperGrok 與 X Premium Plus 訂閱者可在終端機中規劃、審核與執行複雜軟體工程任務。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 進入 API 公測，主打 agentic coding 與 MCP 支援",
+        "desc": "xAI 在 2026 年 5 月 28 日把 grok-build-0.1 帶進 API 公測，定位為快速程式模型，強調網頁開發、除錯、代理式工作流與 MCP 工具使用情境。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 讓 Grok 接進 Kilo Code，訂閱帳號可直接在 IDE 與 CLI 使用",
+        "desc": "xAI 於 2026 年 5 月 27 日宣布，SuperGrok 與 X Premium Plus 用戶可把 Grok 帶進 Kilo Code，在 VS Code、JetBrains 與 CLI 內直接使用最新 Grok 模型與 Grok Build。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "voice",
+        "title": "xAI 與 Vapi 合作，讓 Grok 成為其核心語音代理的預設引擎",
+        "desc": "xAI 於 2026 年 6 月 3 日宣布與 Vapi 合作，讓 Grok 成為 Vapi 12 組核心聲音的預設語音引擎，並把 Grok Voice 帶進數百萬個已建立的 voice agents。",
+        "url": "https://x.ai/news/grok-vapi",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "voice"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "TechNews：Claude Opus 4.8 上線，長任務一致性與 Dynamic Workflows 成亮點",
+        "desc": "TechNews 在 2026 年 5 月 29 日整理 Anthropic 新模型重點，指出 Claude Opus 4.8 不只升級模型本身，也把 Dynamic Workflows 帶進 Claude Code，強化多 subagent 的大型工程任務處理能力。",
+        "url": "https://technews.tw/2026/05/29/anthropic-introduces-claude-opus-4-8/",
+        "source": "TechNews",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，正式加入 AI 程式代理工具戰局",
+        "desc": "iThome 在 2026 年 5 月 18 日指出，Grok Build 採 CLI 介面與 Plan Mode 設計，並支援 MCP 伺服器與平行子代理，顯示 xAI 正面切入開發者的 agentic coding 市場。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "title": "iThome：Gemini 3.5 Flash 全面上線，主打企業與開發者代理工作流",
+        "desc": "iThome 在 2026 年 5 月 20 日報導，Google 把 Gemini 3.5 Flash 定位為代理與工具調用工作流核心模型，並強調它在 MCP Atlas 等基準上超過多個前沿模型。",
+        "url": "https://www.ithome.com.tw/news/175949",
+        "source": "iThome",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "title": "INSIDE：Anthropic 收購 Stainless，AI 代理競爭延伸到 SDK 基礎設施層",
+        "desc": "INSIDE 在 2026 年 5 月 22 日分析，Anthropic 收購 Stainless 不只是買下 SDK 供應鏈，也是在代理式開發快速升溫之際，把開發者體驗與 API 基礎設施納入 Claude 生態戰略。",
+        "url": "https://www.inside.com.tw/article/41323-anthropic-acquires-stainless",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "platform"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+        "author": "Knowledge Engineer Group @ Tsinghua University",
+        "desc": "這篇 2026 年 6 月 1 日提交到 Hugging Face Daily Papers 的研究，針對長上下文推理加入分層干擾資料與 rubric reward，目標是提升搜尋型代理在大量資訊中的推理品質。",
+        "url": "https://huggingface.co/papers/2605.31584",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Task-Focused Memorization for Multimodal Agents",
+        "author": "ByteDance Seed",
+        "desc": "這篇 2026 年 6 月 1 日提交到 Hugging Face Daily Papers 的論文提出 TaskMem，用強化學習決定多模態代理該記住哪些資訊，改善串流影片與長期任務場景中的記憶策略。",
+        "url": "https://huggingface.co/papers/2605.31075",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "Anthropic 的終端機 AI coding agent 仍是熱門開源專案之一；GitHub 顯示最新版本 v2.1.163 於 2026 年 6 月 4 日發布，新增外掛清單與版本限制等能力。",
+        "stars": "130k stars",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "browser-use",
+        "repo": "browser-use/browser-use",
+        "desc": "browser-use 持續是熱門瀏覽器代理開源工具；GitHub 顯示專案約 97.2k stars，主打讓 AI 代理能直接操作網站與瀏覽器任務。",
+        "stars": "97.2k stars",
+        "lang": "Python",
+        "url": "https://github.com/browser-use/browser-use",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-04",
+    "weekday": "星期四",
+    "stats": {
+      "claude": 4,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，強化程式開發與長任務一致性",
+        "desc": "Anthropic 於 2026 年 5 月 28 日發布 Claude Opus 4.8，表示它在多項基準上優於 Opus 4.7，並更適合長時間執行的程式開發、代理式任務與專業知識工作。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Anthropic 上線 Claude Design，可直接生成設計稿、簡報與原型",
+        "desc": "Anthropic 於 2026 年 4 月 17 日推出 Claude Design 研究預覽，讓使用者能用對話方式產出設計稿、互動原型、簡報與單頁文件，並可匯出到 Canva、PDF、PPTX 或 HTML。",
+        "url": "https://www.anthropic.com/news/claude-design-anthropic-labs",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "safety",
+        "title": "Anthropic 擴大 Project Glasswing，讓更多關鍵單位用 Claude 做漏洞掃描",
+        "desc": "Anthropic 於 2026 年 6 月 2 日宣布，Project Glasswing 將從初始夥伴擴大到約 150 個新組織，讓更多關鍵基礎設施與軟體維護方用 Claude Mythos Preview 檢測高風險漏洞。",
+        "url": "https://www.anthropic.com/news/expanding-project-glasswing",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "safety"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 推出 Claude Partner Hub 與服務分級，並加入 MCP 連接器",
+        "desc": "Anthropic 於 2026 年 6 月 3 日發布 Claude Partner Network 新進展，新增 Services Track 與 Claude Partner Hub，合作夥伴也能透過新的 MCP connector 在 Claude 內查詢認證、專案與部署狀態。",
+        "url": "https://www.anthropic.com/news/services-track-partner-hub",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "ChatGPT 新增職缺搜尋與履歷格式化流程",
+        "desc": "OpenAI 在 2026 年 6 月 1 日的 ChatGPT release notes 新增求職功能，可搜尋即時職缺、依使用者背景篩選合適機會，並把履歷整理成可下載的專業格式。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Codex 支援 Windows Computer Use，並可遠端接續控制",
+        "desc": "OpenAI 於 2026 年 5 月 29 日更新 Codex，讓 Windows 版可直接查看、點擊與輸入應用程式，也可從 ChatGPT 行動端或 Mac 端遠端接續同一台 Windows 主機上的工作。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 更新 GPT-5.5 Instant，移除 canvas 並強化日常回應品質",
+        "desc": "OpenAI 在 2026 年 5 月 28 日更新 GPT-5.5 Instant，強調回應更自然、節奏更穩定，並把寫作與程式功能直接整合進聊天回覆，同步移除 GPT-5.5 Instant 與 Thinking 的 canvas。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "security",
+        "title": "ChatGPT 新增 Active Sessions，集中管理登入中的裝置與工作階段",
+        "desc": "OpenAI 在 2026 年 6 月 1 日推出 Active account session controls，讓使用者在 Security 設定中檢視與登出 ChatGPT、Codex 與 API Platform 的已登入工作階段。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "security"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 發表 Gemini 3.5 Flash，主打高速代理式工作流",
+        "desc": "Google 於 2026 年 5 月 19 日至 20 日在 I/O 2026 發表 Gemini 3.5 Flash，官方表示它在幾乎所有基準上優於 Gemini 3.1 Pro，並成為 Gemini 應用與搜尋 AI Mode 的預設模型。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Google 推出 Antigravity 2.0 桌面版與 CLI，擴充代理開發平台",
+        "desc": "Google 在 2026 年 5 月 19 日公布 Antigravity 2.0，加入獨立桌面應用、CLI、SDK 與多代理協作能力，讓開發者可在本地與雲端之間編排代理式工作流程。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Gemini API 新增 Managed Agents，可在隔離環境中執行工具與程式碼",
+        "desc": "同一批 I/O 2026 更新中，Google 將 Managed Agents 帶進 Gemini API，讓開發者以單一 API 呼叫建立會推理、會用工具、也能在隔離 Linux 環境執行程式碼的代理。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 加入每日摘要與 Gemini Spark，朝全天候個人代理前進",
+        "desc": "Google 台灣官方部落格在 2026 年 5 月 20 日說明，Gemini app 新增每日摘要與 24 小時運行的 Gemini Spark，能在背景整理 Gmail、日曆與文件任務，並透過 MCP 串接更多服務。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-apps-all-up/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，讓終端機內的 coding agent 正式上線",
+        "desc": "xAI 於 2026 年 5 月 25 日發布 Grok Build 早期 beta，讓 SuperGrok 與 X Premium Plus 訂閱者可在終端機中規劃、審核與執行複雜軟體工程任務。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 進入 API 公測，主打 agentic coding 與 MCP 支援",
+        "desc": "xAI 在 2026 年 5 月 29 日將 grok-build-0.1 帶到 API 公測，定位為快速程式模型，強調網頁開發、除錯、MCP 與一般工具調用情境。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 讓 Grok 接進 Kilo Code，訂閱帳號可直接在 IDE 與 CLI 使用",
+        "desc": "xAI 於 2026 年 5 月 27 日宣布，SuperGrok 與 X Premium Plus 用戶可把 Grok 帶進 Kilo Code，在 VS Code、JetBrains 與 CLI 內使用最新 Grok 模型與 Grok Build。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "voice",
+        "title": "xAI 與 Vapi 合作，把 Grok Voice 帶進數百萬個語音代理",
+        "desc": "xAI 於 2026 年 6 月 3 日宣布與 Vapi 合作，讓 Grok 成為 Vapi 12 組核心聲音的預設引擎，並把 Grok 的語音 API 能力帶進 250 萬個以上的 voice agents。",
+        "url": "https://x.ai/news/grok-vapi",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "voice"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "TechNews：Claude Opus 4.8 上線，Dynamic Workflows 瞄準大型程式碼任務",
+        "desc": "TechNews 在 2026 年 5 月 29 日整理 Anthropic 新模型重點，指出 Claude Opus 4.8 不只升級模型，也把 Dynamic Workflows 帶進 Claude Code，強化多 subagent 的大型工程任務處理。",
+        "url": "https://technews.tw/2026/05/29/anthropic-introduces-claude-opus-4-8/",
+        "source": "TechNews",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "INSIDE：Antigravity 2.0 從編輯器升級成完整 AI 代理平台",
+        "desc": "INSIDE 在 2026 年 5 月 20 日指出，Google 把 Antigravity 2.0 擴展為桌面應用、CLI 與 SDK 三路齊發的平台，目標是讓 Gemini 3.5 Flash 支撐更完整的代理式開發流程。",
+        "url": "https://www.inside.com.tw/article/41329-google-io-2026-antigravity-2-gemini-flash-developer-agents",
+        "source": "INSIDE",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "title": "INSIDE：OpenAI 把個人理財規劃與分析流程帶進 ChatGPT",
+        "desc": "INSIDE 在 2026 年 5 月 16 日報導，OpenAI 針對美國用戶推出個人理財功能，讓 ChatGPT 能根據金融帳戶資料提供預算、買房與退休規劃建議，顯示它正從聊天工具走向實務代理。",
+        "url": "https://www.inside.com.tw/article/41312-openai-chatgpt-personal-finance-tool-launch",
+        "source": "INSIDE",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，加入 AI 程式代理工具戰局",
+        "desc": "iThome 在 2026 年 5 月 18 日報導，Grok Build 可在終端機協助撰碼、修文件與排查效能問題，並提供 Plan Mode 與平行子代理能力，直接對標 Codex、Claude Code 與 Gemini 系列工具。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+        "author": "NVIDIA",
+        "desc": "這篇 2026 年 5 月 27 日的 Hugging Face 熱門論文提出 AXPO，聚焦多模態代理在推理與工具調用之間的落差，透過重採樣工具呼叫改善訓練訊號與效能。",
+        "url": "https://huggingface.co/papers/2605.28774",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Orchard: An Open-Source Agentic Modeling Framework",
+        "author": "Microsoft Research",
+        "desc": "Orchard 是 2026 年 5 月 14 日發表的開源代理式建模框架，涵蓋 coding、GUI 導航與個人助理場景，代表開源 agent 訓練框架持續成熟。",
+        "url": "https://huggingface.co/papers/2605.15040",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "Claude Code 持續是熱門的 AI coding agent 專案，GitHub 倉庫顯示它聚焦於終端機內的程式碼理解、例行任務、自動修補與 Git 工作流程。",
+        "stars": "127k stars",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "browser-use",
+        "repo": "browser-use/browser-use",
+        "desc": "browser-use 仍是熱門瀏覽器代理專案，主打讓 AI 代理自動操作網站與完成端到端 web 任務，目前 GitHub 倉庫約 95.8k stars。",
+        "stars": "95.8k stars",
+        "lang": "Python",
+        "url": "https://github.com/browser-use/browser-use",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-03",
+    "weekday": "星期三",
+    "stats": {
+      "claude": 3,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "safety",
+        "title": "Anthropic 擴大 Project Glasswing，讓更多關鍵單位測試真實世界 AI 漏洞風險",
+        "desc": "Anthropic 於 2026 年 6 月 2 日宣布擴大 Project Glasswing，將計畫延伸到約 150 個新增組織，讓更多關鍵基礎設施與重要軟體維護方能使用 Claude Mythos Preview 做漏洞掃描與防禦研究。",
+        "url": "https://www.anthropic.com/news/expanding-project-glasswing",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "safety"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，加入 effort control 與 Dynamic Workflows",
+        "desc": "Anthropic 在 2026 年 5 月 28 日更新 Claude Opus 4.8，強化長任務規劃能力，並把 effort control、Claude Code 與 Dynamic Workflows 納入新版工作流，提升開發與代理式任務表現。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 收購 Stainless，補強 SDK 與 API 開發工具鏈",
+        "desc": "Anthropic 於 2026 年 5 月 18 日宣布收購 Stainless，目標是加速官方 SDK、CLI 與 API 開發體驗，並把既有的工具生成能力整合進 Anthropic 平台與 MCP 生態。",
+        "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "ChatGPT 新增找工作流程，支援履歷優化與職缺比對",
+        "desc": "OpenAI 在 2026 年 6 月 1 日的 ChatGPT release notes 新增 job search 與 resume building 流程，讓使用者可用 ChatGPT 整理履歷、比對職缺需求並產出求職素材。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Codex 開放 Windows Computer Use，可直接操作 Windows 應用程式",
+        "desc": "OpenAI 在 2026 年 5 月 29 日更新 release notes，讓 Codex 支援 Windows Computer Use，能直接操作 Windows 應用與桌面流程，延伸代理式自動化場景。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 更新 GPT-5.5 Instant，強化日常回應品質並移除 canvas",
+        "desc": "OpenAI 在 2026 年 5 月 28 日更新 GPT-5.5 Instant，改善回應風格與品質，同時把寫作與程式功能直接整合進聊天回覆，並在 GPT-5.5 Instant 與 GPT-5.5 Thinking 中移除 canvas。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "feature",
+        "title": "ChatGPT 強化 Goal Mode 與瀏覽流程，改善多步驟代理操作",
+        "desc": "OpenAI 在 2026 年 5 月 21 日更新 Goal Mode、瀏覽與任務延續能力，讓 ChatGPT 在多步驟代理工作中更能維持上下文並持續推進長任務。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "feature"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 發表 Gemini 3.5 Flash，鎖定更快推理與更低延遲",
+        "desc": "Google 於 2026 年 5 月 20 日在官方部落格宣布 Gemini 3.5 Flash，主打低延遲、低成本與更好的即時互動，並同步導入 Gemini app 與相關產品。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 新增 Daily Brief 與 Gemini Spark，朝主動式助理前進",
+        "desc": "Google 在 Gemini app 更新中加入 Daily Brief 與 Gemini Spark，讓系統能主動整理個人重點、提供每日摘要，並把 Gemini 從問答工具推向持續協作助理。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Google I/O 2026 公布 Managed Agents 與 Antigravity 2.0",
+        "desc": "Google 在 I/O 2026 開發者更新中發表 Managed Agents 與 Antigravity 2.0，讓開發者可透過 Gemini API 與 AI Studio 更快建立、部署與管理代理式應用。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "Google Cloud 強推 Gemini Enterprise Agent Platform",
+        "desc": "Google Cloud 在 I/O 2026 重申 Gemini Enterprise Agent Platform，結合 Managed Agents API 與企業資料整合能力，瞄準企業級代理與工作流程自動化。",
+        "url": "https://blog.google/intl/zh-tw/products/cloud/2026-google-io-google-cloud-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "enterprise"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "model",
+        "title": "xAI 發表 Grok Build 0.1 API，主打 agentic coding 與 MCP 整合",
+        "desc": "xAI 於 2026 年 5 月 28 日推出 Grok Build 0.1 API，鎖定程式開發代理工作，並把 MCP 與工具調用能力納入官方敘事，直接對標新一代 AI coding workflow。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，讓開發者在終端機建立 AI coding 流程",
+        "desc": "xAI 在 2026 年 5 月 25 日發布 Grok Build CLI，提供命令列方式建立與執行代理式開發流程，面向習慣終端機與自動化腳本的開發者。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 將 Grok 接進 Kilo Code，擴大 VS Code 與 JetBrains 開發情境",
+        "desc": "xAI 於 2026 年 5 月 27 日宣布 Grok 可用於 Kilo Code，讓 Grok Build 能進入 VS Code、JetBrains 與 CLI 等既有開發流程。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "feature",
+        "title": "xAI 推出 Grok Skills，補強 Web、iOS 與 Android 使用場景",
+        "desc": "xAI 在 2026 年 5 月 18 日推出 Grok Skills，讓 Grok 能處理更多跨裝置與多工具任務，強化檔案、網頁與行動端的使用範圍。",
+        "url": "https://x.ai/news/grok-skills",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "feature"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "iThome：Anthropic 推出 Claude Opus 4.8，強化代理式任務與程式開發表現",
+        "desc": "iThome 於 2026 年 6 月 1 日整理 Anthropic 最新模型更新，指出 Claude Opus 4.8 把推理控制與 Dynamic Workflows 拉進正式產品線，明顯瞄準代理式開發工作。",
+        "url": "https://www.ithome.com.tw/news/176270",
+        "source": "iThome",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "INSIDE：OpenAI 把理財與財務分析流程帶進 ChatGPT",
+        "desc": "INSIDE 報導 OpenAI 近期把個人理財與財務分析流程整合進 ChatGPT，反映 ChatGPT 正從對話工具擴大到更完整的日常任務代理場景。",
+        "url": "https://www.inside.com.tw/article/41312-openai-chatgpt-personal-finance-tool-launch",
+        "source": "INSIDE",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "title": "iThome：Google Gemini 3.5 Flash 主打更快速度與更低成本",
+        "desc": "iThome 於 2026 年 5 月 20 日報導 Google 發表 Gemini 3.5 Flash，強調低延遲與即時互動體驗，並已逐步進入 Gemini App 與 Search AI Mode。",
+        "url": "https://www.ithome.com.tw/news/175949",
+        "source": "iThome",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，鎖定 AI 程式開發代理工具",
+        "desc": "iThome 於 2026 年 5 月 18 日報導 xAI 推出 Grok Build，從 CLI 與開發工作流切入，直接競爭 AI coding agent 市場。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+        "author": "NVIDIA",
+        "desc": "NVIDIA 於 Hugging Face Papers 收錄 AXPO 論文，提出用探索式策略最佳化提升多模態代理推理，對代理式工具使用與複雜決策任務很有代表性。",
+        "url": "https://huggingface.co/papers/2605.28774",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Orchard: An Open-Source Agentic Modeling Framework",
+        "author": "Microsoft Research",
+        "desc": "Microsoft Research 的 Orchard 框架主打可重用的 agentic modeling 與工作流組裝，適合用來觀察企業端代理框架如何往更模組化方向發展。",
+        "url": "https://huggingface.co/papers/2605.15040",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "Anthropic 的 Claude Code 持續是 AI coding agent 代表專案，GitHub 頁面可見其定位聚焦於終端機內的大型程式碼庫操作與代理式開發。",
+        "stars": "127k stars",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "browser-use",
+        "repo": "browser-use/browser-use",
+        "desc": "browser-use 持續是熱門的瀏覽器代理工具專案，聚焦讓 AI 模型能以程式方式操作網頁與完成端到端自動化流程。",
+        "stars": "95.8k stars",
+        "lang": "Python",
+        "url": "https://github.com/browser-use/browser-use",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-02",
+    "weekday": "星期二",
+    "stats": {
+      "claude": 2,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，加入 effort control 與 Dynamic Workflows",
+        "desc": "Anthropic 於 2026 年 5 月 28 日推出 Claude Opus 4.8，主打更穩定的長任務表現；同時在 claude.ai 提供 effort control，並讓 Claude Code 新增 Dynamic Workflows，可處理更大型的工程任務。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 收購 Stainless，強化 SDK、CLI 與 MCP 連接能力",
+        "desc": "Anthropic 於 2026 年 5 月 18 日宣布收購 Stainless。Stainless 原本就參與 Anthropic 官方 SDK 的生成，這筆交易把 SDK、CLI 與 MCP server tooling 直接拉進 Anthropic 體系，目標是改善代理連接外部 API 的開發體驗。",
+        "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "Codex 新增 Windows Computer Use 與遠端控制能力",
+        "desc": "OpenAI 在 2026 年 5 月 29 日的 ChatGPT 釋出說明中宣布，Codex 現在支援 Windows 的 Computer Use，能在 Windows 應用程式內進行查看、點擊與輸入，也同步加入遠端接續與 Profiles 等更新。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 更新 GPT-5.5 Instant，回應更精簡並移除 canvas 依賴",
+        "desc": "OpenAI 在 2026 年 5 月 28 日更新 GPT-5.5 Instant，強調回應風格更自然、可讀性更高；同時 GPT-5.5 Instant 與 Thinking 不再提供 canvas，寫作與程式輸出改由對話內區塊直接承載。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 啟動 o3 與 GPT-4.5 退場時程，持續收斂舊模型線",
+        "desc": "同一份 2026 年 5 月 28 日的釋出說明也確認，ChatGPT 內的 OpenAI o3 將於 2026 年 8 月 26 日退場，GPT-4.5 則將於 2026 年 6 月 27 日退場，代表 OpenAI 持續把流量集中到更新的 GPT-5.5 系列。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "security",
+        "title": "OpenAI 推出 Advanced Account Security，加強 ChatGPT 帳號防護",
+        "desc": "OpenAI 已開始提供 Advanced Account Security，要求使用者以 passkey 或相容安全金鑰登入，停用較弱的密碼與 Email/SMS 驗證路徑，並加入 recovery keys、較短 session 與更嚴格的帳號恢復流程。",
+        "url": "https://help.openai.com/en/articles/20001221-advanced-account-security",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "security"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 發表 Gemini 3.5 Flash，主打高速代理式工作流",
+        "desc": "Google 在 2026 年 5 月 19 日 I/O 期間推出 Gemini 3.5 Flash，定位為結合高智慧與高速度的新一代模型，官方表示它在多數基準上超越 Gemini 3.1 Pro，並更適合實際代理式工作流。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 走向代理化，新增 Daily Brief 與 Gemini Spark",
+        "desc": "Google 同日宣布 Gemini app 將加入 Daily Brief 與 Gemini Spark。前者會整理個人化晨間摘要，後者則被定位成 24 小時運作的個人 AI 代理，替使用者主動管理任務。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Google 推出 Antigravity 2.0、Managed Agents 與強化版 Gemini API",
+        "desc": "Google 在 I/O 2026 的開發者更新中同步帶來 Antigravity 2.0 桌面應用、Gemini API 的 Managed Agents，以及 Google AI Studio 的原生 Android 支援，進一步把 Gemini 從模型擴展到代理開發平台。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "Gemini Enterprise Agent Platform 與 Google Cloud 服務進一步整合",
+        "desc": "Google 在 I/O 2026 的 Cloud 重點中把 Gemini Enterprise Agent Platform 列為主軸，並強調 Managed Agents API、Antigravity 擴展能力與企業雲端工作流的串接，持續把代理式開發推向企業場景。",
+        "url": "https://blog.google/intl/zh-tw/products/cloud/2026-google-io-google-cloud-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "enterprise"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，搶進 AI 程式代理工具戰場",
+        "desc": "xAI 在 2026 年 5 月 25 日推出 Grok Build 早期測試版，讓 SuperGrok 與 X Premium+ 訂閱者可直接在終端機裡使用規劃、編輯、審查與平行子代理等 agentic coding 能力。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 進入 API 公測，支援 MCP 與 agentic coding",
+        "desc": "xAI 在 2026 年 5 月 28 日把 grok-build-0.1 帶到 API 公測，定位為快速程式模型，支援網頁開發、除錯與 MCP，並標示可在 Grok Build、Cursor、Kilo Code 等代理框架中發揮最佳效果。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 推出 Skills，讓 Grok 可跨 Web、iOS 與 Android 記住工作流程",
+        "desc": "xAI 在 2026 年 5 月 18 日推出 Skills，讓 Grok 能保存使用者偏好、格式規則與工作流程，並原生支援文件、簡報、試算表與 PDF 等工作型產出。",
+        "url": "https://x.ai/news/grok-skills",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 讓 Grok 接入 Kilo Code，免 API key 也能用訂閱額度開發",
+        "desc": "xAI 在 2026 年 5 月 27 日宣布可把 Grok 帶進 Kilo Code。使用者只要以 X Premium+ 或 SuperGrok 訂閱登入，就能在 VS Code、JetBrains、CLI 與遠端環境裡直接使用 Grok Build。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "INSIDE：Anthropic 推出 Opus 4.8，代理任務與長流程穩定度再升級",
+        "desc": "INSIDE 在 2026 年 5 月 29 日整理 Anthropic 新版 Opus 4.8，重點放在誠信與一致性提升、Dynamic Workflows 對大型代理任務的支援，以及 Claude 在模型競速週期被壓縮後的快速迭代壓力。",
+        "url": "https://www.inside.com.tw/article/41418-anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "iThome：Google Gemini 3.5 Flash 上線，主打企業代理與程式開發",
+        "desc": "iThome 在 2026 年 5 月 20 日指出，Gemini 3.5 Flash 已部署到 Gemini App 與 Google Search 的 AI Mode，並把多步驟工作流、子代理協作與長任務處理能力列為主要亮點。",
+        "url": "https://www.ithome.com.tw/news/175949",
+        "source": "iThome",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，正式加入 AI 程式代理工具競賽",
+        "desc": "iThome 在 2026 年 5 月 18 日報導，Grok Build 可在終端機協助撰碼、修文件、排查效能問題，並具備先出計畫再執行的 Plan Mode，與 Codex、Claude Code、Gemini CLI 正面競爭。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "title": "iThome：OpenAI 更新 GPT-5.5 Instant，強調降幻覺與個人化回應",
+        "desc": "iThome 在 2026 年 5 月 6 日整理 GPT-5.5 Instant 更新，指出新版模型已成為 ChatGPT 預設模型，並強調事實錯誤更少、回答更精簡，也能更好利用既有對話與已連結服務做個人化回應。",
+        "url": "https://www.ithome.com.tw/news/175573",
+        "source": "iThome",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+        "author": "NVIDIA",
+        "desc": "這篇 2026 年 5 月 27 日的 Hugging Face 論文提出 AXPO，聚焦多模態代理在推理與工具調用之間的落差，透過失敗軌跡的工具呼叫重採樣來改善訓練訊號。",
+        "url": "https://huggingface.co/papers/2605.28774",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Orchard: An Open-Source Agentic Modeling Framework",
+        "author": "Microsoft Research",
+        "desc": "Orchard 是 2026 年 5 月 14 日發表的開源代理式建模框架，主打用少量合成任務就能訓練出涵蓋 coding、GUI 與個人助理場景的自主代理。",
+        "url": "https://huggingface.co/papers/2605.15040",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "Claude Code 的 GitHub 倉庫目前約有 127k stars，定位是可在終端機中理解 codebase、執行例行工作、解釋程式與處理 Git 流程的 agentic coding 工具。",
+        "stars": "127k stars",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "browser-use",
+        "repo": "browser-use/browser-use",
+        "desc": "browser-use 倉庫目前約有 95.8k stars，主打讓 AI 代理能自動操作網站與瀏覽器，適合表單填寫、登入流程與各類 web automation 任務。",
+        "stars": "95.8k stars",
+        "lang": "Python",
+        "url": "https://github.com/browser-use/browser-use",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-01",
+    "weekday": "星期一",
+    "stats": {
+      "claude": 3,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，加入 effort control 與 Dynamic Workflows",
+        "desc": "Anthropic 於 2026 年 5 月 28 日發布 Claude Opus 4.8，強調在程式開發、代理任務與知識工作上的整體表現提升；同時替 claude.ai 加入可調整思考投入程度的 effort control，並讓 Claude Code 能以 Dynamic Workflows 協調大量平行子代理人處理大規模任務。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 收購 Stainless，補強 SDK 與 MCP 連接能力",
+        "desc": "Anthropic 於 2026 年 5 月 18 日宣布收購 Stainless。這家公司原本就負責 Anthropic 官方 SDK 的生成流程，收購後將進一步強化 Claude API、CLI 與 MCP server 的開發者體驗，擴大代理可連接的外部工具與資料面。",
+        "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "KPMG 擴大全球導入 Claude，超過 27.6 萬名員工納入聯盟",
+        "desc": "Anthropic 於 2026 年 5 月 19 日宣布與 KPMG 建立全球策略聯盟，KPMG 將把 Claude 導入 Digital Gateway 與稅務、法務等工作流程，並把使用範圍擴及超過 27.6 萬名員工，顯示 Claude 在大型專業服務場景的企業落地持續加快。",
+        "url": "https://www.anthropic.com/news/anthropic-kpmg",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "enterprise"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "Codex 新增 Windows Computer Use 與遠端控制能力",
+        "desc": "OpenAI 在 2026 年 5 月 29 日的 ChatGPT 版本更新中，替 Codex 加入 Windows Computer Use 與遠端控制。符合資格的使用者現在可讓 Codex 直接在 Windows 應用程式中看、點、輸入，也能從手機或 Mac 端遠端接手正在執行的工作。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 更新 GPT-5.5 Instant，強化回應風格並停止支援 canvas",
+        "desc": "OpenAI 在 2026 年 5 月 28 日更新 GPT-5.5 Instant，官方表示新版回應更自然、可讀性更高，也更適合實務協作任務；同時 GPT-5.5 Instant 與 GPT-5.5 Thinking 不再支援 canvas，改以對話中的寫作區塊與程式碼區塊取代。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 宣布 ChatGPT 將陸續淘汰 o3 與 GPT-4.5",
+        "desc": "OpenAI 在 2026 年 5 月 28 日更新中宣布，ChatGPT 內的 OpenAI o3 將於 2026 年 8 月 26 日退場，GPT-4.5 則將於 2026 年 6 月 27 日退場。這代表資源將更集中在較新的模型與代理式工作流體驗上。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "ChatGPT 推出個人理財功能，先向美國 Pro 用戶逐步開放",
+        "desc": "OpenAI 在 2026 年 5 月 15 日宣布推出 ChatGPT 個人理財體驗，首波提供美國 Pro 用戶透過 Plaid 連接帳戶，查看支出、帳單、訂閱、淨資產與投資資訊，讓 ChatGPT 從問答工具進一步走向個人財務助理。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "enterprise"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 正式推出 Gemini 3.5 Flash，強打代理式任務與高速回應",
+        "desc": "Google 於 2026 年 5 月 19 日在 I/O 2026 發表 Gemini 3.5，首波推出的 3.5 Flash 結合前沿推理與高速行動能力。官方表示它已成為 Gemini app 與 Search AI Mode 的預設模型，也同步進入 Google AI Studio、Android Studio 與企業代理平台。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 加入 Daily Brief 與 Gemini Spark，走向 24 小時主動協作",
+        "desc": "Google 於 2026 年 5 月 19 日公布 Gemini app 新版介面與主動式功能，包含每日摘要 Daily Brief，以及可在使用者授權下持續協助排程與任務處理的 Gemini Spark，顯示 Gemini 正從對話助手轉向更完整的個人 AI 代理。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Google 搜尋 AI Mode 預設升級 Gemini 3.5 Flash",
+        "desc": "Google 在 I/O 2026 同步更新搜尋產品，宣布自 2026 年 5 月 19 日起全球 AI Mode 的預設模型升級為 Gemini 3.5 Flash，並把搜尋框改造成更偏向多模態與代理式互動的入口，強化搜尋即工作流的使用情境。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/search-io-2026/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "tool"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Google 公布 I/O 2026 開發者重點，擴充 Gemini API、AI Studio 與 Antigravity",
+        "desc": "Google 在 2026 年 5 月 19 日的開發者重點文章中，宣布更新 Gemini API、Google AI Studio 與 Antigravity，主打從 prompt 走向可上線的 agent 應用，並把 Android 原生支援納入同一套開發流程。",
+        "url": "https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，主打終端機中的 coding agent",
+        "desc": "xAI 於 2026 年 5 月 25 日發布 Grok Build 早期測試版，讓 SuperGrok 與 X Premium Plus 訂閱者可直接在終端機使用規劃、審查、平行子代理等能力。官方把它定位成可處理複雜軟體工程任務的 coding agent。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 開放 API 公測，支援 agentic coding 與 MCP",
+        "desc": "xAI 於 2026 年 5 月 28 日宣布 grok-build-0.1 透過 API 進入公開測試。官方表示這是專為網頁開發、除錯與 MCP 支援設計的程式模型，也是 Grok Build CLI 背後的核心模型，提供更快的 token 輸出速度與較低使用成本。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 推出 Skills，讓 Grok 記住文件、簡報與流程偏好",
+        "desc": "xAI 於 2026 年 5 月 18 日上線 Grok Skills，讓網頁版、iOS 與 Android 的 Grok 能保留使用者定義的格式規則、工作流程與文件生成能力。官方同時內建文件、簡報與試算表等技能，降低重複提示的成本。",
+        "url": "https://x.ai/news/grok-skills",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 把 Grok 帶進 Kilo Code，訂閱帳號可直接在 IDE 與 CLI 使用",
+        "desc": "xAI 於 2026 年 5 月 27 日宣布可把 Grok 帳號直接接到 Kilo Code。完成 OAuth 連線後，使用者能在 VS Code、JetBrains、CLI 與 Web 介面使用 Grok Build 與其他 Grok 模型，不必另外申請 API key。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "INSIDE：Anthropic 推出 Opus 4.8，主打誠信升級與百支代理人協作",
+        "desc": "INSIDE 於 2026 年 5 月 29 日報導，Anthropic 這次把 Opus 4.8 的重點放在高風險任務的穩定度與誠信表現，並同步揭露 Dynamic Workflows 研究預覽，讓 Claude Code 可在單一任務中協調上百個子代理人。",
+        "url": "https://www.inside.com.tw/article/41418-anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "iThome：Google 公布 Gemini 3.5 Flash，主打代理人開發作業",
+        "desc": "iThome 於 2026 年 5 月 20 日報導，Google 在 I/O 2026 推出 Gemini 3.5 Flash，特別強調它在 AI 代理與工具調用測試上的表現，瞄準企業與開發者市場。",
+        "url": "https://www.ithome.com.tw/news/175949",
+        "source": "iThome",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，加入 AI 程式代理工具戰局",
+        "desc": "iThome 於 2026 年 5 月 18 日報導，xAI 以 Grok Build 切入 terminal coding agent 領域，與 Codex、Claude Code、Gemini CLI 等工具正面競爭。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "title": "TechNews：Google 用 Gemini Spark 強化個人 AI Agent 佈局",
+        "desc": "TechNews 於 2026 年 5 月 20 日整理 Google I/O 2026 更新，指出 Gemini 3.5 Flash 成為 Gemini 應用與搜尋 AI 模式的預設模型，並新增可全天候協助使用者完成任務的 Gemini Spark。",
+        "url": "https://technews.tw/2026/05/20/google-introduces-gemini-3-5-and-gemini-spark/",
+        "source": "TechNews 科技新報",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Towards Verifiable Multimodal Deep Research",
+        "author": "Renmin University of China",
+        "desc": "Hugging Face 於 2026 年 5 月 29 日收錄這篇多代理研究論文，聚焦如何把文字與圖片證據交錯編排成可驗證的長篇報告，適合追蹤多模態 deep research 與報告生成工作流。",
+        "url": "https://huggingface.co/papers/2605.29861",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Agentic CLEAR",
+        "author": "IBM Research",
+        "desc": "Agentic CLEAR 是 Hugging Face 近期收錄的代理評估框架，主打自動分析 LLM agent 在多種基準上的行為與失敗模式，適合關注代理可觀測性與評測工具鏈的人持續追蹤。",
+        "url": "https://huggingface.co/papers/2605.22608",
+        "tags": [
+          "evaluation",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "Claude Code 仍是 GitHub 上最受關注的 agentic coding 專案之一，主打在終端機中理解 codebase、執行日常工程任務與串接 Git 工作流。",
+        "stars": "127k stars",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "open_deep_research",
+        "repo": "langchain-ai/open_deep_research",
+        "desc": "Open Deep Research 是近期持續受關注的開源 deep research agent，支援多模型、多搜尋工具與 MCP server，適合想自行搭建研究代理工作流的人追蹤。",
+        "stars": "11.5k stars",
+        "lang": "Python",
+        "url": "https://github.com/langchain-ai/open_deep_research",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-05-31",
+    "weekday": "星期日",
+    "stats": {
+      "claude": 3,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 3,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，加入 effort control 與 Dynamic Workflows",
+        "desc": "Anthropic 5 月 28 日發布 Claude Opus 4.8，強調在程式開發、代理任務與知識工作上的整體表現提升；同時替 claude.ai 加入可調整思考投入程度的 effort control，並讓 Claude Code 能以 Dynamic Workflows 協調大量平行子代理人處理大規模任務。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 收購 Stainless，補強 SDK 與 MCP 連接能力",
+        "desc": "Anthropic 5 月 18 日宣布收購 Stainless。這家公司原本就負責 Anthropic 官方 SDK 的生成流程，收購後將進一步強化 Claude API、CLI 與 MCP server 的開發者體驗，擴大代理可連接的外部工具與資料面。",
+        "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "KPMG 擴大全球導入 Claude，超過 27.6 萬名員工納入聯盟",
+        "desc": "Anthropic 5 月 19 日宣布與 KPMG 建立全球策略聯盟，KPMG 將把 Claude 導入 Digital Gateway 與稅務、法務等工作流程，並把使用範圍擴及超過 27.6 萬名員工，顯示 Claude 在大型專業服務場景的企業落地持續加快。",
+        "url": "https://www.anthropic.com/news/anthropic-kpmg",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "enterprise"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "Codex 新增 Windows Computer Use 與遠端控制能力",
+        "desc": "OpenAI 在 5 月 29 日的 ChatGPT 企業版與教育版更新中，替 Codex 加入 Windows Computer Use 與遠端控制。符合資格的使用者現在可讓 Codex 直接在 Windows 應用程式中看、點、輸入，也能從手機或 Mac 端遠端接手正在執行的工作。",
+        "url": "https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 更新 GPT-5.5 Instant，強化回應風格並停止支援 canvas",
+        "desc": "ChatGPT 5 月 28 日更新 GPT-5.5 Instant，官方表示新版回應更自然、可讀性更高，也更適合實務協作任務；同時 GPT-5.5 Instant 與 GPT-5.5 Thinking 不再支援 canvas，改以對話中的寫作區塊與程式碼區塊取代。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "OpenAI 宣布 ChatGPT 將陸續淘汰 o3 與 GPT-4.5",
+        "desc": "OpenAI 在 5 月 29 日更新中宣布，ChatGPT 內的 OpenAI o3 將於 2026 年 8 月 26 日退場，GPT-4.5 則將於 2026 年 6 月 27 日退場。這代表資源將更集中在較新的模型與代理式工作流體驗上。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "OpenAI 與 Dell 合作，把 Codex 帶進混合與地端企業環境",
+        "desc": "OpenAI 5 月 18 日宣布與 Dell Technologies 合作，把 Codex 納入 Dell AI Factory 與企業既有地端、混合式資料環境。官方指出，企業可在資料原地部署代理工作流，擴大 Codex 在程式開發、報告整理與跨系統協作的應用。",
+        "url": "https://openai.com/index/dell-codex-enterprise-partnership/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "enterprise"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 正式推出 Gemini 3.5 Flash，強打代理式任務與高速回應",
+        "desc": "Google 於 5 月 19 日在 I/O 2026 發表 Gemini 3.5，首波推出的 3.5 Flash 結合前沿推理與高速行動能力。官方表示它已成為 Gemini app 與 Search AI Mode 的預設模型，也同步進入 Google AI Studio、Android Studio 與企業代理平台。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini app 加入 Daily Brief 與 Gemini Spark，走向 24 小時主動協作",
+        "desc": "Google 5 月 19 日公布 Gemini app 新版介面與主動式功能，包含每日摘要 Daily Brief，以及可在使用者授權下持續協助排程與任務處理的 Gemini Spark，顯示 Gemini 正從對話助手轉向更完整的個人 AI 代理。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Google 搜尋 AI Mode 預設升級 Gemini 3.5 Flash",
+        "desc": "Google 在 I/O 2026 同步更新搜尋產品，宣布從 5 月 19 日起全球 AI Mode 的預設模型升級為 Gemini 3.5 Flash，並把搜尋框改造成更偏向多模態與代理式互動的入口，強化搜尋即工作流的使用情境。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/search-io-2026/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "tool"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Android 導入 Gemini Intelligence，擴及手機、手錶、車載與眼鏡",
+        "desc": "Google 5 月 13 日宣布把 Gemini Intelligence 帶進 Android 生態，首波鎖定最新 Samsung Galaxy 與 Pixel 手機，之後會延伸到手錶、車載系統、智慧眼鏡與筆電。官方主打更主動的多步驟任務處理與裝置級隱私控制。",
+        "url": "https://blog.google/intl/zh-tw/products/android-chrome-play/android-gemini-intelligence/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build CLI，主打終端機中的 coding agent",
+        "desc": "xAI 5 月 25 日發布 Grok Build 早期測試版，讓 SuperGrok 與 X Premium Plus 訂閱者可直接在終端機使用規劃、審查、平行子代理等能力。官方把它定位成可處理複雜軟體工程任務的 coding agent。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 開放 API 公測，支援 agentic coding 與 MCP",
+        "desc": "xAI 5 月 28 日宣布 grok-build-0.1 透過 API 進入公開測試。官方表示這是專為網頁開發、除錯與 MCP 支援設計的程式模型，也是 Grok Build CLI 背後的核心模型，提供更快的 token 輸出速度與較低使用成本。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 推出 Skills，讓 Grok 記住文件、簡報與流程偏好",
+        "desc": "xAI 5 月 18 日上線 Grok Skills，讓網頁版、iOS 與 Android 的 Grok 能保留使用者定義的格式規則、工作流程與文件生成能力。官方同時內建文件、簡報與試算表等技能，降低重複提示的成本。",
+        "url": "https://x.ai/news/grok-skills",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "xAI 把 Grok 帶進 Kilo Code，訂閱帳號可直接在 IDE 與 CLI 使用",
+        "desc": "xAI 5 月 27 日宣布可把 Grok 帳號直接接到 Kilo Code。完成 OAuth 連線後，使用者能在 VS Code、JetBrains、CLI 與 Web 介面使用 Grok Build 與其他 Grok 模型，不必另外申請 API key。",
+        "url": "https://x.ai/news/grok-kilocode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "INSIDE：Anthropic 推出 Opus 4.8，主打誠信升級與百支代理人協作",
+        "desc": "INSIDE 5 月 29 日報導，Anthropic 這次把 Opus 4.8 的重點放在高風險任務的穩定度與誠信表現，並同步揭露 Dynamic Workflows 研究預覽，讓 Claude Code 可在單一任務中協調上百個子代理人。",
+        "url": "https://www.inside.com.tw/article/41418-anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "TechNews：宏碁發表搭載 Gemini 的 AI 眼鏡，支援即時翻譯與影像分析",
+        "desc": "TechNews 5 月 30 日報導，宏碁在 COMPUTEX 2026 前夕推出 Acer GI0 AI 眼鏡，內建由 Google Gemini 驅動的語音互動、即時影像分析、拍照錄影與翻譯功能，顯示 Gemini 正往穿戴裝置擴張。",
+        "url": "https://ccc.technews.tw/2026/05/30/new-acer-ai-and-ar-glasses-expand-on-the-go-capabilities/",
+        "source": "TechNews 科技新報",
+        "tags": [
+          "gemini",
+          "device"
+        ]
+      },
+      {
+        "title": "TechNews：代理性 AI 需求推升記憶體市場，2027 年產值上看 1.28 兆美元",
+        "desc": "TechNews 5 月 29 日引用 TrendForce 指出，AI 發展重心正從訓練轉向推理與代理式應用，連帶推升 KV cache、HBM 與 DRAM 需求，讓全球記憶體市場產值預估在 2027 年擴大到 1.28 兆美元。",
+        "url": "https://technews.tw/2026/05/29/agentic-ai-drives-memory-demand-growth-global-memory-market-value-estimated-to-expand-to-1-28-trillion-by-2027/",
+        "source": "TechNews 科技新報",
+        "tags": [
+          "industry",
+          "infrastructure"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Towards Verifiable Multimodal Deep Research",
+        "author": "Renmin University of China",
+        "desc": "Hugging Face 5 月 29 日收錄這篇多代理研究論文，聚焦如何把文字與圖片證據交錯編排成可驗證的長篇報告，適合追蹤多模態 deep research 與報告生成工作流。",
+        "url": "https://huggingface.co/papers/2605.29861",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Agentic CLEAR",
+        "author": "IBM Research",
+        "desc": "Agentic CLEAR 是 Hugging Face 近期收錄的代理評估框架，主打自動分析 LLM agent 在多種基準上的行為與失敗模式，適合關注代理可觀測性與評測工具鏈的人持續追蹤。",
+        "url": "https://huggingface.co/papers/2605.22608",
+        "tags": [
+          "evaluation",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "Claude Code 仍是 GitHub 上最受關注的 agentic coding 專案之一，主打在終端機中理解 codebase、執行日常工程任務與串接 Git 工作流。",
+        "stars": "127k stars",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "browser-use",
+        "repo": "browser-use/browser-use",
+        "desc": "browser-use 持續維持高熱度，專注把網站操作能力暴露給 AI agent，適合做瀏覽器自動化、表單操作與跨站任務執行。",
+        "stars": "96.3k stars",
+        "lang": "Python",
+        "url": "https://github.com/browser-use/browser-use",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-05-30",
+    "weekday": "星期六",
+    "stats": {
+      "claude": 3,
+      "openai": 4,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "model",
+        "title": "Anthropic 推出 Claude Opus 4.8，加入 effort control 與 Cowork 支援",
+        "desc": "Anthropic 於 5 月 28 日發布 Claude Opus 4.8，提升編碼、代理任務與實務知識表現，同步在 claude.ai 與 Cowork 提供 effort control，讓使用者自行調整思考深度與成本。",
+        "url": "https://www.anthropic.com/news/claude-opus-4-8",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Anthropic 收購 Stainless，強化 SDK 與 MCP 工具鏈",
+        "desc": "Anthropic 於 5 月 18 日宣布收購 Stainless。這家公司原本就負責 Anthropic 官方 SDK 生成，收購後將進一步強化 Claude API、CLI 與 MCP server 的開發者體驗。",
+        "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "KPMG 擴大導入 Claude，覆蓋 27.6 萬名員工與核心業務流程",
+        "desc": "Anthropic 於 5 月 19 日公布與 KPMG 的策略聯盟，KPMG 將在稅務、審計、顧問與內部知識工作流程中更大規模部署 Claude。",
+        "url": "https://www.anthropic.com/news/anthropic-kpmg",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "enterprise"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "model",
+        "title": "OpenAI 更新 GPT-5.5 Instant，強化可讀性並移除該模型的 Canvas",
+        "desc": "OpenAI 在 5 月 28 日更新 ChatGPT 發版說明，表示 GPT-5.5 Instant 與 API 的回覆風格與品質已調整得更自然易讀；同時 Canvas 不再提供給 GPT-5.5 Instant 與 GPT-5.5 Thinking。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-plus-upgrade-faq",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "ChatGPT 將淘汰 OpenAI o3 與 GPT-4.5，API 不受影響",
+        "desc": "同一份 5 月 28 日的 ChatGPT 發版說明指出，OpenAI o3 將於 2026 年 8 月 26 日從 ChatGPT 退役，GPT-4.5 則將於 2026 年 6 月 27 日退役；這項調整只影響 ChatGPT，不影響 API。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-plus-upgrade-faq",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "model"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Codex 新增更完整工作流支援，包含 Goal mode、Appshots 與瀏覽器標註",
+        "desc": "OpenAI 在 5 月 21 日的 ChatGPT 發版說明中更新 Codex，加入 Appshots、Goal mode、瀏覽器標註與遠端鎖屏後持續執行等能力，讓長時間任務更容易持續推進。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-plus-upgrade-faq",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "OpenAI 與 Dell 合作，把 Codex 帶進混合雲與地端企業環境",
+        "desc": "OpenAI 於 5 月 18 日宣布與 Dell Technologies 合作，讓企業可在混合與 on-prem 環境中部署 Codex，用於收集脈絡、撰寫報告、協調任務與串接業務系統。",
+        "url": "https://openai.com/index/dell-codex-enterprise-partnership/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "enterprise"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Google 正式推出 Gemini 3.5 Flash，主打代理任務與程式開發",
+        "desc": "Google 於 5 月 20 日宣布 Gemini 3.5 系列首發為 3.5 Flash，已成為 Gemini App 與搜尋 AI 模式的預設模型，也同步提供給 Google AI Studio、Android Studio 與 Antigravity。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini App 升級代理能力，帶來 Daily Brief、Spark 與 Omni",
+        "desc": "Google 同日在 Gemini App 更新中加入更主動的代理能力，包括整理你的一天的 Daily Brief、全天候背景協助的 Spark，以及更自然的多模態互動能力 Omni。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-apps-all-up",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Google 搜尋 AI 模式改以 Gemini 3.5 Flash 為全球預設模型",
+        "desc": "Google 在 I/O 2026 搜尋更新中表示，AI Mode 已全面升級為 Gemini 3.5 Flash，並強調會用更客製化、互動式的回答形式處理複雜查詢。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/search-io-2026/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "tool"
+        ]
+      },
+      {
+        "sub": "platform",
+        "title": "Android 導入 Gemini Intelligence，擴大主動式 AI 助理體驗",
+        "desc": "Google 在 5 月 13 日宣布 Android 將導入 Gemini Intelligence，先支援新款 Samsung Galaxy 與 Pixel，之後再擴展到手錶、車載系統、眼鏡與筆電等更多裝置。",
+        "url": "https://blog.google/intl/zh-tw/products/android-chrome-play/android-gemini-intelligence/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "platform"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "xAI 推出 Grok Build 終端代理，進入 AI 編碼代理戰場",
+        "desc": "xAI 於 5 月 25 日發表 Grok Build 早期測試版，主打直接在 terminal 中做規劃、審查與執行，並支援平行子代理與既有工作流整合。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "grok-build-0.1 開放 API 公測，鎖定代理式編碼與工具呼叫",
+        "desc": "xAI 於 5 月 28 日把 grok-build-0.1 上架到 API 公測，定位為快速的 agentic coding 模型，可處理網頁開發、除錯、MCP 與一般工具呼叫工作。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Grok Connectors 登陸 Web、iOS 與 Android，可直接操作外部工具",
+        "desc": "xAI 於 5 月 6 日推出 Connectors，讓 Grok 可直接讀取與整理 SharePoint 等服務中的內容，降低來回複製貼上的工作。",
+        "url": "https://x.ai/news/grok-connectors",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "xAI 為 Grok 推出 Skills，支援文件、簡報、試算表與自訂流程",
+        "desc": "xAI 於 5 月 18 日推出 Skills，讓 Grok 能記住固定格式、工作偏好與流程，也內建文件、簡報、試算表等多種技能。",
+        "url": "https://x.ai/news/grok-skills",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "INSIDE：Anthropic 推出 Opus 4.8，強化代理協作與思考深度控制",
+        "desc": "INSIDE 於 5 月 29 日整理 Anthropic 最新升級，指出 Opus 4.8 除了模型能力提升，也把 effort control 帶進 claude.ai，讓使用者能在速度、費用與推理深度間自行取捨。",
+        "url": "https://www.inside.com.tw/article/41418-anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "model"
+        ]
+      },
+      {
+        "title": "iThome：Google 推出 Gemini 3.5 Flash，主打代理人開發作業",
+        "desc": "iThome 於 5 月 20 日報導 Gemini 3.5 Flash 已全面上線，特別強調其在 AI 代理與工具調用測試上的表現，瞄準企業與開發者市場。",
+        "url": "https://www.ithome.com.tw/news/175949",
+        "source": "iThome",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "title": "iThome：xAI 推出 Grok Build，加入 AI 程式代理工具戰局",
+        "desc": "iThome 於 5 月 18 日報導，xAI 以 Grok Build 切入 terminal coding agent 領域，與 Codex、Claude Code、Gemini CLI 等工具正面競爭。",
+        "url": "https://www.ithome.com.tw/news/175886",
+        "source": "iThome",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "title": "TechNews：OpenAI 推出 Daybreak，強化以 AI 主動挖掘漏洞的資安流程",
+        "desc": "TechNews 於 5 月 13 日報導 OpenAI 發表 Daybreak，結合 Codex Security agent 與多款資安模型，目標是在攻擊者發現前更早找出高風險漏洞。",
+        "url": "https://infosecu.technews.tw/2026/05/13/openai-introduces-daybreak/",
+        "source": "TechNews 科技新報",
+        "tags": [
+          "openai",
+          "security"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "AgentDoG 1.5",
+        "author": "Shanghai AI Lab",
+        "desc": "Hugging Face 5 月 29 日 Daily Papers 第 1 名，主打以少量樣本建立可擴展的 AI 代理安全對齊框架，並開源模型與資料集。",
+        "url": "https://huggingface.co/papers/2605.29801",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "OmniRetrieval",
+        "author": "KAIST AI",
+        "desc": "Hugging Face 5 月 29 日 Daily Papers 熱門論文之一，嘗試把文字、表格與圖譜等異質知識來源統一到同一個自然語言檢索框架。",
+        "url": "https://huggingface.co/papers/2605.29250",
+        "tags": [
+          "rag",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "claude-code",
+        "repo": "anthropics/claude-code",
+        "desc": "GitHub Trending 今日熱門 AI 專案之一，主打在 terminal 中理解程式碼庫、執行例行工作並協助 git 流程。",
+        "stars": "460 stars today",
+        "lang": "Python",
+        "url": "https://github.com/anthropics/claude-code",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "compound-engineering-plugin",
+        "repo": "EveryInc/compound-engineering-plugin",
+        "desc": "GitHub Trending 今日熱門 AI 外掛之一，提供 Claude Code、Codex、Cursor 等工具可共用的官方 Compound Engineering plugin。",
+        "stars": "354 stars today",
+        "lang": "TypeScript",
+        "url": "https://github.com/EveryInc/compound-engineering-plugin",
+        "tags": [
+          "plugin",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-05-29",
+    "weekday": "星期五",
+    "stats": {
+      "claude": 3,
+      "openai": 3,
+      "gemini": 4,
+      "grok": 4,
+      "news": 3,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "tool",
+        "title": "Claude Managed Agents 新增自架沙箱與 MCP tunnels",
+        "desc": "Anthropic 推出 Managed Agents 新功能，讓企業可把工具執行環境放在自有基礎設施內，並透過 MCP tunnels 安全連到私有服務。",
+        "url": "https://claude.com/blog/claude-managed-agents-updates",
+        "source": "Claude Blog",
+        "tags": [
+          "claude",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Claude Code 推出 Agent view，可集中管理多個工作階段",
+        "desc": "Claude Code 新增 Agent view，支援從單一介面查看哪些代理人正在執行、等待回覆或已完成，降低多 terminal 並行工作的切換成本。",
+        "url": "https://claude.com/blog/agent-view-in-claude-code",
+        "source": "Claude Blog",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "Claude Platform on AWS 正式全面可用",
+        "desc": "Claude Platform on AWS 現已正式提供完整平台能力，包含 Managed Agents、Code Execution、Skills、MCP connector 與 Files API 等功能。",
+        "url": "https://claude.com/blog/claude-platform-on-aws",
+        "source": "Claude Blog",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "Codex 更新：目標模式全面可用，瀏覽器註解與 Appshots 上線",
+        "desc": "OpenAI 在 5 月 21 日的 ChatGPT 版本說明中宣布，Codex 的目標模式已在 App、IDE 擴充套件與 CLI 全面可用，並加入 Appshots 與應用程式內瀏覽器註解。",
+        "url": "https://help.openai.com/zh-hant/articles/6825453-chatgpt-%E7%99%BC%E8%A1%8E%E8%AA%AA%E6%98%8E",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "ChatGPT 行動版可遠端接續 Codex 工作",
+        "desc": "Codex 現可在 ChatGPT 手機 App 中以預覽形式遠端接續 Mac 主機上的工作，能查看進度、回覆問題、改方向並切換連線主機。",
+        "url": "https://help.openai.com/zh-hant/articles/6825453-chatgpt-%E7%99%BC%E8%A1%8E%E8%AA%AA%E6%98%8E",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "ChatGPT 個人理財功能開始向美國 Pro 用戶推出",
+        "desc": "OpenAI 在 5 月 15 日起逐步向美國 Pro 用戶推出個人理財體驗，可連接支援的金融帳戶並在 ChatGPT 內查看支出、帳單、淨值與投資概況。",
+        "url": "https://help.openai.com/zh-hant/articles/6825453-chatgpt-%E7%99%BC%E8%A1%8E%E8%AA%AA%E6%98%8E",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "model",
+        "title": "Gemini 3.5 Flash 正式上線，主打代理人與程式開發",
+        "desc": "Google 於 I/O 2026 發表 Gemini 3.5 系列，率先推出 3.5 Flash，主打長時間代理人任務、程式開發與更快的輸出速度。",
+        "url": "https://blog.google/intl/zh-tw/products/explore-get-answers/gemini-3-5/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Gemini Omni Flash 開始推送到 Gemini、Flow 與 YouTube Shorts",
+        "desc": "Gemini Omni Flash 主打從文字、圖片、音訊與影片輸入直接生成可編修的高品質影片，並已開始進入 Gemini app、Google Flow 與 YouTube Shorts。",
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Gemini App 轉向更主動的 24/7 助理",
+        "desc": "Google 宣布 Gemini app 將加入 Daily Brief 與 Gemini Spark 等功能，讓助理能更主動整理日常資訊、長時間處理任務與提醒。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Gemini Intelligence 把多步驟自動化帶進 Android",
+        "desc": "Google 在 Android 導入 Gemini Intelligence，涵蓋跨 App 自動化、Chrome 研究輔助、進階表單填寫、Rambler 與自訂 Widget 等能力。",
+        "url": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "tool"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "Grok Build 0.1 以公開 Beta 登上 xAI API",
+        "desc": "xAI 於 5 月 28 日把 grok-build-0.1 開放到 API 公測，鎖定 agentic coding、除錯、Web 開發與 MCP 支援，並主打高輸出速度。",
+        "url": "https://x.ai/news/grok-build-0-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Grok Build CLI 早期 Beta 主打終端機 coding agent",
+        "desc": "Grok Build 以 CLI 形式提供規劃、審閱與核准流程，讓開發者可在 terminal 內把長任務交給 AI 代理人處理。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "agent"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Grok Connectors 登上 Web、iOS 與 Android",
+        "desc": "xAI 推出 Connectors，讓 Grok 能直接連接 SharePoint 等服務，讀取與整理檔案、投影片、行事曆與試算表，減少手動複製貼上。",
+        "url": "https://x.ai/news/grok-connectors",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Grok Skills 讓偏好與工作流程能跨對話重用",
+        "desc": "xAI 新增 Skills，支援把文件、簡報、試算表與自動化工作流程封裝成可重複使用的能力，讓 Grok 記住使用者的固定做法。",
+        "url": "https://x.ai/news/grok-skills",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "tool"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "TechNews：ChatGPT 開放遠端存取電腦上的 Codex",
+        "desc": "科技新報整理 OpenAI 的最新 Codex 行動版能力，重點是可從 iPhone、iPad 與 Android 裝置遠端掌握正在執行中的工作。",
+        "url": "https://technews.tw/2026/05/15/httpsopenai-comindexwork-with-codex-from-anywhere/",
+        "source": "TechNews 科技新報",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "title": "iThome：Google 推出 Gemini 3.5 Flash，強打代理人開發",
+        "desc": "iThome 指出 Gemini 3.5 Flash 聚焦多步驟工作流程、子代理協作與長時間任務，並直接把競爭焦點拉到企業代理人開發。",
+        "url": "https://www.ithome.com.tw/news/175949",
+        "source": "iThome",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "title": "INSIDE：Anthropic 收購 Stainless，搶下 SDK 與 MCP 基礎設施",
+        "desc": "INSIDE 將這筆收購解讀為代理人競爭延伸到基礎設施層，Anthropic 透過掌握 SDK 與 MCP 實作工具，強化 Claude 生態系。",
+        "url": "https://www.inside.com.tw/article/41323-anthropic-acquires-stainless",
+        "source": "INSIDE",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Hugging Face Papers Trending",
+        "author": "Hugging Face",
+        "desc": "持續追蹤當日熱門 AI 論文與研究趨勢，補充今天模型與代理人之外的開放研究動向。",
+        "url": "https://huggingface.co/papers/trending",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "Hugging Face Models",
+        "author": "Hugging Face",
+        "desc": "觀察社群最新上架與熱門模型，補強開源模型端的應用與工具更新。",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "GitHub Trending",
+        "repo": "trending",
+        "desc": "追蹤今天在 GitHub 上升溫的 AI agent、coding tool 與開源應用專案。",
+        "stars": "daily",
+        "lang": "Mixed",
+        "url": "https://github.com/trending",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Awesome MCP Servers",
+        "repo": "punkpeye/awesome-mcp-servers",
+        "desc": "持續更新的 MCP 伺服器清單，反映代理人工具鏈與整合生態的最新熱點。",
+        "stars": "live",
+        "lang": "Markdown",
+        "url": "https://github.com/punkpeye/awesome-mcp-servers",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-05-28",
+    "weekday": "星期四",
+    "stats": {
+      "claude": 3,
+      "openai": 3,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "integration",
+        "title": "KPMG 將 Claude 擴到 276,000 名員工與核心業務",
+        "desc": "Anthropic 公告 KPMG 將 Claude 導入全球核心業務與員工流程，企業 AI 競爭從模型效能延伸到導入與服務能力。",
+        "url": "https://www.anthropic.com/news/kpmg-integrates-claude",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Claude Code 2.1.152 修正 PowerShell 權限與使用量統計",
+        "desc": "Claude Code 更新補上多個 Windows / PowerShell 安全與工作樹問題，並改善使用量與歷史紀錄相關體驗。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "source": "Releasebot",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "security",
+        "title": "Anthropic 公開 Claude Code、Cowork 的產品隔離設計",
+        "desc": "Anthropic 工程文章說明 agent 權限擴大後如何控制 blast radius，並提到 Claude Code 啟動前信任邊界的修補案例。",
+        "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+        "source": "Anthropic Engineering",
+        "tags": [
+          "claude",
+          "agent"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "ChatGPT 行動端可遠端接續 Codex 工作",
+        "desc": "OpenAI 說明 Codex 可從 ChatGPT 手機 App 接續桌面端工作，行動端能查看進度、回覆問題與審核結果。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "ChatGPT File Library 擴大到 Free 與 Go 使用者",
+        "desc": "ChatGPT Release Notes 顯示檔案庫與儲存空間管理擴大支援，讓使用者更容易重用上傳與生成過的檔案。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "OpenAI 與 Dell 合作，把 Codex 帶進混合與本地企業環境",
+        "desc": "OpenAI 新聞頁列出與 Dell 的企業合作，主軸是讓 Codex 能進入混合雲與 on-premises 的部署環境。",
+        "url": "https://openai.com/news/company-announcements/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "integration"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "agent",
+        "title": "Gemini Spark 成為 24/7 個人 AI 代理人",
+        "desc": "Google 說 Gemini Spark 會在雲端持續運作，連動 Gmail、Docs、Slides 等 Workspace 工具，協助處理跨工具任務。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Gemini Daily Brief 推出個人化晨間摘要",
+        "desc": "Daily Brief 會整合 Gmail、Calendar 與後續待辦資訊，產生每日摘要並根據使用者回饋調整優先順序。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Gemini Omni 開始向付費訂閱者推出",
+        "desc": "Gemini Omni 主打把文字、圖片與影片輸入轉成高品質影片輸出，並支援以自然語言進行影片編輯。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Gemini 3.5 成為 Spark 與新 Gemini 體驗底層",
+        "desc": "Google 在同篇更新中把 Gemini 3.5、Spark、Daily Brief 與 Omni 串成新的 Gemini 應用方向。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "Grok Build 進入早期測試，主打終端機 coding agent",
+        "desc": "xAI 發布 Grok Build，支援計畫、審核、批准與差異檢視，並能讀取 AGENTS.md、plugins、hooks、skills 與 MCP 設定。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "agent"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Grok Connectors 把常用服務接進 Web、iOS、Android",
+        "desc": "xAI 的 Connectors 讓 Grok 能讀取與整理 SharePoint 等工具資料，朝端到端工作流程整合推進。",
+        "url": "https://x.ai/news/grok-connectors",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Grok Imagine API Quality Mode 強化影像真實感與文字渲染",
+        "desc": "xAI 介紹 Quality Mode 用於企業影像生成與產品視覺素材，強調真實感、文字呈現與創作控制。",
+        "url": "https://x.ai/news/grok-imagine-quality-mode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Grok Voice Think Fast 1.0 面向高量工具調用與客服工作流",
+        "desc": "xAI 先前發布的語音模型主打低延遲與多步驟工具使用，仍是 Grok 產品線近期重要能力之一。",
+        "url": "https://x.ai/news/grok-voice-think-fast-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "5/28 AI 日報：企業導入服務成為前線戰場",
+        "desc": "Build Fast with AI 將 5/28 重點歸納為 Anthropic、OpenAI、KPMG、DeployCo 等企業導入戰，焦點不只在模型，也在部署能力。",
+        "url": "https://www.buildfastwithai.com/blogs/ai-news-today-may-28-2026",
+        "source": "Build Fast with AI",
+        "tags": [
+          "integration"
+        ]
+      },
+      {
+        "title": "Cohere 與 Aleph Alpha 合併，主打主權 AI 市場",
+        "desc": "TechCrunch 報導 Cohere 將接手 Aleph Alpha，瞄準歐洲與企業客戶對資料主權、可控部署的需求。",
+        "url": "https://techcrunch.com/2026/04/25/why-cohere-is-merging-with-aleph-alpha/",
+        "source": "TechCrunch",
+        "tags": [
+          "integration"
+        ]
+      },
+      {
+        "title": "Anthropic 與美國國防部的供應鏈風險訴訟仍受關注",
+        "desc": "週報指出 Anthropic 因軍事用途與供應鏈風險認定問題提告，美國法院已先阻止相關限制執行。",
+        "url": "https://unrot.co/blogs/weekly-ai-news-may-24-28-2026",
+        "source": "Unrot",
+        "tags": [
+          "claude"
+        ]
+      },
+      {
+        "title": "ChatGPT 語音模式模型差異引發開發者討論",
+        "desc": "5/28 日報把 ChatGPT voice mode 使用較舊模型的爭議列為當日事件之一，凸顯產品標示與模型透明度議題。",
+        "url": "https://www.buildfastwithai.com/blogs/ai-news-today-may-28-2026",
+        "source": "Build Fast with AI",
+        "tags": [
+          "openai"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Hugging Face Papers Trending",
+        "author": "Hugging Face",
+        "desc": "用於追蹤每日 AI 論文與開源模型趨勢，作為新聞日報的研究補充來源。",
+        "url": "https://huggingface.co/papers/trending",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "Hugging Face Models",
+        "author": "Hugging Face",
+        "desc": "收錄近期熱門模型與資料集，可補充產品新聞以外的開源模型動態。",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "GitHub Trending",
+        "repo": "trending",
+        "desc": "追蹤每日 AI agent、coding tool 與開源框架熱度。",
+        "stars": "daily",
+        "lang": "Mixed",
+        "url": "https://github.com/trending",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Awesome MCP Servers",
+        "repo": "punkpeye/awesome-mcp-servers",
+        "desc": "MCP 伺服器整理清單，適合作為 agent 工具生態的每日追蹤來源。",
+        "stars": "live",
+        "lang": "Markdown",
+        "url": "https://github.com/punkpeye/awesome-mcp-servers",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-05-27",
+    "weekday": "星期三",
+    "stats": {
+      "claude": 3,
+      "openai": 3,
+      "gemini": 4,
+      "grok": 4,
+      "news": 4,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "security",
+        "title": "Claude 產品隔離文章成為 agent 安全參考",
+        "desc": "Anthropic 5/25 工程文聚焦 agent 權限邊界、Claude Code 啟動信任與 Cowork 類產品風險控制，可作為自動化部署參考。",
+        "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+        "source": "Anthropic Engineering",
+        "tags": [
+          "claude",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Claude Code 2.1.147 後續版本改善背景 session 與 Windows 體驗",
+        "desc": "Releasebot 列出 Claude Code 在背景 session、plugin、PowerShell、worktree 與 slash command 上的多項修正。",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "source": "Releasebot",
+        "tags": [
+          "claude",
+          "tool"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "KPMG、PwC 兩案顯示 Claude 企業服務線擴張",
+        "desc": "Anthropic 近期連續列出 KPMG 與 PwC 的企業導入消息，Claude Code、Cowork 與 Claude 主產品都被納入服務方案。",
+        "url": "https://www.anthropic.com/news",
+        "source": "Anthropic",
+        "tags": [
+          "claude",
+          "integration"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "tool",
+        "title": "Codex 遠端接續能力進入 ChatGPT 行動端",
+        "desc": "OpenAI Release Notes 說明 Codex 行動端預覽，使用者可在手機上接續、監看與審核桌面端 Codex 工作。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "OpenAI 新聞頁列出 Codex 與 Dell 的企業合作",
+        "desc": "OpenAI 近期企業公告包含 Dell 合作、Codex 遠端工作、voice API 與企業 AI adoption 等方向。",
+        "url": "https://openai.com/news/company-announcements/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "integration"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "ChatGPT 檔案庫與儲存管理擴大推出",
+        "desc": "ChatGPT Release Notes 顯示 Library、近期檔案與儲存空間管理擴大，提升多檔案工作流延續性。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "tool"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "agent",
+        "title": "Gemini Spark 代表 Google 把助理推向 24/7 agent",
+        "desc": "Google 說 Spark 會在雲端背景運作，能跨 Workspace 工具處理任務，是 Gemini 應用變得更 agentic 的核心更新。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "agent"
+        ]
+      },
+      {
+        "sub": "tool",
+        "title": "Daily Brief 將 Gemini 變成每日摘要入口",
+        "desc": "Google 的 Daily Brief 會整理 Gmail、Calendar 與後續待辦，並可透過回饋持續調整個人化排序。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "tool"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Gemini Omni 以文字、圖片、影片混合輸入生成影片",
+        "desc": "Gemini Omni 開始向 Google AI Plus、Pro、Ultra 訂閱者推出，主打自然語言影片編輯與高品質生成。",
+        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+        "source": "Google Blog",
+        "tags": [
+          "gemini",
+          "model"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Gemini I/O 更新延伸到搜尋、Workspace 與行動助理",
+        "desc": "多家科技媒體把 Google I/O 2026 的 Gemini 更新視為 AI 週期重點，涵蓋 Search、Gemini app 與 Workspace。",
+        "url": "https://www.techradar.com/news/live/google-io-2026-live",
+        "source": "TechRadar",
+        "tags": [
+          "gemini",
+          "integration"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "agent",
+        "title": "Grok Build 把 xAI 帶進 coding agent 戰場",
+        "desc": "xAI 發布 Grok Build，強調可在終端機中計畫、執行、審核程式碼任務，並讀取專案內 agent 設定。",
+        "url": "https://x.ai/news/grok-build-cli",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "agent"
+        ]
+      },
+      {
+        "sub": "integration",
+        "title": "Grok Connectors 支援 Web 與行動端常用服務整合",
+        "desc": "xAI Connectors 讓 Grok 能直接連動工作資料來源，減少複製貼上與跨工具切換。",
+        "url": "https://x.ai/news/grok-connectors",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "integration"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Grok Imagine Quality Mode 持續推企業影像生成",
+        "desc": "Quality Mode 聚焦商品視覺、行銷素材與創意控制，是 Grok 在文字聊天外的多模態產品線。",
+        "url": "https://x.ai/news/grok-imagine-quality-mode",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      },
+      {
+        "sub": "model",
+        "title": "Grok Voice Think Fast 1.0 強調複雜客服與銷售流程",
+        "desc": "xAI 語音模型針對低延遲、模糊請求、多工具調用等場景，補強 Grok 在即時語音 agent 的能力。",
+        "url": "https://x.ai/news/grok-voice-think-fast-1",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "model"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "title": "5/27 AI 日報：Anthropic、SpaceX、Microsoft agent 更新成焦點",
+        "desc": "Build Fast with AI 將 5/27 焦點放在 Anthropic 資本動態、SpaceX roadshow、Microsoft computer-using agents 與 Gemini API 變動。",
+        "url": "https://www.buildfastwithai.com/blogs/ai-news-today-may-27-2026",
+        "source": "Build Fast with AI",
+        "tags": [
+          "agent"
+        ]
+      },
+      {
+        "title": "Copilot Studio computer use 進入 GA，legacy GUI 自動化更容易",
+        "desc": "Microsoft Community Hub 說 Copilot Studio maker 可建立能直接操作應用程式的 agent，將 GUI 自動化納入 Power Platform。",
+        "url": "https://techcommunity.microsoft.com/blog/copilot-studio-blog/computer-using-agents-in-microsoft-copilot-studio-are-now-generally-available/4519427",
+        "source": "Microsoft Community Hub",
+        "tags": [
+          "agent",
+          "tool"
+        ]
+      },
+      {
+        "title": "Windows 11 Ask Copilot 預計夏季整合到工作列",
+        "desc": "Windows Central 報導 Microsoft 文件顯示 Ask Copilot 將把 Copilot 與 AI agents 帶進工作列與開始功能表。",
+        "url": "https://www.windowscentral.com/microsoft/windows-11/microsoft-confirms-plans-to-integrate-copilot-with-the-taskbar-on-windows-11-this-summer-ask-copilot-expected-to-debut-mid-2026",
+        "source": "Windows Central",
+        "tags": [
+          "integration"
+        ]
+      },
+      {
+        "title": "AI 創造力研究持續被重新討論",
+        "desc": "近期日報與研究摘要提到大型研究顯示生成式 AI 在部分創意測驗中已能超過平均人類，但頂尖創意仍有差距。",
+        "url": "https://completeaitraining.com/news/100000-person-study-finds-ai-beats-the-average-on/",
+        "source": "Complete AI Training",
+        "tags": [
+          "model"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "name": "Hugging Face Papers Trending",
+        "author": "Hugging Face",
+        "desc": "每日追蹤 AI 論文與開源模型熱度，補充產品新聞以外的研究面向。",
+        "url": "https://huggingface.co/papers/trending",
+        "tags": [
+          "model",
+          "open"
+        ]
+      },
+      {
+        "name": "Hugging Face Models",
+        "author": "Hugging Face",
+        "desc": "熱門模型清單可用於補充每日開源模型與工具更新。",
+        "url": "https://huggingface.co/models",
+        "tags": [
+          "model",
+          "open"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "name": "GitHub Trending",
+        "repo": "trending",
+        "desc": "每日觀察 AI coding tool、agent framework 與開源專案熱度。",
+        "stars": "daily",
+        "lang": "Mixed",
+        "url": "https://github.com/trending",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      },
+      {
+        "name": "Awesome MCP Servers",
+        "repo": "punkpeye/awesome-mcp-servers",
+        "desc": "MCP 工具生態追蹤來源，適合放進 AI agent 類新聞觀察。",
+        "stars": "live",
+        "lang": "Markdown",
+        "url": "https://github.com/punkpeye/awesome-mcp-servers",
+        "tags": [
+          "agent",
+          "open"
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-05-26",
     "weekday": "星期二",
     "stats": {
