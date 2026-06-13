@@ -1,5 +1,212 @@
 const AI_NEWS_DATA = [
   {
+    "date": "2026-06-14",
+    "weekday": "週日",
+    "stats": {
+      "claude": 1,
+      "openai": 2,
+      "gemini": 2,
+      "grok": 1,
+      "news": 5,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "coding",
+        "title": "GitHub 6 月更新頁面揭露 Anthropic 新模型進入 Copilot 生態",
+        "desc": "GitHub 6 月 changelog 彙整頁提到 Anthropic 的 Claude Fable 5 已進入 GitHub Copilot。對寫程式的人來說，重點是模型選擇不只在聊天頁，而是直接進入 review、CLI 與 agent workflow。",
+        "url": "https://github.blog/changelog/month/06-2026/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "claude",
+          "copilot",
+          "coding"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "agent",
+        "title": "YouTube 今日短影片解析 OpenAI 收購 Ona 對代理工作的意義",
+        "desc": "這支 YouTube Shorts 把 OpenAI 收購 Ona 解讀成代理執行環境比模型本身更關鍵的訊號。適合快速理解為什麼 Codex 需要可長時間運作的雲端 workspace。",
+        "url": "https://www.youtube.com/shorts/PurHQkEVlyA",
+        "source": "YouTube",
+        "tags": [
+          "openai",
+          "codex",
+          "youtube"
+        ]
+      },
+      {
+        "sub": "chatgpt",
+        "title": "ChatGPT release notes 顯示 GPT-5.2 系列已退場並轉往 GPT-5.5",
+        "desc": "OpenAI Help Center 標示 2026-06-12 起 GPT-5.2 Instant、Thinking、Pro 不再可用，既有對話會轉到對應 GPT-5.5。若你在比較模型效果，舊對話輸出風格可能已經換底層模型。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "chatgpt",
+          "model"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "youtube",
+        "title": "YouTube 新影片示範 NotebookLM 變成 Gemini 3.5 研究代理",
+        "desc": "NotebookLM Just Changed AI Forever 聚焦 Google 把 NotebookLM 推向 AI Research Agent 的變化，包含自動找來源、整理資料與輸出成果。適合想用 AI 做資料蒐集、讀文件和研究筆記的人先看。",
+        "url": "https://www.youtube.com/watch?v=QRQ9hu18SGU",
+        "source": "YouTube",
+        "tags": [
+          "gemini",
+          "notebooklm",
+          "youtube"
+        ]
+      },
+      {
+        "sub": "research",
+        "title": "YouTube 近期影片整理 Google 研究工具更新",
+        "desc": "Google's NEW AI Tools for Researchers 整理 Google 面向學生與研究者的新 AI 工具，重點在文獻回顧、資料整理與研究流程。這類內容比單純新聞更適合判斷工具能不能進日常 workflow。",
+        "url": "https://www.youtube.com/watch?v=O0J8gPsbeUQ",
+        "source": "YouTube",
+        "tags": [
+          "gemini",
+          "research",
+          "youtube"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "tool",
+        "title": "AI Roundup 今日整理 Grok Build 外掛市集重點",
+        "desc": "AI Roundup 的最新整理把 xAI Grok Build Plugin Marketplace 放進工具雷達，重點是 MongoDB、Vercel、Sentry、Cloudflare、Chrome DevTools 等外掛可從終端機安裝。",
+        "url": "https://www.ai-roundup.dev/roundup/latest/",
+        "source": "AI Roundup",
+        "tags": [
+          "grok",
+          "tool",
+          "plugin"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "sub": "youtube-zh",
+        "title": "中文博主今日影片：普通人 AI 破局指南，整理 Gemini、NotebookLM、Claude、Codex",
+        "desc": "這支中文影片今天發布，主軸不是單一新聞，而是把 Gemini、NotebookLM、Claude、Codex 放進一般使用者的 AI 工具選擇脈絡。適合用手機快速判斷哪些工具值得先試。",
+        "url": "https://www.youtube.com/watch?v=VU34qq9g3Bw",
+        "source": "YouTube 中文博主",
+        "tags": [
+          "youtube",
+          "中文",
+          "ai-tools"
+        ]
+      },
+      {
+        "sub": "youtube-zh",
+        "title": "孔老師 AI 研習社近期更新 NotebookLM 與 AI 工具教學",
+        "desc": "孔老師 AI 研習社頻道近期有 NotebookLM 隱藏用法、AI 生圖工具與其他 AI 工具教學，適合補中文操作型內容。這類來源會放進每日雷達的工具影片區，避免只有英文影片。",
+        "url": "https://www.youtube.com/@Teacher_Kong/videos",
+        "source": "孔老師AI研習社 / YouTube",
+        "tags": [
+          "youtube",
+          "中文",
+          "notebooklm"
+        ]
+      },
+      {
+        "sub": "youtube-zh",
+        "title": "中文 Codex 教學：從 ChatGPT 到能操作檔案的 AI Agent",
+        "desc": "這支中文影片把 ChatGPT、Codex、AI Agent 的差異講清楚，重點是為什麼需要能讀寫檔案、串接工具、執行任務的本機代理。適合補你正在用 Codex / Claude Code 的實作理解。",
+        "url": "https://www.youtube.com/watch?v=qLGv_XFPqv4",
+        "source": "YouTube 中文教學",
+        "tags": [
+          "youtube",
+          "中文",
+          "codex"
+        ]
+      },
+      {
+        "sub": "codex",
+        "title": "TechRadar 解讀 OpenAI 收購 Ona 會讓 Codex 更像長時間工作代理",
+        "desc": "TechRadar 指出，Ona 的持久化雲端環境能讓 Codex 從 coding assistant 往更廣的專業工作代理前進。這篇適合補充官方公告沒有細講的市場脈絡。",
+        "url": "https://www.techradar.com/pro/openais-latest-acquisition-could-see-big-changes-on-the-way-for-its-codex-coding-assistant",
+        "source": "TechRadar",
+        "tags": [
+          "openai",
+          "codex",
+          "agent"
+        ]
+      },
+      {
+        "sub": "notebooklm",
+        "title": "The Verge：NotebookLM 升級為可找來源、可跑程式的研究工具",
+        "desc": "The Verge 報導 NotebookLM 加入 Gemini 3.5、來源探索與雲端電腦能力，可產生 PDF、PNG、SVG、Excel、PowerPoint、CSV 等輸出。這不是小更新，而是把筆記工具推向研究代理平台。",
+        "url": "https://www.theverge.com/tech/944325/google-notebooklm-ai-gemini-update",
+        "source": "The Verge",
+        "tags": [
+          "gemini",
+          "notebooklm",
+          "research"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "sub": "embedding",
+        "title": "Hugging Face 今日文章介紹可訓練、可服務的 Stable Static Embedding",
+        "desc": "SSE in Practice 介紹快速靜態 embedding 的訓練與服務方式，定位是可以插進代理系統的低成本向量表示。適合關注 RAG、搜尋或本地代理工具的人收藏。",
+        "url": "https://huggingface.co/blog/RikkaBotan/stable-static-embedding-in-practice",
+        "source": "Hugging Face",
+        "tags": [
+          "huggingface",
+          "embedding",
+          "agent"
+        ]
+      },
+      {
+        "sub": "leaderboard",
+        "title": "Hugging Face Blog 顯示 MTEB Leaderboard 近期升級為功能更完整的榜單",
+        "desc": "Hugging Face Blog 首頁列出 MTEB Leaderboard 的近期更新，重點是從慢速 demo 進化成更完整的榜單體驗。若你常比較 embedding 或檢索模型，這類榜單工具比單篇模型新聞更實用。",
+        "url": "https://huggingface.co/blog",
+        "source": "Hugging Face Blog",
+        "tags": [
+          "huggingface",
+          "leaderboard",
+          "embedding"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "sub": "security",
+        "title": "GitHub Copilot CLI 加入安全審查指令預覽",
+        "desc": "GitHub 6 月 changelog 提到 Copilot CLI 新增實驗性的安全審查 slash command，可直接對程式碼變更做安全檢查。對開發者來說，這代表 AI review 正從 IDE 對話走向命令列流程。",
+        "url": "https://github.blog/changelog/month/06-2026/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "copilot",
+          "security"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "GitHub Agent tasks REST API 可程式化啟動 Copilot cloud agent 任務",
+        "desc": "GitHub 6 月 changelog 第 2 頁提到 Agent tasks REST API，讓 Pro、Pro+、Max 使用者可用 API 啟動與追蹤 Copilot cloud agent 任務。這對自動化開發流程比單次聊天更重要。",
+        "url": "https://github.blog/changelog/month/06-2026/page/2/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "copilot",
+          "agent"
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-06-13",
     "weekday": "週六",
     "stats": {
@@ -8,254 +215,83 @@ const AI_NEWS_DATA = [
       "gemini": 2,
       "grok": 1,
       "news": 3,
-      "hf": 0,
-      "gh": 0
+      "hf": 2,
+      "gh": 2
     },
     "claude": [
       {
-        "sub": "platform",
+        "sub": "enterprise",
         "title": "Anthropic 與 TCS 合作，把 Claude 帶進高監管產業",
-        "desc": "Anthropic 於 2026-06-12 宣布與 Tata Consultancy Services 合作。TCS 將在 56 個國家為 5 萬名員工導入 Claude，並把 Claude 帶進金融、醫療、公部門等高合規場景。",
+        "desc": "Anthropic 宣布與 Tata Consultancy Services 建立合作，TCS 會先讓 5 萬名員工使用 Claude，並把 Claude 方案帶到金融、醫療、公部門等高合規場景。",
         "url": "https://www.anthropic.com/news/tcs-anthropic-partnership",
         "source": "Anthropic",
         "tags": [
           "claude",
-          "platform"
+          "enterprise"
         ]
       },
       {
-        "sub": "research",
-        "title": "Anthropic 公布首份 Public Record，近 5.2 萬名美國民眾調查揭示 AI 態度",
-        "desc": "Anthropic 於 2026-06-12 發布第一波 Public Record 結果，調查近 52,000 名美國民眾對 AI 的看法，作為後續追蹤大眾對 AI 採用、信任與風險感受的基線資料。",
-        "url": "https://www.anthropic.com/news/anthropic-public-record",
-        "source": "Anthropic",
+        "sub": "enterprise",
+        "title": "TechCrunch 補充：TCS 將成立 Claude 部門服務企業客戶",
+        "desc": "TechCrunch 報導 TCS 會建立專門部署 Anthropic 模型的業務單位，並取得新模型 early access。這對觀察 Claude 如何跟大型顧問公司一起進企業，很有參考價值。",
+        "url": "https://techcrunch.com/2026/06/11/anthropic-taps-tcs-to-scale-its-enterprise-ai-deployments/",
+        "source": "TechCrunch",
         "tags": [
-          "anthropic",
-          "research"
-        ]
-      }
-    ],
-    "openai": [
-      {
-        "sub": "acquisition",
-        "title": "OpenAI 將收購 Ona，替 Codex 建立可持續運作的雲端工作環境",
-        "desc": "OpenAI 於 2026-06-11 表示，計畫收購雲端環境公司 Ona，讓 Codex 能在客戶可控的持久化雲端空間中長時間執行任務，強化企業級代理工作流。",
-        "url": "https://openai.com/index/openai-to-acquire-ona/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "codex"
-        ]
-      },
-      {
-        "sub": "education",
-        "title": "OpenAI 推出 Academy 新課程，聚焦實務工作流與代理協作",
-        "desc": "OpenAI 於 2026-06-12 發布三門新的 Academy 課程，內容涵蓋提示到工作流規畫、代理協作與組織導入，目標是讓企業把零散用法轉成可重複的 AI 工作方式。",
-        "url": "https://openai.com/index/academy-courses-applying-ai-at-work/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "workflow"
-        ]
-      }
-    ],
-    "gemini": [
-      {
-        "sub": "research",
-        "title": "NotebookLM 升級代理式研究能力，可自動找來源並輸出多種格式",
-        "desc": "Google 於 2026-06-08 宣布 NotebookLM 全面升級，加入更強的代理式研究與推理能力，能協助蒐集資料、整理知識庫，並輸出圖表、文件與其他研究成果。",
-        "url": "https://blog.google/innovation-and-ai/products/notebooklm/better-research-notebooklm/",
-        "source": "Google Blog",
-        "tags": [
-          "gemini",
-          "research"
-        ]
-      },
-      {
-        "sub": "app",
-        "title": "Google 為小型商家推出新 Gemini 工具，串接商家檔案與 Business notebooks",
-        "desc": "Google 於 2026-06-10 發表新的 Gemini 商家功能，可連接 Google Business Profile，並透過 Business notebooks 整理品牌資訊、任務脈絡與顧客互動資料。",
-        "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-features-for-businesses/",
-        "source": "Google Blog",
-        "tags": [
-          "gemini",
-          "app"
-        ]
-      }
-    ],
-    "grok": [
-      {
-        "sub": "security",
-        "title": "TechNews：AI 資安新創 Pi 估值 1 億美元，xAI 已成首批客戶之一",
-        "desc": "TechNews 於 2026-06-12 報導，前特斯拉資安主管創立的 Pi 主打用 AI 協助漏洞修補與安全判斷，xAI 已開始採用其服務，反映生成式 AI 與資安工具整合需求升高。",
-        "url": "https://technews.tw/2026/06/12/yoni-ramon-pi/",
-        "source": "TechNews",
-        "tags": [
-          "xai",
-          "security"
-        ]
-      }
-    ],
-    "news": [
-      {
-        "title": "TechNews：G7 高峰會將聚焦 AI 管理，OpenAI、Google 與 Anthropic 高層將與會",
-        "desc": "TechNews 於 2026-06-12 報導，Sam Altman、Demis Hassabis 與 Dario Amodei 都在法國 G7 峰會受邀名單內，顯示 AI 治理已進入國際政策核心議程。",
-        "url": "https://technews.tw/2026/06/12/anthropic-openai-google-executives-to-join-g7-summit-in-france/",
-        "source": "TechNews",
-        "tags": [
-          "governance",
-          "industry"
-        ]
-      },
-      {
-        "title": "iThome：麥肯錫指 88% 企業已導入 AI，但只有 39% 看見明確效益",
-        "desc": "iThome 於 2026-06-12 引述麥肯錫指出，企業下一階段競爭不在於導入多少工具，而在於能否重設流程、建立人機協作模式，並把 AI 真正嵌入核心營運。",
-        "url": "https://www.ithome.com.tw/news/176584",
-        "source": "iThome",
-        "tags": [
+          "claude",
           "enterprise",
-          "adoption"
-        ]
-      },
-      {
-        "title": "iThome：企業急缺 AI 即戰力，但求職市場多停留在工具使用層",
-        "desc": "iThome 於 2026-06-12 報導，1111 與資策會的 2026 職場 AI 力調查顯示，AI 相關職缺與求職量同步攀升，但企業更在意能否把 AI 能力落到實際工作情境與成果表現。",
-        "url": "https://www.ithome.com.tw/news/176579",
-        "source": "iThome",
-        "tags": [
-          "talent",
-          "workforce"
-        ]
-      }
-    ],
-    "hf": [],
-    "gh": []
-  },
-  {
-    "date": "2026-06-12",
-    "weekday": "週五",
-    "stats": {
-      "claude": 3,
-      "openai": 4,
-      "gemini": 3,
-      "grok": 2,
-      "news": 3,
-      "hf": 0,
-      "gh": 0
-    },
-    "claude": [
-      {
-        "sub": "model",
-        "title": "Anthropic 推出 Claude Fable 5 與 Claude Mythos 5",
-        "desc": "Anthropic 於 2026-06-09 發表新一代模型。Fable 5 主打高難度知識工作與程式任務，Mythos 5 則先透過 Project Glasswing 提供給少數資安與關鍵基礎設施團隊。",
-        "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
-        "source": "Anthropic",
-        "tags": [
-          "claude",
-          "model"
-        ]
-      },
-      {
-        "sub": "platform",
-        "title": "Anthropic 與 DXC 結盟，把 Claude 帶進銀行、航空與高監管產業系統",
-        "desc": "Anthropic 於 2026-06-11 宣布與 DXC Technology 建立多年全球合作，將訓練大量 Claude 認證前線工程師，把 Claude 導入銀行、航空、保險、製造與政府等高合規環境。",
-        "url": "https://www.anthropic.com/news/dxc-anthropic-alliance",
-        "source": "Anthropic",
-        "tags": [
-          "claude",
-          "platform"
-        ]
-      },
-      {
-        "sub": "program",
-        "title": "Anthropic 啟動 Claude Corps，投入 1.5 億美元培訓非營利組織 AI 人才",
-        "desc": "Anthropic 於 2026-06-11 宣布 Claude Corps，將訓練 1,000 名早期職涯成員，把 Claude 與 AI 工作流帶進美國各地非營利組織，並同步開放申請。",
-        "url": "https://www.anthropic.com/news/claude-corps",
-        "source": "Anthropic",
-        "tags": [
-          "claude",
-          "program"
+          "consulting"
         ]
       }
     ],
     "openai": [
       {
-        "sub": "acquisition",
-        "title": "OpenAI 將收購 Ona，替 Codex 建立可長時間執行的雲端工作環境",
-        "desc": "OpenAI 於 2026-06-11 表示將收購 Ona，把安全的雲端執行與協調能力併入 Codex 生態，強化長任務代理與知識工作自動化。",
+        "sub": "codex",
+        "title": "OpenAI 宣布將收購 Ona，替 Codex 建立持久化雲端工作環境",
+        "desc": "OpenAI 官方公告指出，Ona 的安全雲端環境能讓代理存取工具、系統與上下文，支援更長時間的任務。對 Codex 來說，這是從單次 coding assistant 走向長期工作代理的重要基礎。",
         "url": "https://openai.com/index/openai-to-acquire-ona/",
         "source": "OpenAI",
         "tags": [
           "openai",
-          "codex"
+          "codex",
+          "agent"
         ]
       },
       {
-        "sub": "platform",
-        "title": "OpenAI 與 Oracle 擴大合作，企業可用既有 Oracle 雲承諾採購模型與 Codex",
-        "desc": "OpenAI 於 2026-06-10 宣布，Oracle Cloud Infrastructure 客戶之後可把符合資格的 Oracle Universal Credits 用在 OpenAI 模型與 Codex，減少新採購流程。",
-        "url": "https://openai.com/index/openai-on-oracle-cloud/",
-        "source": "OpenAI",
+        "sub": "codex",
+        "title": "AI Business：OpenAI 收購 Ona 是為了追上代理式 coding 市場需求",
+        "desc": "AI Business 把這次收購放在 Codex 與 Claude Code 競爭脈絡下解讀，指出 Ona 能支撐更長任務和企業工作流。這篇適合補市場角度，不只看官方敘事。",
+        "url": "https://aibusiness.com/generative-ai/openai-acquires-startup-to-boost-codex",
+        "source": "AI Business",
         "tags": [
           "openai",
-          "platform"
-        ]
-      },
-      {
-        "sub": "api",
-        "title": "OpenAI 為 Responses API 與 Chat Completions API 加入 moderation scores",
-        "desc": "OpenAI 在 2026-06-04 的 release notes 表示，開發者現在可在同一次生成請求中，同步取得輸入與輸出的 moderation 結果，方便把內容審查併入既有流程。",
-        "url": "https://openai.com/products/release-notes/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "api"
-        ]
-      },
-      {
-        "sub": "security",
-        "title": "ChatGPT Lockdown Mode 擴大到所有已登入使用者",
-        "desc": "OpenAI 在 2026-06-04 的 release notes 表示，Lockdown Mode 已開放所有已登入帳號與工作區，可限制瀏覽、deep research、agent mode 與部分外部能力，降低 prompt injection 風險。",
-        "url": "https://openai.com/products/release-notes/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "security"
+          "codex",
+          "market"
         ]
       }
     ],
     "gemini": [
       {
-        "sub": "app",
-        "title": "Google 為 Gemini 推出小型商家專用工具",
-        "desc": "Google 於 2026-06-10 發表新的 Gemini 商家功能，可直接連接 Google Business Profile，並用 Business notebooks 整理品牌、任務與顧客互動脈絡。",
-        "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-features-for-businesses/",
-        "source": "Google Blog",
+        "sub": "notebooklm",
+        "title": "Android Central：NotebookLM 可主動找來源並做研究輸出",
+        "desc": "Android Central 指出 NotebookLM 新版不再只依賴使用者手動上傳資料，能根據研究主題主動找來源，並用 Gemini 3.5 與 Antigravity 支援雲端處理。",
+        "url": "https://www.androidcentral.com/apps-software/notebooklm-just-got-a-big-upgrade-and-research-could-get-a-lot-easier",
+        "source": "Android Central",
         "tags": [
           "gemini",
-          "app"
-        ]
-      },
-      {
-        "sub": "research",
-        "title": "NotebookLM 升級代理式研究能力，可產生圖表、試算表與投影片",
-        "desc": "Google 於 2026-06-08 宣布 NotebookLM 全面升級，加入更強推理、可執行程式碼的雲端電腦，以及從鬆散想法出發自動蒐集來源、生成多種研究產物的能力。",
-        "url": "https://blog.google/innovation-and-ai/products/notebooklm/better-research-notebooklm/",
-        "source": "Google Blog",
-        "tags": [
-          "gemini",
+          "notebooklm",
           "research"
         ]
       },
       {
-        "sub": "model",
-        "title": "Google 推出 Gemini Omni Flash，讓 Gemini 進入可對話式影片生成",
-        "desc": "Google 表示 Gemini Omni 結合推理與生成能力，首波 Omni Flash 可從文字、圖片、音訊與影片參考生成影片，並正向 Gemini app、Google Flow 與 YouTube Shorts 用戶陸續開放。",
-        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/",
-        "source": "Google Blog",
+        "sub": "gemini",
+        "title": "Android Central 長文整理 Gemini 3.5、Nano Banana、Live 與開發者工具",
+        "desc": "Android Central 的 Gemini 綜覽更新整理 Gemini Pro/Flash、Nano Banana、Gemini Live、Google AI Studio、Antigravity 等能力。適合快速理解 Google AI 生態現在有哪些可用入口。",
+        "url": "https://www.androidcentral.com/apps-software/google-gemini",
+        "source": "Android Central",
         "tags": [
           "gemini",
-          "model"
+          "google",
+          "ecosystem"
         ]
       }
     ],
@@ -263,60 +299,310 @@ const AI_NEWS_DATA = [
       {
         "sub": "plugin",
         "title": "xAI 推出 Grok Build Plugin Marketplace",
-        "desc": "xAI 於 2026-06-11 上線內建於 Grok Build 的外掛市集，可直接在終端安裝與更新 plugin，首波包含 MongoDB、Vercel、Sentry、Chrome DevTools 與 Cloudflare 等夥伴。",
+        "desc": "xAI 官方公告 Grok Build 內建外掛市集，外掛可打包 skills、slash commands、agents、hooks、MCP servers 與 LSPs。這讓 Grok Build 更像可擴充的代理開發環境。",
         "url": "https://x.ai/news/grok-plugin-marketplace",
         "source": "xAI",
         "tags": [
           "grok",
-          "plugin"
-        ]
-      },
-      {
-        "sub": "integration",
-        "title": "xAI 與 eToro 合作，把即時市場情緒帶進 Tori 投資助理",
-        "desc": "xAI 於 2026-06-10 宣布，eToro 的 AI agent「Tori」會直接讀取來自 X 的即時市場情緒與訊號，讓投資分析與工作流更即時。",
-        "url": "https://x.ai/news/grok-etoro",
-        "source": "xAI",
-        "tags": [
-          "grok",
-          "integration"
+          "plugin",
+          "mcp"
         ]
       }
     ],
     "news": [
       {
-        "title": "AP：Anthropic 推 Claude Corps，並為 AI 對就業衝擊同步加碼研究",
-        "desc": "美聯社 2026-06-11 報導，Anthropic 將以 1.5 億美元推動 Claude Corps，讓非營利組織導入 AI；同時公司也另外承諾投入 2 億美元研究 AI 對經濟與工作的衝擊。",
-        "url": "https://apnews.com/article/b1c130a08417d13e1256f8982d233b0e",
-        "source": "AP",
+        "sub": "youtube",
+        "title": "YouTube 新影片用實測角度拆 NotebookLM 研究代理更新",
+        "desc": "NotebookLM Just Changed AI Forever 影片把 NotebookLM 新功能整理成使用者視角，包含如何用 Gemini 3.5 找資料、建立研究筆記與輸出成果。",
+        "url": "https://www.youtube.com/watch?v=QRQ9hu18SGU",
+        "source": "YouTube",
         "tags": [
-          "anthropic",
-          "industry"
+          "youtube",
+          "notebooklm",
+          "tutorial"
         ]
       },
       {
-        "title": "The Guardian：前 xAI 工程師提告，稱因示警 Grok 安全風險遭解職",
-        "desc": "The Guardian 於 2026-06-11 報導，前 xAI 工程師 Devin Kim 指稱自己因持續提出 Grok 的安全與濫用風險而遭報復性解職，凸顯 xAI 在內容安全上的壓力仍在升高。",
-        "url": "https://www.theguardian.com/technology/2026/jun/11/elon-musk-engineer-fired-grok-lawsuit",
-        "source": "The Guardian",
+        "sub": "social",
+        "title": "Reddit 討論 Gemini 錯誤與服務穩定度，提醒 AI 工具仍需備援",
+        "desc": "Reddit GoogleGeminiAI 版出現 Gemini 1076/1099 錯誤討論，雖然不是產品發布，但對重度使用者有提醒價值：重要工作流不要只押單一模型或單一服務。",
+        "url": "https://www.reddit.com/r/GoogleGeminiAI/comments/1u23379/is_google_gemini_down_users_reporting_1099_and/",
+        "source": "Reddit",
         "tags": [
-          "xai",
-          "safety"
+          "gemini",
+          "reliability",
+          "community"
         ]
       },
       {
-        "title": "WIRED：Grok 仍可生成並託管部分名人性化深偽內容",
-        "desc": "WIRED 於 2026-06-11 指出，儘管 xAI 先前承諾加強防護，Grok 仍被發現可產生並散布部分未經同意的性化深偽影像，再度把生成式影像安全推上檯面。",
-        "url": "https://www.wired.com/story/grok-is-still-hosting-sexualized-deepfakes-of-famous-women",
-        "source": "WIRED",
+        "sub": "tool",
+        "title": "Chrome Web Store 出現 YouTube to NotebookLM 擴充，強化影片整理工作流",
+        "desc": "YouTube to NotebookLM 擴充可把 YouTube 影片、播放清單、頻道與搜尋結果整理進 NotebookLM。這類小工具正好補上看影片找 AI 新東西之後的筆記整理問題。",
+        "url": "https://chromewebstore.google.com/detail/youtube-to-notebooklm/kobncfkmjelbefaoohoblamnbackjggk",
+        "source": "Chrome Web Store",
         "tags": [
-          "xai",
-          "deepfake"
+          "notebooklm",
+          "youtube",
+          "extension"
         ]
       }
     ],
-    "hf": [],
-    "gh": []
+    "hf": [
+      {
+        "sub": "model",
+        "title": "Cohere 在 Hugging Face 發布 North Mini Code 開源 coding 模型",
+        "desc": "CohereLabs 發布 North Mini Code，30B MoE、3B active parameters，主打 agentic software engineering，並以 Apache 2.0 授權釋出。這是近幾天最值得收進開發者雷達的開源模型。",
+        "url": "https://huggingface.co/blog/CohereLabs/introducing-north-mini-code",
+        "source": "Hugging Face",
+        "tags": [
+          "huggingface",
+          "coding",
+          "model"
+        ]
+      },
+      {
+        "sub": "mcp",
+        "title": "Hugging Face 示範把 MCP tools 接到 Reachy Mini",
+        "desc": "Reachy Mini 文章示範用 Hugging Face Spaces 上的 MCP tools 替機器人增加能力，不需要把工具下載到本機。這是 MCP 從開發工具走向實體裝置與互動應用的有趣案例。",
+        "url": "https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini",
+        "source": "Hugging Face",
+        "tags": [
+          "huggingface",
+          "mcp",
+          "robotics"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "sub": "sdk",
+        "title": "GitHub Copilot SDK 正式 GA，可把 Copilot agent runtime 嵌進自己的工具",
+        "desc": "GitHub Copilot SDK 已正式可用，提供 planning、tool invocation、file edits、streaming 與 multi-turn sessions。對想做自家開發工具或內部 agent 的團隊，這比單純用 Copilot Chat 更關鍵。",
+        "url": "https://github.blog/changelog/2026-06-02-copilot-sdk-is-now-generally-available/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "copilot",
+          "sdk"
+        ]
+      },
+      {
+        "sub": "vscode",
+        "title": "GitHub 整理 VS Code 5 月 AI 更新：Agents window 與遠端控制更成熟",
+        "desc": "GitHub 的 VS Code Copilot 5 月更新提到 Agents window、BYOK 與終端安全效率等能力，方向是讓開發者從編輯器內管理更長、更多步驟的代理任務。",
+        "url": "https://github.blog/changelog/2026-06-03-github-copilot-in-visual-studio-code-may-releases/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "vscode",
+          "agent"
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-06-12",
+    "weekday": "週五",
+    "stats": {
+      "claude": 2,
+      "openai": 3,
+      "gemini": 2,
+      "grok": 2,
+      "news": 2,
+      "hf": 2,
+      "gh": 2
+    },
+    "claude": [
+      {
+        "sub": "partner",
+        "title": "TCS 官方同步宣布與 Anthropic 建立 Global Premier Partnership",
+        "desc": "TCS 新聞稿表示，會把 Claude 帶給 5 萬名員工，並與 Anthropic 共創企業 AI 解決方案。這能補足 Anthropic 官方公告以外的合作方視角。",
+        "url": "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-anthropic-launch-global-premier-partnership-drive-enterprise-ai-scaling",
+        "source": "TCS",
+        "tags": [
+          "claude",
+          "enterprise",
+          "partner"
+        ]
+      },
+      {
+        "sub": "enterprise",
+        "title": "Economic Times：Anthropic 與 TCS 合作聚焦金融、醫療、電信與航空",
+        "desc": "Economic Times 報導這次合作會把 Claude 導入金融、醫療、電信、航空等場景，並強調負責任 AI 部署。這有助判斷 Claude 的企業化落點。",
+        "url": "https://m.economictimes.com/tech/information-tech/tcs-and-anthropic-launch-global-premier-partnership-to-drive-enterprise-ai-scaling/articleshow/131649971.cms",
+        "source": "Economic Times",
+        "tags": [
+          "claude",
+          "enterprise"
+        ]
+      }
+    ],
+    "openai": [
+      {
+        "sub": "codex",
+        "title": "OpenAI 收購 Ona：Codex 將能在企業雲端環境中持續工作",
+        "desc": "OpenAI 官方說明 Ona 能提供安全、持久、客戶可控的雲端工作環境，讓 Codex 代理不再受單一裝置或 active session 限制。這是近三天 OpenAI 最重要的產品基礎建設新聞。",
+        "url": "https://openai.com/index/openai-to-acquire-ona/",
+        "source": "OpenAI",
+        "tags": [
+          "openai",
+          "codex",
+          "cloud"
+        ]
+      },
+      {
+        "sub": "chatgpt",
+        "title": "OpenAI 釋出 GPT-5.2 退場資訊，既有 ChatGPT 對話轉往 GPT-5.5",
+        "desc": "OpenAI release notes 標示 GPT-5.2 Instant、Thinking、Pro 在 ChatGPT 中退場。若你每天測工具效果，這類模型切換會直接影響同一 prompt 的輸出差異。",
+        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "source": "OpenAI Help Center",
+        "tags": [
+          "openai",
+          "chatgpt",
+          "release-notes"
+        ]
+      },
+      {
+        "sub": "tw",
+        "title": "科技島繁中報導：OpenAI 吞併 Ona 瞄準企業級 AI 代理部署",
+        "desc": "科技島用繁中整理 OpenAI 收購 Ona 的重點，指出 Ona 可讓 Codex 執行更長、更複雜的任務，並協助組織正式把 AI 代理導入生產環境。適合手機快速看中文脈絡。",
+        "url": "https://www.technice.com.tw/issues/ai/225962/",
+        "source": "科技島",
+        "tags": [
+          "openai",
+          "codex",
+          "tw"
+        ]
+      }
+    ],
+    "gemini": [
+      {
+        "sub": "notebooklm",
+        "title": "TechCrunch：NotebookLM 可從對話建立來源資料庫",
+        "desc": "TechCrunch 報導 NotebookLM 更新後，使用者可從 chat 開始建立 source repository，讓 AI 主動幫忙找資料。這補上原本 NotebookLM 最大痛點：使用前要自己先整理資料。",
+        "url": "https://techcrunch.com/2026/06/08/notebooklms-new-update-will-help-you-build-source-repository-from-chat/",
+        "source": "TechCrunch",
+        "tags": [
+          "gemini",
+          "notebooklm"
+        ]
+      },
+      {
+        "sub": "notebooklm",
+        "title": "Tom’s Guide 實測 NotebookLM 三個新功能：跑程式、輸出成果、找來源",
+        "desc": "Tom’s Guide 從實測角度整理 NotebookLM 新版最值得先試的三點：雲端 code execution、產生簡報/試算表/報告，以及由 Google Search 協助找來源。",
+        "url": "https://www.tomsguide.com/ai/google-just-supercharged-notebooklm-these-are-the-3-new-features-im-testing-first",
+        "source": "Tom’s Guide",
+        "tags": [
+          "gemini",
+          "notebooklm",
+          "workflow"
+        ]
+      }
+    ],
+    "grok": [
+      {
+        "sub": "plugin",
+        "title": "xAI 官方：Grok Build 外掛市集可在終端機內瀏覽、安裝、更新外掛",
+        "desc": "xAI 表示外掛市集直接內建於 Grok Build，可讓使用者在 terminal 裡瀏覽、安裝、更新外掛。首波方向包含服務整合與開發工具，明顯對準代理式 coding workflow。",
+        "url": "https://x.ai/news/grok-plugin-marketplace",
+        "source": "xAI",
+        "tags": [
+          "grok",
+          "plugin",
+          "terminal"
+        ]
+      },
+      {
+        "sub": "social",
+        "title": "Digg 收錄 Grok Build 外掛市集社群反應與官方貼文",
+        "desc": "Digg 彙整 xAI 對 Grok Build Plugin Marketplace 的貼文與反應，提到 Vercel、MongoDB、Sentry、Cloudflare、Chrome DevTools 等外掛。適合看官方公告之外的社群熱度。",
+        "url": "https://digg.com/ai/5ul73on3",
+        "source": "Digg",
+        "tags": [
+          "grok",
+          "plugin",
+          "social"
+        ]
+      }
+    ],
+    "news": [
+      {
+        "sub": "tw",
+        "title": "鉅亨網：OpenAI 收購 Ona 讓 Codex 在斷網或關機後仍能持續運作",
+        "desc": "鉅亨網用繁中角度補充 Codex 週活躍用戶、企業級代理部署與持久化工作空間的重要性。對手機快速理解為什麼 Ona 對 Codex 重要很有幫助。",
+        "url": "https://m.cnyes.com/news/id/6497383",
+        "source": "鉅亨網",
+        "tags": [
+          "openai",
+          "codex",
+          "tw"
+        ]
+      },
+      {
+        "sub": "codex",
+        "title": "Economic Times：Ona 可強化 Codex 雲端執行與 orchestration 能力",
+        "desc": "Economic Times 報導 OpenAI 收購 Ona 是為了強化 Codex 處理長時間 AI workloads 的能力，讓代理可在雲端更有效率地執行複雜任務。",
+        "url": "https://m.economictimes.com/tech/artificial-intelligence/openai-to-acquire-ona-to-strengthen-codex-cloud-capabilities/articleshow/131664834.cms",
+        "source": "Economic Times",
+        "tags": [
+          "openai",
+          "codex",
+          "cloud"
+        ]
+      }
+    ],
+    "hf": [
+      {
+        "sub": "code-model",
+        "title": "North Mini Code 針對 agentic software engineering 訓練",
+        "desc": "CohereLabs 在 Hugging Face 發布 North Mini Code，明確主打代理式軟體工程任務。Apache 2.0 授權讓它比封閉模型更適合進本機或企業自建實驗。",
+        "url": "https://huggingface.co/blog/CohereLabs/introducing-north-mini-code",
+        "source": "Hugging Face",
+        "tags": [
+          "huggingface",
+          "cohere",
+          "coding"
+        ]
+      },
+      {
+        "sub": "agent",
+        "title": "Hugging Face 說明 harness、scaffold 等 AI agent 術語",
+        "desc": "Hugging Face agent glossary 把 coding agent 拆成 model、harness、scaffold 等概念，對理解 Claude Code、Codex、Grok Build 這類工具很有用。這不是新聞，但非常適合補知識底層。",
+        "url": "https://huggingface.co/blog/agent-glossary",
+        "source": "Hugging Face",
+        "tags": [
+          "huggingface",
+          "agent",
+          "concept"
+        ]
+      }
+    ],
+    "gh": [
+      {
+        "sub": "agent-apps",
+        "title": "GitHub Agent Apps 讓第三方 AI 代理進入 GitHub workflows",
+        "desc": "GitHub changelog 說明 agent apps 可從 GitHub Marketplace 安裝，並整合到 GitHub workflows。這代表 GitHub 正把 AI agent 當成平台層能力，而不是單一 Copilot 功能。",
+        "url": "https://github.blog/changelog/2026-06-02-extend-github-with-agent-apps/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "agent-apps"
+        ]
+      },
+      {
+        "sub": "copilot",
+        "title": "GitHub Copilot 用量計費已上線，code review 也會消耗額度",
+        "desc": "GitHub changelog 顯示 Copilot 用量制計費已啟用，code review 除了 AI credits，也會消耗 GitHub Actions minutes。若你常讓 AI review PR，這會影響日常成本。",
+        "url": "https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "copilot",
+          "billing"
+        ]
+      }
+    ]
   },
   {
     "date": "2026-06-11",
