@@ -4,40 +4,29 @@ const AI_NEWS_DATA = [
     "weekday": "週日",
     "stats": {
       "claude": 1,
-      "openai": 2,
-      "gemini": 1,
+      "openai": 1,
+      "gemini": 0,
       "grok": 1,
-      "news": 3,
+      "news": 1,
       "hf": 2,
       "gh": 2
     },
     "claude": [
       {
-        "sub": "coding",
-        "title": "GitHub 6 月更新頁面揭露 Anthropic 新模型進入 Copilot 生態",
-        "desc": "GitHub 6 月 changelog 彙整頁提到 Anthropic 的 Claude Fable 5 已進入 GitHub Copilot。對寫程式的人來說，重點是模型選擇不只在聊天頁，而是直接進入 review、CLI 與 agent workflow。",
-        "url": "https://github.blog/changelog/month/06-2026/",
-        "source": "GitHub Changelog",
+        "sub": "workflow",
+        "title": "中文 Codex 教學：從 ChatGPT 到能操作檔案的 AI Agent",
+        "desc": "這支中文影片把 ChatGPT、Codex、AI Agent 的差異講清楚，重點是為什麼需要能讀寫檔案、串接工具、執行任務的本機代理。比企業合作新聞更接近你每天會用到的 AI 工具工作流。",
+        "url": "https://www.youtube.com/watch?v=qLGv_XFPqv4",
+        "source": "YouTube 中文教學",
         "tags": [
           "claude",
-          "copilot",
-          "coding"
+          "codex",
+          "中文",
+          "agent"
         ]
       }
     ],
     "openai": [
-      {
-        "sub": "agent",
-        "title": "YouTube 今日短影片解析 OpenAI 收購 Ona 對代理工作的意義",
-        "desc": "這支 YouTube Shorts 把 OpenAI 收購 Ona 解讀成代理執行環境比模型本身更關鍵的訊號。適合快速理解為什麼 Codex 需要可長時間運作的雲端 workspace。",
-        "url": "https://www.youtube.com/shorts/PurHQkEVlyA",
-        "source": "YouTube",
-        "tags": [
-          "openai",
-          "codex",
-          "youtube"
-        ]
-      },
       {
         "sub": "chatgpt",
         "title": "ChatGPT release notes 顯示 GPT-5.2 系列已退場並轉往 GPT-5.5",
@@ -51,20 +40,7 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "gemini": [
-      {
-        "sub": "research",
-        "title": "YouTube 近期影片整理 Google 研究工具更新",
-        "desc": "Google's NEW AI Tools for Researchers 整理 Google 面向學生與研究者的新 AI 工具，重點在文獻回顧、資料整理與研究流程。這類內容比單純新聞更適合判斷工具能不能進日常 workflow。",
-        "url": "https://www.youtube.com/watch?v=O0J8gPsbeUQ",
-        "source": "YouTube",
-        "tags": [
-          "gemini",
-          "research",
-          "youtube"
-        ]
-      }
-    ],
+    "gemini": [],
     "grok": [
       {
         "sub": "tool",
@@ -82,18 +58,6 @@ const AI_NEWS_DATA = [
     "news": [
       {
         "sub": "youtube-zh",
-        "title": "中文博主今日影片：普通人 AI 破局指南，整理 Gemini、NotebookLM、Claude、Codex",
-        "desc": "這支中文影片今天發布，主軸不是單一新聞，而是把 Gemini、NotebookLM、Claude、Codex 放進一般使用者的 AI 工具選擇脈絡。適合用手機快速判斷哪些工具值得先試。",
-        "url": "https://www.youtube.com/watch?v=VU34qq9g3Bw",
-        "source": "YouTube 中文博主",
-        "tags": [
-          "youtube",
-          "中文",
-          "ai-tools"
-        ]
-      },
-      {
-        "sub": "youtube-zh",
         "title": "孔老師 AI 研習社近期更新 NotebookLM 與 AI 工具教學",
         "desc": "孔老師 AI 研習社頻道近期有 NotebookLM 隱藏用法、AI 生圖工具與其他 AI 工具教學，適合補中文操作型內容。這類來源會放進每日雷達的工具影片區，避免只有英文影片。",
         "url": "https://www.youtube.com/@Teacher_Kong/videos",
@@ -102,18 +66,6 @@ const AI_NEWS_DATA = [
           "youtube",
           "中文",
           "notebooklm"
-        ]
-      },
-      {
-        "sub": "youtube-zh",
-        "title": "中文 Codex 教學：從 ChatGPT 到能操作檔案的 AI Agent",
-        "desc": "這支中文影片把 ChatGPT、Codex、AI Agent 的差異講清楚，重點是為什麼需要能讀寫檔案、串接工具、執行任務的本機代理。適合補你正在用 Codex / Claude Code 的實作理解。",
-        "url": "https://www.youtube.com/watch?v=qLGv_XFPqv4",
-        "source": "YouTube 中文教學",
-        "tags": [
-          "youtube",
-          "中文",
-          "codex"
         ]
       }
     ],
@@ -175,40 +127,29 @@ const AI_NEWS_DATA = [
     "weekday": "週六",
     "stats": {
       "claude": 1,
-      "openai": 1,
+      "openai": 0,
       "gemini": 2,
       "grok": 1,
-      "news": 2,
+      "news": 1,
       "hf": 2,
       "gh": 2
     },
     "claude": [
       {
-        "sub": "enterprise",
-        "title": "Anthropic 與 TCS 合作，把 Claude 帶進高監管產業",
-        "desc": "Anthropic 宣布與 Tata Consultancy Services 建立合作，TCS 會先讓 5 萬名員工使用 Claude，並把 Claude 方案帶到金融、醫療、公部門等高合規場景。",
-        "url": "https://www.anthropic.com/news/tcs-anthropic-partnership",
-        "source": "Anthropic",
+        "sub": "tool",
+        "title": "Chrome 擴充：YouTube to NotebookLM，可把影片整理進 NotebookLM",
+        "desc": "YouTube to NotebookLM 可把 YouTube 影片、播放清單、頻道與搜尋結果整理進 NotebookLM。這比企業合作新聞更實用，適合用來把中文或英文 AI 工具影片變成可搜尋筆記。",
+        "url": "https://chromewebstore.google.com/detail/youtube-to-notebooklm/kobncfkmjelbefaoohoblamnbackjggk",
+        "source": "Chrome Web Store",
         "tags": [
           "claude",
-          "enterprise"
+          "youtube",
+          "notebooklm",
+          "tool"
         ]
       }
     ],
-    "openai": [
-      {
-        "sub": "codex",
-        "title": "AI Business：OpenAI 收購 Ona 是為了追上代理式 coding 市場需求",
-        "desc": "AI Business 把這次收購放在 Codex 與 Claude Code 競爭脈絡下解讀，指出 Ona 能支撐更長任務和企業工作流。這篇適合補市場角度，不只看官方敘事。",
-        "url": "https://aibusiness.com/generative-ai/openai-acquires-startup-to-boost-codex",
-        "source": "AI Business",
-        "tags": [
-          "openai",
-          "codex",
-          "market"
-        ]
-      }
-    ],
+    "openai": [],
     "gemini": [
       {
         "sub": "notebooklm",
@@ -260,18 +201,6 @@ const AI_NEWS_DATA = [
           "gemini",
           "reliability",
           "community"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Chrome Web Store 出現 YouTube to NotebookLM 擴充，強化影片整理工作流",
-        "desc": "YouTube to NotebookLM 擴充可把 YouTube 影片、播放清單、頻道與搜尋結果整理進 NotebookLM。這類小工具正好補上看影片找 AI 新東西之後的筆記整理問題。",
-        "url": "https://chromewebstore.google.com/detail/youtube-to-notebooklm/kobncfkmjelbefaoohoblamnbackjggk",
-        "source": "Chrome Web Store",
-        "tags": [
-          "notebooklm",
-          "youtube",
-          "extension"
         ]
       }
     ],
@@ -333,40 +262,29 @@ const AI_NEWS_DATA = [
     "weekday": "週五",
     "stats": {
       "claude": 1,
-      "openai": 2,
+      "openai": 1,
       "gemini": 1,
       "grok": 1,
       "news": 0,
-      "hf": 2,
+      "hf": 1,
       "gh": 2
     },
     "claude": [
       {
-        "sub": "partner",
-        "title": "TCS 官方同步宣布與 Anthropic 建立 Global Premier Partnership",
-        "desc": "TCS 新聞稿表示，會把 Claude 帶給 5 萬名員工，並與 Anthropic 共創企業 AI 解決方案。這能補足 Anthropic 官方公告以外的合作方視角。",
-        "url": "https://www.tcs.com/who-we-are/newsroom/press-release/tcs-anthropic-launch-global-premier-partnership-drive-enterprise-ai-scaling",
-        "source": "TCS",
+        "sub": "concept",
+        "title": "Hugging Face：AI agent 詞彙表，搞懂 harness、scaffold 與 coding agent",
+        "desc": "這篇整理 coding agent 常見概念，能幫你理解 Claude Code、Codex、Grok Build 這類工具到底差在哪。它不是企業新聞，但對使用這些工具更有幫助。",
+        "url": "https://huggingface.co/blog/agent-glossary",
+        "source": "Hugging Face",
         "tags": [
           "claude",
-          "enterprise",
-          "partner"
+          "agent",
+          "coding",
+          "concept"
         ]
       }
     ],
     "openai": [
-      {
-        "sub": "codex",
-        "title": "OpenAI 收購 Ona：Codex 將能在企業雲端環境中持續工作",
-        "desc": "OpenAI 官方說明 Ona 能提供安全、持久、客戶可控的雲端工作環境，讓 Codex 代理不再受單一裝置或 active session 限制。這是近三天 OpenAI 最重要的產品基礎建設新聞。",
-        "url": "https://openai.com/index/openai-to-acquire-ona/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "codex",
-          "cloud"
-        ]
-      },
       {
         "sub": "chatgpt",
         "title": "OpenAI 釋出 GPT-5.2 退場資訊，既有 ChatGPT 對話轉往 GPT-5.5",
@@ -420,18 +338,6 @@ const AI_NEWS_DATA = [
           "cohere",
           "coding"
         ]
-      },
-      {
-        "sub": "agent",
-        "title": "Hugging Face 說明 harness、scaffold 等 AI agent 術語",
-        "desc": "Hugging Face agent glossary 把 coding agent 拆成 model、harness、scaffold 等概念，對理解 Claude Code、Codex、Grok Build 這類工具很有用。這不是新聞，但非常適合補知識底層。",
-        "url": "https://huggingface.co/blog/agent-glossary",
-        "source": "Hugging Face",
-        "tags": [
-          "huggingface",
-          "agent",
-          "concept"
-        ]
       }
     ],
     "gh": [
@@ -465,12 +371,12 @@ const AI_NEWS_DATA = [
     "weekday": "週四",
     "stats": {
       "claude": 2,
-      "openai": 2,
+      "openai": 1,
       "gemini": 0,
       "grok": 0,
       "news": 0,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -507,82 +413,25 @@ const AI_NEWS_DATA = [
           "openai",
           "memory"
         ]
-      },
-      {
-        "sub": "security",
-        "title": "ChatGPT 的 Lockdown Mode 擴大到所有已登入使用者",
-        "desc": "OpenAI 在 2026 年 6 月 4 日宣布，Lockdown Mode 已可供所有帳號類型與 workspace 啟用。這個進階安全模式會限制即時網頁、deep research、agent mode、檔案下載與部分外部服務，目的是降低 prompt injection 導致資料外洩的風險。",
-        "url": "https://openai.com/products/release-notes/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "security"
-        ]
       }
     ],
     "gemini": [],
     "grok": [],
     "news": [],
-    "hf": [
-      {
-        "name": "Agents' Last Exam",
-        "author": "UC Berkeley",
-        "desc": "Hugging Face Trending Papers 顯示，Agents' Last Exam 以 13 個產業群、1,000+ 任務評估 AI agents 在真實長時程工作上的可部署性；頁面摘要指出目前主流設定在最難層級平均完整通過率僅 2.6%。",
-        "url": "https://huggingface.co/papers/2606.05405",
-        "tags": [
-          "agent",
-          "benchmark"
-        ]
-      },
-      {
-        "name": "SkillOpt: Executive Strategy for Self-Evolving Agent Skills",
-        "author": "Microsoft Research",
-        "desc": "SkillOpt 在 Hugging Face 論文頁面被列為 agent skills 方向代表作，主張把 skill 視為可訓練的外部狀態，以可控文字編輯最佳化 skills，並在多個 benchmark、模型與執行環境上取得最佳或並列最佳結果。",
-        "url": "https://huggingface.co/papers/2605.23904",
-        "tags": [
-          "agent",
-          "skills"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "MoneyPrinterTurbo",
-        "repo": "harry0703/MoneyPrinterTurbo",
-        "desc": "GitHub Trending 今日熱門專案之一，主打用 AI 大模型一鍵生成高畫質短影片，頁面顯示今日新增 1,389 星。",
-        "stars": "85.4k",
-        "lang": "Python",
-        "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-        "tags": [
-          "video",
-          "tool"
-        ]
-      },
-      {
-        "name": "google/skills",
-        "repo": "google/skills",
-        "desc": "GitHub Trending 今日熱門專案之一，定位為 Google 產品與技術的 Agent Skills 儲存庫，頁面顯示今日新增 211 星。",
-        "stars": "13.4k",
-        "lang": "Python",
-        "url": "https://github.com/google/skills",
-        "tags": [
-          "agent",
-          "skills"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-09",
     "weekday": "星期二",
     "stats": {
       "claude": 1,
-      "openai": 3,
+      "openai": 1,
       "gemini": 1,
       "grok": 0,
-      "news": 3,
-      "hf": 2,
-      "gh": 2
+      "news": 2,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -607,28 +456,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "openai",
           "memory"
-        ]
-      },
-      {
-        "sub": "security",
-        "title": "OpenAI 向所有登入用戶開放 ChatGPT Lockdown Mode",
-        "desc": "OpenAI 在 2026 年 6 月 4 日將 Lockdown Mode 擴大到所有帳號類型，啟用後會限制即時瀏覽、deep research、agent mode、檔案下載等高風險能力，降低提示注入造成資料外洩的風險。",
-        "url": "https://openai.com/products/release-notes/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "security"
-        ]
-      },
-      {
-        "sub": "api",
-        "title": "OpenAI 為 Responses API 與 Chat Completions 加入 moderation scores",
-        "desc": "OpenAI 在 2026 年 6 月 4 日更新 API，開發者現在可在同一次生成請求中，同步拿到輸入與輸出內容的 moderation 結果，便於把審查流程直接接進產品工作流。",
-        "url": "https://openai.com/products/release-notes/",
-        "source": "OpenAI",
-        "tags": [
-          "openai",
-          "api"
         ]
       }
     ],
@@ -666,66 +493,10 @@ const AI_NEWS_DATA = [
           "google",
           "apple"
         ]
-      },
-      {
-        "title": "TechNews：AI 三巨頭 IPO 浪潮來襲，市場開始檢驗估值合理性",
-        "desc": "TechNews 於 2026 年 6 月 8 日報導，SpaceX、Anthropic 與 OpenAI 相繼籌備上市，私募市場對頭部 AI 公司的高估值正開始面臨公開市場檢驗。",
-        "url": "https://finance.technews.tw/2026/06/08/making-sense-of-the-ai-ipo-tsunami-heading-for-wall-street/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "industry",
-          "business"
-        ]
       }
     ],
-    "hf": [
-      {
-        "name": "AgentScope 1.0: A Developer-Centric Framework for Building Agentic Applications",
-        "author": "Dawei Gao 等",
-        "desc": "Hugging Face Daily Papers 近期熱門論文之一，聚焦可擴充代理應用框架，強調統一工具介面、ReAct 風格流程、非同步基礎設施與安全執行 sandbox。",
-        "url": "https://huggingface.co/papers/2508.16279",
-        "tags": [
-          "agent",
-          "framework"
-        ]
-      },
-      {
-        "name": "AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications",
-        "author": "Yujie Zhao 等",
-        "desc": "這篇 Hugging Face 熱門論文提出 AMA-Bench，專門評估 AI 代理在長時程任務中的記憶保留、因果推理與狀態追蹤能力，也同步提出 AMA-Agent 作為改進方案。",
-        "url": "https://huggingface.co/papers/2602.22769",
-        "tags": [
-          "agent",
-          "memory"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "last30days-skill",
-        "repo": "mvanhorn/last30days-skill",
-        "desc": "GitHub Trending 今日熱門專案，提供可跨 Reddit、X、YouTube、Hacker News 與網頁整理主題研究結果的 AI agent skill。",
-        "stars": "34.9k",
-        "lang": "Python",
-        "url": "https://github.com/mvanhorn/last30days-skill",
-        "tags": [
-          "agent",
-          "research"
-        ]
-      },
-      {
-        "name": "Agent-Reach",
-        "repo": "Panniantong/Agent-Reach",
-        "desc": "GitHub Trending 今日熱門專案，主打讓 AI 代理可直接讀取與搜尋 Twitter、Reddit、YouTube、GitHub、Bilibili 與小紅書等網站。",
-        "stars": "24.4k",
-        "lang": "Python",
-        "url": "https://github.com/Panniantong/Agent-Reach",
-        "tags": [
-          "agent",
-          "tool"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-08",
@@ -735,9 +506,9 @@ const AI_NEWS_DATA = [
       "openai": 1,
       "gemini": 1,
       "grok": 1,
-      "news": 1,
-      "hf": 2,
-      "gh": 2
+      "news": 0,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [],
     "openai": [
@@ -779,66 +550,9 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "news": [
-      {
-        "title": "INSIDE：OpenAI 規劃把 ChatGPT 改造成超級應用，衝刺企業與 IPO 佈局",
-        "desc": "INSIDE 於 2026 年 6 月 8 日整理《金融時報》與路透消息，指出 OpenAI 正籌備 ChatGPT 上線以來最大規模改版，目標是把 ChatGPT、程式工具、AI 代理與第三方服務整合成一站式 superapp，並在 IPO 前夕加速企業市場布局。",
-        "url": "https://www.inside.com.tw/article/41490-openai-chatgpt-superapp-overhaul-codex-enterprise-ipo-2026%EE%83%BB%EE%83%B9%EE%83%8E",
-        "source": "INSIDE",
-        "tags": [
-          "openai",
-          "business"
-        ]
-      }
-    ],
-    "hf": [
-      {
-        "name": "SubtleMemory: A Benchmark for Fine-Grained Relational Memory Discrimination in Long-Horizon AI Agents",
-        "author": "Wenxuan Wang 等人",
-        "desc": "這篇於 2026 年 6 月 8 日登上 Hugging Face Daily Papers 的代理記憶研究論文，提出 SubtleMemory 基準，涵蓋 1,522 個評測實例與 1,090 組關係控制記憶變體，用來衡量長期 AI 代理在細緻關聯記憶辨識上的弱點。",
-        "url": "https://huggingface.co/papers/2606.05761",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "When Tools Fail: Benchmarking Dynamic Replanning and Anomaly Recovery in LLM Agents",
-        "author": "BAIDU",
-        "desc": "這篇於 2026 年 6 月 8 日登上 Hugging Face Daily Papers 的代理工具研究論文，提出 ToolMaze 基準，專門測試工具失效、動態重規劃與異常恢復；結果顯示隱性語意錯誤會讓代理效能顯著下滑。",
-        "url": "https://huggingface.co/papers/2606.05806",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "n8n 持續是熱門的 AI 自動化工作流專案；GitHub 頁面目前顯示約 192k stars，並在 2026 年 6 月 5 日發布最新版本 n8n@2.23.4，延續其 400+ 整合與原生 AI workflow 能力。",
-        "stars": "192k stars",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "Dify 是熱門的 agentic workflow 開發平台；GitHub 頁面目前顯示約 144k stars，最新版本 v1.14.2 於 2026 年 5 月 19 日發布，主打 security fixes、agent groundwork、workflow reliability 與 deployment updates。",
-        "stars": "144k stars",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "news": [],
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-07",
@@ -849,8 +563,8 @@ const AI_NEWS_DATA = [
       "gemini": 1,
       "grok": 0,
       "news": 0,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [],
     "openai": [
@@ -881,80 +595,22 @@ const AI_NEWS_DATA = [
     ],
     "grok": [],
     "news": [],
-    "hf": [
-      {
-        "name": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
-        "author": "University of Waterloo",
-        "desc": "這篇於 2026 年 6 月 5 日登上 Hugging Face Daily Papers 第 1 名的論文，提出為程式模型生成 repository-specific LoRA adapter 的 Code2LoRA，並附上涵蓋 604 個 Python 儲存庫的 RepoPeftBench。",
-        "url": "https://huggingface.co/papers/2606.06492",
-        "tags": [
-          "code",
-          "open"
-        ]
-      },
-      {
-        "name": "AdaPlanBench: Evaluating Adaptive Planning in Large Language Model Agents under World and User Constraints",
-        "author": "University of Illinois at Urbana-Champaign",
-        "desc": "這篇於 2026 年 6 月 5 日登上 Hugging Face Daily Papers 前段排名的論文，提出含 307 個家務任務的互動式基準，用來衡量 LLM agents 在逐步揭露限制條件下的自適應規劃與重規劃能力。",
-        "url": "https://huggingface.co/papers/2606.05622",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "n8n 持續是熱門 AI 自動化與代理工作流專案；GitHub 頁面目前顯示約 191k stars，最新版本 n8n@2.23.4 於 2026 年 6 月 5 日發布。",
-        "stars": "191k stars",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "Dify 是熱門的 agentic workflow 開發平台；GitHub 頁面目前顯示約 144k stars，最新版本 v1.14.2 於 2026 年 5 月 19 日發布，主打安全修補、代理基礎能力與工作流穩定性更新。",
-        "stars": "144k stars",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-06",
     "weekday": "星期六",
     "stats": {
-      "claude": 1,
+      "claude": 0,
       "openai": 3,
       "gemini": 1,
       "grok": 1,
-      "news": 3,
-      "hf": 2,
-      "gh": 2
+      "news": 2,
+      "hf": 0,
+      "gh": 0
     },
-    "claude": [
-      {
-        "sub": "business",
-        "title": "Anthropic 機密遞交 S-1 草案，正式保留 IPO 選項",
-        "desc": "Anthropic 於 2026 年 6 月 1 日宣布，已向美國證交會機密提交 S-1 註冊草案，為首次公開募股保留選項；公司強調是否上市仍取決於市場條件與後續審查進度。",
-        "url": "https://www.anthropic.com/news/confidential-draft-s1-sec",
-        "source": "Anthropic",
-        "tags": [
-          "claude",
-          "business"
-        ]
-      }
-    ],
+    "claude": [],
     "openai": [
       {
         "sub": "tool",
@@ -1028,16 +684,6 @@ const AI_NEWS_DATA = [
         ]
       },
       {
-        "title": "INSIDE：Anthropic 正式向 SEC 提交 S-1，搶先啟動 IPO 流程",
-        "desc": "INSIDE 於 2026 年 6 月 2 日報導，Anthropic 已機密提交 S-1 草案，正式保留上市選項，代表 Claude 開發商在資本市場布局上又往前一步。",
-        "url": "https://www.inside.com.tw/article/41440-anthropic-s1-sec-ipo-filing-2026-openai-spacex",
-        "source": "INSIDE",
-        "tags": [
-          "claude",
-          "business"
-        ]
-      },
-      {
         "title": "INSIDE：Anthropic 共同創辦人 Ben Mann 訪台，聚焦 Claude Code 與 AI 安全",
         "desc": "INSIDE 於 2026 年 6 月 5 日報導，Anthropic 共同創辦人 Ben Mann 在台北談 Claude Code、MCP 與 AI 安全邊界，顯示 Anthropic 持續加強在開發者與基礎設施生態的布局。",
         "url": "https://www.inside.com.tw/article/41483-anthropic-ben-mann-taiwan-visit-ai-safety-jobs-2026",
@@ -1048,80 +694,22 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
-        "author": "University of Waterloo",
-        "desc": "這篇 2026 年 6 月 5 日在 Hugging Face Daily Papers 排名第 1 的論文，提出可為程式模型生成儲存庫專屬 LoRA adapter 的 Code2LoRA，並釋出涵蓋 604 個 Python repo 的 RepoPeftBench 基準。",
-        "url": "https://huggingface.co/papers/2606.06492",
-        "tags": [
-          "code",
-          "open"
-        ]
-      },
-      {
-        "name": "AdaPlanBench: Evaluating Adaptive Planning in Large Language Model Agents under World and User Constraints",
-        "author": "University of Illinois Urbana-Champaign",
-        "desc": "這篇 2026 年 6 月 5 日受到關注的 Daily Paper，建立 307 個家庭任務的互動式基準，專門測試 LLM 代理在逐步揭露世界限制與使用者偏好時，能否持續重規劃與修正方案。",
-        "url": "https://huggingface.co/papers/2606.05622",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "n8n 持續是熱門 AI 自動化與代理工作流專案；GitHub 顯示約 191k stars，最新版本 2.23.4 於 2026 年 6 月 5 日發布。",
-        "stars": "191k stars",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "Dify 仍是熱門 agentic workflow 平台；GitHub 顯示約 144k stars，最新版本 1.14.2 於 2026 年 5 月 19 日發布。",
-        "stars": "144k stars",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-05",
     "weekday": "星期五",
     "stats": {
-      "claude": 1,
+      "claude": 0,
       "openai": 1,
       "gemini": 2,
       "grok": 0,
       "news": 0,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
-    "claude": [
-      {
-        "sub": "business",
-        "title": "Anthropic 完成 Series H 融資，表示會擴大 Claude 產品與算力供應",
-        "desc": "Anthropic 於 2026 年 5 月 28 日宣布完成 650 億美元 Series H 融資，並表示新資金將用於擴充安全研究、算力基礎設施，以及客戶依賴的 Claude 產品與合作夥伴體系。",
-        "url": "https://www.anthropic.com/news/series-h",
-        "source": "Anthropic",
-        "tags": [
-          "claude",
-          "business"
-        ]
-      }
-    ],
+    "claude": [],
     "openai": [
       {
         "sub": "safety",
@@ -1161,54 +749,8 @@ const AI_NEWS_DATA = [
     ],
     "grok": [],
     "news": [],
-    "hf": [
-      {
-        "name": "LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
-        "author": "Knowledge Engineer Group @ Tsinghua University",
-        "desc": "這篇 2026 年 6 月 1 日提交到 Hugging Face Daily Papers 的研究，針對長上下文推理加入分層干擾資料與 rubric reward，目標是提升搜尋型代理在大量資訊中的推理品質。",
-        "url": "https://huggingface.co/papers/2605.31584",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Task-Focused Memorization for Multimodal Agents",
-        "author": "ByteDance Seed",
-        "desc": "這篇 2026 年 6 月 1 日提交到 Hugging Face Daily Papers 的論文提出 TaskMem，用強化學習決定多模態代理該記住哪些資訊，改善串流影片與長期任務場景中的記憶策略。",
-        "url": "https://huggingface.co/papers/2605.31075",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "Anthropic 的終端機 AI coding agent 仍是熱門開源專案之一；GitHub 顯示最新版本 v2.1.163 於 2026 年 6 月 4 日發布，新增外掛清單與版本限制等能力。",
-        "stars": "130k stars",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "browser-use",
-        "repo": "browser-use/browser-use",
-        "desc": "browser-use 持續是熱門瀏覽器代理開源工具；GitHub 顯示專案約 97.2k stars，主打讓 AI 代理能直接操作網站與瀏覽器任務。",
-        "stars": "97.2k stars",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-04",
@@ -1219,8 +761,8 @@ const AI_NEWS_DATA = [
       "gemini": 2,
       "grok": 1,
       "news": 2,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -1318,66 +860,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
-        "author": "NVIDIA",
-        "desc": "這篇 2026 年 5 月 27 日的 Hugging Face 熱門論文提出 AXPO，聚焦多模態代理在推理與工具調用之間的落差，透過重採樣工具呼叫改善訓練訊號與效能。",
-        "url": "https://huggingface.co/papers/2605.28774",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Orchard: An Open-Source Agentic Modeling Framework",
-        "author": "Microsoft Research",
-        "desc": "Orchard 是 2026 年 5 月 14 日發表的開源代理式建模框架，涵蓋 coding、GUI 導航與個人助理場景，代表開源 agent 訓練框架持續成熟。",
-        "url": "https://huggingface.co/papers/2605.15040",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "Claude Code 持續是熱門的 AI coding agent 專案，GitHub 倉庫顯示它聚焦於終端機內的程式碼理解、例行任務、自動修補與 Git 工作流程。",
-        "stars": "127k stars",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "browser-use",
-        "repo": "browser-use/browser-use",
-        "desc": "browser-use 仍是熱門瀏覽器代理專案，主打讓 AI 代理自動操作網站與完成端到端 web 任務，目前 GitHub 倉庫約 95.8k stars。",
-        "stars": "95.8k stars",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-03",
     "weekday": "星期三",
     "stats": {
       "claude": 1,
-      "openai": 3,
+      "openai": 1,
       "gemini": 0,
       "grok": 1,
       "news": 2,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -1402,28 +898,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "openai",
           "tool"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Codex 開放 Windows Computer Use，可直接操作 Windows 應用程式",
-        "desc": "OpenAI 在 2026 年 5 月 29 日更新 release notes，讓 Codex 支援 Windows Computer Use，能直接操作 Windows 應用與桌面流程，延伸代理式自動化場景。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "tool"
-        ]
-      },
-      {
-        "sub": "feature",
-        "title": "ChatGPT 強化 Goal Mode 與瀏覽流程，改善多步驟代理操作",
-        "desc": "OpenAI 在 2026 年 5 月 21 日更新 Goal Mode、瀏覽與任務延續能力，讓 ChatGPT 在多步驟代理工作中更能維持上下文並持續推進長任務。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "feature"
         ]
       }
     ],
@@ -1463,54 +937,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
-        "author": "NVIDIA",
-        "desc": "NVIDIA 於 Hugging Face Papers 收錄 AXPO 論文，提出用探索式策略最佳化提升多模態代理推理，對代理式工具使用與複雜決策任務很有代表性。",
-        "url": "https://huggingface.co/papers/2605.28774",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Orchard: An Open-Source Agentic Modeling Framework",
-        "author": "Microsoft Research",
-        "desc": "Microsoft Research 的 Orchard 框架主打可重用的 agentic modeling 與工作流組裝，適合用來觀察企業端代理框架如何往更模組化方向發展。",
-        "url": "https://huggingface.co/papers/2605.15040",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "Anthropic 的 Claude Code 持續是 AI coding agent 代表專案，GitHub 頁面可見其定位聚焦於終端機內的大型程式碼庫操作與代理式開發。",
-        "stars": "127k stars",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "browser-use",
-        "repo": "browser-use/browser-use",
-        "desc": "browser-use 持續是熱門的瀏覽器代理工具專案，聚焦讓 AI 模型能以程式方式操作網頁與完成端到端自動化流程。",
-        "stars": "95.8k stars",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-02",
@@ -1521,8 +949,8 @@ const AI_NEWS_DATA = [
       "gemini": 1,
       "grok": 2,
       "news": 1,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [],
     "openai": [
@@ -1587,54 +1015,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
-        "author": "NVIDIA",
-        "desc": "這篇 2026 年 5 月 27 日的 Hugging Face 論文提出 AXPO，聚焦多模態代理在推理與工具調用之間的落差，透過失敗軌跡的工具呼叫重採樣來改善訓練訊號。",
-        "url": "https://huggingface.co/papers/2605.28774",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Orchard: An Open-Source Agentic Modeling Framework",
-        "author": "Microsoft Research",
-        "desc": "Orchard 是 2026 年 5 月 14 日發表的開源代理式建模框架，主打用少量合成任務就能訓練出涵蓋 coding、GUI 與個人助理場景的自主代理。",
-        "url": "https://huggingface.co/papers/2605.15040",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "Claude Code 的 GitHub 倉庫目前約有 127k stars，定位是可在終端機中理解 codebase、執行例行工作、解釋程式與處理 Git 流程的 agentic coding 工具。",
-        "stars": "127k stars",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "browser-use",
-        "repo": "browser-use/browser-use",
-        "desc": "browser-use 倉庫目前約有 95.8k stars，主打讓 AI 代理能自動操作網站與瀏覽器，適合表單填寫、登入流程與各類 web automation 任務。",
-        "stars": "95.8k stars",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-06-01",
@@ -1645,8 +1027,8 @@ const AI_NEWS_DATA = [
       "gemini": 1,
       "grok": 0,
       "news": 1,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [],
     "openai": [
@@ -1688,66 +1070,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Towards Verifiable Multimodal Deep Research",
-        "author": "Renmin University of China",
-        "desc": "Hugging Face 於 2026 年 5 月 29 日收錄這篇多代理研究論文，聚焦如何把文字與圖片證據交錯編排成可驗證的長篇報告，適合追蹤多模態 deep research 與報告生成工作流。",
-        "url": "https://huggingface.co/papers/2605.29861",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Agentic CLEAR",
-        "author": "IBM Research",
-        "desc": "Agentic CLEAR 是 Hugging Face 近期收錄的代理評估框架，主打自動分析 LLM agent 在多種基準上的行為與失敗模式，適合關注代理可觀測性與評測工具鏈的人持續追蹤。",
-        "url": "https://huggingface.co/papers/2605.22608",
-        "tags": [
-          "evaluation",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "Claude Code 仍是 GitHub 上最受關注的 agentic coding 專案之一，主打在終端機中理解 codebase、執行日常工程任務與串接 Git 工作流。",
-        "stars": "127k stars",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "open_deep_research",
-        "repo": "langchain-ai/open_deep_research",
-        "desc": "Open Deep Research 是近期持續受關注的開源 deep research agent，支援多模型、多搜尋工具與 MCP server，適合想自行搭建研究代理工作流的人追蹤。",
-        "stars": "11.5k stars",
-        "lang": "Python",
-        "url": "https://github.com/langchain-ai/open_deep_research",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-31",
     "weekday": "星期日",
     "stats": {
       "claude": 0,
-      "openai": 3,
+      "openai": 2,
       "gemini": 0,
       "grok": 1,
       "news": 2,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [],
     "openai": [
@@ -1766,17 +1102,6 @@ const AI_NEWS_DATA = [
         "sub": "model",
         "title": "OpenAI 更新 GPT-5.5 Instant，強化回應風格並停止支援 canvas",
         "desc": "ChatGPT 5 月 28 日更新 GPT-5.5 Instant，官方表示新版回應更自然、可讀性更高，也更適合實務協作任務；同時 GPT-5.5 Instant 與 GPT-5.5 Thinking 不再支援 canvas，改以對話中的寫作區塊與程式碼區塊取代。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "model"
-        ]
-      },
-      {
-        "sub": "model",
-        "title": "OpenAI 宣布 ChatGPT 將陸續淘汰 o3 與 GPT-4.5",
-        "desc": "OpenAI 在 5 月 29 日更新中宣布，ChatGPT 內的 OpenAI o3 將於 2026 年 8 月 26 日退場，GPT-4.5 則將於 2026 年 6 月 27 日退場。這代表資源將更集中在較新的模型與代理式工作流體驗上。",
         "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
         "source": "OpenAI Help Center",
         "tags": [
@@ -1821,66 +1146,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Towards Verifiable Multimodal Deep Research",
-        "author": "Renmin University of China",
-        "desc": "Hugging Face 5 月 29 日收錄這篇多代理研究論文，聚焦如何把文字與圖片證據交錯編排成可驗證的長篇報告，適合追蹤多模態 deep research 與報告生成工作流。",
-        "url": "https://huggingface.co/papers/2605.29861",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Agentic CLEAR",
-        "author": "IBM Research",
-        "desc": "Agentic CLEAR 是 Hugging Face 近期收錄的代理評估框架，主打自動分析 LLM agent 在多種基準上的行為與失敗模式，適合關注代理可觀測性與評測工具鏈的人持續追蹤。",
-        "url": "https://huggingface.co/papers/2605.22608",
-        "tags": [
-          "evaluation",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "Claude Code 仍是 GitHub 上最受關注的 agentic coding 專案之一，主打在終端機中理解 codebase、執行日常工程任務與串接 Git 工作流。",
-        "stars": "127k stars",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "browser-use",
-        "repo": "browser-use/browser-use",
-        "desc": "browser-use 持續維持高熱度，專注把網站操作能力暴露給 AI agent，適合做瀏覽器自動化、表單操作與跨站任務執行。",
-        "stars": "96.3k stars",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-30",
     "weekday": "星期六",
     "stats": {
       "claude": 2,
-      "openai": 4,
+      "openai": 2,
       "gemini": 3,
       "grok": 1,
       "news": 3,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -1916,28 +1195,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "openai",
           "model"
-        ]
-      },
-      {
-        "sub": "model",
-        "title": "ChatGPT 將淘汰 OpenAI o3 與 GPT-4.5，API 不受影響",
-        "desc": "同一份 5 月 28 日的 ChatGPT 發版說明指出，OpenAI o3 將於 2026 年 8 月 26 日從 ChatGPT 退役，GPT-4.5 則將於 2026 年 6 月 27 日退役；這項調整只影響 ChatGPT，不影響 API。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-plus-upgrade-faq",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "model"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Codex 新增更完整工作流支援，包含 Goal mode、Appshots 與瀏覽器標註",
-        "desc": "OpenAI 在 5 月 21 日的 ChatGPT 發版說明中更新 Codex，加入 Appshots、Goal mode、瀏覽器標註與遠端鎖屏後持續執行等能力，讓長時間任務更容易持續推進。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-plus-upgrade-faq",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "tool"
         ]
       },
       {
@@ -2032,66 +1289,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "AgentDoG 1.5",
-        "author": "Shanghai AI Lab",
-        "desc": "Hugging Face 5 月 29 日 Daily Papers 第 1 名，主打以少量樣本建立可擴展的 AI 代理安全對齊框架，並開源模型與資料集。",
-        "url": "https://huggingface.co/papers/2605.29801",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "OmniRetrieval",
-        "author": "KAIST AI",
-        "desc": "Hugging Face 5 月 29 日 Daily Papers 熱門論文之一，嘗試把文字、表格與圖譜等異質知識來源統一到同一個自然語言檢索框架。",
-        "url": "https://huggingface.co/papers/2605.29250",
-        "tags": [
-          "rag",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-code",
-        "repo": "anthropics/claude-code",
-        "desc": "GitHub Trending 今日熱門 AI 專案之一，主打在 terminal 中理解程式碼庫、執行例行工作並協助 git 流程。",
-        "stars": "460 stars today",
-        "lang": "Python",
-        "url": "https://github.com/anthropics/claude-code",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "compound-engineering-plugin",
-        "repo": "EveryInc/compound-engineering-plugin",
-        "desc": "GitHub Trending 今日熱門 AI 外掛之一，提供 Claude Code、Codex、Cursor 等工具可共用的官方 Compound Engineering plugin。",
-        "stars": "354 stars today",
-        "lang": "TypeScript",
-        "url": "https://github.com/EveryInc/compound-engineering-plugin",
-        "tags": [
-          "plugin",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-29",
     "weekday": "星期五",
     "stats": {
       "claude": 3,
-      "openai": 3,
+      "openai": 1,
       "gemini": 3,
       "grok": 1,
       "news": 3,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -2133,28 +1344,6 @@ const AI_NEWS_DATA = [
         "sub": "tool",
         "title": "Codex 更新：目標模式全面可用，瀏覽器註解與 Appshots 上線",
         "desc": "OpenAI 在 5 月 21 日的 ChatGPT 版本說明中宣布，Codex 的目標模式已在 App、IDE 擴充套件與 CLI 全面可用，並加入 Appshots 與應用程式內瀏覽器註解。",
-        "url": "https://help.openai.com/zh-hant/articles/6825453-chatgpt-%E7%99%BC%E8%A1%8E%E8%AA%AA%E6%98%8E",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "tool"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "ChatGPT 行動版可遠端接續 Codex 工作",
-        "desc": "Codex 現可在 ChatGPT 手機 App 中以預覽形式遠端接續 Mac 主機上的工作，能查看進度、回覆問題、改方向並切換連線主機。",
-        "url": "https://help.openai.com/zh-hant/articles/6825453-chatgpt-%E7%99%BC%E8%A1%8E%E8%AA%AA%E6%98%8E",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "tool"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "ChatGPT 個人理財功能開始向美國 Pro 用戶推出",
-        "desc": "OpenAI 在 5 月 15 日起逐步向美國 Pro 用戶推出個人理財體驗，可連接支援的金融帳戶並在 ChatGPT 內查看支出、帳單、淨值與投資概況。",
         "url": "https://help.openai.com/zh-hant/articles/6825453-chatgpt-%E7%99%BC%E8%A1%8E%E8%AA%AA%E6%98%8E",
         "source": "OpenAI Help Center",
         "tags": [
@@ -2243,54 +1432,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Hugging Face Papers Trending",
-        "author": "Hugging Face",
-        "desc": "持續追蹤當日熱門 AI 論文與研究趨勢，補充今天模型與代理人之外的開放研究動向。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Hugging Face Models",
-        "author": "Hugging Face",
-        "desc": "觀察社群最新上架與熱門模型，補強開源模型端的應用與工具更新。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "GitHub Trending",
-        "repo": "trending",
-        "desc": "追蹤今天在 GitHub 上升溫的 AI agent、coding tool 與開源應用專案。",
-        "stars": "daily",
-        "lang": "Mixed",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Awesome MCP Servers",
-        "repo": "punkpeye/awesome-mcp-servers",
-        "desc": "持續更新的 MCP 伺服器清單，反映代理人工具鏈與整合生態的最新熱點。",
-        "stars": "live",
-        "lang": "Markdown",
-        "url": "https://github.com/punkpeye/awesome-mcp-servers",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-28",
@@ -2298,11 +1441,11 @@ const AI_NEWS_DATA = [
     "stats": {
       "claude": 3,
       "openai": 1,
-      "gemini": 2,
+      "gemini": 1,
       "grok": 0,
-      "news": 4,
-      "hf": 2,
-      "gh": 2
+      "news": 2,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -2363,17 +1506,6 @@ const AI_NEWS_DATA = [
           "gemini",
           "model"
         ]
-      },
-      {
-        "sub": "model",
-        "title": "Gemini 3.5 成為 Spark 與新 Gemini 體驗底層",
-        "desc": "Google 在同篇更新中把 Gemini 3.5、Spark、Daily Brief 與 Omni 串成新的 Gemini 應用方向。",
-        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
-        "source": "Google Blog",
-        "tags": [
-          "gemini",
-          "model"
-        ]
       }
     ],
     "grok": [],
@@ -2388,15 +1520,6 @@ const AI_NEWS_DATA = [
         ]
       },
       {
-        "title": "Cohere 與 Aleph Alpha 合併，主打主權 AI 市場",
-        "desc": "TechCrunch 報導 Cohere 將接手 Aleph Alpha，瞄準歐洲與企業客戶對資料主權、可控部署的需求。",
-        "url": "https://techcrunch.com/2026/04/25/why-cohere-is-merging-with-aleph-alpha/",
-        "source": "TechCrunch",
-        "tags": [
-          "integration"
-        ]
-      },
-      {
         "title": "Anthropic 與美國國防部的供應鏈風險訴訟仍受關注",
         "desc": "週報指出 Anthropic 因軍事用途與供應鏈風險認定問題提告，美國法院已先阻止相關限制執行。",
         "url": "https://unrot.co/blogs/weekly-ai-news-may-24-28-2026",
@@ -2404,65 +1527,10 @@ const AI_NEWS_DATA = [
         "tags": [
           "claude"
         ]
-      },
-      {
-        "title": "ChatGPT 語音模式模型差異引發開發者討論",
-        "desc": "5/28 日報把 ChatGPT voice mode 使用較舊模型的爭議列為當日事件之一，凸顯產品標示與模型透明度議題。",
-        "url": "https://www.buildfastwithai.com/blogs/ai-news-today-may-28-2026",
-        "source": "Build Fast with AI",
-        "tags": [
-          "openai"
-        ]
       }
     ],
-    "hf": [
-      {
-        "name": "Hugging Face Papers Trending",
-        "author": "Hugging Face",
-        "desc": "用於追蹤每日 AI 論文與開源模型趨勢，作為新聞日報的研究補充來源。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Hugging Face Models",
-        "author": "Hugging Face",
-        "desc": "收錄近期熱門模型與資料集，可補充產品新聞以外的開源模型動態。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "GitHub Trending",
-        "repo": "trending",
-        "desc": "追蹤每日 AI agent、coding tool 與開源框架熱度。",
-        "stars": "daily",
-        "lang": "Mixed",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Awesome MCP Servers",
-        "repo": "punkpeye/awesome-mcp-servers",
-        "desc": "MCP 伺服器整理清單，適合作為 agent 工具生態的每日追蹤來源。",
-        "stars": "live",
-        "lang": "Markdown",
-        "url": "https://github.com/punkpeye/awesome-mcp-servers",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-27",
@@ -2470,11 +1538,11 @@ const AI_NEWS_DATA = [
     "stats": {
       "claude": 3,
       "openai": 1,
-      "gemini": 4,
+      "gemini": 2,
       "grok": 3,
       "news": 4,
-      "hf": 2,
-      "gh": 2
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -2534,28 +1602,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "gemini",
           "agent"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Daily Brief 將 Gemini 變成每日摘要入口",
-        "desc": "Google 的 Daily Brief 會整理 Gmail、Calendar 與後續待辦，並可透過回饋持續調整個人化排序。",
-        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
-        "source": "Google Blog",
-        "tags": [
-          "gemini",
-          "tool"
-        ]
-      },
-      {
-        "sub": "model",
-        "title": "Gemini Omni 以文字、圖片、影片混合輸入生成影片",
-        "desc": "Gemini Omni 開始向 Google AI Plus、Pro、Ultra 訂閱者推出，主打自然語言影片編輯與高品質生成。",
-        "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
-        "source": "Google Blog",
-        "tags": [
-          "gemini",
-          "model"
         ]
       },
       {
@@ -2644,54 +1690,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Hugging Face Papers Trending",
-        "author": "Hugging Face",
-        "desc": "每日追蹤 AI 論文與開源模型熱度，補充產品新聞以外的研究面向。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Hugging Face Models",
-        "author": "Hugging Face",
-        "desc": "熱門模型清單可用於補充每日開源模型與工具更新。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "GitHub Trending",
-        "repo": "trending",
-        "desc": "每日觀察 AI coding tool、agent framework 與開源專案熱度。",
-        "stars": "daily",
-        "lang": "Mixed",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Awesome MCP Servers",
-        "repo": "punkpeye/awesome-mcp-servers",
-        "desc": "MCP 工具生態追蹤來源，適合放進 AI agent 類新聞觀察。",
-        "stars": "live",
-        "lang": "Markdown",
-        "url": "https://github.com/punkpeye/awesome-mcp-servers",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-26",
@@ -2702,8 +1702,8 @@ const AI_NEWS_DATA = [
       "gemini": 4,
       "grok": 3,
       "news": 3,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -2866,76 +1866,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan-AI",
-        "desc": "開源文字/圖片轉影片模型，在特定基準上媲美商用方案，支援 5B 參數高品質影片生成。",
-        "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-14B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "ARIS",
-        "author": "Research Community",
-        "desc": "開源研究框架，運用跨模型對抗協作進行可靠長期研究，5 月 4 日發表的熱門論文。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Mega-ASR",
-        "author": "Research Community",
-        "desc": "透過複合資料建構與漸進式聲學語義優化，提升真實場景語音辨識穩健性的框架。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Skills (mattpocock)",
-        "repo": "mattpocock/skills",
-        "desc": "可複用 AI 代理技能框架，單週增 1,618 星，專注 Claude Code 工作流與開放式自動化。",
-        "stars": "12.5k",
-        "lang": "TypeScript",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "Nous Research 開發的開源自主 AI 代理框架，累計超 105k 星，支援多模型編排。",
-        "stars": "105k",
-        "lang": "Python",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Langflow",
-        "repo": "langflow-ai/langflow",
-        "desc": "視覺化 AI 代理建構工具，無需大量程式碼即可原型設計與部署 AI Agent，146k 星。",
-        "stars": "146k",
-        "lang": "Python",
-        "url": "https://github.com/langflow-ai/langflow",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-25",
@@ -2946,8 +1878,8 @@ const AI_NEWS_DATA = [
       "gemini": 3,
       "grok": 1,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -3068,88 +2000,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "LongCat-Video 13.6B",
-        "author": "LongCat Team",
-        "desc": "基於 Diffusion Transformer 架構的 136 億參數影片生成模型，擅長高效生成長影片。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Wan2.2-T2V-A14B-GGUF",
-        "author": "Y1998",
-        "desc": "Wan 2.2 系列 140 億參數文字轉影片模型的量化版本，讓大型影片模型更易部署。",
-        "url": "https://huggingface.co/models?sort=trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "TideGS",
-        "author": "TideGS Team",
-        "desc": "可在單張 GPU 上訓練超過十億 primitives 的 3D Gaussian Splatting 模型。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Skills",
-        "repo": "mattpocock/skills",
-        "desc": "可重用的 AI 代理行為模式與工作流程集合，專為 Claude Code 等編碼代理設計。",
-        "stars": "55.3k",
-        "lang": "TypeScript",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "Nous Research 開發的開源多代理框架，支援複雜任務分解與協作。",
-        "stars": "130k",
-        "lang": "Python",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "2026 年成長最快的開源專案之一，從 9,000 星飆升至超過 21 萬星，提供開放式 AI 代理基礎設施。",
-        "stars": "210k",
-        "lang": "Python",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-24",
     "weekday": "星期六",
     "stats": {
       "claude": 4,
-      "openai": 3,
+      "openai": 1,
       "gemini": 4,
-      "grok": 4,
-      "news": 2,
-      "hf": 3,
-      "gh": 3
+      "grok": 2,
+      "news": 1,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -3202,28 +2066,6 @@ const AI_NEWS_DATA = [
         "sub": "product",
         "title": "ChatGPT 記憶功能大幅強化：整合 Gmail 與歷史對話，回應更個人化",
         "desc": "ChatGPT Plus 與 Pro 用戶的記憶功能升級，可從過往對話、儲存記憶、檔案與連結的 Gmail 中提取脈絡，所有方案均可查看「記憶來源」。",
-        "url": "https://releasebot.io/updates/openai/chatgpt",
-        "source": "Releasebot",
-        "tags": [
-          "openai",
-          "product"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "ChatGPT Codex 預覽版登上行動裝置：手機也能遠端操控 Mac 編程",
-        "desc": "OpenAI 將 Codex 預覽版加入 ChatGPT 行動 App，使用者可在手機上啟動任務，由連結的 Mac 執行 Codex 編程工作。",
-        "url": "https://releasebot.io/updates/openai/chatgpt",
-        "source": "Releasebot",
-        "tags": [
-          "openai",
-          "tool"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "ChatGPT 推出 Trusted Contact 安全功能：自殺風險偵測時通知信任聯絡人",
-        "desc": "ChatGPT 新增選擇性安全功能 Trusted Contact，使用者可指定信任聯絡人，在系統偵測到嚴重自殺相關安全疑慮時發出通知。",
         "url": "https://releasebot.io/updates/openai/chatgpt",
         "source": "Releasebot",
         "tags": [
@@ -3300,41 +2142,9 @@ const AI_NEWS_DATA = [
           "grok",
           "integration"
         ]
-      },
-      {
-        "sub": "tool",
-        "title": "Grok Build 0.1 搶先體驗：專為代理式工作流設計的程式碼生成模型",
-        "desc": "xAI 發布 Grok Build 0.1 搶先體驗版，這是專為代理式工作流打造的編程模型，支援文字與圖片輸入，擁有 25.6 萬 token 上下文視窗。",
-        "url": "https://www.basenor.com/blogs/news/5-xai-grok-updates-you-may-have-missed-this-may",
-        "source": "Basenor",
-        "tags": [
-          "grok",
-          "tool"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "Grok Skills 正式上線：持久化自訂專業能力，跨對話延續",
-        "desc": "xAI 於 5 月 18 日正式推出 Grok Skills，讓使用者為 Grok 添加持久化的自訂專業技能，能夠跨越不同對話持續生效。",
-        "url": "https://www.basenor.com/blogs/news/5-xai-grok-updates-you-may-have-missed-this-may",
-        "source": "Basenor",
-        "tags": [
-          "grok",
-          "product"
-        ]
       }
     ],
     "news": [
-      {
-        "sub": "secondary",
-        "title": "Perplexity Computer 進軍企業市場：自主 AI 代理執行複雜工作流",
-        "desc": "Perplexity 在 Ask 2026 開發者大會宣布將 Computer 多模型 AI 代理開放給企業客戶，可自主執行訂機票、管理郵件、填寫表單等多步驟任務。",
-        "url": "https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at",
-        "source": "VentureBeat",
-        "tags": [
-          "agent"
-        ]
-      },
       {
         "sub": "secondary",
         "title": "不讓對話變 AI 訓練素材！ChatGPT、Gemini、Claude 個資關閉教學",
@@ -3346,101 +2156,22 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "OmniFlatten",
-        "author": "Research Team",
-        "desc": "GPT 架構的全雙工即時語音對話模型，透過多階段後訓練整合語音與文字，無需修改原始模型架構。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "SmolDocling",
-        "author": "Research Team",
-        "desc": "僅 256M 參數的精巧視覺語言模型，可端對端轉換各類文件格式，支援新型標記語法。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Lance",
-        "author": "Research Team",
-        "desc": "統一多模態模型，透過雙流架構與協作多任務訓練，整合圖片與影片的理解、生成與編輯能力。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "pspdfkit/openclaw",
-        "desc": "2026 年 GitHub 成長最快的開源專案，由 PSPDFKit 創辦人 Peter Steinberger 打造，累積超過 21 萬顆星。",
-        "stars": "210k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "Nous Research 開發的開源自主 AI 代理框架，2026 年 2 月發布，累積超過 10.5 萬顆星。",
-        "stars": "105k+",
-        "lang": "Python",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Skills Framework",
-        "repo": "mattpocock/skills",
-        "desc": "Matt Pocock 的可重用代理技能框架，專注於 Claude Code 工作流與開放式自動化，本週登上趨勢榜首。",
-        "stars": "Trending #1",
-        "lang": "TypeScript",
-        "url": "https://github.com/trending",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-23",
     "weekday": "星期六",
     "stats": {
-      "claude": 2,
+      "claude": 1,
       "openai": 2,
       "gemini": 3,
       "grok": 3,
-      "news": 3,
-      "hf": 3,
-      "gh": 3
+      "news": 0,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
-      {
-        "sub": "product",
-        "title": "Anthropic 據傳以 9,000 億美元估值進行新一輪融資",
-        "desc": "多家媒體報導 Anthropic 正以約 9,000 億美元估值進行新一輪融資，反映市場對 Claude 產品線與企業客戶成長的高度看好。",
-        "url": "https://www.anthropic.com/news",
-        "source": "Anthropic",
-        "tags": [
-          "claude",
-          "model"
-        ]
-      },
       {
         "sub": "tool",
         "title": "Claude 法律 MCP 連接器：20+ 法律專用連接器與 12 個執業領域外掛上線",
@@ -3547,108 +2278,9 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "news": [
-      {
-        "title": "騰訊、阿里巴巴一日蒸發 660 億美元：市場質疑 AI 變現能力",
-        "desc": "騰訊與阿里巴巴股價在 24 小時內合計蒸發約 660 億美元市值，投資人對中國科技巨頭 AI 投資回報能力產生疑慮。",
-        "url": "https://technews.tw/2026/05/22/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "model",
-          "integration"
-        ]
-      },
-      {
-        "title": "DeepSeek 首次外部融資：估值達 700 億人民幣",
-        "desc": "中國 AI 新創 DeepSeek 進行首次外部融資，估值約 700 億人民幣（約 7.2 兆日圓），成為中國最高估值的 AI 獨角獸之一。",
-        "url": "https://technews.tw/2026/05/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "title": "美國商務部投入 20 億美元推動量子運算：IBM 獲 10 億美元",
-        "desc": "美國商務部宣布投資 20 億美元於 9 家量子運算公司，其中 IBM 獲得 10 億美元用於建立量子晶片製造基地。",
-        "url": "https://technews.tw/2026/05/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "model",
-          "integration"
-        ]
-      }
-    ],
-    "hf": [
-      {
-        "name": "ARIS",
-        "author": "ARIS Team",
-        "desc": "對抗式研究測試框架，用於評估 AI 模型的安全性與韌性。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Lance",
-        "author": "Lance Team",
-        "desc": "統一多模態模型，可同時處理文字、圖片、音訊等多種輸入。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "LongLive-2.0",
-        "author": "LongLive Team",
-        "desc": "長影片生成模型升級版，可產出更長、更連貫的影片內容。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-context",
-        "repo": "anthropics/claude-context",
-        "desc": "語意程式碼搜尋工具，整合進 Claude Code 實現精準程式碼定位與理解。",
-        "stars": "12.5k",
-        "lang": "TypeScript",
-        "url": "https://github.com/anthropics/claude-context",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "TradingAgents",
-        "repo": "tradingagents/tradingagents",
-        "desc": "多代理辯論模式的交易系統，多個 AI 代理透過辯論達成交易決策。",
-        "stars": "8.2k",
-        "lang": "Python",
-        "url": "https://github.com/tradingagents/tradingagents",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "pi-mono",
-        "repo": "pimono/pi-mono",
-        "desc": "AI 代理工具包：編碼 CLI、統一 LLM API、TUI/Web UI、Slack 機器人一體化。",
-        "stars": "6.8k",
-        "lang": "Python",
-        "url": "https://github.com/pimono/pi-mono",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "news": [],
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-22",
@@ -3658,9 +2290,9 @@ const AI_NEWS_DATA = [
       "openai": 2,
       "gemini": 3,
       "grok": 3,
-      "news": 3,
-      "hf": 3,
-      "gh": 3
+      "news": 1,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -3793,16 +2425,6 @@ const AI_NEWS_DATA = [
     ],
     "news": [
       {
-        "title": "NVIDIA 季度營收 816 億美元創新高：資料中心營收 752 億",
-        "desc": "NVIDIA 公布截至 4/26 的季度財報，營收 816 億美元、資料中心營收 752 億美元均創歷史新高，下季度指引 910 億美元超出市場預期。",
-        "url": "https://technews.tw/2026/05/22/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "model",
-          "integration"
-        ]
-      },
-      {
         "title": "AI 牛市循環已逾 3 年：分析師警告 2030 年前泡沫風險",
         "desc": "分析師警告當前 AI 牛市循環已運行約 3-3.5 年，歷史經驗顯示科技泡沫通常在此時間點後出現修正。",
         "url": "https://technews.tw/2026/05/",
@@ -3811,100 +2433,22 @@ const AI_NEWS_DATA = [
           "model",
           "integration"
         ]
-      },
-      {
-        "title": "2026 年科技巨頭 AI 基礎設施支出預計超過 7,000 億美元",
-        "desc": "主要科技公司的 2026 年 AI 基礎設施總投資預計突破 7,000 億美元，反映業界對 AI 算力需求的持續擴張。",
-        "url": "https://technews.tw/2026/05/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "model",
-          "integration"
-        ]
       }
     ],
-    "hf": [
-      {
-        "name": "Mega-ASR",
-        "author": "Mega-ASR Team",
-        "desc": "透過複合資料建構與漸進式聲學到語義優化，提升真實世界語音辨識強健性。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Pixal3D",
-        "author": "Pixal3D Team",
-        "desc": "像素對齊 3D 生成模型，可從 2D 圖片精準重建 3D 物件。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "AI-Trader",
-        "author": "AI-Trader Team",
-        "desc": "首個全自動化即時基準測試框架，用於評估 LLM 在多市場金融決策中的表現。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "everything-claude-code",
-        "repo": "anthropics/everything-claude-code",
-        "desc": "Claude Code 完整工作流程與自動化範例集合，從 #14 躍升至 #4。",
-        "stars": "28.5k",
-        "lang": "Markdown",
-        "url": "https://github.com/anthropics/everything-claude-code",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "openhuman",
-        "repo": "openhuman/openhuman",
-        "desc": "新進榜的代理編排專案，專注於多代理協作與人機互動模式。",
-        "stars": "5.1k",
-        "lang": "Python",
-        "url": "https://github.com/openhuman/openhuman",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "easy-vibe",
-        "repo": "easyvibe/easy-vibe",
-        "desc": "Vibe 編碼風格的 AI 輔助開發環境，強調直覺式互動開發體驗。",
-        "stars": "4.3k",
-        "lang": "TypeScript",
-        "url": "https://github.com/easyvibe/easy-vibe",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-21",
     "weekday": "星期四",
     "stats": {
-      "claude": 3,
+      "claude": 2,
       "openai": 4,
-      "gemini": 4,
+      "gemini": 3,
       "grok": 1,
       "news": 3,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -3916,17 +2460,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "claude",
           "agent"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Anthropic 揭露：Claude 已撰寫大部分自身程式碼，能力接近中階工程師",
-        "desc": "MIT Technology Review 報導，Anthropic 多數軟體現由 Claude 撰寫，Claude Code 的大部分程式碼也由 Claude 自己完成，能力被描述為「接近中階工程師」。",
-        "url": "https://www.technologyreview.com/2026/05/21/1137735/anthropics-code-with-claude-showed-off-codings-future-whether-you-like-it-or-not/",
-        "source": "MIT Technology Review",
-        "tags": [
-          "claude",
-          "tool"
         ]
       },
       {
@@ -4020,17 +2553,6 @@ const AI_NEWS_DATA = [
           "gemini",
           "tool"
         ]
-      },
-      {
-        "sub": "tool",
-        "title": "ADK 1.0（Agent Development Kit）正式發布：多語言代理開發框架",
-        "desc": "Google 正式發布 ADK 1.0 代理開發套件，支援多種程式語言的代理框架開發，進入正式可用階段。",
-        "url": "https://developers.googleblog.com/all-the-news-from-the-google-io-2026-developer-keynote/",
-        "source": "Google Developers Blog",
-        "tags": [
-          "gemini",
-          "tool"
-        ]
       }
     ],
     "grok": [
@@ -4078,76 +2600,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "DeepSeek-V3.2",
-        "author": "DeepSeek",
-        "desc": "DeepSeek 最新開源大語言模型，持續在社群獲得高度關注與下載。",
-        "url": "https://huggingface.co/deepseek-ai",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan Team",
-        "desc": "Wan 影片生成家族新成員，專精文字轉圖片轉影片（TI2V）生成任務。",
-        "url": "https://huggingface.co/models?sort=trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenDevin",
-        "author": "OpenDevin Team",
-        "desc": "開源 AI 代理平台，透過撰寫程式碼、使用命令列與瀏覽網頁與世界互動。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Skills",
-        "repo": "mattpocock/skills",
-        "desc": "Matt Pocock 的可重用代理技能集合，持續佔據 GitHub Trending 第一名。",
-        "stars": "55.3k",
-        "lang": "TypeScript",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "Nous Research 開發的開源多代理框架，支援複雜任務分解與協作。",
-        "stars": "130k",
-        "lang": "Python",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "ml-intern",
-        "repo": "ml-intern/ml-intern",
-        "desc": "自主 ML 工程師代理，可獨立完成機器學習實驗流程。",
-        "stars": "9.7k",
-        "lang": "Python",
-        "url": "https://github.com/ml-intern/ml-intern",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-20",
@@ -4155,11 +2609,11 @@ const AI_NEWS_DATA = [
     "stats": {
       "claude": 3,
       "openai": 1,
-      "gemini": 3,
+      "gemini": 2,
       "grok": 3,
       "news": 1,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -4222,17 +2676,6 @@ const AI_NEWS_DATA = [
         ]
       },
       {
-        "sub": "model",
-        "title": "Gemini 3.5 Flash 正式上線：AI Agent 與程式碼撰寫能力大幅躍進",
-        "desc": "Gemini 3.5 Flash 成為全球 Gemini 應用與 Google 搜尋 AI 模式的預設模型，在 Agent 運作與編碼方面顯著優於前代，128K 平均上下文、支援 1M token 長文處理。",
-        "url": "https://technews.tw/2026/05/20/google-introduces-gemini-3-5-and-gemini-spark/",
-        "source": "TechNews 科技新報",
-        "tags": [
-          "gemini",
-          "model"
-        ]
-      },
-      {
         "sub": "product",
         "title": "Veo 3 影片生成模型開放 API：Google Photos 新增照片轉影片功能",
         "desc": "Google 將 Veo 3 影片生成模型開放 API 使用，同時在美國版 Google Photos 中推出照片轉影片功能。",
@@ -4291,76 +2734,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Gemini 3.5 Flash",
-        "author": "Google",
-        "desc": "Google I/O 發布的最新高效模型，在 Agent 與編碼任務上表現優異，支援 1M token 上下文。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "DeepSeek-R1",
-        "author": "DeepSeek",
-        "desc": "DeepSeek 推理模型持續獲得社群高度關注，下載量穩居前列。",
-        "url": "https://huggingface.co/deepseek-ai",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "I2VGen-XL",
-        "author": "Alibaba",
-        "desc": "阿里巴巴開源的圖片轉影片生成模型，可將靜態圖片轉化為動態影片。",
-        "url": "https://huggingface.co/models?sort=trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Skills",
-        "repo": "mattpocock/skills",
-        "desc": "可重用 AI 代理技能集合，本週登上 GitHub Trending 第一名。",
-        "stars": "55.3k",
-        "lang": "TypeScript",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "2026 年最快速成長的開源專案之一，開放式 AI 代理基礎設施平台。",
-        "stars": "210k",
-        "lang": "Python",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Pixelle-Video",
-        "repo": "pixelle/pixelle-video",
-        "desc": "自動化影片生成管線，從腳本到成品一條龍處理。",
-        "stars": "7.4k",
-        "lang": "Python",
-        "url": "https://github.com/pixelle/pixelle-video",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-19",
@@ -4371,8 +2746,8 @@ const AI_NEWS_DATA = [
       "gemini": 6,
       "grok": 2,
       "news": 3,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -4568,76 +2943,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Gemini 3.5 Flash",
-        "author": "Google",
-        "desc": "Google I/O 當日發布的新旗艦模型，在 Agent 與編碼上表現出色。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "DeepSeek-V3",
-        "author": "DeepSeek",
-        "desc": "DeepSeek 開源 V3 模型在社群持續獲得高關注度與活躍使用。",
-        "url": "https://huggingface.co/deepseek-ai",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "LongCat-Video 13.6B",
-        "author": "LongCat Team",
-        "desc": "Diffusion Transformer 架構的 136 億參數長影片生成模型。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Skills",
-        "repo": "mattpocock/skills",
-        "desc": "可重用 AI 代理技能集合，穩居 GitHub Trending 榜首。",
-        "stars": "55.3k",
-        "lang": "TypeScript",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "Nous Research 的開源多代理框架，支援任務分解與協作。",
-        "stars": "130k",
-        "lang": "Python",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "2026 年爆紅開源專案，AI 代理基礎設施平台。",
-        "stars": "210k",
-        "lang": "Python",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-18",
@@ -4648,8 +2955,8 @@ const AI_NEWS_DATA = [
       "gemini": 2,
       "grok": 0,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -4759,75 +3066,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan-AI",
-        "desc": "50 億參數文字轉圖轉影片模型，支援高品質影片生成，媲美商業方案。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "State of Open Source Spring 2026",
-        "author": "Hugging Face",
-        "desc": "HF 春季報告：平台模型數突破 100 萬，2025 年新模型多數源自中國或其衍生。",
-        "url": "https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026",
-        "tags": [
-          "open"
-        ]
-      },
-      {
-        "name": "Gemma 4 Preview",
-        "author": "Google",
-        "desc": "Google I/O 前夕釋出 Gemma 4 預覽版，開源輕量模型系列持續迭代。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "nicklama/openclaw",
-        "desc": "本地 AI 助手閘道器，連接 50+ 整合（WhatsApp、Telegram、Slack 等），星數飆破 210K。",
-        "stars": "210k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/nicklama/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "為 Claude Code 提供工程師實用 Skills 的 .claude 目錄集合，55K+ 星。",
-        "stars": "55k+",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "NousResearch 的可成長型 AI 代理框架，129K+ 星，主打漸進式能力擴展。",
-        "stars": "129k+",
-        "lang": "Python",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-17",
@@ -4836,10 +3076,10 @@ const AI_NEWS_DATA = [
       "claude": 4,
       "openai": 4,
       "gemini": 3,
-      "grok": 3,
+      "grok": 2,
       "news": 3,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -4996,17 +3236,6 @@ const AI_NEWS_DATA = [
           "product",
           "integration"
         ]
-      },
-      {
-        "sub": "product",
-        "title": "Grok Custom Voices：數秒音訊即可複製個人聲音用於 TTS 與 Voice Agent",
-        "desc": "xAI 推出 Custom Voices 功能，用戶只需數秒音訊即可複製自己的聲音，立即用於 Grok Text to Speech 和 Voice Agent API。",
-        "url": "https://releasebot.io/updates/xai",
-        "source": "Releasebot",
-        "tags": [
-          "grok",
-          "product"
-        ]
       }
     ],
     "news": [
@@ -5041,89 +3270,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan-AI",
-        "desc": "50 億參數文字到圖片再到影片生成模型，支援 TI2V pipeline 一站式從文字描述產出動態影片。",
-        "url": "https://huggingface.co/models?sort=trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "ARIS Research Harness",
-        "author": "ARIS-Team",
-        "desc": "開源研究框架，使用跨模型對抗式協作確保長期研究成果的可靠性與可複現性。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "OpenDevin",
-        "author": "OpenDevin",
-        "desc": "開源 AI 代理平台，能透過寫程式、使用命令列與瀏覽網頁與世界互動，支援多種開發任務自動化。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenHuman",
-        "repo": "tinyhumansai/OpenHuman",
-        "desc": "開源桌面 AI Agent，能在第一天就了解用戶偏好與上下文，無需提示即可主動提供個人化協助。",
-        "stars": "18.2k",
-        "lang": "TypeScript",
-        "url": "https://github.com/tinyhumansai/OpenHuman",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "pi-mono",
-        "repo": "pi-mono/pi-mono",
-        "desc": "AI Agent 工具包：整合編碼 CLI、統一 LLM API、TUI/Web UI、Slack Bot 與 vLLM pods，43.9k stars。",
-        "stars": "43.9k",
-        "lang": "Python",
-        "url": "https://github.com/pi-mono/pi-mono",
-        "tags": [
-          "agent",
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Pixelle-Video",
-        "repo": "pixelle-ai/Pixelle-Video",
-        "desc": "全自動影片生成 pipeline：輸入主題即產出含腳本、AI 視覺、語音合成、配樂與最終合成的完整影片。",
-        "stars": "9.2k",
-        "lang": "Python",
-        "url": "https://github.com/pixelle-ai/Pixelle-Video",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-16",
     "weekday": "星期六",
     "stats": {
       "claude": 3,
-      "openai": 3,
+      "openai": 1,
       "gemini": 5,
       "grok": 3,
       "news": 4,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -5165,28 +3325,6 @@ const AI_NEWS_DATA = [
         "sub": "product",
         "title": "ChatGPT 新增「信任聯絡人」安全功能，可在緊急情況通知指定對象",
         "desc": "ChatGPT 推出 Trusted Contact 功能，用戶可選擇一位信任對象，當系統偵測到嚴重自殺相關安全疑慮時，可自動通知該聯絡人。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "product"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "ChatGPT 進階帳戶安全上線：支援 Passkey、安全金鑰與登入通知",
-        "desc": "啟用 Advanced Account Security 後，ChatGPT 改用更強的登入方式如 Passkey 或安全金鑰，並新增復原金鑰、縮短活躍工作階段、登入通知與工作階段管理。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-        "source": "OpenAI Help Center",
-        "tags": [
-          "openai",
-          "product"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "ChatGPT 免費版新增網頁行內圖片，視覺話題更直觀",
-        "desc": "免費用戶的 ChatGPT 回應中將顯示更多來自網路的行內圖片，幫助理解名人、地標、產品等視覺性主題。",
         "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
         "source": "OpenAI Help Center",
         "tags": [
@@ -5336,79 +3474,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan-AI",
-        "desc": "50 億參數的文字轉圖片轉影片模型，專精 Text-to-Image-to-Video 生成管線，開源社群熱門選擇。",
-        "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "SmolVLM2-2.2B-Instruct",
-        "author": "HuggingFaceTB",
-        "desc": "輕量級 22 億參數視覺語言模型，支援圖片與影片理解，適合邊緣裝置部署。",
-        "url": "https://huggingface.co/HuggingFaceTB/SmolVLM2-2.2B-Instruct",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Qwen3-235B-A22B",
-        "author": "Qwen",
-        "desc": "Qwen 最新 2350 億參數混合專家模型（活躍 220 億），支援 119 種語言與思維切換，在推理與程式碼基準上表現優異。",
-        "url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "為 Claude Code 打造的實用技能集，直接來自作者的 .claude 目錄，本週從第 3 躍升至 GitHub 趨勢榜第 1 名。",
-        "stars": "15.2k",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "claude",
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "warpdotdev/warp",
-        "repo": "warpdotdev/warp",
-        "desc": "以終端為基礎的智能開發環境，本週急升至趨勢榜第 2 名，支援 AI 輔助的命令列工作流程。",
-        "stars": "25.8k",
-        "lang": "Rust",
-        "url": "https://github.com/warpdotdev/warp",
-        "tags": [
-          "tool",
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "karpathy/karpathy-skills",
-        "repo": "karpathy/karpathy-skills",
-        "desc": "Andrej Karpathy 的 CLAUDE.md 配置檔，用於改進 Claude Code 行為的單一設定檔案，開發者社群廣泛參考。",
-        "stars": "12.5k",
-        "lang": "Markdown",
-        "url": "https://github.com/karpathy/karpathy-skills",
-        "tags": [
-          "claude",
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-15",
@@ -5419,8 +3486,8 @@ const AI_NEWS_DATA = [
       "gemini": 4,
       "grok": 1,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -5586,77 +3653,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "MinerU2.5-Pro",
-        "author": "OpenDataLab",
-        "desc": "最新文件解析模型（PDF→Markdown），1.2B 參數透過純資料工程最佳化達到業界新標準。",
-        "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Kronos",
-        "author": "研究社群",
-        "desc": "金融 K 線資料專用預訓練框架，透過獨特分詞器與自迴歸預訓練，在預測與合成資料生成上超越現有模型。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "GenericAgent",
-        "author": "研究社群",
-        "desc": "自我演化 LLM 代理系統，透過階層式記憶與可重用 SOP 最大化上下文密度，克服長時程限制。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "Skills for Real Engineers，工程師實用 Claude Code 技能集，GitHub 趨勢榜持續居首，74.5k+ 星。",
-        "stars": "74.5k+",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Ollama",
-        "repo": "ollama/ollama",
-        "desc": "本地 LLM 執行工具，一行指令即可拉取與運行模型，超過 16.5 萬星。",
-        "stars": "165k+",
-        "lang": "Go",
-        "url": "https://github.com/ollama/ollama",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "開源工作流自動化平台，視覺化無程式碼介面結合自訂程式碼彈性，內建 AI 功能與 400+ 整合。",
-        "stars": "N/A",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-14",
@@ -5667,8 +3665,8 @@ const AI_NEWS_DATA = [
       "gemini": 4,
       "grok": 3,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -5858,76 +3856,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "ARIS",
-        "author": "上海交通大學",
-        "desc": "開源研究框架，使用跨模型對抗協作確保長期研究可靠性，涵蓋協調、執行與保證層。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "MinerU2.5-Pro",
-        "author": "OpenDataLab",
-        "desc": "1.2B 參數文件解析模型，透過資料工程最佳化在 PDF 轉 Markdown 任務達到業界新標準。",
-        "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Pixal3D",
-        "author": "研究社群",
-        "desc": "像素對齊 3D 生成方法，透過反投影條件建立直接像素到 3D 對應，提升 3D 資產保真度。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "anthropics/openclaw",
-        "desc": "本地優先 AI 助理，50+ 整合、資料不出裝置，GitHub 史上成長最快，21 萬+ 星。",
-        "stars": "210k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/anthropics/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "ComfyUI",
-        "repo": "comfyanonymous/ComfyUI",
-        "desc": "節點式視覺工作流 AI 圖像生成，精細控制每步流程，10.6 萬+ 星。",
-        "stars": "106k+",
-        "lang": "Python",
-        "url": "https://github.com/comfyanonymous/ComfyUI",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Open WebUI",
-        "repo": "open-webui/open-webui",
-        "desc": "自架 AI 平台，支援離線運作、ChatGPT 風格介面，2.82 億次下載、12.4 萬+ 星。",
-        "stars": "124k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/open-webui/open-webui",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-13",
@@ -5938,8 +3868,8 @@ const AI_NEWS_DATA = [
       "gemini": 3,
       "grok": 1,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -6060,77 +3990,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "MinerU2.5-Pro",
-        "author": "OpenDataLab",
-        "desc": "最新文件解析模型（PDF 轉 Markdown），1.2B 參數，透過純資料工程最佳化達到業界新標準。",
-        "url": "https://huggingface.co/opendatalab/MinerU2.5-Pro-2604-1.2B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "GenericAgent",
-        "author": "研究社群",
-        "desc": "自我演化 LLM 代理系統，透過階層式記憶與可重用 SOP 最大化上下文資訊密度，克服長時程任務限制。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan Team",
-        "desc": "50 億參數文字轉圖轉影片模型，代表 Text-to-Image-to-Video 生成的重大進展。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "Skills for Real Engineers，提供工程師實用的 Claude Code 技能集，本週 GitHub 趨勢榜第一。",
-        "stars": "74.5k",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Warp",
-        "repo": "warpdotdev/warp",
-        "desc": "代理式開發環境，從終端機演化而來，本週趨勢榜第二名。",
-        "stars": "N/A",
-        "lang": "Rust",
-        "url": "https://github.com/warpdotdev/warp",
-        "tags": [
-          "agent",
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "andrej-karpathy-skills",
-        "repo": "grapeot/karpathy-skill",
-        "desc": "基於 Andrej Karpathy 對 LLM 程式設計陷阱觀察的單一 CLAUDE.md 檔案，改善 Claude Code 行為。",
-        "stars": "N/A",
-        "lang": "Markdown",
-        "url": "https://github.com/grapeot/karpathy-skill",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-12",
@@ -6141,8 +4002,8 @@ const AI_NEWS_DATA = [
       "gemini": 5,
       "grok": 4,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -6283,77 +4144,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Wan-AI",
-        "desc": "50 億參數文字轉影片模型，Wan 影片生成系列新成員，支援 Text-to-Image-to-Video 流程，開源可商用。",
-        "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "MiniMax Agentic Model",
-        "author": "MiniMax",
-        "desc": "MiniMax 最新開源代理模型，針對複雜工作流最佳化，強化 Rust、Java、Go、C++、TypeScript 等多語言程式碼生成能力。",
-        "url": "https://huggingface.co/models?other=iclr-2026",
-        "tags": [
-          "model",
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "ICLR 2026 論文精選",
-        "author": "HuggingFace 社群",
-        "desc": "HuggingFace 彙整 ICLR 2026 相關模型與論文，涵蓋測試時推理、多模態理解與反思型代理等前沿研究方向。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "個人 AI 助理，完全在本地裝置運行，串接 WhatsApp、Telegram、Slack、Discord 等 50+ 整合，星數從 9K 暴漲至 210K+。",
-        "stars": "210K+",
-        "lang": "TypeScript",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "「Skills for Real Engineers」— 來自 .claude 目錄的 Claude Code 技能集，GitHub 星數 55K+，本週熱門。",
-        "stars": "55K+",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "andrej-karpathy-skills",
-        "repo": "forrestchang/andrej-karpathy-skills",
-        "desc": "單一 CLAUDE.md 檔案改善 Claude Code 行為的技能集，由 Andrej Karpathy 啟發，星數超過 106K。",
-        "stars": "106K+",
-        "lang": "Markdown",
-        "url": "https://github.com/forrestchang/andrej-karpathy-skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-11",
@@ -6364,8 +4156,8 @@ const AI_NEWS_DATA = [
       "gemini": 3,
       "grok": 2,
       "news": 4,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -6539,77 +4331,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Alibaba",
-        "desc": "開源文字/圖片轉影片模型，品質已逼近商用方案，支援 5B 參數高效推理。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "HunyuanVideo",
-        "author": "Tencent",
-        "desc": "騰訊開源影片生成模型，在多項基準測試中表現優異，持續推動文字轉影片領域發展。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Korean-LLM-Trio",
-        "author": "多團隊",
-        "desc": "三款韓國團隊開發的語言模型同時登上 HuggingFace 趨勢榜，反映亞洲各國加速開發在地化模型的趨勢。",
-        "url": "https://huggingface.co/models",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Skills for Claude",
-        "repo": "mattpocock/skills",
-        "desc": "專為 Claude Code .claude 目錄設計的工程技能集，快速登上 GitHub 趨勢榜首。",
-        "stars": "55.3k",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "claude",
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "NousResearch/hermes-agent",
-        "desc": "「與你一同成長的代理」，開源 AI Agent 框架，已累積近 13 萬顆星。",
-        "stars": "130k",
-        "lang": "Python",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Warp",
-        "repo": "warpdotdev/warp",
-        "desc": "代理式開發環境，結合終端機與 AI 能力的新一代開發工具。",
-        "stars": "52.9k",
-        "lang": "Rust",
-        "url": "https://github.com/warpdotdev/warp",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-10",
@@ -6618,10 +4341,10 @@ const AI_NEWS_DATA = [
       "claude": 3,
       "openai": 2,
       "gemini": 3,
-      "grok": 2,
+      "grok": 1,
       "news": 3,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -6719,16 +4442,6 @@ const AI_NEWS_DATA = [
     "grok": [
       {
         "sub": "product",
-        "title": "SpaceXAI 整合進行中，Grok 產品線維持運作",
-        "desc": "xAI 解散為 SpaceXAI 後，Grok 聊天機器人與 Colossus 超算中心持續在 SpaceX 旗下運作，IPO 準備加速。",
-        "url": "https://finance.yahoo.com/sectors/technology/articles/xai-dead-long-live-spacexai-183140341.html",
-        "source": "Yahoo Finance",
-        "tags": [
-          "grok"
-        ]
-      },
-      {
-        "sub": "product",
         "title": "黃仁勳：AI 創造 50 萬工作，駁斥「取代白領」論",
         "desc": "NVIDIA CEO 批評 AI 會消滅白領的說法是老闆的「上帝情結」，強調 AI 採用企業反而成長更快、雇用更多人。",
         "url": "https://technews.tw/2026/05/10/jensen-huang-dismisses-ai-white-collar-threat-as-boss-god-complex/",
@@ -6770,76 +4483,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Alibaba",
-        "desc": "50 億參數文字轉影片模型，支援 Text-to-Image-to-Video 生成管線。",
-        "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-14B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Mem0",
-        "author": "Mem0 AI",
-        "desc": "圖譜記憶架構，強化 LLM 長期對話一致性與上下文記憶能力。",
-        "url": "https://huggingface.co/mem0ai",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "ARIS",
-        "author": "研究社群",
-        "desc": "開源研究框架，使用跨模型對抗協作提升 AI 研究品質。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "面向工程師的 Claude Code 技能集，來自 .claude 目錄的實戰經驗。",
-        "stars": "55.3k",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Warp",
-        "repo": "warpdotdev/warp",
-        "desc": "代理式開發環境，從終端機進化而來的智慧開發工具。",
-        "stars": "52.9k",
-        "lang": "Rust",
-        "url": "https://github.com/warpdotdev/Warp",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Hermes Agent",
-        "repo": "hermes-ai/hermes",
-        "desc": "隨使用者成長的 AI 代理框架，支援多模態與長期記憶。",
-        "stars": "130k",
-        "lang": "Python",
-        "url": "https://github.com/hermes-ai/hermes",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-09",
@@ -6847,11 +4492,11 @@ const AI_NEWS_DATA = [
     "stats": {
       "claude": 3,
       "openai": 3,
-      "gemini": 3,
-      "grok": 2,
+      "gemini": 1,
+      "grok": 1,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -6935,28 +4580,6 @@ const AI_NEWS_DATA = [
           "gemini",
           "model"
         ]
-      },
-      {
-        "sub": "product",
-        "title": "Gemini 可直接產出可下載文件",
-        "desc": "對話中可直接產出 Docs、PDF、Word、Excel、CSV 與 Markdown 檔案，從聊天直接轉為完成的商業產出。",
-        "url": "https://releasebot.io/updates/google/gemini",
-        "source": "Releasebot",
-        "tags": [
-          "gemini",
-          "tool"
-        ]
-      },
-      {
-        "sub": "integration",
-        "title": "Google 與 Kaggle 推出 AI Agents Vibe Coding 課程",
-        "desc": "免費線上課程教授如何用 AI 代理進行 Vibe Coding，結合 Google AI Studio 實作練習。",
-        "url": "https://releasebot.io/updates/google/gemini",
-        "source": "Releasebot",
-        "tags": [
-          "gemini",
-          "tutorial"
-        ]
       }
     ],
     "grok": [
@@ -6969,16 +4592,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "grok",
           "tool"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "SpaceXAI IPO 估值上看 2 兆美元",
-        "desc": "SpaceX 整合 xAI 後瞄準 2026 年中 IPO，估值討論範圍在 1.75 兆至 2 兆美元之間。",
-        "url": "https://stocktwits.com/news-articles/markets/equity/spacexai-takes-off-elon-musk-consolidates-ai-empire-ahead-of-massive-ipo/cZQzjOQReOD",
-        "source": "Stocktwits",
-        "tags": [
-          "grok"
         ]
       }
     ],
@@ -7004,76 +4617,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "smolagents",
-        "author": "Hugging Face",
-        "desc": "輕量級電腦操控代理，透過自然語言指令自動化桌面與瀏覽器任務。",
-        "url": "https://huggingface.co/smolagents",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "FastApply-7B",
-        "author": "Kortix",
-        "desc": "專為程式碼維護設計的 AI 模型，快速精準地套用程式碼變更與修正。",
-        "url": "https://huggingface.co/Kortix/FastApply-7B-v1.0",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "GenericAgent",
-        "author": "研究團隊",
-        "desc": "自我進化 LLM 代理，透過層級記憶與可重複使用 SOP 最大化上下文密度。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "本地運行的個人 AI 助手，可連接 50+ 整合，2026 年成長最快開源專案。",
-        "stars": "300k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "開源工作流自動化平台，結合視覺化介面與自訂程式碼彈性。",
-        "stars": "180k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "開源 LLM 應用開發平台，支援 AI 工作流、RAG 管線與代理功能。",
-        "stars": "136k",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-08",
@@ -7083,9 +4628,9 @@ const AI_NEWS_DATA = [
       "openai": 3,
       "gemini": 3,
       "grok": 2,
-      "news": 1,
-      "hf": 3,
-      "gh": 3
+      "news": 0,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -7216,100 +4761,21 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "news": [
-      {
-        "sub": "secondary",
-        "title": "AI 服務本週多起中斷事件",
-        "desc": "Claude、ChatGPT 等主要 AI 服務本週均出現短暫中斷，凸顯 AI 基礎設施可靠性挑戰。",
-        "url": "https://status.anthropic.com",
-        "source": "各平台",
-        "tags": [
-          "tool"
-        ]
-      }
-    ],
-    "hf": [
-      {
-        "name": "Kronos",
-        "author": "金融 AI 團隊",
-        "desc": "金融 K 線數據專用預訓練框架，在預測與合成數據生成方面超越現有模型。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "LingBot-Map",
-        "author": "3D 視覺團隊",
-        "desc": "前饋式 3D 基礎模型，從影片串流重建場景，達到 20 FPS 即時效能。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "BLOOM",
-        "author": "BigScience",
-        "desc": "開放取用多語言大型語言模型，支援 46 種語言、1,760 億參數。",
-        "url": "https://huggingface.co/bigscience/bloom",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "claude-context",
-        "repo": "zilliztech/claude-context",
-        "desc": "語義化程式碼搜尋 MCP 伺服器，以向量資料庫查詢程式碼庫作為上下文。",
-        "stars": "10.6k",
-        "lang": "Python",
-        "url": "https://github.com/zilliztech/claude-context",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "TradingAgents",
-        "repo": "TauricResearch/TradingAgents",
-        "desc": "多代理交易框架，模擬真實交易公司動態，含多角色辯論決策。",
-        "stars": "62.6k",
-        "lang": "Python",
-        "url": "https://github.com/TauricResearch/TradingAgents",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Browser Use",
-        "repo": "browser-use/browser-use",
-        "desc": "讓 AI 代理操控瀏覽器執行任務的開源框架。",
-        "stars": "80k+",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "news": [],
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-07",
     "weekday": "星期三",
     "stats": {
       "claude": 3,
-      "openai": 4,
+      "openai": 3,
       "gemini": 2,
       "grok": 1,
       "news": 2,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -7367,17 +4833,6 @@ const AI_NEWS_DATA = [
         "source": "Releasebot",
         "tags": [
           "openai"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "ChatGPT 快速回答功能加速常見問題",
-        "desc": "Fast Answers 功能上線，針對常見問題提供更快速的回應，減少等待時間。",
-        "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-        "source": "OpenAI Help",
-        "tags": [
-          "openai",
-          "tool"
         ]
       },
       {
@@ -7450,88 +4905,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "Text-to-Video 開源模型",
-        "author": "社群",
-        "desc": "2026 年文字轉影片開源模型品質大躍進，多個開源版本匹敵商業方案。",
-        "url": "https://dev.to/czmilo/2026-complete-guide-top-text-to-video-models-on-huggingface-49p2",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Reflective Agents",
-        "author": "研究社群",
-        "desc": "測試時推理與反思式代理崛起，AI 從助手進化為同事。",
-        "url": "https://huggingface.co/blog/aufklarer/ai-trends-2026-test-time-reasoning-reflective-agen",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Wan2.2-TI2V-5B",
-        "author": "Alibaba",
-        "desc": "50 億參數文字轉影像轉影片模型，支援端到端生成管線。",
-        "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-14B",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Pixelle-Video",
-        "repo": "AIDC-AI/Pixelle-Video",
-        "desc": "端到端 AI 影片製作管線：輸入主題即自動產出完整影片。",
-        "stars": "9.2k",
-        "lang": "Python",
-        "url": "https://github.com/AIDC-AI/Pixelle-Video",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Ollama",
-        "repo": "ollama/ollama",
-        "desc": "輕量級框架，可在本地硬體上運行與管理大型語言模型。",
-        "stars": "175k+",
-        "lang": "Go",
-        "url": "https://github.com/ollama/ollama",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "karpathy-skills",
-        "repo": "andrejkarpathy/skills",
-        "desc": "Andrej Karpathy 的 CLAUDE.md 技能檔，改善 Claude Code 行為的最佳實踐。",
-        "stars": "106.8k",
-        "lang": "Markdown",
-        "url": "https://github.com/andrejkarpathy/dotfiles",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-06",
     "weekday": "星期二",
     "stats": {
-      "claude": 4,
-      "openai": 3,
+      "claude": 3,
+      "openai": 1,
       "gemini": 2,
       "grok": 2,
-      "news": 2,
-      "hf": 3,
-      "gh": 3
+      "news": 1,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -7542,17 +4929,6 @@ const AI_NEWS_DATA = [
         "source": "Simon Willison",
         "tags": [
           "claude"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Claude Code 五小時用量上限翻倍",
-        "desc": "Pro、Max、Enterprise 用戶的五小時限制加倍，尖峰時段限制對 Pro/Max 取消，新增 xhigh effort 等級。",
-        "url": "https://simonwillison.net/2026/May/6/code-w-claude-2026/",
-        "source": "Simon Willison",
-        "tags": [
-          "claude",
-          "tool"
         ]
       },
       {
@@ -7588,29 +4964,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "openai",
           "agent"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "ChatGPT Enterprise 推出 Intune 版 iOS App",
-        "desc": "專為使用 Microsoft Intune 與 Entra 的企業組織推出獨立 iOS/iPadOS 應用程式。",
-        "url": "https://releasebot.io/updates/openai/chatgpt",
-        "source": "Releasebot",
-        "tags": [
-          "openai",
-          "integration"
-        ]
-      },
-      {
-        "sub": "product",
-        "title": "ChatGPT for Excel 與 Google Sheets 全球上線",
-        "desc": "試算表原生側邊欄，可直接在工作表中建立、清理、更新與解釋資料，支援 Business 方案。",
-        "url": "https://releasebot.io/updates/openai/chatgpt",
-        "source": "Releasebot",
-        "tags": [
-          "openai",
-          "tool",
-          "integration"
         ]
       }
     ],
@@ -7671,88 +5024,10 @@ const AI_NEWS_DATA = [
         "tags": [
           "agent"
         ]
-      },
-      {
-        "sub": "secondary",
-        "title": "Code w/ Claude 大會：Advisor Strategy 降低 AI 成本 5 倍",
-        "desc": "小模型接受 Opus 建議的 Advisor 策略，讓客戶以五分之一成本達到類似大模型的品質。",
-        "url": "https://www.artiverse.ca/highlights-from-anthropics-code-w-claude-2026-conference/",
-        "source": "Artiverse",
-        "tags": [
-          "tool"
-        ]
       }
     ],
-    "hf": [
-      {
-        "name": "Mem0",
-        "author": "Mem0 AI",
-        "desc": "圖譜記憶架構，為 LLM 加入長期對話記憶與上下文一致性。",
-        "url": "https://huggingface.co/mem0ai",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "ARIS",
-        "author": "研究社群",
-        "desc": "開源研究框架，使用跨模型對抗協作驗證 AI 研究品質。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "smolagents",
-        "author": "Hugging Face",
-        "desc": "輕量級代理框架，透過自然語言指令自動化桌面與瀏覽器任務。",
-        "url": "https://huggingface.co/smolagents",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "Hermes Agent",
-        "repo": "hermes-ai/hermes",
-        "desc": "隨使用者成長的 AI 代理框架，支援多模態與長期記憶。",
-        "stars": "130k",
-        "lang": "Python",
-        "url": "https://github.com/hermes-ai/hermes",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Warp",
-        "repo": "warpdotdev/warp",
-        "desc": "代理式開發環境，從終端機進化而來的智慧開發工具。",
-        "stars": "52.9k",
-        "lang": "Rust",
-        "url": "https://github.com/warpdotdev/Warp",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "mattpocock/skills",
-        "repo": "mattpocock/skills",
-        "desc": "面向工程師的 Claude Code 技能集，實戰經驗整理。",
-        "stars": "55.3k",
-        "lang": "Markdown",
-        "url": "https://github.com/mattpocock/skills",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-05",
@@ -7762,9 +5037,9 @@ const AI_NEWS_DATA = [
       "openai": 3,
       "gemini": 3,
       "grok": 2,
-      "news": 3,
-      "hf": 3,
-      "gh": 3
+      "news": 1,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -7873,26 +5148,6 @@ const AI_NEWS_DATA = [
     "news": [
       {
         "sub": "secondary",
-        "title": "iOS 27 將開放第三方 AI 助手",
-        "desc": "Apple Intelligence 開放 Claude 與 Gemini 作為 Siri 替代方案，AI 聊天機器人版圖正式進入手機 OS 層級。",
-        "url": "https://www.macrumors.com/2026/05/05/ios-27-third-party-chatbots-apple-intelligence/",
-        "source": "MacRumors",
-        "tags": [
-          "integration"
-        ]
-      },
-      {
-        "sub": "secondary",
-        "title": "AI 財報週來了：巨頭從燒錢走向現金流",
-        "desc": "科技巨頭即將交出 AI 投資成績單，市場關注從基建燒錢能否轉向正向現金流。",
-        "url": "https://technews.tw/2026/05/04/ai-hyperscalers-will-drive-higher-us-corporate-bond-supply-in-2026/",
-        "source": "科技新報",
-        "tags": [
-          "model"
-        ]
-      },
-      {
-        "sub": "secondary",
         "title": "Perplexity 推出企業搜尋方案",
         "desc": "AI 搜尋引擎 Perplexity 推出面向企業的深度搜尋方案，挑戰 Google 在企業搜尋市場的地位。",
         "url": "https://llm-stats.com/llm-updates",
@@ -7902,76 +5157,8 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "GenericAgent",
-        "author": "研究團隊",
-        "desc": "自我進化 LLM 代理系統，透過層級記憶與可重複使用 SOP 最大化上下文資訊密度。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Kronos",
-        "author": "金融 AI 團隊",
-        "desc": "金融 K 線數據專用預訓練框架，在預測與合成數據方面超越現有模型。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "FastApply-7B",
-        "author": "Kortix",
-        "desc": "專為程式碼維護設計的 AI 模型，快速精準地套用變更與修正。",
-        "url": "https://huggingface.co/Kortix/FastApply-7B-v1.0",
-        "tags": [
-          "model",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "本地運行的個人 AI 助手，可連接 50+ 整合，GitHub 史上成長最快開源專案。",
-        "stars": "300k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "開源工作流自動化平台，結合視覺化介面與自訂程式碼彈性。",
-        "stars": "180k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "開源 LLM 應用開發平台，支援 AI 工作流、RAG 管線與代理功能。",
-        "stars": "136k",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-04",
@@ -7982,8 +5169,8 @@ const AI_NEWS_DATA = [
       "gemini": 1,
       "grok": 2,
       "news": 0,
-      "hf": 3,
-      "gh": 3
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -8047,88 +5234,20 @@ const AI_NEWS_DATA = [
       }
     ],
     "news": [],
-    "hf": [
-      {
-        "name": "LingBot-Map",
-        "author": "3D 視覺團隊",
-        "desc": "前饋式 3D 基礎模型，從影片串流重建場景，達到 20 FPS 即時效能。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "BLOOM",
-        "author": "BigScience",
-        "desc": "開放取用多語言大型語言模型，支援 46 種語言、1,760 億參數。",
-        "url": "https://huggingface.co/bigscience/bloom",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Reflective Agents",
-        "author": "研究社群",
-        "desc": "測試時推理與反思式代理崛起，AI 從助手進化為同事。",
-        "url": "https://huggingface.co/blog/aufklarer/ai-trends-2026-test-time-reasoning-reflective-agen",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "本地運行的個人 AI 助手，可連接 50+ 整合，2026 年成長最快開源專案。",
-        "stars": "300k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/openclaw/openclaw",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Ollama",
-        "repo": "ollama/ollama",
-        "desc": "本地運行大型語言模型的輕量級框架，持續穩居熱門榜單。",
-        "stars": "175k+",
-        "lang": "Go",
-        "url": "https://github.com/ollama/ollama",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Browser Use",
-        "repo": "browser-use/browser-use",
-        "desc": "讓 AI 代理操控瀏覽器執行任務的開源框架。",
-        "stars": "80k+",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-02",
     "weekday": "星期六",
     "stats": {
-      "claude": 6,
+      "claude": 4,
       "openai": 0,
       "gemini": 0,
       "grok": 0,
-      "news": 7,
-      "hf": 5,
-      "gh": 5
+      "news": 5,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -8151,28 +5270,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "claude",
           "model"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Claude Managed Agents 公開測試版上線",
-        "desc": "全託管式代理框架，支援安全沙箱、內建工具與 SSE 串流。",
-        "url": "https://docs.anthropic.com/en/release-notes/overview",
-        "source": "Anthropic Docs",
-        "tags": [
-          "claude",
-          "agent"
-        ]
-      },
-      {
-        "sub": "tool",
-        "title": "Anthropic 推出 ant CLI 命令列工具",
-        "desc": "全新 CLI 客戶端，可直接與 Claude API 互動，並以 YAML 管理 API 資源版本。",
-        "url": "https://docs.anthropic.com/en/release-notes/overview",
-        "source": "Anthropic Docs",
-        "tags": [
-          "claude",
-          "tool"
         ]
       },
       {
@@ -8212,15 +5309,6 @@ const AI_NEWS_DATA = [
         ]
       },
       {
-        "title": "Google Gemini 3.1 Ultra 支援多模態即時處理",
-        "desc": "可同時處理視訊、音訊與文字，無需轉錄中介，並內建沙箱程式碼執行工具。",
-        "url": "https://blog.mean.ceo/new-ai-model-releases-news-may-2026/",
-        "source": "Mean CEO",
-        "tags": [
-          "model"
-        ]
-      },
-      {
         "title": "Microsoft Agent 365 企業級 AI 代理管控平台上線",
         "desc": "專為企業 AI 代理提供治理與安全控制面板，每用戶每月 $15。",
         "url": "https://blog.mean.ceo/ai-product-launches-news-may-2026/",
@@ -8237,15 +5325,6 @@ const AI_NEWS_DATA = [
         "source": "Asanify",
         "tags": [
           "model"
-        ]
-      },
-      {
-        "title": "Standard Intelligence 獲 7,500 萬美元融資",
-        "desc": "六人團隊打造 Computer Use 模型 FDM-1，以 1,100 萬小時影片訓練。",
-        "url": "https://techstartups.com/2026/05/01/top-tech-news-today-may-1-2026/",
-        "source": "TechStartups",
-        "tags": [
-          "agent"
         ]
       },
       {
@@ -8267,132 +5346,20 @@ const AI_NEWS_DATA = [
         ]
       }
     ],
-    "hf": [
-      {
-        "name": "GenericAgent",
-        "author": "研究團隊",
-        "desc": "自我進化 LLM 代理系統，透過層級記憶與可重複使用 SOP 最大化上下文資訊密度。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Kronos",
-        "author": "金融 AI 團隊",
-        "desc": "金融 K 線數據專用預訓練框架，在預測與合成數據生成方面超越現有模型。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "LingBot-Map",
-        "author": "3D 視覺團隊",
-        "desc": "前饋式 3D 基礎模型，從影片串流重建場景，達到 20 FPS 即時效能。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Text-to-Video 開源模型",
-        "author": "社群",
-        "desc": "2026 年文字轉影片開源模型品質大躍進，多個開源版本匹敵商業方案。",
-        "url": "https://dev.to/czmilo/2026-complete-guide-top-text-to-video-models-on-huggingface-49p2",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Reflective Agents",
-        "author": "研究社群",
-        "desc": "2026 AI 趨勢：測試時推理與反思式代理崛起，AI 從助手進化為同事。",
-        "url": "https://huggingface.co/blog/aufklarer/ai-trends-2026-test-time-reasoning-reflective-agen",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "本地運行的個人 AI 助手，可連接 50+ 整合，GitHub 史上成長最快的開源專案。",
-        "stars": "300k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "開源工作流自動化平台，結合視覺化介面與自訂程式碼彈性。",
-        "stars": "180k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Ollama",
-        "repo": "ollama/ollama",
-        "desc": "輕量級框架，可在本地硬體上運行與管理大型語言模型。",
-        "stars": "—",
-        "lang": "Go",
-        "url": "https://github.com/ollama/ollama",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "開源 LLM 應用開發平台，支援 AI 工作流、RAG 管線與代理功能。",
-        "stars": "136k",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Browser Use",
-        "repo": "browser-use/browser-use",
-        "desc": "讓 AI 代理操控瀏覽器執行任務的開源框架。",
-        "stars": "—",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   },
   {
     "date": "2026-05-01",
     "weekday": "星期四",
     "stats": {
-      "claude": 5,
+      "claude": 4,
       "openai": 0,
       "gemini": 0,
       "grok": 0,
-      "news": 6,
-      "hf": 5,
-      "gh": 5
+      "news": 5,
+      "hf": 0,
+      "gh": 0
     },
     "claude": [
       {
@@ -8426,16 +5393,6 @@ const AI_NEWS_DATA = [
         "tags": [
           "claude",
           "tool"
-        ]
-      },
-      {
-        "sub": "integration",
-        "title": "Anthropic 年化營收達 300 億美元",
-        "desc": "超過 1,000 家企業客戶年付超過百萬美元，2026 預估年化營收 300 億美元。",
-        "url": "https://blog.mean.ceo/anthropic-claude-news-may-2026/",
-        "source": "Mean CEO",
-        "tags": [
-          "claude"
         ]
       },
       {
@@ -8497,130 +5454,9 @@ const AI_NEWS_DATA = [
         "tags": [
           "agent"
         ]
-      },
-      {
-        "title": "AI 基礎建設投資急速升溫",
-        "desc": "私募股權大舉投入數百億美元建設專用資料中心與電廠。",
-        "url": "https://www.cryptointegrat.com/p/ai-news-may-1-2026",
-        "source": "CryptoIntegrat",
-        "tags": [
-          "tool"
-        ]
       }
     ],
-    "hf": [
-      {
-        "name": "GenericAgent",
-        "author": "研究團隊",
-        "desc": "自我進化 LLM 代理系統，透過層級記憶與可重複使用 SOP 最大化上下文資訊密度。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Kronos",
-        "author": "金融 AI 團隊",
-        "desc": "金融 K 線數據專用預訓練框架。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "LingBot-Map",
-        "author": "3D 視覺團隊",
-        "desc": "前饋式 3D 基礎模型，從影片串流重建場景。",
-        "url": "https://huggingface.co/papers/trending",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Text-to-Video 開源模型",
-        "author": "社群",
-        "desc": "2026 年文字轉影片開源模型品質大躍進。",
-        "url": "https://dev.to/czmilo/2026-complete-guide-top-text-to-video-models-on-huggingface-49p2",
-        "tags": [
-          "model",
-          "open"
-        ]
-      },
-      {
-        "name": "Reflective Agents",
-        "author": "研究社群",
-        "desc": "測試時推理與反思式代理崛起。",
-        "url": "https://huggingface.co/blog/aufklarer/ai-trends-2026-test-time-reasoning-reflective-agen",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ],
-    "gh": [
-      {
-        "name": "OpenClaw",
-        "repo": "openclaw/openclaw",
-        "desc": "本地運行的個人 AI 助手，可連接 50+ 整合。",
-        "stars": "300k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/trending",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "n8n",
-        "repo": "n8n-io/n8n",
-        "desc": "開源工作流自動化平台。",
-        "stars": "180k+",
-        "lang": "TypeScript",
-        "url": "https://github.com/n8n-io/n8n",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Ollama",
-        "repo": "ollama/ollama",
-        "desc": "本地運行大型語言模型的輕量級框架。",
-        "stars": "—",
-        "lang": "Go",
-        "url": "https://github.com/ollama/ollama",
-        "tags": [
-          "tool",
-          "open"
-        ]
-      },
-      {
-        "name": "Dify",
-        "repo": "langgenius/dify",
-        "desc": "開源 LLM 應用開發平台。",
-        "stars": "136k",
-        "lang": "Python",
-        "url": "https://github.com/langgenius/dify",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      },
-      {
-        "name": "Browser Use",
-        "repo": "browser-use/browser-use",
-        "desc": "讓 AI 代理操控瀏覽器執行任務。",
-        "stars": "—",
-        "lang": "Python",
-        "url": "https://github.com/browser-use/browser-use",
-        "tags": [
-          "agent",
-          "open"
-        ]
-      }
-    ]
+    "hf": [],
+    "gh": []
   }
 ];
