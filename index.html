@@ -4,13 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@100;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Chocolate+Classical+Sans&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Bebas+Neue&family=Pacifico&family=Monoton&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Audiowide&family=Russo+One&family=Major+Mono+Display&family=Abril+Fatface&family=Rubik+Glitch&family=Bungee+Shade&family=Rubik+Wet+Paint&family=Cherry+Bomb+One&family=Kablammo&family=Faster+One&family=Wallpoet&family=Iceberg&family=Rubik+Mono+One&family=Modak&family=DM+Serif+Display&family=Bodoni+Moda:wght@700;800&family=Yeseva+One&family=Libre+Bodoni:wght@700&family=Roboto+Slab:wght@700&family=Old+Standard+TT:wght@700&family=Cormorant+SC:wght@700&family=Source+Serif+4:wght@800&family=Kaisei+Opti:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/taipei-sans-tc/dist/Regular/TaipeiSansTCBeta-Regular.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/chiron-sung-hk-webfont/css/vf.css" rel="stylesheet">
-               <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Old+Mincho:wght@400;700;900&family=Rampart+One&family=Reggae+One&family=Hachi+Maru+Pop&family=Stick&family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Potta+One&family=RocknRoll+One&family=DotGothic16&family=Palette+Mosaic&display=swap" rel="stylesheet">
+<!-- 字型改為本地自託管（不依賴網路），由 fonts/_dl_webfonts.py 產生 -->
+<link href="fonts/web-fonts.css" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 /* ═══════════════════════════════════════════
@@ -941,58 +936,7 @@ body {
   margin-top: 8px;
 }
 
-/* ═══════════════════════════════════════════
-   AI NEWS PAGE
-   ═══════════════════════════════════════════ */
-.ainews-container { display: flex; flex-direction: column; gap: 16px; }
-.ainews-quick-nav {
-  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
-}
-.ainews-quick-nav .news-chip {
-  padding: 6px 14px; border-radius: var(--radius-xs); font-size: 0.85rem; font-weight: 700;
-  border: var(--border-w) solid var(--border); background: var(--bg-card);
-  color: var(--text-primary); cursor: pointer;
-  box-shadow: 2px 2px 0px var(--border);
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-.ainews-quick-nav .news-chip:hover,
-.ainews-quick-nav .news-chip.active {
-  background: var(--accent); color: #FFFFFF;
-  transform: translate(-1px, -1px); box-shadow: 3px 3px 0px var(--border);
-}
-.ainews-frame-wrap {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden;
-  min-height: 70vh; position: relative;
-}
-.ainews-placeholder {
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; min-height: 60vh; color: var(--text-muted);
-  text-align: center; padding: 40px;
-}
-.ainews-frame {
-  width: 100%; height: 80vh; border: none; border-radius: var(--radius);
-  background: var(--bg-base);
-}
-.news-date-picker {
-  padding: 6px 12px; border-radius: var(--radius-xs);
-  border: 1px solid var(--border); background: var(--bg-surface);
-  color: var(--text-primary); font-family: var(--font-body);
-  font-size: 0.9rem; outline: none;
-}
-.news-date-picker:focus { border-color: var(--accent); }
-.news-status {
-  font-size: 0.85rem; color: var(--text-secondary);
-}
 .btn-sm { padding: 6px 14px; font-size: 0.85rem; }
-.ainews-embed {
-  width: 100%; min-height: 70vh; border: none;
-  border-radius: var(--radius); overflow: auto;
-}
-.ainews-embed iframe.ainews-srcdoc {
-  width: 100%; height: 80vh; border: none;
-  border-radius: var(--radius);
-}
 
 /* ═══════════════════════════════════════════
    RESPONSIVE
@@ -1909,9 +1853,6 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
       <li class="nav-item active" data-page="dashboard">
         <a><span class="nav-icon"><i data-lucide="layout-dashboard" style="width:20px;height:20px"></i></span><span class="nav-label">首頁</span></a>
       </li>
-      <li class="nav-item">
-        <a href="news/ai-news.html" target="_blank"><span class="nav-icon"><i data-lucide="newspaper" style="width:20px;height:20px"></i></span><span class="nav-label">AI 新聞</span></a>
-      </li>
       <li class="nav-item" data-page="notes">
         <a><span class="nav-icon"><i data-lucide="file-text" style="width:20px;height:20px"></i></span><span class="nav-label">筆記</span></a>
       </li>
@@ -2094,32 +2035,6 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
     </section>
 
     <!-- ═══ GOALS ═══ -->
-    <!-- ═══ AI News Page ═══ -->
-    <section class="page" id="page-ainews">
-      <div class="page-header">
-        <div class="page-title">&#129302; AI 每日新聞</div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-          <input type="date" id="newsDatePicker" class="news-date-picker">
-          <button class="btn btn-accent btn-sm" id="newsLoadBtn">載入報告</button>
-          <span class="news-status" id="newsStatus"></span>
-        </div>
-      </div>
-      <div class="ainews-container">
-        <div class="ainews-quick-nav" id="ainewsQuickNav">
-          <!-- Auto-populated with available report dates -->
-        </div>
-        <div class="ainews-frame-wrap" id="ainewsFrameWrap">
-          <div class="ainews-placeholder" id="ainewsPlaceholder">
-            <div style="font-size:3em;margin-bottom:16px;">&#129302;</div>
-            <div style="font-size:1.2em;font-weight:600;margin-bottom:8px;">AI 每日新聞報告</div>
-            <div style="color:var(--text-secondary);margin-bottom:20px;">選擇日期或點擊下方按鈕載入今日報告</div>
-            <button class="btn btn-accent" id="newsLoadTodayBtn">載入今日報告</button>
-            <div style="margin-top:16px;font-size:0.8em;color:var(--text-muted);">提示：如果本地開啟無法載入，請用 Live Server 或部署到 GitHub Pages</div>
-          </div>
-          <div id="ainewsEmbed" class="ainews-embed" style="display:none;"></div>
-        </div>
-      </div>
-    </section>
 
     <section class="page" id="page-goals">
       <div class="hp-wrap" id="progBoard"></div>
@@ -4518,7 +4433,6 @@ function navigateTo(page) {
   if (page === 'links') renderLinks();
   if (page === 'todos') renderTodos();
   if (page === 'goals') renderProgress();
-  if (page === 'ainews') renderAINews();
 }
 $$('.nav-item').forEach(item => {
   item.addEventListener('click', () => navigateTo(item.dataset.page));
@@ -5139,7 +5053,7 @@ const HP_PROJECTS = [
     repo: 'my-dashboard',
     repoUrl: 'https://github.com/at19750919-star/my-dashboard',
     deployUrl: 'https://at19750919-star.github.io/my-dashboard/',
-    desc: '個人首頁(就是這頁)+ 版面遊樂場 + AI 新聞日報。' },
+    desc: '個人首頁(就是這頁)+ 版面遊樂場。' },
   { key: 'dashbrd', name: '營運儀表板',   color: 'violet', initial: '儀',
     repo: 'baccarat-dashboard',
     repoUrl: 'https://github.com/at19750919-star/baccarat-dashboard',
@@ -5554,132 +5468,6 @@ function refreshDashboard() {
   renderDashQuickLinks();
   renderProgress();
 }
-
-// ─── AI News ───
-const NEWS_DIR = 'news/';
-let newsAvailableDates = [];
-
-function getToday() {
-  const d = new Date();
-  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-}
-
-function displayReport(dateStr) {
-  const embed = $('#ainewsEmbed');
-  const placeholder = $('#ainewsPlaceholder');
-  const status = $('#newsStatus');
-  const html = window._newsReports && window._newsReports[dateStr];
-  if (!html) { showNewsNotFound(dateStr); return; }
-
-  placeholder.style.display = 'none';
-  embed.style.display = 'block';
-  embed.innerHTML = '<iframe class="ainews-srcdoc" sandbox="allow-scripts"></iframe>';
-  const iframe = embed.querySelector('iframe');
-  iframe.srcdoc = html;
-
-  status.textContent = '✓ ' + dateStr;
-  $$('.news-chip').forEach(c => c.classList.toggle('active', c.dataset.date === dateStr));
-  $('#newsDatePicker').value = dateStr;
-  LS.set('ainews_lastDate', dateStr);
-}
-
-function loadNewsReport(dateStr) {
-  const status = $('#newsStatus');
-  const placeholder = $('#ainewsPlaceholder');
-  const embed = $('#ainewsEmbed');
-
-  // If already loaded in memory, display immediately
-  if (window._newsReports && window._newsReports[dateStr]) {
-    displayReport(dateStr);
-    return;
-  }
-
-  status.textContent = '載入中...';
-  placeholder.style.display = 'none';
-  embed.style.display = 'none';
-
-  // Load via <script> tag (works with file:// and http://)
-  const script = document.createElement('script');
-  script.src = NEWS_DIR + 'ai-news-' + dateStr + '.js';
-
-  const onLoaded = (e) => {
-    if (e.detail === dateStr) {
-      document.removeEventListener('news-loaded', onLoaded);
-      displayReport(dateStr);
-    }
-  };
-  document.addEventListener('news-loaded', onLoaded);
-
-  script.onerror = () => {
-    document.removeEventListener('news-loaded', onLoaded);
-    // Fallback: try fetch for .html (works on servers/GitHub Pages)
-    fetch(NEWS_DIR + 'ai-news-' + dateStr + '.html')
-      .then(r => { if (!r.ok) throw new Error(); return r.text(); })
-      .then(html => {
-        window._newsReports = window._newsReports || {};
-        window._newsReports[dateStr] = html;
-        displayReport(dateStr);
-      })
-      .catch(() => showNewsNotFound(dateStr));
-  };
-
-  document.head.appendChild(script);
-}
-
-function showNewsNotFound(dateStr) {
-  const embed = $('#ainewsEmbed');
-  const placeholder = $('#ainewsPlaceholder');
-  const status = $('#newsStatus');
-  embed.style.display = 'none';
-  placeholder.style.display = 'flex';
-  status.textContent = '✗ 未找到 ' + dateStr;
-}
-
-function scanAvailableReports() {
-  // Since this is a static site, we maintain a list of known report dates
-  // This list is auto-updated when reports are added
-  const knownDates = LS.get('ainews_dates', []);
-  const today = getToday();
-  if (!knownDates.includes(today)) knownDates.unshift(today);
-
-  // Keep last 30 days
-  const last30 = [];
-  for (let i = 0; i < 30; i++) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    last30.push(d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'));
-  }
-  newsAvailableDates = last30;
-  return last30;
-}
-
-function renderAINews() {
-  const nav = $('#ainewsQuickNav');
-  const dates = scanAvailableReports();
-  // Show last 7 days as quick-nav chips
-  nav.innerHTML = '<span style="color:var(--text-muted);font-size:0.85rem;margin-right:4px;">快速選擇：</span>' +
-    dates.slice(0, 7).map(d => {
-      const label = d === getToday() ? '今日' : d.slice(5); // Show MM-DD or "今日"
-      return `<span class="news-chip" data-date="${d}" onclick="loadNewsReport('${d}')">${label}</span>`;
-    }).join('');
-
-  // Set date picker to today
-  const picker = $('#newsDatePicker');
-  picker.value = getToday();
-
-  // Auto-load last viewed or today
-  const lastDate = LS.get('ainews_lastDate', getToday());
-  loadNewsReport(lastDate);
-}
-
-$('#newsLoadBtn').addEventListener('click', () => {
-  const dateStr = $('#newsDatePicker').value;
-  if (dateStr) loadNewsReport(dateStr);
-});
-
-$('#newsLoadTodayBtn').addEventListener('click', () => {
-  loadNewsReport(getToday());
-});
 
 // ─── Init ───
 async function init() {
