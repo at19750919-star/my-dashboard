@@ -3,104 +3,102 @@ const AI_NEWS_DATA = [
     "date": "2026-06-14",
     "weekday": "週日",
     "stats": {
-      "claude": 1,
+      "claude": 0,
       "openai": 1,
       "gemini": 0,
-      "grok": 1,
-      "news": 1,
-      "hf": 2,
-      "gh": 2
+      "grok": 0,
+      "news": 2,
+      "hf": 3,
+      "gh": 3
     },
-    "claude": [
-      {
-        "sub": "workflow",
-        "title": "中文 Codex 教學：從 ChatGPT 到能操作檔案的 AI Agent",
-        "desc": "這支中文影片把 ChatGPT、Codex、AI Agent 的差異講清楚，重點是為什麼需要能讀寫檔案、串接工具、執行任務的本機代理。比企業合作新聞更接近你每天會用到的 AI 工具工作流。",
-        "url": "https://www.youtube.com/watch?v=qLGv_XFPqv4",
-        "source": "YouTube 中文教學",
-        "tags": [
-          "claude",
-          "codex",
-          "中文",
-          "agent"
-        ]
-      }
-    ],
+    "claude": [],
     "openai": [
       {
-        "sub": "chatgpt",
-        "title": "ChatGPT release notes 顯示 GPT-5.2 系列已退場並轉往 GPT-5.5",
-        "desc": "OpenAI Help Center 標示 2026-06-12 起 GPT-5.2 Instant、Thinking、Pro 不再可用，既有對話會轉到對應 GPT-5.5。若你在比較模型效果，舊對話輸出風格可能已經換底層模型。",
+        "sub": "codex",
+        "title": "OpenAI 更新 Codex：可累積重設額度，還能用邀請換額度",
+        "desc": "OpenAI 在 2026-06-11 的 ChatGPT release notes 補上 Codex 更新。Plus 與 Pro 用戶現在可保留重設額度，首波還有一次免費重設；另外可在 Codex 內邀請同事或朋友，對方送出第一則 Codex 訊息後，雙方都會拿到可在 30 天內使用的額度。對重度使用者來說，這是直接影響日常工作流的實用更新。",
         "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
         "source": "OpenAI Help Center",
         "tags": [
           "openai",
-          "chatgpt",
-          "model"
+          "codex",
+          "chatgpt"
         ]
       }
     ],
     "gemini": [],
-    "grok": [
-      {
-        "sub": "tool",
-        "title": "AI Roundup 今日整理 Grok Build 外掛市集重點",
-        "desc": "AI Roundup 的最新整理把 xAI Grok Build Plugin Marketplace 放進工具雷達，重點是 MongoDB、Vercel、Sentry、Cloudflare、Chrome DevTools 等外掛可從終端機安裝。",
-        "url": "https://www.ai-roundup.dev/roundup/latest/",
-        "source": "AI Roundup",
-        "tags": [
-          "grok",
-          "tool",
-          "plugin"
-        ]
-      }
-    ],
+    "grok": [],
     "news": [
       {
+        "sub": "media-zh",
+        "title": "INSIDE 整理 Safari 新 AI 功能：分頁監控、自然語言做擴充、自動整理分頁",
+        "desc": "INSIDE 用繁中整理 WWDC 2026 的 Safari AI 更新，重點不是商業消息，而是三個可直接理解的新工作流：讓瀏覽器在背景追蹤頁面變化、把一堆分頁自動分群，以及用自然語言產生瀏覽器擴充功能。這則很適合拿來快速判斷 Safari 是否開始變成可執行任務的資訊代理。",
+        "url": "https://www.inside.com.tw/article/41495-safari-wwdc-2026-three-ai-updates-notify-me",
+        "source": "INSIDE",
+        "tags": [
+          "safari",
+          "apple-intelligence",
+          "workflow"
+        ]
+      },
+      {
         "sub": "youtube-zh",
-        "title": "孔老師 AI 研習社近期更新 NotebookLM 與 AI 工具教學",
-        "desc": "孔老師 AI 研習社頻道近期有 NotebookLM 隱藏用法、AI 生圖工具與其他 AI 工具教學，適合補中文操作型內容。這類來源會放進每日雷達的工具影片區，避免只有英文影片。",
-        "url": "https://www.youtube.com/@Teacher_Kong/videos",
-        "source": "孔老師AI研習社 / YouTube",
+        "title": "中文影片：Chrome 內建 Gemini 全攻略，從 AI 繪圖到自動化行程安排",
+        "desc": "這支華語教學影片聚焦 Chrome 內建 Gemini 的實際用法，重點不是介紹名詞，而是示範怎麼把瀏覽器內建 AI 拿來做查詢、整理、繪圖與行程工作流。若你想看中文實作再決定要不要把 Chrome AI 納入日常流程，這支很適合先看。",
+        "url": "https://www.youtube.com/watch?v=Kv0OIIbCbzU",
+        "source": "YouTube",
         "tags": [
           "youtube",
-          "中文",
-          "notebooklm"
+          "中文教學",
+          "gemini",
+          "chrome"
         ]
       }
     ],
     "hf": [
       {
+        "sub": "code-review",
+        "title": "Hugging Face 推出 Serge：可直接掛進 GitHub PR 流程的 AI code review",
+        "desc": "Serge 是 Hugging Face 在 2026-06-12 發出的新開源工具，設計重點是不要另建一套審查平台，而是直接吃 GitHub pull request、遵守 repo 自己的 review policy，並可選擇 GitHub Action、GitHub App 或人工審核版 web app 三種模式。對想在既有 PR 流程加上 AI reviewer 的團隊，這是今天最值得試的實作型工具之一。",
+        "url": "https://huggingface.co/blog/huggingface/serge",
+        "source": "Hugging Face",
+        "tags": [
+          "huggingface",
+          "github",
+          "code-review"
+        ]
+      },
+      {
         "sub": "embedding",
-        "title": "Hugging Face 今日文章介紹可訓練、可服務的 Stable Static Embedding",
-        "desc": "SSE in Practice 介紹快速靜態 embedding 的訓練與服務方式，定位是可以插進代理系統的低成本向量表示。適合關注 RAG、搜尋或本地代理工具的人收藏。",
+        "title": "Hugging Face 實作文：Stable Static Embedding 可在 CPU 高速跑檢索與 agent",
+        "desc": "這篇 2026-06-13 的實作文不是單純介紹 embedding 概念，而是給出兩個開源 repo，示範怎麼把大約 1600 萬參數的 SSE 模型訓練、部署，並接進 RAG 或 agent 工作流。對想把檢索層做輕量化、又不想一開始就上大型向量服務的人，參考價值很高。",
         "url": "https://huggingface.co/blog/RikkaBotan/stable-static-embedding-in-practice",
         "source": "Hugging Face",
         "tags": [
           "huggingface",
           "embedding",
-          "agent"
+          "rag"
         ]
       },
       {
         "sub": "leaderboard",
-        "title": "Hugging Face Blog 顯示 MTEB Leaderboard 近期升級為功能更完整的榜單",
-        "desc": "Hugging Face Blog 首頁列出 MTEB Leaderboard 的近期更新，重點是從慢速 demo 進化成更完整的榜單體驗。若你常比較 embedding 或檢索模型，這類榜單工具比單篇模型新聞更實用。",
-        "url": "https://huggingface.co/blog",
-        "source": "Hugging Face Blog",
+        "title": "MTEB 榜單改版：可更快篩 embedding 模型、看任務面向與細部表現",
+        "desc": "新版 MTEB Leaderboard 在 2026-06-12 公開，重點不是又多一個榜單，而是把原本偏慢的 demo 升級成可實際選型的工具。它現在更適合依語言、任務類型與細項指標篩模型，對要選 embedding 模型做搜尋、分類或 RAG 的人，比只看總分更有用。",
+        "url": "https://huggingface.co/blog/Samoed/mteb-v3-leaderboard",
+        "source": "Hugging Face",
         "tags": [
           "huggingface",
-          "leaderboard",
-          "embedding"
+          "embedding",
+          "benchmark"
         ]
       }
     ],
     "gh": [
       {
         "sub": "security",
-        "title": "GitHub Copilot CLI 加入安全審查指令預覽",
-        "desc": "GitHub 6 月 changelog 提到 Copilot CLI 新增實驗性的安全審查 slash command，可直接對程式碼變更做安全檢查。對開發者來說，這代表 AI review 正從 IDE 對話走向命令列流程。",
-        "url": "https://github.blog/changelog/month/06-2026/",
+        "title": "GitHub Copilot CLI 新增 /security-review，可先在本機掃變更的安全風險",
+        "desc": "GitHub 在 2026-06-10 發布 Copilot CLI 的實驗功能 /security-review。它會直接分析你本機尚未提交的變更，回報高信心的安全問題與修正建議，涵蓋 injection、XSS、路徑穿越、弱加密等常見風險。這很適合在 commit 前多一道快速檢查。",
+        "url": "https://github.blog/changelog/2026-06-10-dedicated-security-review-command-now-available-in-copilot-cli/",
         "source": "GitHub Changelog",
         "tags": [
           "github",
@@ -109,15 +107,27 @@ const AI_NEWS_DATA = [
         ]
       },
       {
-        "sub": "agent",
-        "title": "GitHub Agent tasks REST API 可程式化啟動 Copilot cloud agent 任務",
-        "desc": "GitHub 6 月 changelog 第 2 頁提到 Agent tasks REST API，讓 Pro、Pro+、Max 使用者可用 API 啟動與追蹤 Copilot cloud agent 任務。這對自動化開發流程比單次聊天更重要。",
-        "url": "https://github.blog/changelog/month/06-2026/page/2/",
+        "sub": "cli",
+        "title": "GitHub Copilot CLI 新增 /settings，把分散設定集中成可搜尋的單一入口",
+        "desc": "GitHub 在 2026-06-11 把 Copilot CLI 的設定整併成新的 /settings。現在可以用全螢幕設定介面、單行指令，或腳本方式改值，也能直接 reset。對常在終端調整實驗功能、同步層級或顯示模式的人，這比手改設定檔省事很多。",
+        "url": "https://github.blog/changelog/2026-06-11-copilot-cli-configure-everything-from-one-place-with-settings/",
         "source": "GitHub Changelog",
         "tags": [
           "github",
           "copilot",
-          "agent"
+          "cli"
+        ]
+      },
+      {
+        "sub": "workflow",
+        "title": "GitHub Agentic Workflows 現在可直接用 GITHUB_TOKEN，不必再存 PAT",
+        "desc": "GitHub 在 2026-06-11 宣布 Agentic Workflows 可直接使用 GitHub Actions 內建的 GITHUB_TOKEN。這代表自動化流程不必再自行建立與保存長期 PAT，安全與維運成本都更低；若是組織擁有的 repo，AI 使用量也能直接記到組織帳務，較容易做成本控管。",
+        "url": "https://github.blog/changelog/2026-06-11-agentic-workflows-no-longer-need-a-personal-access-token/",
+        "source": "GitHub Changelog",
+        "tags": [
+          "github",
+          "copilot",
+          "workflow"
         ]
       }
     ]
